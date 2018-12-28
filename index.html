@@ -11,14 +11,37 @@
 
         <link rel="shortcut icon" href="./favicon.ico">
         <title>Jinhyuk Lee - Android & PHP & Front-end Developer</title>
-        
+
         <style>
-            body {font-size:15px;margin:0;padding:0;font-family: 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#333333;background: #ebebeb;font-weight:300;zoom:1;}
+            body {font-size:15px;margin:0;padding:0;font-family: 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:300;zoom:1;}
+            /* Mobile */
+            @media screen and (max-width: 600px){
+
+            }
+            /* PC */
+            @media screen and (min-width: 600px){
+            }
+            
+            .gif_bg {background: url("https://i.pinimg.com/originals/7a/28/43/7a28438533593808d39c7acf6654b594.gif") no-repeat;background-size:cover}
+
         </style>
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+        <script>
+            window.onload=function(){
+                $(".fadein").fadeIn(3000);
+                setTimeout(function(){$(".fadein2").fadeIn(3000);}, 3000);
+            };
+        </script>
     </head>
     <body>
-        뭐를 채워야 될려나... 흐으으음...
+        <div class="gif_bg" style="position:relative;height:500px;">
+            <div class="fadein" style="position:absolute;text-align:center;top:100px;font-size:2em;width:100%;display:none;margin:auto;">
+                뭐를 채워야 될려나... 흐으으음...
+            </div>
+            <div class="fadein2" style="position:absolute;text-align:center;top:200px;bottom:0;font-size:2em;width:100%;display:none;margin:auto;">
+                이런식이긴 하던데...
+            </div>
+        </div>
     </body>
 </html>
