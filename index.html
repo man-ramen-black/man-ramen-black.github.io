@@ -95,35 +95,77 @@
             window.onload = function () {
                 $(".full_height").height($(window.top).height());
             };
-            window.onResize = function(){
+            window.onResize = function () {
                 $(".full_height").height($(window.top).height());
             };
             window.onScroll = function () {
-                $(".fadein").each(function(){
-                    
+                $(".fadein").each(function () {
+
                 });
             }
 
             $(function () {
+                $(window).mouseover(function (e) {
+                    stopAutoRotate();
+                });
+                $(window).mouseout(function (e) {
+                    startAutoRotate();
+                });
                 $(window).mousemove(function (e) {
                     $('.cube').css('transform', 'rotateX(' + -e.pageY + 'deg)' + 'rotateY(' + e.pageX + 'deg)');
                 });
-                $(window).touchmove(function (e) {
-                    $('.cube').css('transform', 'rotateX(' + -e.pageY + 'deg)' + 'rotateY(' + e.pageX + 'deg)');
-                });
+                try {
+                    $(window).touchmove(function (e) {
+                        $('.cube').css('transform', 'rotateX(' + -e.pageY + 'deg)' + 'rotateY(' + e.pageX + 'deg)');
+                    });
+                } catch (e) {
+
+                }
             })
+            
+            function stopAutoRotate(){
+                if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
+
+                if (timeout) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
+            }
+
+            var timeout = null;
+            var interval = null;
+            function startAutoRotate() {
+                console.log('start');
+                stopAutoRotate();
+
+                timeout = setTimeout(function () {
+                    $('.cube div').fadeOut(300, function () {
+                        stopAutoRotate();
+                        interval = setInterval(function () {
+                            if ($(".cube div").css("display") === "none") {
+                                $(".cube div").fadeIn();
+                            }
+                            deg = new Date().getTime() / 50;
+                            $('.cube').css('transform', 'rotateX(' + deg + 'deg)' + 'rotateY(' + deg + 'deg)');
+                        }, 1);
+                    });
+                }, 1000);
+            }
         </script>
     </head>
     <body>
         <div style="position:fixed;top:0;bottom:0;height:200px;margin:auto;width:100%;">
-        <div class="cube">
-            <div class="top"></div>
-            <div class="right"></div>
-            <div class="bottom"></div>
-            <div class="left"></div>
-            <div class="back"></div>
-            <div class="front"></div>
-        </div>
+            <div class="cube">
+                <div class="top"></div>
+                <div class="right"></div>
+                <div class="bottom"></div>
+                <div class="left"></div>
+                <div class="back"></div>
+                <div class="front"></div>
+            </div>
         </div>
 
         <div class="full_height" style="position:relative;">
