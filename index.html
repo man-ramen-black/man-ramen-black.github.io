@@ -21,27 +21,123 @@
             /* PC */
             @media screen and (min-width: 600px){
             }
-            
+
             .gif_bg {background: url("https://i.pinimg.com/originals/7a/28/43/7a28438533593808d39c7acf6654b594.gif") no-repeat;background-size:cover}
+
+            .middle {position:absolute;height:100px;top:0;bottom:0;margin:auto;}
+
+            .next_arrow {bottom:10px;animation: poke 1.5s infinite ease-in-out;}
+            @keyframes poke {
+                0%, 100% {
+                    bottom: 0;
+                }
+                50% {
+                    bottom: 10px;
+                }
+            }
+
+            .fadein {}
+
+            .footer {text-align:center;padding:30px 0;border-top:solid 1px #999;}
+            .footer a{margin:0 10px;}
+
+            .cube {
+                width: 300px;
+                height: 300px;
+                position: relative;
+                transform-style: preserve-3d;
+                transform: rotateX(-20deg) rotateY(-45deg);
+                top: 50%;
+                left: 50%;
+                margin-left: -150px;
+                margin-top: -150px;
+            }
+
+            .cube div {
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                border:solid 1px white;
+            }
+
+            .cube div.top {
+                transform: rotateX(90deg);
+                margin-top: -150px;
+            }
+
+            .cube div.right {
+                transform: rotateY(90deg); 
+                margin-left: 150px;
+            }
+
+            .cube div.bottom {
+                transform: rotateX(90deg);
+                margin-top: 150px;
+            }
+
+            .cube div.left {
+                transform: rotateY(-90deg);
+                margin-left: -150px;
+            }
+
+            .cube div.front {
+                transform: translateZ(150px); 
+            }
+
+            .cube div.back {
+                transform: translateZ(-150px); 
+            }
 
         </style>
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script>
-            window.onload=function(){
-                $(".fadein").fadeIn(3000);
-                setTimeout(function(){$(".fadein2").fadeIn(3000);}, 3000);
+            window.onload = function () {
+                $(".full_height").height($(window.top).height());
+//                $(".fadein").fadeIn(3000);
+//                setTimeout(function(){$(".fadein").fadeOut(3000);$(".fadein2").fadeIn(3000);}, 3000);
             };
+            window.onScrol = function () {
+                $(".fadein").eq
+            }
+
+            $(function () {
+                $(window).mousemove(function (e) {
+                    $('.cube').css('transform', 'rotateX(' + -e.pageY + 'deg)' + 'rotateY(' + e.pageX + 'deg)');
+                });
+            })
         </script>
     </head>
     <body>
-        <div class="gif_bg" style="position:relative;height:500px;">
-            <div class="fadein" style="position:absolute;text-align:center;top:100px;font-size:2em;width:100%;display:none;margin:auto;">
-                뭐를 채워야 될려나... 흐으으음...
+        <div style="position:fixed;top:0;bottom:0;height:300px;margin:auto;width:100%;">
+        <div class="cube">
+            <div class="top"></div>
+            <div class="right"></div>
+            <div class="bottom"></div>
+            <div class="left"></div>
+            <div class="back"></div>
+            <div class="front"></div>
+        </div>
+        </div>
+
+        <div class="full_height" style="position:relative;">
+            <div class="fadein middle" style="text-align:center;width:100%;">
+                <div style="font-size:3em;font-weight:600">이진혁</div>
+                <div>
+                    <p>안녕하세요. 저는 Android & PHP & Front-end 개발자입니다.</p>
+                </div>
             </div>
-            <div class="fadein2" style="position:absolute;text-align:center;top:200px;bottom:0;font-size:2em;width:100%;display:none;margin:auto;">
-                이런식이긴 하던데...
+            <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
+        </div>
+        <div class="full_height" style="position:relative;">
+            <div class="fadein middle" style="text-align:center;width:100%;">
+                <div>
+                    <p>그래 이런걸 좀 해줘야 느낌이 나지</p>
+                </div>
             </div>
+        </div>
+        <div class="footer">
+            <a>GitHub</a>
         </div>
     </body>
 </html>
