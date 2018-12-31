@@ -94,39 +94,60 @@
             }
 
         </style>
-
         <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+        <script src="util.js" ></script>
         <script>
-            var window_size = 0;
+            var windowSize = 0;
             window.onload = function () {
                 adjustSectionHeight();
-                startAutoRotate() ;
+                startAutoRotate();
+                setTimeout(function () {
+                    window.scrollTo(0, 0);
+                    window.onscroll = function () {
+                        if (isScrolling)
+                            return;
+                        var isDown = scrollTop - $(window).scrollTop() < 0;
+                        console.log(isDown ? "down" : "up");
+                        isScrolling = true;
+                        movePage(isDown);
+                    };
+                }, 1);
             };
-            window.onresize = function () {
-                console.log(window_size + " : " + $(window.top).height());
-                if(Math.abs(window_size - $(window.top).height()) > 100){
-                    adjustSectionHeight();
-                }
-            };
-            window.onScroll = function () {
-                $(".fadein").each(function () {
 
+            function movePage(isNext) {
+                currentIdx += (isNext ? 1 : -1);
+                $('html, body').animate({
+                    scrollTop: $(".section").eq(currentIdx).offset().top
+                }, 800, function () {
+                    scrollTop = $(window).scrollTop();
+                    setTimeout(function () {
+                        isScrolling = false;
+                    }, 100);
                 });
             }
-            
-            function adjustSectionHeight(){
-                window_size = $(window.top).height();
+
+            if (!isMobile()) {
+                window.onresize = function () {
+                    adjustSectionHeight();
+                }
+            }
+
+            var scrollTop = 0;
+            var isScrolling = false;
+            var currentIdx = 0;
+            function adjustSectionHeight() {
+                windowSize = $(window.top).height();
                 $(".section").height($(window.top).height());
             }
-            
+
             function startAutoRotate() {
                 $(".cube div").fadeIn();
                 setInterval(function () {
                     var deg = new Date().getTime() / 50;
                     $('.cube').css('transform', 'rotateX(' + deg + 'deg)' + 'rotateY(' + deg + 'deg)');
-                }, 1);
+                }, 20);
             }
-            
+
         </script>
     </head>
     <body>
@@ -143,15 +164,17 @@
 
         <div class="section" style="position:relative;">
             <div class="fadein middle" style="text-align:center;width:100%;">
-                <div style="font-size:3em;font-weight:600">이진혁</div>
+                <div style="font-size:3em;font-weight:600"></div>
+                <!--이진혁-->
                 <div>
-                    <p>안녕하세요. 저는 Android & PHP & Front-end 개발자입니다.</p>
+                    <p>1 페이지입니다.</p>
+                    <!--안녕하세요. 저는 Android & PHP & Front-end 개발자입니다.-->
                 </div>
             </div>
             <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
         </div>
         <div class="section" style="position:relative;">
-            <div class="fadein middle" style="text-align:center;width:100%;">
+            <div class="fadein middle" style="text-align:center;width:100%;display:none;">
                 <div>
                     <p>그래 이런걸 좀 해줘야 느낌이 나지</p>
                 </div>
