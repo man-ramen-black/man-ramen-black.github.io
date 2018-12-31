@@ -48,7 +48,7 @@
 
             .footer {position:absolute;bottom:0;text-align:center;padding:30px 0;border-top:solid 1px #999;width:100%;}
             .footer a{margin:0 10px;}
-
+            .cube_wrap {position:fixed;height:200px;width:100%;}
             .cube {
                 width: 200px;
                 height: 200px;
@@ -120,8 +120,8 @@
                 movePage(isDown);
             })
 
-            $(window).on('touchmove', function () {
-
+            $(window).on('touchmove', function (e) {
+                alert("touch");
                 var currentPoint = e.originalEvent.changedTouches[0].pageY;
                 
                 movePage(lastPoint > currentPoint);
@@ -166,8 +166,9 @@
             var isScrolling = false;
             var currentIdx = 0;
             function adjustSectionHeight() {
-                windowSize = $(window.top).height();
-                $(".section").height($(window.top).height());
+                windowSize = $(window).height();
+                $(".section").height(windowSize);
+                $(".cube_wrap").css("top", ((windowSize - $(".cube").height()) / 2)+"px");
             }
 
             function startAutoRotate() {
@@ -181,7 +182,7 @@
         </script>
     </head>
     <body>
-        <div style="position:fixed;top:0;bottom:0;height:200px;margin:auto;width:100%;">
+        <div class="cube_wrap">
             <div class="cube">
                 <div class="top"></div>
                 <div class="right"></div>
