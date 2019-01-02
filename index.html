@@ -6,23 +6,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta property="og:image" content="http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png">
+        <meta name="theme-color" content="#000000" />
 
         <link rel="shortcut icon" href="./favicon.ico">
         <title>Jinhyuk Lee - Android & PHP & Front-end Developer</title>
-
+        <link rel="stylesheet" href="slider.css">
         <style>
-            * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline:0 }
-            body {font-size:15px;margin:0;padding:0;font-family: 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:300;zoom:1;overflow:hidden}
+            * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline:0;margin:0; padding:0; }
+            html, body {margin: 0; height: 100%; overflow: hidden}
+            body {font-size:15px;font-family: 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:300;zoom:1;}
             body::-webkit-scrollbar{width:0;background-color:transparent;}
-            h1{margin:0;padding:0;font-size:3em}
-            h2{margin:0;padding:0;font-size:2em}
+            h1{font-size:3em}
+            h2{font-size:2em}
             a{text-decoration:none;color:#fff;border:none;margin:0;padding:0;}
             a:visited{text-decoration:none;border:none;}
             a:active{text-decoration:none;border:none;}
             a:hover{text-decoration:none;border:none;}
+            ul, ol, li{list-style: none}
             /* Mobile */
             @media screen and (max-width: 600px){
 
@@ -33,7 +34,6 @@
 
             .gif_bg {background: url("https://i.pinimg.com/originals/7a/28/43/7a28438533593808d39c7acf6654b594.gif") no-repeat;background-size:cover}
 
-            .middle {position:absolute;height:100px;top:0;bottom:0;margin:auto;}
 
             .next_arrow {bottom:10px;animation: poke 1.5s infinite ease-in-out;}
             @keyframes poke {
@@ -45,9 +45,9 @@
                 }
             }
 
-            .section {position:relative;}
+            .sections > li {position:relative;}
 
-            .fadein {}
+            .sections > li > div:first-child{position:absolute;top:50%;transform: translateY(-50%);width:100%;text-align:center;animation:fade_out 1s;animation-fill-mode: forwards;padding:20px;box-sizing:border-box;}
 
             .footer {position:absolute;bottom:0;text-align:center;padding:30px 0;border-top:solid 1px #999;width:100%;}
             .footer a{margin:0 10px;}
@@ -100,6 +100,8 @@
                 transform: translateZ(-100px); 
             }
 
+
+
             #loader {background:#fff;position:absolute;top:0;bottom:0;left:0;right:0;z-index:1000}
             .multi-spinner-container {
                 width: 150px;
@@ -148,91 +150,75 @@
                 }
             }
 
+            @keyframes fade_out{
+                to {opacity:0;display:none;}
+
+            }
+
+            @keyframes fade_in {
+                from {margin-top: 10px;display:none;opacity:0;}
+                to {display:visible !important;margin-top: 0px;opacity:1}
+            }
+
+            .fade_in {display:block !important;animation:fade_in 1s !important;}
+            .fade_out {animation:fade_out 1s;animation-fill-mode: forwards;}
+
+            .divider {border-bottom:solid 2px white;height:10px;margin-bottom:10px;}
+
             #debug {position:fixed;color:white}
 
+            .chart_container {position:relative;height:50px;} 
+
+            .table {display:table;width:100%;border-spacing: 10px;border-collapse: separate;}
+            .table > li {display:table-cell;width:30%}
+			.table > li img{width:100%}
+
         </style>
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
-        <script src="util.js" ></script> 
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="util.js" ></script>
+        <script type="text/javascript" src="slider.js?ver=<?=time()?>"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script>
-            var windowSize = 0;
+            var slider;
             window.onload = function () {
+
+                slider = $.PageSlider(".sections", {
+                    indicator: false,
+                    onLeave: function (origin, destination, direction) {
+                        destroyCharts();
+                        console.log(origin + " : " + destination + " : " + direction);
+                        $(".sections > li > div:first-child").removeClass("fade_in");
+//									$(".sections > li > div:first-child").fadeOut(400, function(){destroyCharts();});
+                        setTimeout(function () {
+//										$(".sections > li > div:first-child").addClass("fade_out");
+//										$(".sections > li > div:first-child").css("padding-top", "50px")
+//										$(".sections > li:eq("+(destination-1)+") > div:first-child").fadeIn({duration: 700, queue: false});
+//										$(".sections > li:eq("+(destination-1)+") > div:first-child").animate({"padding-top": 0}, {duration: 700, queue: false, complete : drawCharts});
+                            $(".sections > li:eq(" + (destination - 1) + ") > div:first-child").addClass("fade_in");
+                            setTimeout(drawCharts, 400);
+                        }, 600);
+                    }
+                });
+
                 adjustSectionHeight();
                 startAutoRotate();
                 setTimeout(function () {
                     window.scrollTo(0, 0);
                 }, 1);
                 setTimeout(function () {
-                    $(".multi-spinner-container").fadeOut(600, function () {
-                        $("#loader").fadeOut(600);
+                    $(".sections > li:first-child > div:first-child").addClass("fade_in");
+                    $(".multi-spinner-container").fadeOut(400, function () {
+                        $("#loader").fadeOut(400);
                     });
-                }, 1000)
+                }, 600)
             };
-
-            $("html, body").on('mousewheel', function (e) {
-//                console.log(e);
-                var isDown = e.originalEvent.wheelDelta < 0 ? true : false;
-                console.log(isDown ? "down" : "up");
-
-                movePage(isDown);
-            })
-
-            var lastPoint = 0;
-            $(window).on('touchend', function (e) {
-                lastPoint = 0;
-            });
-
-            $(window).on('touchmove', function (e) {
-                var currentPoint = e.originalEvent.changedTouches[0].pageY;
-                if (lastPoint == 0) {
-                    lastPoint = currentPoint;
-                    return;
-                }
-
-                movePage(lastPoint - currentPoint > 0);
-
-                lastPoint = currentPoint;
-            });
-
-            function movePage(isNext) {
-                if (isScrolling)
-                    return;
-
-                nextIdx = currentIdx + (isNext ? 1 : -1);
-                if (nextIdx >= $(".section").size() || nextIdx < 0) {
-                    return;
-                }
-                isScrolling = true;
-                $(".fadein").fadeOut(400, function () {
-                    $(".fadein").css("padding-top", "50px")
-                });
-
-                setTimeout(function () {
-                    $(".section").eq(nextIdx).find(".fadein").fadeIn({duration: 700, queue: false});
-                    $(".section").eq(nextIdx).find(".fadein").animate({"padding-top": 0}, {duration: 700, queue: false});
-                }, 600);
-                $('html, body').animate({
-                    scrollTop: $(".section").eq(nextIdx).offset().top
-                }, 800, function () {
-                    scrollTop = $(window).scrollTop();
-                    setTimeout(function () {
-                        currentIdx = nextIdx;
-                        console.log(currentIdx);
-                        isScrolling = false;
-                    }, 100);
-                });
-            }
 
             window.onresize = function () {
                 adjustSectionHeight();
             }
 
-            var scrollTop = 0;
-            var isScrolling = false;
-            var currentIdx = 0;
             function adjustSectionHeight() {
-                windowSize = $(window).height();
-                $(".section").height(windowSize);
-                $(".cube_wrap").css("top", ((windowSize - $(".cube").height()) / 2) + "px");
+                $(".cube_wrap").css("top", (($(window).height() - $(".cube").height()) / 2) + "px");
             }
 
             function startAutoRotate() {
@@ -243,10 +229,86 @@
                 }, 20);
             }
 
+            var chartOptions = [
+                {"id": "java_chart", "percent": 100, "background": 'rgba(255, 99, 132, 0.8)'},
+                {"id": "kotlin_chart", "percent": 20, "background": 'rgba(54, 162, 235, 0.8)'},
+                {"id": "mysql_chart", "percent": 90, "background": 'rgba(255, 206, 86, 0.8)'},
+                {"id": "js_chart", "percent": 70, "background": 'rgba(75, 192, 192, 0.8)'},
+                {"id": "php_chart", "percent": 100, "background": 'rgba(153, 102, 255, 0.8)'},
+                {"id": "jquery_chart", "percent": 90, "background": 'rgba(255, 159, 64, 0.8)'},
+                {"id": "css_chart", "percent": 40, "background": 'rgba(159, 255, 64, 0.8)'}
+            ];
+            var charts = [];
+
+            function destroyCharts() {
+                if (charts.length >= 1) {
+                    charts.forEach(function (chart) {
+                        chart.destroy();
+                    });
+                }
+            }
+
+            function drawCharts() {
+                destroyCharts();
+                chartOptions.forEach(function (option) {
+                    var ctx = document.getElementById(option.id).getContext('2d');
+                    var chart = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: {
+                            datasets: [{
+                                    data: [option.percent],
+                                    backgroundColor: [
+                                        option.background
+                                    ],
+                                    borderColor: [
+                                        option.background.replace("0.8", "1")
+                                    ],
+                                    borderWidth: 1,
+
+                                }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            title: {
+                                display: false
+                            },
+                            legend: {
+                                display: false,
+                            },
+                            layout: {
+                                padding: {
+                                    left: 0,
+                                    right: 0,
+                                    top: 0,
+                                    bottom: 0
+                                }
+                            },
+                            scales: {
+                                xAxes: [{
+                                        display: false,
+                                        scaleLabel: {
+                                            display: false,
+                                        },
+                                        ticks: {
+                                            beginAtZero: true,
+                                            min: 0,
+                                            max: 100,
+                                        }
+                                    }]
+                            },
+                            animation: {
+                                duration: 1000
+                            }
+                        }
+                    });
+                    charts.push(chart);
+                });
+            }
+
         </script>
     </head>
     <body>
-        <div id="debug"></div>
 
         <div class="cube_wrap">
             <div class="cube">
@@ -259,7 +321,8 @@
             </div>
         </div>
 
-        <div id="loader">
+
+        <div id="loader" >
             <div class="multi-spinner-container">
                 <div class="multi-spinner">
                     <div class="multi-spinner">
@@ -275,32 +338,91 @@
             </div>
         </div>
 
+        <ol class="sections">
+            <li>
+                <div>
+                    <h1>Hello World</h1>
+                    <!--안녕하세요. 저는 경력 3년차 Android & PHP & Front-end 개발자입니다.-->
+                </div>
+                <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
+            </li>
+            <li>
+                <div style="height:100%;">
+                    <div style="border:solid 1px white;width:48%;float:left;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;">
+                        <h2>Work experiences</h2>
+                        <p class="divider"></p>
+                        <ol>
+                            <li>
+                                <h3>2017년 01월 ~ 2018년 02월</h3>
+                                <p>(주) 모나와 | Android / PHP 개발</p>
+                                <dl>
+                                    <dt>MOBI</dt>
+                                    <dd>나 혼자 개발</dd>
+                                </dl>
+                            </li>
+                        </ol>
+                    </div>
+                    <div style="border:solid 1px white;width:48%;float:left;margin-left:3%;padding:20px;box-sizing:border-box;height:100%;">
+                        <h2>Skills</h2>
+                        <p class="divider"></p>
+                        <h3>Android Java</h3>
+                        <div class="chart_container">
+                            <canvas id="java_chart"></canvas>
+                        </div>
+                        <h3>Android Kotlin</h3>
+                        <div class="chart_container">
+                            <canvas id="kotlin_chart"></canvas>
+                        </div>
+                        <h3>PHP</h3>
+                        <div class="chart_container">
+                            <canvas id="php_chart"></canvas>
+                        </div>
+                        <h3>MySQL</h3>
+                        <div class="chart_container">
+                            <canvas id="mysql_chart"></canvas>
+                        </div>
+                        <h3>Javascript</h3>
+                        <div class="chart_container">
+                            <canvas id="js_chart"></canvas>
+                        </div>
+                        <h3>jQuery</h3>
+                        <div class="chart_container">
+                            <canvas id="jquery_chart"></canvas>
+                        </div>
+                        <h3>CSS</h3>
+                        <div class="chart_container">
+                            <canvas id="css_chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h2>My works</h2>
+                    <ol class="table">
+                        <li>
+                            <img src="https://lh3.googleusercontent.com/lsiXFOGmro6YqKkbrQwcdvIqXp6keIWJHX9Kn_IemlDiI1MPjRmqifbU5O2FQquKwQ=s180-rw">
+                        </li>
+                        <li>
+                            <img src="https://lh3.googleusercontent.com/6nl5rl_ZM4SoIhOd-Rgh3lVOtw7BcXSrwJf-0uuXkq6jxF3AkntWITXFehmSR5F7Vrw=s180-rw">
+                        </li>
+                        <li>
+                            <img src="https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw">
+                        </li>
 
-        <div class="section">
-            <div class="fadein middle" style="text-align:center;width:100%;">
-                <h1>이진혁</h1>
-                <!--                <div style="font-size:3em;font-weight:600"></div>
-                                이진혁
-                                <div>-->
-                <p>1 페이지입니다.</p>
-                <!--안녕하세요. 저는 Android & PHP & Front-end 개발자입니다.-->
-            </div>
-            <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
-        </div>
 
-        <div class="section" >
-            <div class="fadein middle" style="text-align:center;width:100%;display:none;">
-                <h2>2번째 페이지입니다.</h2>
-            </div>
-        </div>
+                    </ol>
+                </div>
+            </li>
 
-        <div class="section" >
-            <div class="fadein middle" style="text-align:center;width:100%;display:none;">
-                <p>그래 이런걸 좀 해줘야 느낌이 나지</p>
-            </div>
-            <div class="footer">
-                <a href="https://github.com/man-ramen-black" target="_blank">GitHub</a>
-            </div>
-        </div>
-    </body>
+            <li>
+                <div>
+                    <p>Contact me</p>
+                </div>
+                <div class="footer">
+                    <a href="https://github.com/man-ramen-black" target="_blank">GitHub</a>
+                </div>
+            </li>
+        </ol>
+</body>
 </html>
