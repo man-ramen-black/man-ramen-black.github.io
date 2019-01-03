@@ -10,44 +10,60 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 		var isChanging = false;
 		var keyUp = {38:1, 33:1};
 		var keyDown = {40:1, 34:1};
+		var enabled = true;
+		var listeners = [];
+
+		var transitionListener = null;
 
 		var option = $.extend({}, {
 									indicator : true,
 									//콜백 추가
 									onLeave : null,
 								}, data);
+		
+		//removeListener를 위한 addListener 추가
+		function addListener(name, listener){
+			window.addEventListener(name, listener);
+			listeners.push({"name":name, "listener":listener});
+		}
 
 		var init = function () {
 			document.body.classList.add('slider__body');
 
 			// control scrolling
 			whatWheel = 'onwheel' in document.createElement('div') ? 'wheel' : document.onmousewheel !== undefined ? 'mousewheel' : 'DOMMouseScroll';
-			window.addEventListener(whatWheel, function (e) {
+			wheelFun = function (e) {
 		  var direction = e.wheelDelta || e.deltaY;
 			if (direction > 0) {
 					changeSlide(-1);
 				} else {
 					changeSlide(1);
 				}
-			});
+			};
+			addListener(whatWheel, wheelFun);
 
 			// allow keyboard input
-			window.addEventListener('keydown', function (e) {
+			keyDownFun = function (e) {
 				if (keyUp[e.keyCode]) {
 					changeSlide(-1);
 				} else if (keyDown[e.keyCode]) {
 					changeSlide(1);
 				}
-			});
+			};
+			addListener('keydown', keyDownFun);
 
 			// page change animation is done
-			detectChangeEnd() && document.querySelector(sliderElement).addEventListener(detectChangeEnd(), function () {
-				if (isChanging) {
-					setTimeout(function() {
-						isChanging = false;
-					}, 400);
-				}
-			});
+			if(detectChangeEnd()){
+				detectFun = function () {
+					if (isChanging) {
+						setTimeout(function() {
+							isChanging = false;
+						}, 400);
+					}
+				};
+				transitionListener = {"name":detectChangeEnd(), "listener":detectFun}
+				document.querySelector(sliderElement).addEventListener(detectChangeEnd(), detectFun);
+			} 
 
 			document.querySelector(sliderElement).classList.add('slider__container');
 
@@ -82,15 +98,26 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 			var touchStartPos = 0;
 			var touchStopPos = 0;
 			var touchMinLength = 90;
-			document.addEventListener('touchstart', function (e) {
-				e.preventDefault();
+			startFun = function (e) {
+
+				//onclick 이벤트가 발생하지 않는 오류 수정
+//				e.preventDefault();
 				if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
 					var touch = e.touches[0] || e.changedTouches[0];
 					touchStartPos = touch.pageY;
 				}
-			});
-			document.addEventListener('touchend', function (e) {
+			};
+			addListener('touchstart', startFun);
+
+			//onclick 이벤트가 발생하지 않는 오류 수정
+			document.addEventListener('touchmove', function(e){
 				e.preventDefault();
+			});
+
+			endFun = function (e) {
+
+				//onclick 이벤트가 발생하지 않는 오류 수정
+//				e.preventDefault();
 				if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
 					var touch = e.touches[0] || e.changedTouches[0];
 					touchStopPos = touch.pageY;
@@ -100,7 +127,8 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 				} else if (touchStartPos > touchStopPos + touchMinLength) {
 					changeSlide(1);
 				}
-			});
+			};
+			addListener('touchend', endFun);
 		
 		};
 
@@ -120,7 +148,7 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 					return transitions[transition];
 				}
 			}
-			return true;
+			return false;
 		};
 
 
@@ -137,7 +165,7 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 		var changeSlide = function (direction) {
 
 			// already doing it or last/first page, staph plz
-			if (isChanging || (direction == 1 && currentSlide == pages.length) || (direction == -1 && currentSlide == 1)) {
+			if (!enabled || isChanging || (direction == 1 && currentSlide == pages.length) || (direction == -1 && currentSlide == 1)) {
 				return;
 			}
 			
@@ -167,9 +195,15 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 				changeSlide(target - currentSlide);
 			}
 		};
-
+		
+		//페이지 이동 함수 추가
 		this.goPage = function(page){
 			gotoSlide('div[data-slider-index = "' + page +'"]');
+		}
+		
+		// on/off 함수 추가
+		this.setEnabled = function(isEnabled){
+			enabled = isEnabled;
 		}
 
 		// we have lift off
@@ -177,6 +211,31 @@ https://github.com/kevinoes/page-slider-js 를 jQuery로 변경
 			init();
 		} else {
 			window.addEventListener('onload', init(), false);
+		}
+		
+		//update 추가
+		this.update = function(){
+			this.destroy();
+			init();
+		}
+		
+		//destroy 추가
+		this.destroy = function(){
+			document.querySelector('.slider__body').classList.remove('slider__body');
+			document.querySelector('.slider__container').classList.remove('slider__container');
+			document.querySelector('.slider__page').classList.remove('slider__page');
+			document.querySelector('.slider__page').removeAttribute('data-slider-index');
+			
+			for(listener in listeners){
+				window.removeEventListener(listener.name, listener.listener);
+			}
+			
+			if(transitionListener){
+				document.querySelector(sliderElement).removeEventListener(transitionListener.name, transitionListener.listener);
+				transitionListener = null;
+			}
+
+			this.listeners = [];
 		}
 
 		return this;
