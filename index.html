@@ -43,12 +43,15 @@
                 }
             }
 
-            .sections {max-width:1000px;left: 0;right: 0;margin: auto;box-sizing:border-box;}
-            .sections > li {position:relative;}
-            .sections > li > div:first-child{width:100%;height:100%;text-align:center;animation:fade_out 1s;animation-fill-mode: forwards;padding:20px;box-sizing:border-box;}
+            .scrollable{height:100%;overflow:auto;}
+            .scrollable::-webkit-scrollbar{width:0;background-color:transparent;}
 
-            .twin {border:solid 1px white;width:48%;float:left;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;margin-right:4%}
-            .twin:last-child{margin-right:0}
+            .sections {max-width:1000px;left: 0;right: 0;margin: auto;box-sizing:border-box;}
+            .sections > li {position:relative;padding:20px;box-sizing:border-box;}
+            .sections > li > div:first-child{width:100%;height:100%;text-align:center;}
+            /*animation:fade_out 1s;animation-fill-mode: forwards;*/
+
+            .twin {width:50%;float:left;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;}
 
             .center {position:absolute;top:50%;left:50%;transform: translateY(-50%) translateX(-50%);}
 
@@ -67,6 +70,9 @@
                 margin-left: -100px;
                 margin-top: -100px;
             }
+            
+            .cube img {display:none}
+            .cube.healing img {display:block}
 
             .cube div {
                 display:none;
@@ -164,10 +170,9 @@
                 to {margin-top: 0px;opacity:1}
             }
 
-            .fade_in {display:block;animation:fade_in 1s !important;}
-            .fade_out {animation:fade_out 1s;animation-fill-mode: forwards;}
+            /*            .fade_in {display:block;animation:fade_in 1s !important;}
+                        .fade_out {animation:fade_out 1s;animation-fill-mode: forwards;}*/
 
-            .divider {border-bottom:solid 2px white;height:10px;margin-bottom:10px;}
 
             #debug {position:fixed;color:white}
 
@@ -204,11 +209,18 @@
             .close::before {transform: rotate(45deg);}
             .close::after {transform: rotate(-45deg);}
 
+            .work_experiences > li {margin-bottom:20px;}
+            .work_experiences > li:last-child {margin-bottom:0px;}
 
+            .popup_wrap{position:fixed;padding:20px;}
+            .popup {position:fixed;border:solid 1px white;border-radius:5px;padding:20px;display:none;max-width:1000px;margin:auto;box-sizing:border-box;top:20px;bottom:20px;left:20px;right:20px;}
+            h2 {display:inline-block;text-align:center;line-height:20px;height:60px;}
+            h2 > *:first-child{display:block;padding:0 20px;clear:both}
+            h2 > .divider{width:0%;display:inline-block;border-bottom:solid 2px white;height:0px;}
         </style>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js" ></script>
-        <script type="text/javascript" src="slider.js?ver=<?=time()?>"></script>
+        <script type="text/javascript" src="slider.js?ver=1"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script>
 
@@ -227,16 +239,17 @@
 
                 initSwiper();
                 initSlider();
-
                 adjustTwins();
-
-
                 startCubeRotate();
+                hideLoader();
 
             };
 
             window.onresize = function () {
                 adjustTwins();
+                if ($(".detail_icon").size() > 0) {
+                    $(".detail_icon").css("left", ($("#detail_popup").offset().left + 20) + "px");
+                }
             }
 
             function showTwins() {
@@ -248,23 +261,58 @@
                 slider = $.PageSlider(".sections", {
                     indicator: false,
                     onLeave: function (origin, destination, direction) {
+                        slider.setEnabled(true);
+                        currentContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
                         rotationSpeed = 13;
                         setTimeout(function () {
                             rotationSpeed = 1
                         }, 500);
-                        destroyCharts();
-                        $(".sections > li > div:first-child").removeClass("fade_in");
-//									$(".sections > li > div:first-child").fadeOut(400, function(){destroyCharts();});
+//                        $(".sections > li > div:first-child").removeClass("fade_in");
+                        $(".sections > li > div:first-child").fadeOut(400, function () {
+                            destroyCharts();
+                        });
                         setTimeout(function () {
-//										$(".sections > li > div:first-child").addClass("fade_out");
-//										$(".sections > li > div:first-child").css("padding-top", "50px")
-//										$(".sections > li:eq("+(destination-1)+") > div:first-child").fadeIn({duration: 700, queue: false});
-//										$(".sections > li:eq("+(destination-1)+") > div:first-child").animate({"padding-top": 0}, {duration: 700, queue: false, complete : drawCharts});
-                            $(".sections > li:eq(" + (destination - 1) + ") > div:first-child").addClass("fade_in");
-                            setTimeout(drawCharts, 400);
+                            
+                            $(".scrollable").each(function (i, obj) {
+                                setTimeout(function(){$(obj).scrollTop(1);}, 1);
+                                $(this).attr("onscroll", "");
+                            });
+                            
+                            $(".sections > li > div:first-child").css("padding-top", "50px");
+                            $(".sections > li > div:first-child").find(".divider").css("width", "0%");
+                            currentContents
+                                    .fadeIn({duration: 700, queue: false})
+                                    .animate({"padding-top": 0}, {duration: 700,  complete : function(){
+                                drawCharts();
+                                currentContents.find(".divider").animate({width: "100%"}, {duration: 800});
+//                                delay(700).
+                            }});
+                            currentContents.find(".scrollable").each(function () {
+                                if ($(this).isScrollable()) {
+                                    console.log("isScrollable");
+                                    slider.setEnabled(false, "down");
+                                    $(this).attr("onscroll", "onScrollScrollable(this)");
+                                }
+                            });
+//                            setTimeout(drawCharts, 400);
                         }, 600);
                     }
                 });
+            }
+
+            (function ($) {
+                $.fn.isScrollable = function () {
+                    return this.get(0).scrollHeight > this.get(0).clientHeight;
+                }
+            })(jQuery);
+
+            function onScrollScrollable(view) {
+                slider.setEnabled(false);
+                if (view.scrollTop == 0) {
+                    slider.setEnabled(true, "up");
+                } else if (view.scrollTop + view.clientHeight >= view.scrollHeight) {
+                    slider.setEnabled(true, "down");
+                }
             }
 
             function hideLoader() {
@@ -305,8 +353,15 @@
                 }
             }
 
+            function onClickChart(evt, item) {
+                console.log(evt);
+                console.log(item);
+                alert(item[0]['_chart']['canvas'].id);
+            }
+
             function drawCharts() {
                 destroyCharts();
+                return;
                 chartOptions.forEach(function (option) {
                     var ctx = document.getElementById(option.id).getContext('2d');
                     var chart = new Chart(ctx, {
@@ -324,6 +379,7 @@
                                 }]
                         },
                         options: {
+                            onClick: onClickChart,
                             responsive: true,
                             maintainAspectRatio: false,
                             title: {
@@ -372,7 +428,7 @@
                 cloneObj.css("position", "absolute");
                 cloneObj.css("top", obj.offsetTop + "px");
                 cloneObj.css("width", obj.offsetWidth + "px");
-                cloneObj.css("left", (obj.offsetLeft + $(".table").parent().offset().left) + "px");
+                cloneObj.css("left", $(".table").parent().offset().left + "px");
                 cloneObj.attr("onclick", "");
                 cloneObj.attr("class", "detail_icon");
                 $("body").append(cloneObj);
@@ -382,7 +438,7 @@
                     $("#detail_popup .contents").html(replaceAll($(obj).attr("contents"), "\n", "<br>"));
                 }
 
-                cloneObj.animate({"top": "40px", "left": ($(".table").parent().offset().left + 20) + "px", "width": "100px"}, {duration: 700, queue: false, complete: function () {
+                cloneObj.animate({"top": "40px", "left": ($(".table").parent().offset().left) + "px", "width": "100px"}, {duration: 700, queue: false, complete: function () {
                         $(obj).css("visibility", "visible");
                         $("#detail_popup").fadeIn();
                     }});
@@ -439,6 +495,12 @@
                 }
             }
 
+            function cancelBubbling() {
+                var event = window.event;
+                event.stopPropagation();
+                event.cancelBubble = true;
+            }
+
         </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.js"></script>
@@ -446,18 +508,18 @@
     <body>
 
         <div class="cube_wrap">
-            <div class="cube">
-                <div class="top"></div>
-                <div class="right"></div>
-                <div class="bottom"></div>
-                <div class="left"></div>
-                <div class="back"></div>
-                <div class="front"></div>
+            <div class="cube healing">
+                <div class="top"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg" style="width:100%;"></div>
+                <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg" style="width:100%;"></div>
+                <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244" style="width:100%;"></div>
+                <div class="left"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148702" style="width:100%;"></div>
+                <div class="back"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148705" style="width:100%;"></div>
+                <div class="front"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148708" style="width:100%;"></div>
             </div>
         </div>
 
 
-        <div id="loader" style="display:none;">
+        <div id="loader" >
             <div class="multi-spinner-container">
                 <div class="multi-spinner">
                     <div class="multi-spinner">
@@ -489,10 +551,10 @@
             </li>
             <li>
                 <div>
-                    <div class="twin">
-                        <h2>Work experiences</h2>
+                    <div class="twin" >
+                        <h2><span>Work experiences</span><span class="divider"></span></h2>     
                         <p class="divider"></p>
-                        <ol>
+                        <ol class="work_experiences scrollable" style="height:calc(100% - 60px)" >
                             <li>
                                 <h3>2017년 01월 ~ 2018년 02월</h3>
                                 <img src="http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg" style="border-radius:1000px;height:50px;">
@@ -516,52 +578,141 @@
                             </li>
                             <li>
                                 <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <p><img src="./images/tradoc.jpg" style="border-radius:1000px;height:50px;">육군 교육사령부 | JSP / PHP 개발</p>
+                                <p><img src="./images/tradoc.jpg?ver=3" style="border-radius:1000px;height:50px;">육군 교육사령부 | JSP / PHP 개발</p>
                                 <dl>
                                     <dt>MOBI</dt>
                                     <dd>나 혼자 개발</dd>
                                 </dl>
                             </li>
+                            <li>
+                                <h3>2017년 01월 ~ 2018년 02월</h3>
+                                <img src="http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg" style="border-radius:1000px;height:50px;">
 
+                                <p>(주) 모나와 | Android / PHP 개발</p>
+                                <dl>
+                                    <dt>MOBI</dt>
+                                    <dd>나 혼자 개발</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <h3>2017년 01월 ~ 2018년 02월</h3>
+                                <p>
+                                    <img src="http://www.jblc.or.kr/data/sys_company_list/1345688194_b9418410_62.+EC9584EC9DB4EC9790EC8AA4ED94BC.jpg" style="border-radius:1000px;height:50px;">
+                                    (주) 아이에스피 | Android / PHP 개발
+                                </p>
+                                <dl>
+                                    <dt>MOBI</dt>
+                                    <dd>나 혼자 개발</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <h3>2017년 01월 ~ 2018년 02월</h3>
+                                <p><img src="./images/tradoc.jpg?ver=3" style="border-radius:1000px;height:50px;">육군 교육사령부 | JSP / PHP 개발</p>
+                                <dl>
+                                    <dt>MOBI</dt>
+                                    <dd>나 혼자 개발</dd>
+                                </dl>
+                            </li>
                         </ol>
                     </div>
                     <div class="twin">
-                        <h2>Skills</h2>
-                        <p class="divider"></p>
-                        <h3>Android Java</h3>
-                        <div class="chart_container">
-                            <canvas id="java_chart"></canvas>
-                        </div>
-                        <h3>Android Kotlin</h3>
-                        <div class="chart_container">
-                            <canvas id="kotlin_chart"></canvas>
-                        </div>
-                        <h3>PHP</h3>
-                        <div class="chart_container">
-                            <canvas id="php_chart"></canvas>
-                        </div>
-                        <h3>MySQL</h3>
-                        <div class="chart_container">
-                            <canvas id="mysql_chart"></canvas>
-                        </div>
-                        <h3>Javascript</h3>
-                        <div class="chart_container">
-                            <canvas id="js_chart"></canvas>
-                        </div>
-                        <h3>jQuery</h3>
-                        <div class="chart_container">
-                            <canvas id="jquery_chart"></canvas>
-                        </div>
-                        <h3>CSS</h3>
-                        <div class="chart_container">
-                            <canvas id="css_chart"></canvas>
-                        </div>
+                        <h2><span>Skills</span><span class="divider"></span></h2>     
+
+
+                        <ul class="scrollable" style="height:calc(100% - 60px)">
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Android Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                            </li>
+                        </ul>
+
+
                     </div>
                 </div>
             </li>
             <li>
                 <div class="detail_hide">
-                    <h2>My works</h2>
+                    <h2><span>My works</span><span class="divider"></span></h2>     
                     <p class="divider"></p>
                     <ol class="table">
                         <li>
@@ -647,14 +798,14 @@
             </li>
         </ol>
 
-        <div id="detail_popup" style="position:fixed;border:solid 1px white;border-radius:5px;top:20px;bottom:20px;left:20px;right:20px;padding:20px;display:none;max-width:1000px;margin:auto;box-sizing:border-box;">
+        <div id="detail_popup" class="popup">
             <div style="margin-left:120px;height:120px;text-align:left;">
                 <h2 >앱 제목</h2>
-                <img class="icon" src="https://www.brandeps.com/logo-download/A/Android-Robot-01.png" alt="android">
-                <img class="icon" src="https://www.brandeps.com/logo-download/P/PHP-01.png" alt="php">
-                <img class="icon" src="https://www.brandeps.com/logo-download/M/MySQL-01.png" alt="mysql">
-                <img class="icon" src="https://www.brandeps.com/logo-download/J/JavaScript-01.png" alt="js">
-                <img class="icon" src="https://www.brandeps.com/logo-download/C/CSS-3-01.png" alt="css">
+                <img class="icon" src="./images/android.png" alt="android">
+                <img class="icon" src="./images/php.png" alt="php">
+                <img class="icon" src="./images/mysql.png" alt="mysql">
+                <img class="icon" src="./images/js.png" alt="js">
+                <img class="icon" src="./images/css.png" alt="css">
             </div>
 
             <div class="close" onclick="closeDetail();"></div>
@@ -662,11 +813,11 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"></div>
-                    <img class="swiper-slide icon" src="https://www.brandeps.com/logo-download/A/Android-Robot-01.png" alt="android">
-                    <img class="swiper-slide icon" src="https://www.brandeps.com/logo-download/P/PHP-01.png" alt="php">
-                    <img class="swiper-slide icon" src="https://www.brandeps.com/logo-download/M/MySQL-01.png" alt="mysql">
-                    <img class="swiper-slide icon" src="https://www.brandeps.com/logo-download/J/JavaScript-01.png" alt="js">
-                    <img class="swiper-slide icon" src="https://www.brandeps.com/logo-download/C/CSS-3-01.png" alt="css">
+                    <img class="swiper-slide icon" src="./images/android.png" alt="android">
+                    <img class="swiper-slide icon" src="./images/php.png" alt="php">
+                    <img class="swiper-slide icon" src="./images/mysql.png" alt="mysql">
+                    <img class="swiper-slide icon" src="./images/js.png" alt="js">
+                    <img class="swiper-slide icon" src="./images/css.png" alt="css">
                     <div class="swiper-slide"></div>
                 </div>
             </div>
