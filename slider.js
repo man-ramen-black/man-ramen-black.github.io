@@ -10,11 +10,11 @@
         var isChanging = false;
         var keyUp = {38: 1, 33: 1};
         var keyDown = {40: 1, 34: 1};
-        var enabledUp = true;
-        var enabledDown = true;
-        var listeners = [];
-
+        var enabledReserved = null;
+        var enabled = {"up":true, "down":true};
+        var listeners = {};
         var transitionListener = null;
+        var isTouching = false;
 
         var option = $.extend({}, {
             indicator: true,
@@ -25,7 +25,7 @@
         //removeListener를 위한 addListener 추가
         function addListener(name, listener) {
             window.addEventListener(name, listener);
-            listeners.push({"name": name, "listener": listener});
+            listeners[name] = listener;
         }
 
         var init = function () {
@@ -100,9 +100,9 @@
             var touchStopPos = 0;
             var touchMinLength = 90;
             startFun = function (e) {
+                isTouching = true;
 
                 //onclick 이벤트가 발생하지 않는 오류 수정
-//				e.preventDefault();
                 if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
                     var touch = e.touches[0] || e.changedTouches[0];
                     touchStartPos = touch.pageY;
@@ -116,9 +116,8 @@
             });
 
             endFun = function (e) {
-
                 //onclick 이벤트가 발생하지 않는 오류 수정
-//				e.preventDefault();
+                //e.preventDefault();
                 if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
                     var touch = e.touches[0] || e.changedTouches[0];
                     touchStopPos = touch.pageY;
@@ -128,9 +127,14 @@
                 } else if (touchStartPos > touchStopPos + touchMinLength) {
                     changeSlide(1);
                 }
+                
+                isTouching = false;
+                if(enabledReserved){
+                    enabled = enabledReserved;
+                    enabledReserved = null;
+                }
             };
             addListener('touchend', endFun);
-
         };
 
         // prevent double scrolling
@@ -166,13 +170,13 @@
         var changeSlide = function (direction) {
 
             // already doing it or last/first page, staph plz
-            if ((!enabledUp && !enabledDown) || isChanging || (direction == 1 && currentSlide == pages.length) || (direction == -1 && currentSlide == 1)) {
+            if ((!enabled.up && !enabled.down) || isChanging || (direction == 1 && currentSlide == pages.length) || (direction == -1 && currentSlide == 1)) {
                 return;
             }
             
             directionStr = direction > 0 ? "down" : "up";
             
-            if((directionStr == "up" && !enabledUp) || (directionStr == "down" && !enabledDown)){
+            if((directionStr == "up" && !enabled.up) || (directionStr == "down" && !enabled.down)){
                 return;
             }
 
@@ -198,7 +202,6 @@
         var gotoSlide = function (where) {
             var target = document.querySelector(where).getAttribute('data-slider-index');
             if (target != currentSlide && document.querySelector(where)) {
-                console.log(target + " : " + currentSlide);
                 changeSlide(target - currentSlide);
             }
         };
@@ -210,16 +213,26 @@
 
         // on/off 함수 추가
         this.setEnabled = function (isEnabled, direction) {
+            var enabledTemp = {};
             if(!direction){
-                enabledUp = isEnabled;
-                enabledDown = isEnabled;
+                enabledTemp['up'] = isEnabled;
+                enabledTemp['down'] = isEnabled;
                 
             }else if(direction == "up"){
-                enabledUp = isEnabled;
+                enabledTemp['up'] = isEnabled;
+                enabledTemp['down'] = enabled.down
                 
             }else if(direction == "down"){
-                enabledDown = isEnabled;
+                enabledTemp['up'] = enabled.up
+                enabledTemp['down'] = isEnabled;
             }
+            
+            if(isTouching){
+                enabledReserved = enabledTemp;
+            }else{
+                enabled = enabledTemp;
+            }
+            console.log(enabled);
         }
 
         // we have lift off
@@ -242,8 +255,8 @@
             document.querySelector('.slider__page').classList.remove('slider__page');
             document.querySelector('.slider__page').removeAttribute('data-slider-index');
 
-            for (listener in listeners) {
-                window.removeEventListener(listener.name, listener.listener);
+            for (listenerName in listeners) {
+                window.removeEventListener(listenerName, listeners[listenerName]);
             }
 
             if (transitionListener) {
@@ -251,7 +264,7 @@
                 transitionListener = null;
             }
 
-            this.listeners = [];
+            this.listeners = {};
         }
 
         return this;
