@@ -26,10 +26,15 @@
             ul, ol, li{list-style: none}
             /* Mobile */
             @media screen and (max-width: 600px){
-
+                .table > li {float:left;width:30%;margin-right:5%;margin-bottom:20px;}
+                .table > li:nth-child(3n) {margin-right:0}
+                .table > li:nth-last-child(-n + 3) {margin-bottom:0}
             }
             /* PC */
             @media screen and (min-width: 600px){
+                .table > li {float:left;width:18%;margin-right:2%;margin-bottom:20px;}
+                .table > li:nth-child(5n) {margin-right:0}
+                .table > li:nth-last-child(-n + 5) {margin-bottom:0}
             }
 
 
@@ -46,12 +51,13 @@
             .scrollable{height:100%;overflow:auto;}
             .scrollable::-webkit-scrollbar{width:0;background-color:transparent;}
 
-            .sections {max-width:1000px;left: 0;right: 0;margin: auto;box-sizing:border-box;}
-            .sections > li {position:relative;padding:20px;box-sizing:border-box;}
+            .sections {max-width:1200px;left: 0;right: 0;margin: auto;}
+            .sections > li {position:relative;padding:20px;width:100%;height:100%;box-sizing:border-box;}
             .sections > li > div:first-child{width:100%;height:100%;text-align:center;}
-            /*animation:fade_out 1s;animation-fill-mode: forwards;*/
 
-            .twin {width:50%;float:left;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;}
+            .twin {width:50%;position:absolute;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;}
+            .twin:nth-child(2) {right:0}
+            .twin_dna {height:100%;overflow:hidden;}
 
             .center {position:absolute;top:50%;left:50%;transform: translateY(-50%) translateX(-50%);}
 
@@ -72,7 +78,7 @@
             }
             
             .cube img {display:none}
-            .cube.healing img {display:block}
+            .cube.healing img {display:block;width:100%;}
 
             .cube div {
                 display:none;
@@ -179,14 +185,13 @@
             .chart_container {position:relative;height:50px;} 
 
             .table {width:100%;border-spacing: 10px;border-collapse: separate;}
-            .table > li {float:left;width:30%;margin-right:5%;margin-bottom:20px;}
-            .table > li:nth-child(3n) {margin-right:0}
-            .table > li:nth-last-child(1), .table > li:nth-last-child(2), .table > li:nth-last-child(3) {margin-bottom:0}
             .table > li img{width:100%}
 
-            #detail_popup img.icon {display:inline-block;width:50px;border-radius:1000px;}
+            #detail_popup img.icon {display:inline-block;width:30px;border-radius:1000px;}
 
             #detail_popup .close {position:absolute;top:20px;right:20px;}
+            
+            #detail_popup h2 {display:inline-block;text-align:center;}
 
             .close{
                 position: relative;
@@ -212,15 +217,14 @@
             .work_experiences > li {margin-bottom:20px;}
             .work_experiences > li:last-child {margin-bottom:0px;}
 
-            .popup_wrap{position:fixed;padding:20px;}
-            .popup {position:fixed;border:solid 1px white;border-radius:5px;padding:20px;display:none;max-width:1000px;margin:auto;box-sizing:border-box;top:20px;bottom:20px;left:20px;right:20px;}
-            h2 {display:inline-block;text-align:center;line-height:20px;height:60px;}
-            h2 > *:first-child{display:block;padding:0 20px;clear:both}
-            h2 > .divider{width:0%;display:inline-block;border-bottom:solid 2px white;height:0px;}
+            .popup {position:fixed;border:solid 1px white;border-radius:5px;padding:20px;display:none;max-width:1120px;margin:auto;top:20px;bottom:20px;left:20px;right:20px;}
+            .sections h2 {display:inline-block;text-align:center;line-height:20px;height:60px;}
+            .sections h2 > *:first-child{display:block;padding:0 20px;clear:both}
+            .sections h2 > .divider{width:0%;display:inline-block;border-bottom:solid 2px white;height:0px;}
         </style>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js" ></script>
-        <script type="text/javascript" src="slider.js?ver=1"></script>
+        <script type="text/javascript" src="slider.js?ver=15"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script>
 
@@ -231,7 +235,7 @@
             var rotationSpeed = 1;
             var slider;
             window.onload = function () {
-
+                console.log("onload");
                 //최상단으로 스크롤
                 setTimeout(function () {
                     window.scrollTo(0, 0);
@@ -252,49 +256,70 @@
                 }
             }
 
-            function showTwins() {
-                $(".twin").hide();
-                $(".twin:eq(0)")
-            }
 
             function initSlider() {
                 slider = $.PageSlider(".sections", {
                     indicator: false,
                     onLeave: function (origin, destination, direction) {
-                        slider.setEnabled(true);
-                        currentContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
+                        oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
+                        destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
                         rotationSpeed = 13;
                         setTimeout(function () {
                             rotationSpeed = 1
                         }, 500);
-//                        $(".sections > li > div:first-child").removeClass("fade_in");
-                        $(".sections > li > div:first-child").fadeOut(400, function () {
-                            destroyCharts();
-                        });
+                        
+                        if(oriContents.find(".twin").size()>0){
+                            oriContents.find(".twin:eq(0)").fadeOut({duration: 700, queue: false}).animate({"left":"-50%"}, {duration:700});
+                            oriContents.find(".twin:eq(1)").fadeOut({duration: 700, queue: false}).animate({"right":"-50%"}, {duration:700});
+                            
+                        }else{
+                            oriContents.fadeOut();     
+                        }
+                        
+                        destContents.hide();
+                        
+                        if(destContents.find(".twin").size()>0){
+                            destContents.find(".twin:eq(0)").css("left","-50%");
+                            destContents.find(".twin:eq(1)").css("right","-50%");
+                        }
+                        
                         setTimeout(function () {
                             
-                            $(".scrollable").each(function (i, obj) {
+                            destContents.find(".divider").css("width", "0%");
+                            
+                            destContents.fadeIn({duration: 700, queue: false})
+                            
+                            if(destContents.find(".twin").size()>0){
+                                destContents.find(".twin:eq(0)").fadeIn({duration: 700, queue: false}).animate({"left":"0px"}, {duration:700});
+                                destContents.find(".twin:eq(1)").fadeIn({duration: 700, queue: false}).animate({"right":"0px"}, {duration:700});
+                                destContents.find(".divider").delay(700).animate({width: "100%"}, {duration: 800});
+                                
+                            }else{
+                                destContents.css("padding-top", "50px");
+                                destContents
+                                        .animate({"padding-top": 0}, {duration: 700,  complete : function(){
+                                    drawCharts();
+                                    destContents.find(".divider").animate({width: "100%"}, {duration: 800});
+                                }});
+                            }
+                            
+                             $(".scrollable").each(function (i, obj) {
                                 setTimeout(function(){$(obj).scrollTop(1);}, 1);
                                 $(this).attr("onscroll", "");
                             });
                             
-                            $(".sections > li > div:first-child").css("padding-top", "50px");
-                            $(".sections > li > div:first-child").find(".divider").css("width", "0%");
-                            currentContents
-                                    .fadeIn({duration: 700, queue: false})
-                                    .animate({"padding-top": 0}, {duration: 700,  complete : function(){
-                                drawCharts();
-                                currentContents.find(".divider").animate({width: "100%"}, {duration: 800});
-//                                delay(700).
-                            }});
-                            currentContents.find(".scrollable").each(function () {
+                            slider.setEnabled(true);
+                            
+                            destContents.find(".scrollable").each(function () {
                                 if ($(this).isScrollable()) {
-                                    console.log("isScrollable");
                                     slider.setEnabled(false, "down");
                                     $(this).attr("onscroll", "onScrollScrollable(this)");
                                 }
                             });
-//                            setTimeout(drawCharts, 400);
+                            
+                            
+                           
+                            
                         }, 600);
                     }
                 });
@@ -307,6 +332,7 @@
             })(jQuery);
 
             function onScrollScrollable(view) {
+                console.log("onscroll");
                 slider.setEnabled(false);
                 if (view.scrollTop == 0) {
                     slider.setEnabled(true, "up");
@@ -428,17 +454,17 @@
                 cloneObj.css("position", "absolute");
                 cloneObj.css("top", obj.offsetTop + "px");
                 cloneObj.css("width", obj.offsetWidth + "px");
-                cloneObj.css("left", $(".table").parent().offset().left + "px");
+                cloneObj.css("left", obj.getBoundingClientRect().left + "px");
                 cloneObj.attr("onclick", "");
                 cloneObj.attr("class", "detail_icon");
                 $("body").append(cloneObj);
                 $(obj).css("visibility", "hidden");
-                $(".detail_hide").fadeOut();
+                $(".sections > li > div:first-child").fadeOut();
                 if ($(obj).attr("contents")) {
                     $("#detail_popup .contents").html(replaceAll($(obj).attr("contents"), "\n", "<br>"));
                 }
 
-                cloneObj.animate({"top": "40px", "left": ($(".table").parent().offset().left) + "px", "width": "100px"}, {duration: 700, queue: false, complete: function () {
+                cloneObj.animate({"top": "40px", "left": ($(".sections").offset().left+40) + "px", "width": "100px"}, {duration: 700, queue: false, complete: function () {
                         $(obj).css("visibility", "visible");
                         $("#detail_popup").fadeIn();
                     }});
@@ -453,7 +479,7 @@
                     $(".detail_icon").remove();
                 });
                 $("#detail_popup").fadeOut();
-                $(".detail_hide").fadeIn();
+                $(".sections > li > div:first-child").fadeIn();
             }
 
             var swiper;
@@ -467,6 +493,8 @@
             function adjustTwins() {
                 if (window.innerWidth <= 700) {
                     if ($(".twin").size() > 0) {
+                            $(".sections > li > div:first-child").fadeIn();   
+                        
                         var twinRight = $(".twin:eq(1)").clone();
                         twinRight.removeClass("twin").addClass("twin_dna");
                         $(".twin").parent().parent().after("<li></li>");
@@ -476,11 +504,19 @@
                         $(".twin:eq(0)").removeClass("twin").addClass("twin_dna");
 
                         $(".twin").remove();
+                        $(".twin_dna").removeAttr( 'style' );
                         slider.update();
+                        slider.setEnabled(true);
                         drawCharts();
+                        
+                        if ($(".detail_icon").size() > 0){
+                            $(".sections > li > div:first-child").hide();
+                        }
                     }
                 } else {
                     if ($(".twin_dna").size() > 0) {
+                        
+                            $(".sections > li > div:first-child").fadeIn();   
                         var twinRight = $(".twin_dna:eq(1)").clone();
                         twinRight.removeClass("twin_dna").addClass("twin");
                         $(".twin_dna:eq(0)").after(twinRight);
@@ -489,8 +525,15 @@
                         $(".twin_dna:eq(0)").removeClass("twin_dna").addClass("twin");
 
                         $(".twin_dna").parent().remove();
+                        $(".twin").removeAttr( 'style' );
                         slider.update();
+                        slider.setEnabled(true);
                         drawCharts();
+                        
+                        if ($(".detail_icon").size() > 0){
+                            $(".sections > li > div:first-child").hide();
+                        }
+                        
                     }
                 }
             }
@@ -506,15 +549,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.js"></script>
     </head>
     <body>
-
+ <!--style="display:none;"-->
         <div class="cube_wrap">
-            <div class="cube healing">
-                <div class="top"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg" style="width:100%;"></div>
-                <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg" style="width:100%;"></div>
-                <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244" style="width:100%;"></div>
-                <div class="left"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148702" style="width:100%;"></div>
-                <div class="back"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148705" style="width:100%;"></div>
-                <div class="front"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148708" style="width:100%;"></div>
+            <div class="cube">
+                <div class="top"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg"></div>
+                <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg"></div>
+                <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244"></div>
+                <div class="left"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148702"></div>
+                <div class="back"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148705"></div>
+                <div class="front"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148708"></div>
             </div>
         </div>
 
@@ -545,7 +588,16 @@
             </li>
             <li>
                 <div>
-                    <h2 class="center">About Me</h2>
+                    <h2><span>About Me</span><span class="divider"></span></h2>
+                    <div>
+                        <div style="float:left;width:40%">
+                            <img src="http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png">
+                            <p>Hello</p>
+                        </div>
+                        <div style="float:left;width:60%">
+                            <p>아 진짜 오늘 힘드네요</p>
+                        </div>
+                    </div>
                 </div>
                 <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
             </li>
@@ -711,7 +763,7 @@
                 </div>
             </li>
             <li>
-                <div class="detail_hide">
+                <div>
                     <h2><span>My works</span><span class="divider"></span></h2>     
                     <p class="divider"></p>
                     <ol class="table">
@@ -791,21 +843,25 @@
             <li>
                 <div>
                     <p class="center">Contact me</p>
-                </div>
-                <div class="footer">
-                    <a href="https://github.com/man-ramen-black" target="_blank">GitHub</a>
+                    <div class="footer">
+                        <a href="https://github.com/man-ramen-black" target="_blank">GitHub</a>
+                    </div>
                 </div>
             </li>
         </ol>
 
         <div id="detail_popup" class="popup">
-            <div style="margin-left:120px;height:120px;text-align:left;">
-                <h2 >앱 제목</h2>
-                <img class="icon" src="./images/android.png" alt="android">
-                <img class="icon" src="./images/php.png" alt="php">
-                <img class="icon" src="./images/mysql.png" alt="mysql">
-                <img class="icon" src="./images/js.png" alt="js">
-                <img class="icon" src="./images/css.png" alt="css">
+            <div style="margin-left:120px;height:120px;text-align:left;padding-right:50px;overflow:hidden;">
+                <h2>앱 제목</h2>
+                <div >
+                    <img class="icon" src="./images/android.png" alt="android">
+                    <img class="icon" src="./images/php.png" alt="php">
+                    <img class="icon" src="./images/mysql.png" alt="mysql">
+                    <img class="icon" src="./images/js.png" alt="js">
+                    <img class="icon" src="./images/css.png" alt="css">
+                    <img class="icon" src="./images/svn.png" alt="svn">
+                    <img class="icon" src="./images/gitlab.png" alt="gitlab">
+                </div>
             </div>
 
             <div class="close" onclick="closeDetail();"></div>
