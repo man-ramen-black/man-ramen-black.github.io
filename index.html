@@ -12,10 +12,11 @@
         <link rel="shortcut icon" href="./favicon.ico">
         <title>Jinhyuk Lee - Android & PHP & Front-end Developer</title>
         <link rel="stylesheet" href="slider.css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
         <style>
             * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline:0;margin:0; padding:0; }
             html, body {margin: 0; height: 100%; overflow: hidden}
-            body {font-size:15px;font-family: 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:300;zoom:1;text-align:center;}
+            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:300;zoom:1;text-align:center;}
             body::-webkit-scrollbar{width:0;background-color:transparent;}
             h1{font-size:3em}
             h2{font-size:2em}
@@ -24,6 +25,8 @@
             a:active{text-decoration:none;border:none;}
             a:hover{text-decoration:none;border:none;}
             ul, ol, li{list-style: none}
+            dt {font-weight:bold;}
+            dl {margin-top:15px;}
             /* Mobile */
             @media screen and (max-width: 600px){
                 .table > li {float:left;width:30%;margin-right:5%;margin-bottom:20px;}
@@ -47,19 +50,19 @@
                     bottom: 10px;
                 }
             }
-
+            
             .scrollable{height:100%;overflow:auto;}
             .scrollable::-webkit-scrollbar{width:0;background-color:transparent;}
 
             .sections {max-width:1200px;left: 0;right: 0;margin: auto;}
             .sections > li {position:relative;padding:20px;width:100%;height:100%;box-sizing:border-box;}
-            .sections > li > div:first-child{width:100%;height:100%;text-align:center;}
+            .sections > li > div:first-child{position:relative;width:100%;height:100%;text-align:center;}
 
             .twin {width:50%;position:absolute;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;}
             .twin:nth-child(2) {right:0}
             .twin_dna {height:100%;overflow:hidden;}
 
-            .center {position:absolute;top:50%;left:50%;transform: translateY(-50%) translateX(-50%);}
+            .center {width:100%;position:absolute;top:50%;transform: translateY(-50%);}
 
             .footer {position:absolute;bottom:0;text-align:center;padding:30px 0;border-top:solid 1px #999;width:100%;}
             .footer a{margin:0 10px;}
@@ -166,14 +169,10 @@
                 }
             }
 
-            @keyframes fade_out{
-                to {opacity:0;display:none;}
+            @keyframes hover{
+                from {margin-top:50px}
+                to {margin-top:0}
 
-            }
-
-            @keyframes fade_in {
-                from {margin-top: 10px;opacity:0;}
-                to {margin-top: 0px;opacity:1}
             }
 
             /*            .fade_in {display:block;animation:fade_in 1s !important;}
@@ -181,17 +180,19 @@
 
 
             #debug {position:fixed;color:white}
-
-            .chart_container {position:relative;height:50px;} 
+            
+            .charts > li {padding:5px 0;}
+            .charts h3 {margin-bottom:5px}
+            .chart_container {position:relative;height:70px;} 
 
             .table {width:100%;border-spacing: 10px;border-collapse: separate;}
             .table > li img{width:100%}
 
-            #detail_popup img.icon {display:inline-block;width:30px;border-radius:1000px;}
+            #my_works_popup img.icon {display:inline-block;width:30px;border-radius:1000px;}
 
-            #detail_popup .close {position:absolute;top:20px;right:20px;}
+            #my_works_popup .close {position:absolute;top:20px;right:20px;}
             
-            #detail_popup h2 {display:inline-block;text-align:center;}
+            #my_works_popup h2 {display:inline-block;text-align:center;}
 
             .close{
                 position: relative;
@@ -216,11 +217,22 @@
 
             .work_experiences > li {margin-bottom:20px;}
             .work_experiences > li:last-child {margin-bottom:0px;}
+            
+            .company {display:inline-block;width:150px;height:50px;background:white;border-radius:1000px;background-size:90%;background-position:center;background-repeat:no-repeat;overflow:hidden;}
+            .company.monawa {background-image:url('http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg')}
+            .company.isp {background-image:url('http://www.jblc.or.kr/data/sys_company_list/1345688194_b9418410_62.+EC9584EC9DB4EC9790EC8AA4ED94BC.jpg')}
+            .company.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
+            .company > p {margin-top:50px;height:50px;background:rgba(0,0,0,0.6);cursor:pointer;font-size:1.1rem;line-height:50px;}
+            /*.company:hover > * {display:block;animation: hover 0.6s;}*/
 
             .popup {position:fixed;border:solid 1px white;border-radius:5px;padding:20px;display:none;max-width:1120px;margin:auto;top:20px;bottom:20px;left:20px;right:20px;}
             .sections h2 {display:inline-block;text-align:center;line-height:20px;height:60px;}
             .sections h2 > *:first-child{display:block;padding:0 20px;clear:both}
             .sections h2 > .divider{width:0%;display:inline-block;border-bottom:solid 2px white;height:0px;}
+            
+            .middle {display:inline-block;vertical-align:middle}
+            .middle ~ * {display:inline-block;vertical-align:middle}
+            .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
         </style>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js" ></script>
@@ -246,13 +258,40 @@
                 adjustTwins();
                 startCubeRotate();
                 hideLoader();
+                
+                $(".company").hover(function(){
+                    if($(this).is(':animated')) return;
+                    $(this).find("p").animate({"margin-top":"0px"});
+                    
+                },function(){
+                    if($(this).is(':animated')) return;
+                    $(this).find("p").animate({"margin-top":"50px"});
+                });
+                
+                $(".company > p").click(function(){
+                    if(isMobile){
+                        if($(this).is(':animated')) return;
+                        if($(this).css("margin-top") == "0px"){
+                           window.open($(this).attr("data-url"));
+                           $(this).animate({"margin-top":"50px"});
+                            
+                        }else{
+                            $(this).animate({"margin-top":"0px"});
+                        }
+                    
+                    }else{
+                        window.open($(this).attr("data-url"));
+                    }
+                });
+                
+                
 
             };
 
             window.onresize = function () {
                 adjustTwins();
-                if ($(".detail_icon").size() > 0) {
-                    $(".detail_icon").css("left", ($("#detail_popup").offset().left + 20) + "px");
+                if ($(".my_works_icon").size() > 0) {
+                    $(".my_works_icon").css("left", ($("#my_works_popup").offset().left + 20) + "px");
                 }
             }
 
@@ -263,7 +302,7 @@
                     onLeave: function (origin, destination, direction) {
                         oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
                         destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
-                        rotationSpeed = 13;
+                        rotationSpeed = 10;
                         setTimeout(function () {
                             rotationSpeed = 1
                         }, 500);
@@ -283,6 +322,10 @@
                             destContents.find(".twin:eq(1)").css("right","-50%");
                         }
                         
+                        if(destContents.find(".charts").size()>0){
+                            destroyCharts();
+                        }
+                        
                         setTimeout(function () {
                             
                             destContents.find(".divider").css("width", "0%");
@@ -298,9 +341,12 @@
                                 destContents.css("padding-top", "50px");
                                 destContents
                                         .animate({"padding-top": 0}, {duration: 700,  complete : function(){
-                                    drawCharts();
                                     destContents.find(".divider").animate({width: "100%"}, {duration: 800});
                                 }});
+                            }
+                            
+                            if(destContents.find(".charts").size()>0){
+                                setTimeout(function(){drawCharts()}, 500);
                             }
                             
                              $(".scrollable").each(function (i, obj) {
@@ -310,12 +356,14 @@
                             
                             slider.setEnabled(true);
                             
-                            destContents.find(".scrollable").each(function () {
-                                if ($(this).isScrollable()) {
+                            setTimeout(function(){destContents.find(".scrollable").each(function () {
+                                console.log(isScrollable(this));
+                                if (isScrollable(this)) {
                                     slider.setEnabled(false, "down");
                                     $(this).attr("onscroll", "onScrollScrollable(this)");
                                 }
-                            });
+                            });}, 700);
+                            
                             
                             
                            
@@ -324,12 +372,11 @@
                     }
                 });
             }
-
-            (function ($) {
-                $.fn.isScrollable = function () {
-                    return this.get(0).scrollHeight > this.get(0).clientHeight;
-                }
-            })(jQuery);
+            
+            function isScrollable(dom){
+                console.log(dom.scrollHeight+" : " + dom.clientHeight);
+                return dom.scrollHeight > dom.clientHeight;;
+            }
 
             function onScrollScrollable(view) {
                 console.log("onscroll");
@@ -361,12 +408,12 @@
             }
 
             var chartOptions = [
-                {"id": "java_chart", "percent": 100, "background": 'rgba(255, 99, 132, 0.8)'},
+                {"id": "java_chart", "percent": 75, "background": 'rgba(255, 99, 132, 0.8)'},
                 {"id": "kotlin_chart", "percent": 20, "background": 'rgba(54, 162, 235, 0.8)'},
-                {"id": "mysql_chart", "percent": 90, "background": 'rgba(255, 206, 86, 0.8)'},
+                {"id": "mysql_chart", "percent": 75, "background": 'rgba(255, 206, 86, 0.8)'},
                 {"id": "js_chart", "percent": 70, "background": 'rgba(75, 192, 192, 0.8)'},
-                {"id": "php_chart", "percent": 100, "background": 'rgba(153, 102, 255, 0.8)'},
-                {"id": "jquery_chart", "percent": 90, "background": 'rgba(255, 159, 64, 0.8)'},
+                {"id": "php_chart", "percent": 75, "background": 'rgba(153, 102, 255, 0.8)'},
+                {"id": "jquery_chart", "percent": 70, "background": 'rgba(255, 159, 64, 0.8)'},
                 {"id": "css_chart", "percent": 40, "background": 'rgba(159, 255, 64, 0.8)'}
             ];
             var charts = [];
@@ -387,7 +434,6 @@
 
             function drawCharts() {
                 destroyCharts();
-                return;
                 chartOptions.forEach(function (option) {
                     var ctx = document.getElementById(option.id).getContext('2d');
                     var chart = new Chart(ctx, {
@@ -395,14 +441,17 @@
                         data: {
                             datasets: [{
                                     data: [option.percent],
-                                    backgroundColor: [
-                                        option.background
-                                    ],
-                                    borderColor: [
-                                        option.background.replace("0.8", "1")
-                                    ],
+                                    backgroundColor: [option.background],
+                                    borderColor: [option.background.replace("0.8", "1")],
                                     borderWidth: 1,
-                                }]
+                                },
+                                  {
+                                    data: [100 - option.percent],
+                                    backgroundColor: ["#AAA"],
+                                    borderColor: ["#AAA"],
+                                    borderWidth: 1,
+                                }
+                            ]
                         },
                         options: {
                             onClick: onClickChart,
@@ -424,23 +473,38 @@
                             },
                             scales: {
                                 xAxes: [{
-                                        display: false,
+                                        stacked: true,
                                         scaleLabel: {
-                                            display: false,
+                                            display: true,
                                         },
                                         ticks: {
                                             beginAtZero: true,
                                             min: 0,
                                             max: 100,
+                                            stepSize : 10,
+                                            callback: function(label, index, labels) {
+                                                switch(label){
+                                                    case 20 : label = "초급"; break;
+                                                    case 50 : label = "중급"; break;
+                                                    case 80 : label = "고급"; break;
+                                                    default : label = ""; break;
+                                                }
+                                               return label;
+                                            },
+                                            fontColor: '#DDDDDD',
                                         }
                                     }],
                                 yAxes: [{
+                                        stacked: true,
                                         display: false,
                                     }]
                             },
                             tooltips: {enabled: false},
                             animation: {
-                                duration: 1000
+                                duration: 1000,
+//                                onProgress : function(animation){
+//                                    console.log(animation);
+//                                }
                             }
                         }
                     });
@@ -452,21 +516,21 @@
                 slider.setEnabled(false);
                 var cloneObj = $(obj).clone();
                 cloneObj.css("position", "absolute");
-                cloneObj.css("top", obj.offsetTop + "px");
+                cloneObj.css("top", obj.getBoundingClientRect().top + "px");
                 cloneObj.css("width", obj.offsetWidth + "px");
                 cloneObj.css("left", obj.getBoundingClientRect().left + "px");
                 cloneObj.attr("onclick", "");
-                cloneObj.attr("class", "detail_icon");
+                cloneObj.attr("class", "my_works_icon");
                 $("body").append(cloneObj);
                 $(obj).css("visibility", "hidden");
                 $(".sections > li > div:first-child").fadeOut();
                 if ($(obj).attr("contents")) {
-                    $("#detail_popup .contents").html(replaceAll($(obj).attr("contents"), "\n", "<br>"));
+                    $("#my_works_popup .contents").html(replaceAll($(obj).attr("contents"), "\n", "<br>"));
                 }
 
                 cloneObj.animate({"top": "40px", "left": ($(".sections").offset().left+40) + "px", "width": "100px"}, {duration: 700, queue: false, complete: function () {
                         $(obj).css("visibility", "visible");
-                        $("#detail_popup").fadeIn();
+                        $("#my_works_popup").fadeIn();
                     }});
                 setTimeout(function () {
                     swiper.update();
@@ -475,10 +539,10 @@
 
             function closeDetail() {
                 slider.setEnabled(true);
-                $(".detail_icon").fadeOut(400, function () {
-                    $(".detail_icon").remove();
+                $(".my_works_icon").fadeOut(400, function () {
+                    $(".my_works_icon").remove();
                 });
-                $("#detail_popup").fadeOut();
+                $("#my_works_popup").fadeOut();
                 $(".sections > li > div:first-child").fadeIn();
             }
 
@@ -507,9 +571,8 @@
                         $(".twin_dna").removeAttr( 'style' );
                         slider.update();
                         slider.setEnabled(true);
-                        drawCharts();
                         
-                        if ($(".detail_icon").size() > 0){
+                        if ($(".my_works_icon").size() > 0){
                             $(".sections > li > div:first-child").hide();
                         }
                     }
@@ -528,9 +591,8 @@
                         $(".twin").removeAttr( 'style' );
                         slider.update();
                         slider.setEnabled(true);
-                        drawCharts();
                         
-                        if ($(".detail_icon").size() > 0){
+                        if ($(".my_works_icon").size() > 0){
                             $(".sections > li > div:first-child").hide();
                         }
                         
@@ -581,97 +643,67 @@
         <ol class="sections">
             <li>
                 <div>
-                    <h1 class="center">Hello World</h1>
-                    <!--안녕하세요. 저는 경력 3년차 Android & PHP & Front-end 개발자입니다.-->
-                </div>
-                <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
-            </li>
-            <li>
-                <div>
-                    <h2><span>About Me</span><span class="divider"></span></h2>
-                    <div>
-                        <div style="float:left;width:40%">
-                            <img src="http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png">
-                            <p>Hello</p>
-                        </div>
-                        <div style="float:left;width:60%">
-                            <p>아 진짜 오늘 힘드네요</p>
-                        </div>
+                    <div class="center">
+                        <h1>이진혁</h1>
+                        <h3>Android & PHP Developer</h3>
                     </div>
                 </div>
                 <img class="next_arrow" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="position:absolute;left:0;right:0;width:50px;margin:auto;">
             </li>
             <li>
+                <div >
+                    <div class="center">
+                        <h2><span>AM</span><span class="divider"></span></h2>
+                        <!--About Me-->
+                        <div>
+                                <img src="https://lh3.googleusercontent.com/ZeUEl-_MQw6SpGg01eJg9Zfsp6jsvm1kZWCN3RfGN3Yyszg2_SfhqqAevQmxWE2AjQ=s180-rw" style="width:100px;">
+                                <!--http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png-->
+                                <p>Hello</p>
+                                남들보다 일찍이 웹 디자이너가 되겠다는 목표 하나로 특성화 고등학교인 미림여자정보과학교 ‘웹미디어과에 진학한 것이저의 프론트엔드 개발자의 첫 디딤돌이었습니다. 17살의 나이에 java , c , php등 프로그래밍을 배우며 힘든 부분도 있었으나 배우면 배울수록 내가 무심코 사용하던 것들의 구조와 만들어 지는 과정들을 알게 되면 뭔지 모를 쾌감을 느낄 수 있었습니다. 하지만 디자인에 몰두 하게 되면서 잠시 잊고 살게 되었고,  대학교를 졸업 후 취업을 하게 되면서 업무를 하기 위해 필요하였던 action script를 익히면서 고등학교 시절 배웠던  코딩들이 헛되지 않았다는 것을 깨달았습니다.  지속적으로 진로에 대한 고민을 하던 중 NCS 프론트엔드 과정을 수강하게 되었습니다.  수강을 통해 배운 html5, css, javascript, jqeury, php, mysql 등을 통해  전반적인 사이트의 구성이 가능해지면서 저의 가능성을 보았고, 보는 시야가 넓어지면서 더 많은 지식과 기술을 배우고 싶다는 꿈을 가지게 되었습니다. 
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
                 <div>
-                    <div class="twin" >
+                    <div class="twin">
                         <h2><span>Work experiences</span><span class="divider"></span></h2>     
                         <p class="divider"></p>
-                        <ol class="work_experiences scrollable" style="height:calc(100% - 60px)" >
+                        <ol class="work_experiences scrollable" style="max-height:calc(100% - 60px);" >
                             <li>
-                                <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <img src="http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg" style="border-radius:1000px;height:50px;">
-
-                                <p>(주) 모나와 | Android / PHP 개발</p>
+                                <!--class="middle"-->
+                                <div class="company monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
+                                <h3>Android · PHP · MySQL · Front-end · SVN · Git</h3>
+                                <h4>2015. 07 ~ 2019. 02</h4>
                                 <dl>
                                     <dt>MOBI</dt>
+                                    <dd>전 개발자 최초 개발 이후 모든 개발에 대해 100% 참여</dd>
+                                    <dd>안드로이드 앱 외 DB, 서버, 관리자 페이지, 광고주 페이지, 이벤트 페이지 100% 직접 구성 및 개발</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <div class="company isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
+                                <h3>Android · C#</h3>
+                                <h4>2014. 06 ~ 2015. 06</h4>
+                                <dl>
+                                    <dt>동도금 측정기 앱 개발</dt>
                                     <dd>나 혼자 개발</dd>
                                 </dl>
                             </li>
                             <li>
-                                <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <p>
-                                    <img src="http://www.jblc.or.kr/data/sys_company_list/1345688194_b9418410_62.+EC9584EC9DB4EC9790EC8AA4ED94BC.jpg" style="border-radius:1000px;height:50px;">
-                                    (주) 아이에스피 | Android / PHP 개발
-                                </p>
+                                <div class="company tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
+                                <h3>JSP · PHP · MySQL · Front-end · SVN</h3>
+                                <h4>2012. 08 ~ 2013. 10</h4>
                                 <dl>
-                                    <dt>MOBI</dt>
+                                    <dt>교리 문헌 관리 체계</dt>
                                     <dd>나 혼자 개발</dd>
                                 </dl>
                             </li>
-                            <li>
-                                <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <p><img src="./images/tradoc.jpg?ver=3" style="border-radius:1000px;height:50px;">육군 교육사령부 | JSP / PHP 개발</p>
-                                <dl>
-                                    <dt>MOBI</dt>
-                                    <dd>나 혼자 개발</dd>
-                                </dl>
-                            </li>
-                            <li>
-                                <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <img src="http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg" style="border-radius:1000px;height:50px;">
-
-                                <p>(주) 모나와 | Android / PHP 개발</p>
-                                <dl>
-                                    <dt>MOBI</dt>
-                                    <dd>나 혼자 개발</dd>
-                                </dl>
-                            </li>
-                            <li>
-                                <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <p>
-                                    <img src="http://www.jblc.or.kr/data/sys_company_list/1345688194_b9418410_62.+EC9584EC9DB4EC9790EC8AA4ED94BC.jpg" style="border-radius:1000px;height:50px;">
-                                    (주) 아이에스피 | Android / PHP 개발
-                                </p>
-                                <dl>
-                                    <dt>MOBI</dt>
-                                    <dd>나 혼자 개발</dd>
-                                </dl>
-                            </li>
-                            <li>
-                                <h3>2017년 01월 ~ 2018년 02월</h3>
-                                <p><img src="./images/tradoc.jpg?ver=3" style="border-radius:1000px;height:50px;">육군 교육사령부 | JSP / PHP 개발</p>
-                                <dl>
-                                    <dt>MOBI</dt>
-                                    <dd>나 혼자 개발</dd>
-                                </dl>
-                            </li>
-                        </ol>
                     </div>
                     <div class="twin">
                         <h2><span>Skills</span><span class="divider"></span></h2>     
 
-
-                        <ul class="scrollable" style="height:calc(100% - 60px)">
+                        <ul class="charts scrollable" style="max-height:calc(100% - 60px)">
                             <li>
                                 <h3>Android Java</h3>
                                 <div class="chart_container">
@@ -679,92 +711,50 @@
                                 </div>
                             </li>
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>Android Kotlin</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="kotlin_chart"></canvas>
                                 </div>
                             </li>
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>PHP</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="php_chart"></canvas>
                                 </div>
                             </li>
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>MySQL</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="mysql_chart"></canvas>
                                 </div>
                             </li>
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>Javascript</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="js_chart"></canvas>
                                 </div>
                             </li>
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>jQuery</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="jquery_chart"></canvas>
                                 </div>
                             </li>
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>CSS</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="css_chart"></canvas>
                                 </div>
                             </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
-                            <li>
-                                <h3>Android Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                            </li>
+                            
                         </ul>
-
-
                     </div>
                 </div>
             </li>
             <li>
                 <div>
-                    <h2><span>My works</span><span class="divider"></span></h2>     
+                    <h2><span>M</span><span class="divider"></span></h2>     
+                    <!--y works-->
                     <p class="divider"></p>
                     <ol class="table">
                         <li>
@@ -844,13 +834,14 @@
                 <div>
                     <p class="center">Contact me</p>
                     <div class="footer">
-                        <a href="https://github.com/man-ramen-black" target="_blank">GitHub</a>
+                        © 2019 Jinhyuk Lee, All Rights Reserved.
+                        <!--<a href="https://github.com/man-ramen-black" target="_blank">GitHub</a>-->
                     </div>
                 </div>
             </li>
         </ol>
 
-        <div id="detail_popup" class="popup">
+        <div id="my_works_popup" class="popup">
             <div style="margin-left:120px;height:120px;text-align:left;padding-right:50px;overflow:hidden;">
                 <h2>앱 제목</h2>
                 <div >
@@ -878,7 +869,7 @@
                 </div>
             </div>
 
-            <div class="contents" style="position:absolute;height:300px;;bottom:0;overflow:auto;">
+            <div class="contents" style="position:absolute;height:300px;;bottom:0;overflow:auto;width:100%;">
                 제가 LA다저스에 있을때...
             </div>
 
