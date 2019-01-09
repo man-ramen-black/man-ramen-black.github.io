@@ -51,6 +51,18 @@
                 }
             }
             
+            .touch {width:20px;animation:touch 1.5s infinite ease-in-out;display:none;position:absolute;}
+            .charts .touch{top:50px;left:50%;}
+            
+            @keyframes touch {
+                0%, 100% {
+                    transform: scale(1.0);
+                }
+                50% {
+                     transform: scale(1.2);
+                }
+            }
+            
             .scrollable{height:100%;overflow:auto;}
             .scrollable::-webkit-scrollbar{width:0;background-color:transparent;}
 
@@ -119,7 +131,7 @@
                 transform: translateZ(-100px); 
             }
 
-
+            
 
             #loader {background:#fff;position:absolute;top:0;bottom:0;left:0;right:0;z-index:1000}
             .multi-spinner-container {
@@ -181,16 +193,23 @@
 
             #debug {position:fixed;color:white}
             
-            .charts > li {padding:5px 0;}
+            .charts > li {position:relative;padding:5px 0;}
             .charts h3 {margin-bottom:5px}
             .chart_container {position:relative;height:70px;} 
+            
+            .skill {padding:5px 0;z-index:-1}
+            .skill h3 {margin-bottom:5px}
+            .skill .chart_container {position:relative;height:70px;} 
+            
+            #detail_asdf {position:fixed;padding:200px 20px 20px 20px;display:none;top:0;left:0;bottom:0;right:0;}
+            #detail_asdf li {font-size:1.2em;}
 
             .table {width:100%;border-spacing: 10px;border-collapse: separate;}
             .table > li img{width:100%}
 
             #my_works_popup img.icon {display:inline-block;width:30px;border-radius:1000px;}
 
-            #my_works_popup .close {position:absolute;top:20px;right:20px;}
+            /*#my_works_popup .close {}*/
             
             #my_works_popup h2 {display:inline-block;text-align:center;}
 
@@ -200,6 +219,15 @@
                 width: 50px;
                 height: 50px;
                 overflow: hidden;
+                position:absolute;top:20px;right:20px;
+                z-index:1000;
+            }
+            
+            .close.small{
+                width: 20px;
+                height: 20px;
+                position:absolute;
+                top:85px;right:30px;
             }
 
             .close::before, .close::after {
@@ -236,7 +264,7 @@
         </style>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js" ></script>
-        <script type="text/javascript" src="slider.js?ver=15"></script>
+        <script type="text/javascript" src="slider.js?ver=26"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script>
 
@@ -258,6 +286,7 @@
                 adjustTwins();
                 startCubeRotate();
                 hideLoader();
+                drawCharts();
                 
                 $(".company").hover(function(){
                     if($(this).is(':animated')) return;
@@ -322,60 +351,63 @@
                             destContents.find(".twin:eq(1)").css("right","-50%");
                         }
                         
-                        if(destContents.find(".charts").size()>0){
-                            destroyCharts();
+                        if(oriContents.find(".charts").size() > 0){
+                            clearCharts()
                         }
                         
-                        setTimeout(function () {
+                    },
+                    onLeaveEnd: function (origin, destination, direction) {
+                        oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
+                        destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
+                        
+                        destContents.find(".divider").css("width", "0%");
+                        destContents.fadeIn({duration: 700, queue: false})
+                        
+                        
+                        
+                        var animEndFun = function(){
+                            if(destContents.has(".touch")){
+                               destContents.find(".touch").fadeIn();
+                            }    
                             
-                            destContents.find(".divider").css("width", "0%");
+                            destContents.find(".divider").delay(700).animate({width: "100%"}, {duration: 800});
+                        }
+
+                        if(destContents.find(".twin").size()>0){
+                            destContents.find(".twin:eq(0)").fadeIn({duration: 700, queue: false}).animate({"left":"0px"}, {duration:700, queue: false, complete:animEndFun});
+                            destContents.find(".twin:eq(1)").fadeIn({duration: 700, queue: false}).animate({"right":"0px"}, {duration:700, queue: false, complete:animEndFun});
                             
-                            destContents.fadeIn({duration: 700, queue: false})
-                            
-                            if(destContents.find(".twin").size()>0){
-                                destContents.find(".twin:eq(0)").fadeIn({duration: 700, queue: false}).animate({"left":"0px"}, {duration:700});
-                                destContents.find(".twin:eq(1)").fadeIn({duration: 700, queue: false}).animate({"right":"0px"}, {duration:700});
-                                destContents.find(".divider").delay(700).animate({width: "100%"}, {duration: 800});
-                                
-                            }else{
-                                destContents.css("padding-top", "50px");
-                                destContents
-                                        .animate({"padding-top": 0}, {duration: 700,  complete : function(){
-                                    destContents.find(".divider").animate({width: "100%"}, {duration: 800});
-                                }});
-                            }
-                            
-                            if(destContents.find(".charts").size()>0){
-                                setTimeout(function(){drawCharts()}, 500);
-                            }
-                            
-                             $(".scrollable").each(function (i, obj) {
-                                setTimeout(function(){$(obj).scrollTop(1);}, 1);
-                                $(this).attr("onscroll", "");
-                            });
-                            
-                            slider.setEnabled(true);
-                            
-                            setTimeout(function(){destContents.find(".scrollable").each(function () {
-                                console.log(isScrollable(this));
-                                if (isScrollable(this)) {
-                                    slider.setEnabled(false, "down");
-                                    $(this).attr("onscroll", "onScrollScrollable(this)");
-                                }
-                            });}, 700);
-                            
-                            
-                            
-                           
-                            
-                        }, 600);
+
+                        }else{
+                            destContents.css("padding-top", "50px");
+                            destContents
+                                    .animate({"padding-top": 0}, {duration: 700,  complete : animEndFun()});
+                        }
+
+                        if(destContents.find(".charts").size() > 0){
+                            setTimeout(function(){startChartsAnimation();}, 600)
+                        }
+
+
+                         $(".scrollable").each(function (i, obj) {
+                            setTimeout(function(){$(obj).scrollTop(0);}, 1);
+                            $(this).attr("onscroll", "");
+                        });
+
+//                        setTimeout(function(){destContents.find(".scrollable").each(function () {
+//                            console.log(isScrollable(this));
+//                            if (isScrollable(this)) {
+//                                slider.setEnabled(false, "down");
+//                                $(this).attr("onscroll", "onScrollScrollable(this)");
+//                            }
+//                        });}, 700);
                     }
                 });
             }
             
             function isScrollable(dom){
-                console.log(dom.scrollHeight+" : " + dom.clientHeight);
-                return dom.scrollHeight > dom.clientHeight;;
+//                console.log(dom.scrollHeight+" : " + dom.clientHeight);
+                return dom.scrollHeight > dom.clientHeight+10;
             }
 
             function onScrollScrollable(view) {
@@ -418,43 +450,95 @@
             ];
             var charts = [];
 
-            function destroyCharts() {
+            function showSkillDetail(obj) {
+                $(".charts .touch").fadeOut();
+                
+                var cloneObj = $(obj).clone();
+                cloneObj.css("position", "absolute");
+                cloneObj.css("top", obj.getBoundingClientRect().top + "px");
+                cloneObj.css("width", obj.offsetWidth + "px");
+                cloneObj.css("left", obj.getBoundingClientRect().left + "px");
+                cloneObj.attr("class", "skill");
+                cloneObj.find(".touch").remove();
+                console.log($(obj).find("canvas").get(0));
+                
+                
+                var canvas = $(obj).find("canvas").get(0);
+                var context = canvas.getContext('2d');
+                context.drawImage(canvas, 0, 0);
+                
+                $("body").append(cloneObj);
+                $(".charts > li").fadeOut(600, function(){
+                    cloneObj.animate({"top": $(".charts").get(0).getBoundingClientRect().top+"px"}, {complete: function () {
+                        $("#detail_asdf").fadeIn();
+                    }});
+                });
+            }
+            
+            function closeSkillDetail(){
+                console.log("closeSkillDetail()");
+                $('.charts > li').fadeIn({'duration':600, 'queue':false});
+                $('.skill').fadeOut({'duration':600, 'queue':false, 'complete':function(){$('.skill').remove();}});
+                $('#detail_asdf').fadeOut({'duration':600, 'queue':false});
+//                queue:false
+                
+            }
+            
+            function startChartsAnimation(){
+                for(var i = 0 ; i < charts.length ; i++){
+                    charts[i].data.datasets[0].data[0] = chartOptions[i].percent;
+                    charts[i].data.datasets[1].data[0] = 100 - chartOptions[i].percent;
+                    const id = chartOptions[i].id;
+                    charts[i].options.animation = {duration:1000, onComplete:function(){
+                            $("#"+id).parent().parent().attr("onclick", "showSkillDetail(this)");
+                    }};
+                    charts[i].update();
+                }
+            }
+            
+            function clearCharts(){
+                for(var i = 0 ; i < charts.length ; i++){
+                    charts[i].data.datasets[0].data[0] = 1;
+                    charts[i].data.datasets[1].data[0] = 99;
+                    charts[i].update();
+                }
+            }
+            
+            function redrawCharts() {
                 if (charts.length >= 1) {
                     charts.forEach(function (chart) {
                         chart.destroy();
                     });
+                    charts = [];
                 }
-            }
-
-            function onClickChart(evt, item) {
-                console.log(evt);
-                console.log(item);
-                alert(item[0]['_chart']['canvas'].id);
+                drawCharts();
             }
 
             function drawCharts() {
-                destroyCharts();
+                if (charts.length >= 1) {
+                    return;
+                }
+                
                 chartOptions.forEach(function (option) {
                     var ctx = document.getElementById(option.id).getContext('2d');
                     var chart = new Chart(ctx, {
                         type: 'horizontalBar',
                         data: {
                             datasets: [{
-                                    data: [option.percent],
+                                    data: [1],
                                     backgroundColor: [option.background],
                                     borderColor: [option.background.replace("0.8", "1")],
                                     borderWidth: 1,
                                 },
                                   {
-                                    data: [100 - option.percent],
-                                    backgroundColor: ["#AAA"],
-                                    borderColor: ["#AAA"],
+                                    data: [99],
+                                    backgroundColor: ["transparent"],
+                                    borderColor: ["#FFF"],
                                     borderWidth: 1,
                                 }
                             ]
                         },
                         options: {
-                            onClick: onClickChart,
                             responsive: true,
                             maintainAspectRatio: false,
                             title: {
@@ -499,12 +583,9 @@
                                         display: false,
                                     }]
                             },
-                            tooltips: {enabled: false},
+                            tooltips: {enabled: false,},
                             animation: {
-                                duration: 1000,
-//                                onProgress : function(animation){
-//                                    console.log(animation);
-//                                }
+                                duration: 0,
                             }
                         }
                     });
@@ -512,7 +593,7 @@
                 });
             }
 
-            function showDetail(obj) {
+            function showMyWorkPopup(obj) {
                 slider.setEnabled(false);
                 var cloneObj = $(obj).clone();
                 cloneObj.css("position", "absolute");
@@ -537,12 +618,14 @@
                 }, 1000);
             }
 
-            function closeDetail() {
+            function closePopup() {
                 slider.setEnabled(true);
-                $(".my_works_icon").fadeOut(400, function () {
-                    $(".my_works_icon").remove();
-                });
-                $("#my_works_popup").fadeOut();
+                if($(".my_works_icon").size() > 0){
+                    $(".my_works_icon").fadeOut(400, function () {
+                        $(".my_works_icon").remove();
+                    });
+                }
+                $(".popup").fadeOut();
                 $(".sections > li > div:first-child").fadeIn();
             }
 
@@ -570,11 +653,11 @@
                         $(".twin").remove();
                         $(".twin_dna").removeAttr( 'style' );
                         slider.update();
-                        slider.setEnabled(true);
                         
                         if ($(".my_works_icon").size() > 0){
                             $(".sections > li > div:first-child").hide();
                         }
+                        redrawCharts();
                     }
                 } else {
                     if ($(".twin_dna").size() > 0) {
@@ -590,12 +673,11 @@
                         $(".twin_dna").parent().remove();
                         $(".twin").removeAttr( 'style' );
                         slider.update();
-                        slider.setEnabled(true);
                         
                         if ($(".my_works_icon").size() > 0){
                             $(".sections > li > div:first-child").hide();
                         }
-                        
+                        redrawCharts();
                     }
                 }
             }
@@ -673,7 +755,8 @@
                             <li>
                                 <!--class="middle"-->
                                 <div class="company monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
-                                <h3>Android · PHP · MySQL · Front-end · SVN · Git</h3>
+                                <!--<h3>Android · PHP · MySQL · Front-end · SVN · Git</h3>-->
+                                <h3>Android / PHP / MySQL / Front-end / SVN / Git</h3>
                                 <h4>2015. 07 ~ 2019. 02</h4>
                                 <dl>
                                     <dt>MOBI</dt>
@@ -709,6 +792,7 @@
                                 <div class="chart_container">
                                     <canvas id="java_chart"></canvas>
                                 </div>
+                                <img class="touch" src="./images/hand.png" alt="hand" >
                             </li>
                             <li>
                                 <h3>Android Kotlin</h3>
@@ -805,25 +889,25 @@
                                  ​
                                  ■ 본인의 노하우를 바탕으로 경기를 분석하고 경기결과를 예칙 하는 픽스터가 될 수 있습니다.
                                  픽스터 활동의 일환으로 본인의 예측을 공유 할 수 있고,
-                                 공유시 얻는 아이템을 통해 게임 진행에 도움이 되는 다양한 기능성 아이템을 획득 할 수 있습니다. " onclick="showDetail(this);">
+                                 공유시 얻는 아이템을 통해 게임 진행에 도움이 되는 다양한 기능성 아이템을 획득 할 수 있습니다. " onclick="showMyWorkPopup(this);">
                         </li>
                         <li>
                             <!--                             <img src="https://lh3.googleusercontent.com/6nl5rl_ZM4SoIhOd-Rgh3lVOtw7BcXSrwJf-0uuXkq6jxF3AkntWITXFehmSR5F7Vrw=s180-rw"> -->
-                            <img src="https://lh3.googleusercontent.com/v1tXKq-zgZ7gw_yy4bR4QVv2ahzJuxM0t8vAnFV1IOxDGDUUuqBd4gAMuWfabJrWhw=s180-rw" onclick="showDetail(this);">
+                            <img src="https://lh3.googleusercontent.com/v1tXKq-zgZ7gw_yy4bR4QVv2ahzJuxM0t8vAnFV1IOxDGDUUuqBd4gAMuWfabJrWhw=s180-rw" onclick="showMyWorkPopup(this);">
                         </li>
                         <li>
                             <!--                             <img src="https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw"> -->		
-                            <img src="https://lh3.googleusercontent.com/l1J0x4Kg12WEsHw_R3AgyIJayRdQ7UVJXO4aQUj3eoeeWAdWSnHN8gdJ4wOTrfVvQCaO=s180-rw" onclick="showDetail(this);">
+                            <img src="https://lh3.googleusercontent.com/l1J0x4Kg12WEsHw_R3AgyIJayRdQ7UVJXO4aQUj3eoeeWAdWSnHN8gdJ4wOTrfVvQCaO=s180-rw" onclick="showMyWorkPopup(this);">
                         </li>
 
                         <li>
-                            <img src="https://lh3.googleusercontent.com/cAta9xCGdOt_E9krLGkQXQYHEthe9K5_o1mRDKs6AjylgIxnAfncEv9EOH2IzNa4_jo=s180-rw"  onclick="showDetail(this);">
+                            <img src="https://lh3.googleusercontent.com/cAta9xCGdOt_E9krLGkQXQYHEthe9K5_o1mRDKs6AjylgIxnAfncEv9EOH2IzNa4_jo=s180-rw"  onclick="showMyWorkPopup(this);">
                         </li>
                         <li>
-                            <img src="https://lh3.googleusercontent.com/v1tXKq-zgZ7gw_yy4bR4QVv2ahzJuxM0t8vAnFV1IOxDGDUUuqBd4gAMuWfabJrWhw=s180-rw" onclick="showDetail(this);">
+                            <img src="https://lh3.googleusercontent.com/v1tXKq-zgZ7gw_yy4bR4QVv2ahzJuxM0t8vAnFV1IOxDGDUUuqBd4gAMuWfabJrWhw=s180-rw" onclick="showMyWorkPopup(this);">
                         </li>
                         <li>
-                            <img src="https://lh3.googleusercontent.com/l1J0x4Kg12WEsHw_R3AgyIJayRdQ7UVJXO4aQUj3eoeeWAdWSnHN8gdJ4wOTrfVvQCaO=s180-rw" onclick="showDetail(this);">
+                            <img src="https://lh3.googleusercontent.com/l1J0x4Kg12WEsHw_R3AgyIJayRdQ7UVJXO4aQUj3eoeeWAdWSnHN8gdJ4wOTrfVvQCaO=s180-rw" onclick="showMyWorkPopup(this);">
                         </li>
 
                     </ol>
@@ -840,6 +924,16 @@
                 </div>
             </li>
         </ol>
+                        
+        <span id="detail_asdf">
+            <div class="close small" onclick="closeSkillDetail();"></div>
+            <ul class="scrollable">
+                <li>SDK 개발 경험</li>
+                <li>SDK 개발 경험</li>
+                <li>SDK 개발 경험</li>
+                <li>SDK 개발 경험</li>
+            </ul>
+        </span>
 
         <div id="my_works_popup" class="popup">
             <div style="margin-left:120px;height:120px;text-align:left;padding-right:50px;overflow:hidden;">
@@ -855,7 +949,7 @@
                 </div>
             </div>
 
-            <div class="close" onclick="closeDetail();"></div>
+            <div class="close" onclick="closePopup();"></div>
 
             <div class="swiper-container">
                 <div class="swiper-wrapper">
