@@ -10,32 +10,73 @@
         var isChanging = false;
         var keyUp = {38: 1, 33: 1};
         var keyDown = {40: 1, 34: 1};
-        var enabledReserved = null;
         var enabled = {"up":true, "down":true};
-        var listeners = {};
-        var transitionListener = null;
-        var isTouching = false;
+        var listeners = [];
+        var onLeaveData = {};
+        var touchStartEvent = null;
+        var touchSlideEnabled = null;
 
         var option = $.extend({}, {
             indicator: true,
             //콜백 추가
             onLeave: null,
+            //종료 콜백 추가
+            onLeaveEnd: null,
         }, data);
 
         //removeListener를 위한 addListener 추가
-        function addListener(name, listener) {
-            window.addEventListener(name, listener);
-            listeners[name] = listener;
+        function addListener(name, listener, dom) {
+            if(!dom){
+                dom = window;
+                dom.addEventListener(name, listener);
+            }
+            dom.addEventListener(name, listener);
+            listeners.push({"name":name, "listener":listener, "dom" : dom});
+        }
+        
+        function isSlideEnabled(event, direction){
+            var isEnabled = "all";
+            event.path.forEach(function(dom){
+                if(dom.className && dom.className.indexOf("slider__") != -1 || !isEnabled) return;
+
+                if(dom.scrollHeight > dom.clientHeight+10){
+                    if(dom.scrollTop == 0){
+                        isEnabled = "up";
+                        
+                    }else if(dom.scrollTop + dom.clientHeight >= dom.scrollHeight){
+                        isEnabled = "down";
+                    }else{
+                        isEnabled = null;
+                    }
+                }
+            });
+            if(direction){
+                return (isEnabled == "all" || isEnabled == direction)?true:false;
+                
+            }else{
+                return isEnabled;
+            }
         }
 
         var init = function () {
+            addListener("transitionend", function(e){
+                if(option.onLeaveEnd){
+                   option.onLeaveEnd(onLeaveData.original, onLeaveData.destination, onLeaveData.direction);
+                }
+            }, document.querySelector(sliderElement));
+            
             document.body.classList.add('slider__body');
 
             // control scrolling
             whatWheel = 'onwheel' in document.createElement('div') ? 'wheel' : document.onmousewheel !== undefined ? 'mousewheel' : 'DOMMouseScroll';
             wheelFun = function (e) {
-                var direction = e.wheelDelta || e.deltaY;
-                if (direction > 0) {
+                var direction = (e.wheelDelta || e.deltaY) > 0?"up":"down";
+                
+                if(!isSlideEnabled(e, direction)){
+                    return;
+                }
+                
+                if (direction == "up") {
                     changeSlide(-1);
                 } else {
                     changeSlide(1);
@@ -62,8 +103,7 @@
                         }, 400);
                     }
                 };
-                transitionListener = {"name": detectChangeEnd(), "listener": detectFun}
-                document.querySelector(sliderElement).addEventListener(detectChangeEnd(), detectFun);
+                addListener(detectChangeEnd(), detectFun, document.querySelector(sliderElement));
             }
 
             document.querySelector(sliderElement).classList.add('slider__container');
@@ -79,7 +119,7 @@
 
                 if (option.indicator) {
                     var indicator = document.createElement('a');
-                    indicator.classList.add('slider__indicator')
+                    indicator.classList.add('slider__indicator');
                     indicator.setAttribute('data-slider-target-index', index);
                     indicatorContainer.appendChild(indicator);
                 }
@@ -99,42 +139,46 @@
             var touchStartPos = 0;
             var touchStopPos = 0;
             var touchMinLength = 90;
-            startFun = function (e) {
-                isTouching = true;
-
+            addListener('touchstart', function (e) {
+                touchStartEvent = e;
                 //onclick 이벤트가 발생하지 않는 오류 수정
                 if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
                     var touch = e.touches[0] || e.changedTouches[0];
                     touchStartPos = touch.pageY;
                 }
-            };
-            addListener('touchstart', startFun);
-
-            //onclick 이벤트가 발생하지 않는 오류 수정
-            document.addEventListener('touchmove', function (e) {
-                e.preventDefault();
+                
+                touchSlideEnabled = isSlideEnabled(e);
             });
+            
+            //onclick 이벤트가 발생하지 않는 오류 수정            
+            addListener('touchmove', function (e) {e.preventDefault();},  document);
 
-            endFun = function (e) {
-                //onclick 이벤트가 발생하지 않는 오류 수정
-                //e.preventDefault();
+            addListener('touchend', function (e) {
                 if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
                     var touch = e.touches[0] || e.changedTouches[0];
                     touchStopPos = touch.pageY;
                 }
-                if (touchStartPos + touchMinLength < touchStopPos) {
+                
+                var direction = null;
+                if(touchStartPos + touchMinLength < touchStopPos){
+                    direction = "up";
+                }else if (touchStartPos > touchStopPos + touchMinLength) {
+                    direction = "down";
+                }
+                
+                console.log("end");
+                
+                if(!direction || !touchSlideEnabled || (touchSlideEnabled != "all" && touchSlideEnabled != direction) || !isSlideEnabled(touchStartEvent, direction)){
+                    return;
+                }
+                
+                if (direction == "up") {
                     changeSlide(-1);
-                } else if (touchStartPos > touchStopPos + touchMinLength) {
+                } else{
                     changeSlide(1);
                 }
                 
-                isTouching = false;
-                if(enabledReserved){
-                    enabled = enabledReserved;
-                    enabledReserved = null;
-                }
-            };
-            addListener('touchend', endFun);
+            });
         };
 
         // prevent double scrolling
@@ -181,8 +225,9 @@
             }
 
             //콜백 추가
+            onLeaveData = {"original" : currentSlide, "destination" : currentSlide + direction, "direction" : directionStr};
             if (option.onLeave) {
-                option.onLeave(currentSlide, currentSlide + direction, directionStr);
+                option.onLeave(onLeaveData.original, onLeaveData.destination, onLeaveData.direction);
             }
             // change page
             currentSlide += direction;
@@ -227,12 +272,8 @@
                 enabledTemp['down'] = isEnabled;
             }
             
-            if(isTouching){
-                enabledReserved = enabledTemp;
-            }else{
-                enabled = enabledTemp;
-            }
-            console.log(enabled);
+            enabled = enabledTemp;
+//            console.log(enabled);
         }
 
         // we have lift off
@@ -255,13 +296,11 @@
             document.querySelector('.slider__page').classList.remove('slider__page');
             document.querySelector('.slider__page').removeAttribute('data-slider-index');
 
-            for (listenerName in listeners) {
-                window.removeEventListener(listenerName, listeners[listenerName]);
-            }
-
-            if (transitionListener) {
-                document.querySelector(sliderElement).removeEventListener(transitionListener.name, transitionListener.listener);
-                transitionListener = null;
+            for (var i = 0 ; i < listeners.length ; i++) {
+                if(!listeners[i].dom){
+                    listeners[i].dom = window;
+                }
+                listeners[i].dom.removeEventListener(listeners[i].name, listeners[i].listener);
             }
 
             this.listeners = {};
