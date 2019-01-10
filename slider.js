@@ -59,12 +59,6 @@
         }
 
         var init = function () {
-            addListener("transitionend", function(e){
-                if(option.onLeaveEnd){
-                   option.onLeaveEnd(onLeaveData.original, onLeaveData.destination, onLeaveData.direction);
-                }
-            }, document.querySelector(sliderElement));
-            
             document.body.classList.add('slider__body');
 
             // control scrolling
@@ -95,15 +89,19 @@
             addListener('keydown', keyDownFun);
 
             // page change animation is done
-            if (detectChangeEnd()) {
-                detectFun = function () {
+            if (getTransitionEndEventName()) {
+                addListener(getTransitionEndEventName(), function () {
                     if (isChanging) {
                         setTimeout(function () {
+                            if(option.onLeaveEnd){
+                                option.onLeaveEnd(onLeaveData.original, onLeaveData.destination, onLeaveData.direction);
+                            }
                             isChanging = false;
                         }, 400);
+                    }else if(option.onLeaveEnd){
+                        option.onLeaveEnd(onLeaveData.original, onLeaveData.destination, onLeaveData.direction);
                     }
-                };
-                addListener(detectChangeEnd(), detectFun, document.querySelector(sliderElement));
+                }, document.querySelector(sliderElement));
             }
 
             document.querySelector(sliderElement).classList.add('slider__container');
@@ -182,7 +180,7 @@
         };
 
         // prevent double scrolling
-        var detectChangeEnd = function () {
+        var getTransitionEndEventName = function () {
             var transition;
             var e = document.createElement('foobar');
             var transitions = {
