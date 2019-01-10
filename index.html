@@ -7,9 +7,26 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta property="og:image" content="http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png">
-        <meta name="theme-color" content="#000000" />
 
-        <link rel="shortcut icon" href="./favicon.ico">
+        <!--<link rel="shortcut icon" href="./favicon/favicon.ico">-->
+        <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+        <link rel="manifest" href="./favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#000000" />
+        
         <title>Jinhyuk Lee - Android & PHP & Front-end Developer</title>
         <link rel="stylesheet" href="slider.css">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
@@ -27,6 +44,8 @@
             ul, ol, li{list-style: none}
             dt {font-weight:bold;}
             dl {margin-top:15px;}
+            
+            
             /* Mobile */
             @media screen and (max-width: 600px){
                 .table > li {float:left;width:30%;margin-right:5%;margin-bottom:20px;}
@@ -63,16 +82,18 @@
                 }
             }
             
-            .scrollable{height:100%;overflow:auto;}
+            .scrollable{overflow:auto;}
             .scrollable::-webkit-scrollbar{width:0;background-color:transparent;}
 
             .sections {max-width:1200px;left: 0;right: 0;margin: auto;}
+/*            .sections > li {}
+            .sections > li > div:first-child{position:absolute;top:20px;left:20px;bottom:20px;right:20px;text-align:center;}*/
             .sections > li {position:relative;padding:20px;width:100%;height:100%;box-sizing:border-box;}
             .sections > li > div:first-child{position:relative;width:100%;height:100%;text-align:center;}
 
-            .twin {width:50%;position:absolute;padding:20px;box-sizing:border-box;height:100%;overflow:hidden;}
+            .twin {width:50%;position:absolute;box-sizing:border-box;height:100%;}
             .twin:nth-child(2) {right:0}
-            .twin_dna {height:100%;overflow:hidden;}
+            .twin_dna {height:100%;}
 
             .center {width:100%;position:absolute;top:50%;transform: translateY(-50%);}
 
@@ -187,23 +208,20 @@
 
             }
 
-            /*            .fade_in {display:block;animation:fade_in 1s !important;}
-                        .fade_out {animation:fade_out 1s;animation-fill-mode: forwards;}*/
-
-
             #debug {position:fixed;color:white}
             
-            .charts > li {position:relative;padding:5px 0;}
+            .charts {position:absolute;top:60px;bottom:20px;width:100%;}
+            .charts > li {position:relative;padding-bottom:10px;;cursor:pointer;}
+            .charts > li:last-child {padding-bottom:0}
             .charts h3 {margin-bottom:5px}
             .chart_container {position:relative;height:70px;} 
             
-            .skill {padding:5px 0;z-index:-1}
+            .skill_detail {display:none;}
+            
+            .skill {position:absolute;padding:5px 0;z-index:1000;}
             .skill h3 {margin-bottom:5px}
             .skill .chart_container {position:relative;height:70px;} 
             
-            #detail_asdf {position:fixed;padding:200px 20px 20px 20px;display:none;top:0;left:0;bottom:0;right:0;}
-            #detail_asdf li {font-size:1.2em;}
-
             .table {width:100%;border-spacing: 10px;border-collapse: separate;}
             .table > li img{width:100%}
 
@@ -220,14 +238,15 @@
                 height: 50px;
                 overflow: hidden;
                 position:absolute;top:20px;right:20px;
-                z-index:1000;
+                z-index:3000;
+                cursor:pointer;
             }
             
             .close.small{
                 width: 20px;
                 height: 20px;
                 position:absolute;
-                top:85px;right:30px;
+                top:10px;right:10px;
             }
 
             .close::before, .close::after {
@@ -243,28 +262,36 @@
             .close::before {transform: rotate(45deg);}
             .close::after {transform: rotate(-45deg);}
 
+            .work_experiences {position:absolute;top:60px;bottom:20px;width:100%;}
             .work_experiences > li {margin-bottom:20px;}
             .work_experiences > li:last-child {margin-bottom:0px;}
             
-            .company {display:inline-block;width:150px;height:50px;background:white;border-radius:1000px;background-size:90%;background-position:center;background-repeat:no-repeat;overflow:hidden;}
-            .company.monawa {background-image:url('http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg')}
-            .company.isp {background-image:url('http://www.jblc.or.kr/data/sys_company_list/1345688194_b9418410_62.+EC9584EC9DB4EC9790EC8AA4ED94BC.jpg')}
-            .company.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
-            .company > p {margin-top:50px;height:50px;background:rgba(0,0,0,0.6);cursor:pointer;font-size:1.1rem;line-height:50px;}
-            /*.company:hover > * {display:block;animation: hover 0.6s;}*/
+            .thumbnail {background-size:90%;background-position:center;background-repeat:no-repeat;overflow:hidden;position:relative}
+/*            .thumbnail > p {background:rgba(0,0,0,0.6);cursor:pointer;margin-top:100%;font-size:1.1rem;text-align:center;top:0;left:0;right:0;bottom:0;}*/
+            .thumbnail > p {position:absolute;;cursor:pointer;font-size:1.1rem;text-align:center;top:100%;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);}
+            .thumbnail > p:before {content:"";height:100%;display:inline-block;vertical-align:middle}
+            
+            .work_experiences .thumbnail {display:inline-block;width:150px;height:50px;}
+            .thumbnail.monawa {background-image:url('http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg')}
+            .thumbnail.isp {background-image:url('http://www.jblc.or.kr/data/sys_company_list/1345688194_b9418410_62.+EC9584EC9DB4EC9790EC8AA4ED94BC.jpg')}
+            .thumbnail.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
+            
+            .table .thumbnail {display:inline-block;width:100%;height:150px;}
+            .thumbnail.mobi {background-image:url('https://lh3.googleusercontent.com/lsiXFOGmro6YqKkbrQwcdvIqXp6keIWJHX9Kn_IemlDiI1MPjRmqifbU5O2FQquKwQ=s180-rw')}
+            .thumbnail.looting {background-image:url('https://lh3.googleusercontent.com/6nl5rl_ZM4SoIhOd-Rgh3lVOtw7BcXSrwJf-0uuXkq6jxF3AkntWITXFehmSR5F7Vrw=s180-rw')}
+            .thumbnail.zzi {background-image:url('https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw')}
+            .thumbnail.adbox {background-image:url('https://lh3.googleusercontent.com/zh3QWx5SR-F7XUa38rx92J_YodrJ3P5ZzbNuWpZuCA2_qEvTW5oWFEdsquj9ggrqMpDU=s180-rw')}
 
             .popup {position:fixed;border:solid 1px white;border-radius:5px;padding:20px;display:none;max-width:1120px;margin:auto;top:20px;bottom:20px;left:20px;right:20px;}
             .sections h2 {display:inline-block;text-align:center;line-height:20px;height:60px;}
             .sections h2 > *:first-child{display:block;padding:0 20px;clear:both}
             .sections h2 > .divider{width:0%;display:inline-block;border-bottom:solid 2px white;height:0px;}
             
-            .middle {display:inline-block;vertical-align:middle}
-            .middle ~ * {display:inline-block;vertical-align:middle}
             .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
         </style>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js" ></script>
-        <script type="text/javascript" src="slider.js?ver=26"></script>
+        <script type="text/javascript" src="slider.js?ver=27"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script>
 
@@ -275,7 +302,6 @@
             var rotationSpeed = 1;
             var slider;
             window.onload = function () {
-                console.log("onload");
                 //최상단으로 스크롤
                 setTimeout(function () {
                     window.scrollTo(0, 0);
@@ -288,28 +314,44 @@
                 hideLoader();
                 drawCharts();
                 
-                $(".company").hover(function(){
+                $(".thumbnail").hover(function(){
                     if($(this).is(':animated')) return;
-                    $(this).find("p").animate({"margin-top":"0px"});
+                    $(this).find("p").animate({"top":"0px"});
                     
                 },function(){
                     if($(this).is(':animated')) return;
-                    $(this).find("p").animate({"margin-top":"50px"});
+                    $(this).find("p").animate({"top":"100%"});
                 });
                 
-                $(".company > p").click(function(){
+                $(".work_experiences .thumbnail > p").click(function(){
                     if(isMobile){
                         if($(this).is(':animated')) return;
                         if($(this).css("margin-top") == "0px"){
                            window.open($(this).attr("data-url"));
-                           $(this).animate({"margin-top":"50px"});
+                           $(this).animate({"top":"100%"});
                             
                         }else{
-                            $(this).animate({"margin-top":"0px"});
+                            $(this).animate({"top":"0px"});
                         }
                     
                     }else{
                         window.open($(this).attr("data-url"));
+                    }
+                });
+                
+                $(".table .thumbnail > p").click(function(){
+                    if(isMobile){
+                        if($(this).is(':animated')) return;
+                        if($(this).css("margin-top") == "0px"){
+                           showMyWorkPopup($(this).parent().get(0));
+                           $(this).animate({"top":"100%"});
+                            
+                        }else{
+                            $(this).animate({"top":"0px"});
+                        }
+                    
+                    }else{
+                        showMyWorkPopup($(this).parent().get(0));
                     }
                 });
                 
@@ -363,14 +405,12 @@
                         destContents.find(".divider").css("width", "0%");
                         destContents.fadeIn({duration: 700, queue: false})
                         
-                        
+                        if(oriContents.has(".charts")){
+                            hideSkillDetails(0);
+                        }
                         
                         var animEndFun = function(){
-                            if(destContents.has(".touch")){
-                               destContents.find(".touch").fadeIn();
-                            }    
-                            
-                            destContents.find(".divider").delay(700).animate({width: "100%"}, {duration: 800});
+                            destContents.find(".divider").delay(600).animate({width: "100%"}, {duration: 500});
                         }
 
                         if(destContents.find(".twin").size()>0){
@@ -379,9 +419,9 @@
                             
 
                         }else{
-                            destContents.css("padding-top", "50px");
+                            destContents.css("margin-top", "50px");
                             destContents
-                                    .animate({"padding-top": 0}, {duration: 700,  complete : animEndFun()});
+                                    .animate({"margin-top": 0}, {duration: 700,  complete : animEndFun()});
                         }
 
                         if(destContents.find(".charts").size() > 0){
@@ -393,14 +433,6 @@
                             setTimeout(function(){$(obj).scrollTop(0);}, 1);
                             $(this).attr("onscroll", "");
                         });
-
-//                        setTimeout(function(){destContents.find(".scrollable").each(function () {
-//                            console.log(isScrollable(this));
-//                            if (isScrollable(this)) {
-//                                slider.setEnabled(false, "down");
-//                                $(this).attr("onscroll", "onScrollScrollable(this)");
-//                            }
-//                        });}, 700);
                     }
                 });
             }
@@ -446,41 +478,63 @@
                 {"id": "js_chart", "percent": 70, "background": 'rgba(75, 192, 192, 0.8)'},
                 {"id": "php_chart", "percent": 75, "background": 'rgba(153, 102, 255, 0.8)'},
                 {"id": "jquery_chart", "percent": 70, "background": 'rgba(255, 159, 64, 0.8)'},
-                {"id": "css_chart", "percent": 40, "background": 'rgba(159, 255, 64, 0.8)'}
+                {"id": "css_chart", "percent": 40, "background": 'rgba(159, 255, 64, 0.8)'},
+                {"id": "c_sharp_chart", "percent": 20, "background": 'rgba(235, 162, 54, 0.8)'}
             ];
             var charts = [];
-
-            function showSkillDetail(obj) {
-                $(".charts .touch").fadeOut();
-                
-                var cloneObj = $(obj).clone();
-                cloneObj.css("position", "absolute");
-                cloneObj.css("top", obj.getBoundingClientRect().top + "px");
-                cloneObj.css("width", obj.offsetWidth + "px");
-                cloneObj.css("left", obj.getBoundingClientRect().left + "px");
-                cloneObj.attr("class", "skill");
-                cloneObj.find(".touch").remove();
-                console.log($(obj).find("canvas").get(0));
-                
-                
-                var canvas = $(obj).find("canvas").get(0);
-                var context = canvas.getContext('2d');
-                context.drawImage(canvas, 0, 0);
-                
-                $("body").append(cloneObj);
-                $(".charts > li").fadeOut(600, function(){
-                    cloneObj.animate({"top": $(".charts").get(0).getBoundingClientRect().top+"px"}, {complete: function () {
-                        $("#detail_asdf").fadeIn();
-                    }});
+            
+            var isSkillDetailAnimated = false;
+            
+            function hideSkillDetails(duration){
+                $(".charts").find(".skill_detail").each(function(){
+                    var detail = this;
+                    if($(detail).css("display") == "none"){
+                        return;
+                    }
+                   $(detail).fadeOut({"duration" : duration, "queue":false, complete : function(){
+                       $(detail).parent().animate({"height":($(detail).parent().height() - $(detail).height()) + "px"}, duration);
+                   }});
                 });
+            }
+            function toggleSkillDetail(obj) {
+                if(isSkillDetailAnimated) return;
+                
+                isSkillDetailAnimated = true;
+                var duration = 400;
+                
+                if($(obj).find(".skill_detail").css("display") != "none"){
+                    $(obj).find(".skill_detail").fadeOut({"duration" : duration, "queue" : false, "complete" : function(){
+                        $(obj).animate({"height":($(obj).height() - $(obj).find(".skill_detail").height())+"px"}, duration);
+                    }});
+                    setTimeout(function(){isSkillDetailAnimated = false;}, (duration*2)+200);
+                    return;
+                }
+                
+                $(".charts").animate({"scrollTop":0}, {"duration" : duration, "queue":false});
+                
+                hideSkillDetails(duration);
+                
+                $(".charts .touch").remove();
+                $(obj).css({"position":"absolute", "top":$(obj).position().top});
+                $(obj).animate({"top":""}, {"duration" : duration, "queue":false});
+                $(obj).next().css({"margin-top":$(obj).outerHeight(true)+"px"});
+                $(obj).next().animate({"margin-top": ""}, {"duration" : duration, "queue":false});
+                $(obj).parent().animate({"padding-top" : $(obj).outerHeight(true)+"px"}, {"duration" : duration, "queue":false, complete : function(){
+                    $(obj).parent().css("padding-top", "");
+                    $(obj).css({"position":"relative"});
+                    $(obj).parent().prepend($(obj));
+                    $(obj).animate({"height":($(obj).height()+$(obj).find(".skill_detail").height())+"px"}, {"duration" : duration, "queue":false, complete : function(){
+                        $(obj).find(".skill_detail").fadeIn(duration);
+                    }});
+                }});
+                setTimeout(function(){isSkillDetailAnimated = false;}, (duration*3)+200);
             }
             
             function closeSkillDetail(){
                 console.log("closeSkillDetail()");
-                $('.charts > li').fadeIn({'duration':600, 'queue':false});
-                $('.skill').fadeOut({'duration':600, 'queue':false, 'complete':function(){$('.skill').remove();}});
-                $('#detail_asdf').fadeOut({'duration':600, 'queue':false});
-//                queue:false
+                $('.charts').fadeIn({'duration':600, 'queue':false});
+                $('.skill').fadeOut({'duration':600, 'queue':false,  'complete':function(){$('.skill').remove();}});
+                //, 'queue':false
                 
             }
             
@@ -489,10 +543,13 @@
                     charts[i].data.datasets[0].data[0] = chartOptions[i].percent;
                     charts[i].data.datasets[1].data[0] = 100 - chartOptions[i].percent;
                     const id = chartOptions[i].id;
-                    charts[i].options.animation = {duration:1000, onComplete:function(){
-                            $("#"+id).parent().parent().attr("onclick", "showSkillDetail(this)");
+                    charts[i].options.animation = {duration:600, onComplete:function(){
+                            $("#"+id).parent().parent().attr("onclick", "toggleSkillDetail(this)");
                     }};
                     charts[i].update();
+                }
+                if($(".charts").has(".touch")){
+                    setTimeout(function(){$(".charts .touch").fadeIn();}, 600);
                 }
             }
             
@@ -735,8 +792,7 @@
             <li>
                 <div >
                     <div class="center">
-                        <h2><span>AM</span><span class="divider"></span></h2>
-                        <!--About Me-->
+                        <h2><span>About Me</span><span class="divider"></span></h2>
                         <div>
                                 <img src="https://lh3.googleusercontent.com/ZeUEl-_MQw6SpGg01eJg9Zfsp6jsvm1kZWCN3RfGN3Yyszg2_SfhqqAevQmxWE2AjQ=s180-rw" style="width:100px;">
                                 <!--http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png-->
@@ -751,10 +807,11 @@
                     <div class="twin">
                         <h2><span>Work experiences</span><span class="divider"></span></h2>     
                         <p class="divider"></p>
-                        <ol class="work_experiences scrollable" style="max-height:calc(100% - 60px);" >
+                        <ol class="work_experiences scrollable"  >
                             <li>
                                 <!--class="middle"-->
-                                <div class="company monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
+                                <div class="thumbnail monawa"><p>asdf</p></div>
+                                <!--<p data-url="http://www.hungryapp.co.kr/">㈜모나와</p>-->
                                 <!--<h3>Android · PHP · MySQL · Front-end · SVN · Git</h3>-->
                                 <h3>Android / PHP / MySQL / Front-end / SVN / Git</h3>
                                 <h4>2015. 07 ~ 2019. 02</h4>
@@ -765,7 +822,7 @@
                                 </dl>
                             </li>
                             <li>
-                                <div class="company isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
+                                <div class="thumbnail isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
                                 <h3>Android · C#</h3>
                                 <h4>2014. 06 ~ 2015. 06</h4>
                                 <dl>
@@ -774,61 +831,105 @@
                                 </dl>
                             </li>
                             <li>
-                                <div class="company tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
+                                <div class="thumbnail tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
                                 <h3>JSP · PHP · MySQL · Front-end · SVN</h3>
                                 <h4>2012. 08 ~ 2013. 10</h4>
                                 <dl>
                                     <dt>교리 문헌 관리 체계</dt>
-                                    <dd>나 혼자 개발</dd>
+                                    <dd>전체 개발 및 디자인에 70% 이상 참여</dd>
+                                    <dd>최고 선임으로서 팀원들에게 업무 분배 및 팀원들의 코드 분석 후 기술 조언</dd>
                                 </dl>
                             </li>
                     </div>
                     <div class="twin">
                         <h2><span>Skills</span><span class="divider"></span></h2>     
-
-                        <ul class="charts scrollable" style="max-height:calc(100% - 60px)">
+<!--style="max-height:calc(100% - 60px)"-->
+                        <ul class="charts scrollable">
                             <li>
                                 <h3>Android Java</h3>
                                 <div class="chart_container">
                                     <canvas id="java_chart"></canvas>
                                 </div>
                                 <img class="touch" src="./images/hand.png" alt="hand" >
+                                <ul class="skill_detail scrollable">
+                                    <li>SDK 개발</li>
+                                    <li>라이브러리 분석 및 수정</li>
+                                    <li>Activity, Service, Broadcash Receiver에 대한 이해</li>
+                                    <li>네이티브 앱, 하이브리드 앱 100% 개발</li>
+                                    <li>Lambda</li>
+                                </ul>
                             </li>
                             <li>
                                 <h3>Android Kotlin</h3>
                                 <div class="chart_container">
                                     <canvas id="kotlin_chart"></canvas>
                                 </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>Lambda</li>
+                                    <li>Studying...</li>
+                                </ul>
                             </li>
                             <li>
                                 <h3>PHP</h3>
                                 <div class="chart_container">
                                     <canvas id="php_chart"></canvas>
                                 </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>라이브러리 분석 경험</li>
+                                    <li>cURL</li>
+                                    <li>HTML Parsing</li>
+                                </ul>
                             </li>
                             <li>
                                 <h3>MySQL</h3>
                                 <div class="chart_container">
                                     <canvas id="mysql_chart"></canvas>
                                 </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>DB 설계</li>
+                                    <li>100만개 이상 데이터 쿼리</li>
+                                </ul>
                             </li>
                             <li>
                                 <h3>Javascript</h3>
                                 <div class="chart_container">
                                     <canvas id="js_chart"></canvas>
                                 </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>라이브러리 분석 및 수정</li>
+                                    <li>간단한 라이브러리 개발</li>
+                                </ul>
                             </li>
                             <li>
                                 <h3>jQuery</h3>
                                 <div class="chart_container">
                                     <canvas id="jquery_chart"></canvas>
                                 </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>Ajax</li>
+                                    <li>라이브러리 분석 및 수정 경험</li>
+                                    <li>간단한 라이브러리 개발 경험</li>
+                                </ul>
                             </li>
                             <li>
                                 <h3>CSS</h3>
                                 <div class="chart_container">
                                     <canvas id="css_chart"></canvas>
                                 </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>Animation</li>
+                                    <li>Display, Position에 대한 이해</li>
+                                    <li>간단한 페이지 Publishing 경험</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3>C#</h3>
+                                <div class="chart_container">
+                                    <canvas id="c_sharp_chart"></canvas>
+                                </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>시연용 프로그램 개발 경험</li>
+                                </ul>
                             </li>
                             
                         </ul>
@@ -837,13 +938,12 @@
             </li>
             <li>
                 <div>
-                    <h2><span>M</span><span class="divider"></span></h2>     
+                    <h2><span>My Works</span><span class="divider"></span></h2>     
                     <!--y works-->
                     <p class="divider"></p>
                     <ol class="table">
                         <li>
-                            <!--                             <img src="https://lh3.googleusercontent.com/lsiXFOGmro6YqKkbrQwcdvIqXp6keIWJHX9Kn_IemlDiI1MPjRmqifbU5O2FQquKwQ=s180-rw"> -->
-                            <img src="https://lh3.googleusercontent.com/cAta9xCGdOt_E9krLGkQXQYHEthe9K5_o1mRDKs6AjylgIxnAfncEv9EOH2IzNa4_jo=s180-rw" contents="◆쿠폰혜택◆
+                            <div class="thumbnail mobi" data-contents="◆쿠폰혜택◆
                                  G머니 100,000/하트100개 + 총 3천만원 상당의 경품 추천 
 
                                  ◆쿠폰사용방법◆
@@ -889,27 +989,25 @@
                                  ​
                                  ■ 본인의 노하우를 바탕으로 경기를 분석하고 경기결과를 예칙 하는 픽스터가 될 수 있습니다.
                                  픽스터 활동의 일환으로 본인의 예측을 공유 할 수 있고,
-                                 공유시 얻는 아이템을 통해 게임 진행에 도움이 되는 다양한 기능성 아이템을 획득 할 수 있습니다. " onclick="showMyWorkPopup(this);">
+                                 공유시 얻는 아이템을 통해 게임 진행에 도움이 되는 다양한 기능성 아이템을 획득 할 수 있습니다. " >
+                                <p>MOBI</p>
+                        </div>
+                        <li>
+                            <div class="thumbnail looting">
+                                <p>루팅</p>
+                            </div>
                         </li>
                         <li>
-                            <!--                             <img src="https://lh3.googleusercontent.com/6nl5rl_ZM4SoIhOd-Rgh3lVOtw7BcXSrwJf-0uuXkq6jxF3AkntWITXFehmSR5F7Vrw=s180-rw"> -->
-                            <img src="https://lh3.googleusercontent.com/v1tXKq-zgZ7gw_yy4bR4QVv2ahzJuxM0t8vAnFV1IOxDGDUUuqBd4gAMuWfabJrWhw=s180-rw" onclick="showMyWorkPopup(this);">
+                            <div class="thumbnail zzi">
+                                <p>게임을 낚다 - ZZI</p>
+                            </div>
                         </li>
+                        
                         <li>
-                            <!--                             <img src="https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw"> -->		
-                            <img src="https://lh3.googleusercontent.com/l1J0x4Kg12WEsHw_R3AgyIJayRdQ7UVJXO4aQUj3eoeeWAdWSnHN8gdJ4wOTrfVvQCaO=s180-rw" onclick="showMyWorkPopup(this);">
+                            <div class="thumbnail adbox">
+                                <p>애드박스</p>
+                            </div>
                         </li>
-
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/cAta9xCGdOt_E9krLGkQXQYHEthe9K5_o1mRDKs6AjylgIxnAfncEv9EOH2IzNa4_jo=s180-rw"  onclick="showMyWorkPopup(this);">
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/v1tXKq-zgZ7gw_yy4bR4QVv2ahzJuxM0t8vAnFV1IOxDGDUUuqBd4gAMuWfabJrWhw=s180-rw" onclick="showMyWorkPopup(this);">
-                        </li>
-                        <li>
-                            <img src="https://lh3.googleusercontent.com/l1J0x4Kg12WEsHw_R3AgyIJayRdQ7UVJXO4aQUj3eoeeWAdWSnHN8gdJ4wOTrfVvQCaO=s180-rw" onclick="showMyWorkPopup(this);">
-                        </li>
-
                     </ol>
                 </div>
             </li>
@@ -925,16 +1023,6 @@
             </li>
         </ol>
                         
-        <span id="detail_asdf">
-            <div class="close small" onclick="closeSkillDetail();"></div>
-            <ul class="scrollable">
-                <li>SDK 개발 경험</li>
-                <li>SDK 개발 경험</li>
-                <li>SDK 개발 경험</li>
-                <li>SDK 개발 경험</li>
-            </ul>
-        </span>
-
         <div id="my_works_popup" class="popup">
             <div style="margin-left:120px;height:120px;text-align:left;padding-right:50px;overflow:hidden;">
                 <h2>앱 제목</h2>
