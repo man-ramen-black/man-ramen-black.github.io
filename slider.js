@@ -90,7 +90,9 @@
 
             // page change animation is done
             if (getTransitionEndEventName()) {
-                addListener(getTransitionEndEventName(), function () {
+                addListener(getTransitionEndEventName(), function (e) {
+                    if(!e.target.className || e.target.className.indexOf("slider__container") == -1) return;
+                    
                     if (isChanging) {
                         setTimeout(function () {
                             if(option.onLeaveEnd){
@@ -164,7 +166,6 @@
                     direction = "down";
                 }
                 
-                console.log("end");
                 
                 if(!direction || !touchSlideEnabled || (touchSlideEnabled != "all" && touchSlideEnabled != direction) || !isSlideEnabled(touchStartEvent, direction)){
                     return;
@@ -271,7 +272,6 @@
             }
             
             enabled = enabledTemp;
-//            console.log(enabled);
         }
 
         // we have lift off
