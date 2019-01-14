@@ -43,7 +43,7 @@
                     if(dom.scrollTop == 0){
                         isEnabled = "up";
                         
-                    }else if(dom.scrollTop + dom.clientHeight >= dom.scrollHeight){
+                    }else if(dom.scrollTop + dom.clientHeight + 10 >= dom.scrollHeight){
                         isEnabled = "down";
                     }else{
                         isEnabled = null;
@@ -252,7 +252,7 @@
 
         //페이지 이동 함수 추가
         this.goPage = function (page) {
-            gotoSlide('div[data-slider-index = "' + page + '"]');
+            gotoSlide('*[data-slider-index = "' + page + '"]');
         }
 
         // on/off 함수 추가
