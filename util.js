@@ -1,3 +1,7 @@
+function replaceAll(str, searchStr, replaceStr) {
+    return str.split(searchStr).join(replaceStr);
+}
+            
 function isMobile() {
 var check = false;
         var useAgent = navigator.userAgent || navigator.vendor || window.opera;
