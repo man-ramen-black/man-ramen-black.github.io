@@ -1,4 +1,5 @@
 function replaceAll(str, searchStr, replaceStr) {
+    if(!str) return str;
     return str.split(searchStr).join(replaceStr);
 }
             
