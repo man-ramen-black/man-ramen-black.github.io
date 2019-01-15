@@ -52,6 +52,7 @@
             ul, ol, li{list-style: none}
             dt {font-weight:bold;}
             dl {margin-top:15px;}
+            samp {display:inline-block;}
             
             
             .arrow {position:absolute;left:0;right:0;width:50px;height:50px;margin:auto;animation: poke 1.5s infinite ease-in-out;background-position:center;background-size:100%;background-repeat:no-repeat;cursor:pointer;z-index:1000}
@@ -88,7 +89,8 @@
 /*            .sections > li {}
             .sections > li > div:first-child{position:absolute;top:20px;left:20px;bottom:20px;right:20px;text-align:center;}*/
             .sections > li {position:relative;padding:10px 20px;width:100%;height:100%;box-sizing:border-box;}
-            .sections > li > div:first-child{position:relative;width:100%;height:100%;text-align:center;}
+            .sections > li > div:first-child{position:relative;width:100%;height:100%;text-align:center;background:rgba(0,0,0,0.5)}
+            .sections > li:nth-child(1) > div:first-child{background:rgba(0,0,0,0)}
 
             .twin {width:49%;position:absolute;box-sizing:border-box;height:100%;}
             .twin:nth-child(2) {right:0}
@@ -282,19 +284,21 @@
             .thumbnail.isp {background-image:url('./images/isp.jpg?ver=2')}
             .thumbnail.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
             
-            .thumbnail.mobi {background-image:url('./images/mobi_thumbnail.png')}
+            .thumbnail.mobi {background-image:url('./images/thumbnail/mobi.png')}
             .thumbnail.mobi_admin {background-image:url('./images/mobi_admin.png')}
             .thumbnail.mobi_advertiser {background-image:url('./images/mobi_advertiser.png')}
-            .thumbnail.looting {background-image:url('https://lh3.googleusercontent.com/6nl5rl_ZM4SoIhOd-Rgh3lVOtw7BcXSrwJf-0uuXkq6jxF3AkntWITXFehmSR5F7Vrw=s180-rw')}
+            .thumbnail.looting {background-image:url('./images/thumbnail/looting.png')}
             .thumbnail.zzi {background-image:url('https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw')}
             .thumbnail.adbox {background-image:url('https://lh3.googleusercontent.com/zh3QWx5SR-F7XUa38rx92J_YodrJ3P5ZzbNuWpZuCA2_qEvTW5oWFEdsquj9ggrqMpDU=s180-rw')}
+            .thumbnail.adbox_advertiser {background-image:url('./images/thumbnail/adbox_advertiser.png')}
+            .thumbnail.hungryapp_sdk {background-image:url('./images/thumbnail/hungryapp_sdk.png?ver=1')}
             
             .divider {position:absolute;bottom:0}
 
             .sections h2 {position:relative;display:inline-block;text-align:center;margin-bottom:20px;padding:0px 20px 5px 20px}
             .sections h2 > .divider {border-bottom:solid 2px white;left:50%;right:50%;}
             
-            .popup {position:fixed;padding:20px;display:none;max-width:1160px;margin:auto;top:0px;bottom:0px;left:0px;right:0px;}
+            .popup {position:fixed;padding:20px;display:none;max-width:1160px;margin:auto;top:0px;bottom:0px;left:0px;right:0px;background:rgba(0,0,0,0.5)}
             
             .popup h2 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 20px 5px 20px}
             .popup h2 > .divider {border-bottom:solid 2px white;left:0%;right:0%;display:block;}
@@ -302,14 +306,25 @@
             .popup h3 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 10px 5px 10px}
             .popup h3 > .divider {border-bottom:solid 1px white;left:0%;right:0%;display:block;}
             
-            .popup > .section {width:100%;margin-bottom:40px;}
-            .popup .images {width:100%;margin:10px 0;}
-            .popup .images > img {width:40%;padding:0 5px}
+            .popup > .section {width:100%;margin-bottom:80px;}
+            
+            .popup .screenshot {width:100%;margin:10px 0;}
+            .popup .screenshot > video, .popup .screenshot > img {width:40%;text-align:center}
+            .popup samp {width:100%;padding-bottom:50.9375%;background-size:100%;background-repeat:no-repeat;}
             
             .popup .use_skills {width:auto;margin-bottom:10px;}
-            .popup .use_skills > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;font-weight:100;font-size:1.1em;line-height:1em;border-right:solid 1px #FFF;}
+            .popup .use_skills > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;font-weight:300;font-size:1.1em;line-height:1em;border-right:solid 1px #FFF;}
             .popup .use_skills > li:last-child {border:0}
             
+            .popup .links {margin-bottom:10px;}
+            .popup .links > button {background-position:10px 50%;background-size:15px;background-repeat:no-repeat;background-image:url('./images/link.png');padding:5px 10px 5px 35px;}
+            
+            .popup img {cursor:pointer}
+            .popup video {cursor:pointer}
+            .popup samp {cursor:pointer}
+            
+            .swiper-container {margin:20px 0;}
+            .swiper-container li > * {width:100%;}
             
             .my_works {width:100%;position:absolute;top:115px;bottom:20px;}
             .my_works .thumbnail {display:inline-block;width:100%;padding-bottom:100%;background-color:rgba(0,0,0,0.8);border:solid 1px #FFF;box-sizing:border-box}
@@ -332,6 +347,10 @@
             .grid_filter > li.on > .divider {animation:divider_in 0.4s;animation-fill-mode: forwards;}
             
             .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
+            
+            button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
+            
+            
             
              /* Mobile */
             @media screen and (max-width: 600px){
@@ -368,7 +387,7 @@
                 initSlider();
                 adjustTwins();
                 startCubeRotate();
-                removeLoader();
+                removeLoader(onHash);
                 drawCharts();
                 
                 $(".scrollable").each(function(){
@@ -376,9 +395,7 @@
                    $(this).append("<div class='arrow down'></div>")
                            .on("scroll", function(){
                                if(!$(this).has(".arrow")) return;
-                               if(this.scrollTop == 0){
-                                   $(this).find(".arrow.down").fadeIn(300);
-                               }else{
+                               if(this.scrollTop != 0){
                                    $(this).find(".arrow").fadeOut(300, function(){$(this).remove();});
                                }
                            })
@@ -401,7 +418,7 @@
                     }
                 });
                 
-                $(".grid .thumbnail > *").click(function(){
+                $(".my_works .thumbnail > *").click(function(){
                     var enabled = !isMobile();
                     if(isMobile()){
                         if($(this).hasClass("enabled")){
@@ -414,7 +431,7 @@
                         }
                     }
                     if(enabled){
-                        showMyWorkPopup($(this).parent().get(0));
+                        location.href="#my_works_detail_"+$(this).parent().attr('data-name');
                     }
                 });
                 
@@ -442,8 +459,21 @@
                     $(".my_works_icon").css("left", ($("#my_works_popup").offset().left + 20) + "px");
                 }
             }
+            
+            window.onhashchange = function(e){
+                onHash();
+            }
+            
+            function onHash(){
+                var hash = replaceAll(location.hash, "#", "");
+                if(!hash || hash == ""){
+                    closePopup();
+                }else if(hash.indexOf("my_works_detail_") != -1){
+                    showMyWorkPopup(hash.replace("my_works_detail_", ""));
+                }
+            }
 
-
+  
             function initSlider() {
                 slider = $.PageSlider(".sections", {
                     indicator: false,
@@ -511,11 +541,16 @@
                 });
             }
 
-            function removeLoader() {
+            function removeLoader(callback) {
                 setTimeout(function () {
                     $(".sections > li:first-child > div:first-child").addClass("fade_in");
                     $(".multi-spinner-container").fadeOut(400, function () {
-                        $("#loader").fadeOut(400, function(){$("#loader").remove();});
+                        $("#loader").fadeOut(400, function(){
+                            $("#loader").remove();
+                            if(callback){
+                                callback();
+                            }
+                        });
                     });
                 }, 600)
             }
@@ -531,14 +566,15 @@
             }
 
             var chartOptions = [
-                {"id": "java_chart", "percent": 75, "background": 'rgba(255, 99, 132, 0.8)'},
-                {"id": "kotlin_chart", "percent": 20, "background": 'rgba(54, 162, 235, 0.8)'},
-                {"id": "mysql_chart", "percent": 75, "background": 'rgba(255, 206, 86, 0.8)'},
-                {"id": "js_chart", "percent": 70, "background": 'rgba(75, 192, 192, 0.8)'},
-                {"id": "php_chart", "percent": 75, "background": 'rgba(153, 102, 255, 0.8)'},
-                {"id": "jquery_chart", "percent": 70, "background": 'rgba(255, 159, 64, 0.8)'},
-                {"id": "css_chart", "percent": 40, "background": 'rgba(159, 255, 64, 0.8)'},
-                {"id": "c_sharp_chart", "percent": 20, "background": 'rgba(235, 162, 54, 0.8)'}
+                {"id": "android_chart", "percent": 75, "background": '153, 194, 65'},
+                {"id": "java_chart", "percent": 75, "background": '234, 27, 9'},
+                {"id": "kotlin_chart", "percent": 20, "background": '72, 126, 207'},
+                {"id": "mysql_chart", "percent": 75, "background": '222, 146, 12'},
+                {"id": "js_chart", "percent": 70, "background": '232, 220, 42'},
+                {"id": "php_chart", "percent": 75, "background": '127, 136, 196'},
+                {"id": "jquery_chart", "percent": 70, "background": '35, 96, 163'},
+                {"id": "css_chart", "percent": 40, "background": '77, 143, 204'},
+                {"id": "c_sharp_chart", "percent": 20, "background": '121, 30, 145'}
             ];
             var charts = [];
             
@@ -635,6 +671,7 @@
                     charts = [];
                 }
                 drawCharts();
+                startChartsAnimation();
             }
 
             function drawCharts() {
@@ -649,8 +686,8 @@
                         data: {
                             datasets: [{
                                     data: [1],
-                                    backgroundColor: [option.background],
-                                    borderColor: [option.background.replace("0.8", "1")],
+                                    backgroundColor: ["rgba("+option.background+", 1)"],
+                                    borderColor: ["rgba("+option.background+", 1)"],
                                     borderWidth: 1,
                                 },
                                   {
@@ -718,36 +755,56 @@
                 });
             }
 
-            function showMyWorkPopup(obj) {
+            function showMyWorkPopup(myWorkName) {
                 slider.setEnabled(false);
-                $(".sections > li > div:first-child").fadeOut();
-                $("#my_works_popup").fadeIn();
-                $("#my_works_popup").load("./mobi.html");
-                setTimeout(function(){initSwiper();}, 800);
+                $(".sections > li > div:first-child").fadeOut(600);
+                $("#my_works_popup").css("visibility", "hidden").show();
+                $("#my_works_popup").load("./"+myWorkName+".html", null, function(responseText, textStatus, jqXHR){
+                    initSwiper();
+                    $("#my_works_popup img").click(function(){
+                        window.open($(this).attr('src'));
+                    });
+                    $("#my_works_popup video").click(function(){
+                        window.open($(this).find("source:eq(0)").attr('src'));
+                    });
+                    $("#my_works_popup samp").click(function(){
+                        var url = $(this).css('background-image');
+                        if(url.indexOf("\"") != -1){
+                            url = url.split("\"")[1];
+                        }else if(url.indexOf("'") != -1){
+                            url = url.split("'")[1];
+                        }
+                        window.open(url);
+                    });
+                    $("#my_works_popup").css("visibility", "visible").hide().fadeIn(600);
+                });
             }
 
             function closePopup() {
                 slider.setEnabled(true);
-                if($(".my_works_icon").size() > 0){
-                    $(".my_works_icon").fadeOut(400, function () {
-                        $(".my_works_icon").remove();
-                    });
-                }
-                $(".popup").fadeOut();
-                $(".sections > li > div:first-child").fadeIn();
+                $(".popup").fadeOut(600, function(){$(this).html("")});
+                $(".sections > li > div:first-child").fadeIn(600, function(){adjustTwins();});
             }
 
             var swiper;
             function initSwiper() {
+                $(".swiper-wrapper > *").addClass("swiper-slide");
+                var slidesPerView = 3;
+                if($(".swiper-container").hasClass("web")){
+                    slidesPerView = 1;
+                }
                 swiper = new Swiper('.swiper-container', {
-                    slidesPerView: 3,
+                    slidesPerView: slidesPerView,
                     effect: "coverflow",
                     loop : true,
-                    initialSlide : -1,
+                    centeredSlides : true,
                 })
             }
 
             function adjustTwins() {
+                if($('.popup').css("display") != "none"){
+                    return;
+                }
                 if (window.innerWidth <= 700) {
                     if ($(".twin").size() > 0) {
                             $(".sections > li > div:first-child").fadeIn();   
@@ -788,7 +845,7 @@
                             $(".sections > li > div:first-child").hide();
                         }
                         redrawCharts();
-                    }
+                    } 
                 }
             }
 
@@ -893,24 +950,31 @@
                     </div>
                     <div class="twin">
                         <h2><span>Skills</span><span class="divider"></span></h2>     
-<!--style="max-height:calc(100% - 60px)"-->
                         <ul class="skills scrollable">
                             <li>
-                                <h3>Android Java</h3>
+                                <h3>Android</h3>
                                 <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
+                                    <canvas id="android_chart"></canvas>
                                 </div>
                                 <img class="touch" src="./images/hand.png" alt="hand" >
                                 <ul class="skill_detail scrollable">
                                     <li>SDK 개발</li>
-                                    <li>라이브러리 분석 및 수정</li>
-                                    <li>Activity, Service, Broadcash Receiver에 대한 이해</li>
+                                    <li>Activity, Service, Broadcast Receiver에 대한 이해</li>
                                     <li>네이티브 앱, 하이브리드 앱 100% 개발</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3>Java</h3>
+                                <div class="chart_container">
+                                    <canvas id="java_chart"></canvas>
+                                </div>
+                                <ul class="skill_detail scrollable">
+                                    <li>라이브러리 분석 및 수정</li>
                                     <li>Lambda</li>
                                 </ul>
                             </li>
                             <li>
-                                <h3>Android Kotlin</h3>
+                                <h3>Kotlin</h3>
                                 <div class="chart_container">
                                     <canvas id="kotlin_chart"></canvas>
                                 </div>
@@ -990,22 +1054,22 @@
                 <div>
                     <h2><span>My Works</span><span class="divider"></span></h2>     
                     <ul class="grid_filter">
-                        <li class="on keep" data-filter="*">ALL<div class="divider"></div></li>
-                        <li data-filter=".app">APP<div class="divider"></div></li>
-                        <li data-filter=".web">WEB<div class="divider"></div></li>
+                        <li class="on keep" data-filter="*">ALL<div class="divider"></div></li
+                        ><li data-filter=".app">APP<div class="divider"></div></li
+                        ><li data-filter=".web">WEB<div class="divider"></div></li>
                     </ul>
                     
                     <div class="my_works scrollable">
                         <ol class="grid">
                             <li class="app">
-                                <div class="thumbnail mobi" data-contents="◆쿠폰혜택◆">
+                                <div class="thumbnail mobi" data-name="mobi">
                                     <p><span>MOBI</span></p>
                                 </div>
                             </li>
                             
                             <li class="app">
-                                <div class="thumbnail looting">
-                                    <p>애드박스</p>
+                                <div class="thumbnail looting" data-name="looting">
+                                    <p>루팅</p>
                                 </div>
                             </li>
                             
@@ -1035,6 +1099,18 @@
                                     <p>애드박스</p>
                                 </div>
                             </li>
+                            
+                            <li class="web">
+                                <div class="thumbnail adbox_advertiser" data-name="adbox_advertiser">
+                                    <p><span>애드박스 광고주 페이지</span></p>
+                                </div>
+                            </li>
+                            
+                            <li class="app">
+                                <div class="thumbnail hungryapp_sdk" data-name="hungryapp_sdk">
+                                    <p><span>헝그리앱 SDK</span></p>
+                                </div>
+                            </li>
 
                         </ol>
                     </div>
@@ -1059,6 +1135,6 @@
             </li>
         </ol>
                         
-        <div id="my_works_popup" class="popup scrollable" style="background:rgba(0,0,0,0.5)"></div>
+        <div id="my_works_popup" class="popup scrollable"></div>
     </body>
 </html>
