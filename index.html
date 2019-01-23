@@ -394,7 +394,9 @@
                    if(this.scrollHeight <= this.clientHeight+10) return;
                    $(this).append("<div class='arrow down'></div>")
                            .on("scroll", function(){
-                               if(!$(this).has(".arrow")) return;
+                               if($(this).find(".arrow").size()==0){
+                                   return;
+                               } 
                                if(this.scrollTop != 0){
                                    $(this).find(".arrow").fadeOut(300, function(){$(this).remove();});
                                }
@@ -500,7 +502,7 @@
                             destContents.find(".twin:eq(1)").css("right","-50%");
                         }
                         
-                        if(oriContents.has(".skills")){
+                        if(oriContents.find(".skills").size() != 0){
                             hideSkillDetails(true);
                             clearCharts()
                         }
@@ -528,7 +530,7 @@
                                     .animate({"margin-top": 0}, {duration: 700, queue: false,  complete : animEndFun()});
                         }
 
-                        if(destContents.has(".skills")){
+                        if(destContents.find(".skills").size() != 0){
                             setTimeout(function(){startChartsAnimation();}, 600)
                         }
 
@@ -650,7 +652,7 @@
                     }};
                     charts[i].update();
                 }
-                if($(".skills").has(".touch")){
+                if($(".skills").find(".touch").size() != 0){
                     setTimeout(function(){$(".skills .touch").fadeIn();}, 600);
                 }
             }
