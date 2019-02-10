@@ -760,7 +760,8 @@
                 slider.setEnabled(false);
                 $(".sections > li > div:first-child").fadeOut(600);
                 $("#my_works_popup").css("visibility", "hidden").show();
-                $("#my_works_popup").load("./"+myWorkName+".html", null, function(responseText, textStatus, jqXHR){
+                var time = new Date().getTime();
+                $("#my_works_popup").load("./"+myWorkName+".html?ver="+time, null, function(responseText, textStatus, jqXHR){
                     initSwiper();
                     $("#my_works_popup img").click(function(){
                         window.open($(this).attr('src'));
