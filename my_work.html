@@ -1,0 +1,175 @@
+<script>
+    var MY_WORKS = {
+        "mobi" : {
+            "name" : "MOBI",
+            "skills" : ["Android", "PHP", "MySQL"],
+            "links" : [
+                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Apps/tree/master/mobi"},
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.mobi"},
+            ],
+            "preview" : [
+                {"type" : "video", "src" : "./images/mobi/mobi.mp4", "poster" : "./images/mobi/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/login.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/main.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/bbs.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/regular.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/setting.jpg"},
+            ],
+            "description" : "게임 사전등록 & 게임 쿠폰 제공 앱입니다.<br>"+
+                     "네이티브 앱이며 전 개발자 최초 개발 후 이 후 개발에 대해 100% 참여하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "잠금화면",
+                     "links" : [
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/LockScreenActivity.java"},
+                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/mobi_cash.php"},
+                     ],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/mobi/mobi_lock.mp4", "poster" : "./images/mobi/lock.jpg"}    
+                     ],
+                     "description" : "포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.<br>"+
+                                    "SQLite, Cache를 활용하여 로딩 속도를 최적화 및 네트워크 미연결 상태에도 대응하였습니다.<br>"+
+                                    "잠금화면의 View, 동작을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다."
+                 },
+                 {
+                     "name" : "스페셜 쿠폰",
+                     "links" : [
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/SpecialActivity.java"},
+                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/mobi_srv.php#L4617"},
+                     ],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
+                         {"type" : "mobile", "src" : "./images/mobi/sp_detail.jpg"},
+                     ],
+                     "description" : "특정 미션을 완료 시 쿠폰을 발급받을 수 있는 스페셜 쿠폰 기능입니다."
+                 },
+                 {
+                     "name" : "팝업 푸시",
+                     "links" : [
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/PopupPushActivity.java"},
+                     ],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/mobi/popup_push.jpg"},
+                         {"type" : "mobile", "src" : "./images/mobi/point_push.jpg"},
+                     ],
+                     "description" : "사전 예약 참여 유도 및 게임 출시 안내, 보너스 포인트 지급을 위한 팝업 푸시 기능입니다."
+                 },
+                 
+             ],
+        },
+        "event" : {
+            "name" : "모바일 이벤트 페이지",
+            "skills" : ["Javascript", "CSS", "PHP", "MySQL"],
+            "links" : [
+                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/mobi/event"},
+            ],
+            "preview" : [
+                {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
+                {"type" : "video", "src" : "./images/event/scratch.mp4", "poster" : "./images/event/scratch.jpg"},
+                {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
+                {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
+                {"type" : "video", "src" : "./images/event/spin.mp4", "poster" : "./images/event/spin.jpg"},
+                {"type" : "video", "src" : "./images/event/typing.mp4", "poster" : "./images/event/typing.jpg"},
+            ],
+            "description" : "앱 서비스에서 진행됐었던 이벤트 웹페이지입니다.<br>"+
+                            "디자인을 제외한 모든 개발에 대해 100% 참여하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "애니메이션",
+                     "links" : [
+                         {"name" : "Source1", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/weekly/index.php#L387"},
+                         {"name" : "Source2", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/ball/index.php#L386"},
+                     ],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
+                         {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
+                     ],
+                     "description" : "jQuery Animation, CSS Animation 등을 활용하여 애니메이션을 구현하였습니다.<br>"+
+                                    "애니메이션의 속성들을 변수로 통제할 수 있도록 고려하여 개발하였습니다."
+                 },
+             ],
+        },
+    };
+    
+    function getPreviewHtml(data){
+        var html = "";
+        switch(data.type){
+            case "video" : 
+                html += "<video loop poster='"+data.poster+"'><source src='"+data.src+"' type='video/mp4'>이 브라우저에서는 동영상이 지원되지 않습니다.</video>";
+                break;
+            case "mobile" :
+                html += "<img src='"+data.src+"'>";
+                break;
+            case "pc" : 
+                html += "<samp style=\"background-image:url('"+data.src+"')\"></samp>";
+                break;
+        }
+        return html;
+    }
+    
+    var my_work = null;
+    
+    var hash = replaceAll(location.hash, "#", "");
+    if(hash.indexOf("my_work_") != -1){
+        my_work = MY_WORKS[hash.replace("my_work_", "")];
+    }else{
+        alert("올바르지 않은 페이지입니다.");
+        history.back();
+    }
+    
+    $(".header h2").prepend(my_work.name);
+    my_work.skills.forEach(function(val){
+       $(".header .use_skills").append("<li>"+val+"</li>");
+    });
+    my_work.links.forEach(function(data){
+       $(".header .links").append("<button onclick=\"window.open('"+data.url+"')\">"+data.name+"</button>"); 
+    });
+    my_work.preview.forEach(function(data){
+       $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
+    });
+    $(".description:eq(0)").html(my_work.description); 
+    
+    
+    my_work.dev.forEach(function(data){
+        var section = $.parseHTML($("#section_template").html());
+        $(section).find("h3").prepend(data.name);
+        data.links.forEach(function(link){
+            $(section).find(".links").append("<button onclick=\"window.open('"+link.url+"')\">"+link.name+"</button>");    
+        });
+        data.preview.forEach(function(preview){
+            $(section).find(".preview").append(getPreviewHtml(preview));
+        })
+        $(section).find(".description").html(data.description); 
+        $("#dev").append(section);
+    });
+    
+</script>
+<div class="header">
+    <h2><span class="divider"></span></h2>
+    <ul class="use_skills"></ul>
+    <div class="links"></div>
+    <div class="close" onclick="history.back();"></div>
+</div>
+
+<div class="section">
+    <div class="swiper-container">
+        <ul class="swiper-wrapper">
+        </ul>
+    </div>
+    
+    <h3>프로젝트 소개<span class="divider"></span></h3>
+    <div class="description"></div>
+</div>
+
+<h2 style="margin-bottom:20px">주요 개발<span class="divider"></span></h2>
+<div id="dev"></div>
+
+<div id="section_template" style="display:none;">
+    <div class="section">
+        <h3><span class="divider"></span></h3>
+        <div class="links"></div>
+        <div class="preview"></div>
+        <div class="description"></div>
+    </div>
+</div>
