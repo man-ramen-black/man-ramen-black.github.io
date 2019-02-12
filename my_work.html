@@ -1,5 +1,8 @@
 <script>
     var MY_WORKS = {
+        /************
+         * MOBI
+         ************/
         "mobi" : {
             "name" : "MOBI",
             "skills" : ["Android", "PHP", "MySQL"],
@@ -58,6 +61,57 @@
                  
              ],
         },
+        
+        /************
+         * 루팅
+         ************/
+        "looting" : {
+            "name" : "루팅",
+            "skills" : ["Android", "PHP", "MySQL"],
+            "links" : [
+                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Apps/tree/master/looting"},
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
+            ],
+            "preview" : [
+                {"type" : "mobile", "src" : "./images/looting/login.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/main.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/plus.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/shop.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/my_coup.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/menu.jpg"},
+            ],
+            "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
+                            "디자인을 제외한 레이아웃 구성, DB 구성, 서버, 앱 등 개발에 대해 100% 참여하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "플러스 쿠폰",
+                     "links" : [
+                         {"name" : "Source1", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/weekly/index.php#L387"},
+                         {"name" : "Source2", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/ball/index.php#L386"},
+                     ],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
+                         {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
+                     ],
+                     "description" : "jQuery Animation, CSS Animation 등을 활용하여 애니메이션을 구현하였습니다.<br>"+
+                                    "애니메이션의 속성들을 변수로 통제할 수 있도록 고려하여 개발하였습니다."
+                 },
+                 {
+                     "name" : "설치 푸시",
+                     "links" : [
+                         {"name" : "Source", "url" : ""},
+                     ],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
+                     ],
+                     "description" : "Javascript Interface, 접근성을 활용하여, 게임 플레이 시간 감지 기능을 구현하였습니다."
+                 },
+             ],
+        },
+        
+        /************
+         * Event
+         ************/
         "event" : {
             "name" : "모바일 이벤트 페이지",
             "skills" : ["Javascript", "CSS", "PHP", "MySQL"],
@@ -88,6 +142,28 @@
                      "description" : "jQuery Animation, CSS Animation 등을 활용하여 애니메이션을 구현하였습니다.<br>"+
                                     "애니메이션의 속성들을 변수로 통제할 수 있도록 고려하여 개발하였습니다."
                  },
+                 {
+                     "name" : "게임 플레이",
+                     "links" : [
+                         {"name" : "Source", "url" : ""},
+                     ],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
+                     ],
+                     "description" : "Javascript Interface, 접근성을 활용하여, 게임 플레이 시간 감지 기능을 구현하였습니다."
+                 },
+                 {
+                     "name" : "확률 설정",
+                     "links" : [
+                         {"name" : "Ajax Source", "url" : ""},
+                         {"name" : "Admin Source", "url" : ""},
+                     ],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/event/egg.jpg"},
+                     ],
+                     "description" : "확률에 따라 이벤트 상품을 당첨되게 구현하였습니다.<br>"+
+                                     "확률은 관리자들이 통계를 확인하며, 유동적으로 설정할 수 있습니다."
+                 },
              ],
         },
     };
@@ -108,68 +184,79 @@
         return html;
     }
     
-    var my_work = null;
+    (function(){
+        var my_work = null;
     
-    var hash = replaceAll(location.hash, "#", "");
-    if(hash.indexOf("my_work_") != -1){
-        my_work = MY_WORKS[hash.replace("my_work_", "")];
-    }else{
-        alert("올바르지 않은 페이지입니다.");
-        history.back();
-    }
-    
-    $(".header h2").prepend(my_work.name);
-    my_work.skills.forEach(function(val){
-       $(".header .use_skills").append("<li>"+val+"</li>");
-    });
-    my_work.links.forEach(function(data){
-       $(".header .links").append("<button onclick=\"window.open('"+data.url+"')\">"+data.name+"</button>"); 
-    });
-    my_work.preview.forEach(function(data){
-       $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
-    });
-    $(".description:eq(0)").html(my_work.description); 
-    
-    
-    my_work.dev.forEach(function(data){
-        var section = $.parseHTML($("#section_template").html());
-        $(section).find("h3").prepend(data.name);
-        data.links.forEach(function(link){
-            $(section).find(".links").append("<button onclick=\"window.open('"+link.url+"')\">"+link.name+"</button>");    
+        var hash = replaceAll(location.hash, "#", "");
+        if(hash.indexOf("my_work_") != -1){
+            my_work = MY_WORKS[hash.replace("my_work_", "")];
+        }
+
+        if(!my_work){
+            $("#my_work_wrap").hide();
+            alert("올바르지 않은 페이지입니다.");
+            history.back();
+            return;
+        }
+
+        $(".header h2").prepend(my_work.name);
+        my_work.skills.forEach(function(val){
+           $(".header .use_skills").append("<li>"+val+"</li>");
         });
-        data.preview.forEach(function(preview){
-            $(section).find(".preview").append(getPreviewHtml(preview));
-        })
-        $(section).find(".description").html(data.description); 
-        $("#dev").append(section);
-    });
+        my_work.links.forEach(function(data){
+           $(".header .links").append("<button onclick=\"window.open('"+data.url+"')\">"+data.name+"</button>"); 
+        });
+        my_work.preview.forEach(function(data){
+           $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
+        });
+        $(".description:eq(0)").html(my_work.description); 
+
+
+        my_work.dev.forEach(function(data){
+            var section = $.parseHTML($("#section_template").html());
+            $(section).find("h3").prepend(data.name);
+            data.links.forEach(function(link){
+                $(section).find(".links").append("<button onclick=\"window.open('"+link.url+"')\">"+link.name+"</button>");    
+            });
+            data.preview.forEach(function(preview){
+                $(section).find(".preview").append(getPreviewHtml(preview));
+            })
+            $(section).find(".description").html(data.description); 
+            $("#dev").append(section);
+        });
+        
+    })();
+    
+    
     
 </script>
-<div class="header">
-    <h2><span class="divider"></span></h2>
-    <ul class="use_skills"></ul>
-    <div class="links"></div>
-    <div class="close" onclick="history.back();"></div>
-</div>
-
-<div class="section">
-    <div class="swiper-container">
-        <ul class="swiper-wrapper">
-        </ul>
-    </div>
-    
-    <h3>프로젝트 소개<span class="divider"></span></h3>
-    <div class="description"></div>
-</div>
-
-<h2 style="margin-bottom:20px">주요 개발<span class="divider"></span></h2>
-<div id="dev"></div>
-
-<div id="section_template" style="display:none;">
-    <div class="section">
-        <h3><span class="divider"></span></h3>
+<div id="my_work_wrap">
+    <div class="header">
+        <h2><span class="divider"></span></h2>
+        <ul class="use_skills"></ul>
         <div class="links"></div>
-        <div class="preview"></div>
+        <div class="close" onclick="history.back();"></div>
+    </div>
+
+    <div class="section">
+        <div class="swiper-container">
+            <ul class="swiper-wrapper">
+            </ul>
+        </div>
+
+        <h3>프로젝트 소개<span class="divider"></span></h3>
         <div class="description"></div>
+    </div>
+
+    <h2 style="margin-bottom:20px">주요 개발<span class="divider"></span></h2>
+    <div id="dev"></div>
+
+    <div id="section_template" style="display:none;">
+        <div class="section">
+            <h3><span class="divider"></span></h3>
+            <div class="links"></div>
+            <div class="preview"></div>
+            <div class="description"></div>
+        </div>
     </div>
 </div>
