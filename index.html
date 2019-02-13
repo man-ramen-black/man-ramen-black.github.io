@@ -183,12 +183,12 @@
                 to {margin-top:0}
             }
 
-            @keyframes divider_in{
+            @keyframes underbar_in{
                 from {width:0px;}
                 to {width:50px;}
             }
 
-            @keyframes divider_out{
+            @keyframes underbar_out{
                 from {width:50px}
                 to {width:0px}
             }
@@ -268,18 +268,18 @@
             .thumbnail.adbox_advertiser {background-image:url('./images/thumbnail/adbox_advertiser.png')}
             .thumbnail.hungryapp_sdk {background-image:url('./images/thumbnail/hungryapp_sdk.png?ver=1')}
 
-            .divider {position:absolute;bottom:0}
+            .underbar {position:absolute;bottom:0}
 
             .sections h2 {position:relative;display:inline-block;text-align:center;margin-bottom:20px;padding:0px 20px 5px 20px}
-            .sections h2 > .divider {border-bottom:solid 2px white;left:50%;right:50%;}
+            .sections h2 > .underbar {border-bottom:solid 2px white;left:50%;right:50%;}
 
             .popup {position:fixed;padding:20px;display:none;max-width:1160px;margin:auto;top:0px;bottom:0px;left:0px;right:0px;background:rgba(0,0,0,0.5)}
 
             .popup h2 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 20px 5px 20px}
-            .popup h2 > .divider {border-bottom:solid 2px white;left:0%;right:0%;display:block;}
+            .popup h2 > .underbar {border-bottom:solid 2px white;left:0%;right:0%;display:block;}
 
             .popup h3 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 10px 5px 10px}
-            .popup h3 > .divider {border-bottom:solid 1px white;left:0%;right:0%;display:block;}
+            .popup h3 > .underbar {border-bottom:solid 1px white;left:0%;right:0%;display:block;}
 
             .popup .section {width:100%;margin-bottom:80px;}
 
@@ -316,10 +316,10 @@
             .grid_filter > li {display:inline-block;position:relative;cursor:pointer;padding:0px 20px;font-weight:100;font-size:1.1em;line-height:1em;border-right:solid 1px #FFF;}
             .grid_filter > li:last-child {border:0}
 
-            .grid_filter > li .divider{width:0px;left:0;right:0;margin:auto;border-bottom:solid 1px white;bottom:-10px;animation:divider_out 0.4s;animation-fill-mode: forwards;}
+            .grid_filter > li .underbar{width:0px;left:0;right:0;margin:auto;border-bottom:solid 1px white;bottom:-10px;animation:underbar_out 0.4s;animation-fill-mode: forwards;}
 
             .grid_filter > li.on {font-weight:600}
-            .grid_filter > li.on > .divider {animation:divider_in 0.4s;animation-fill-mode: forwards;}
+            .grid_filter > li.on > .underbar {animation:underbar_in 0.4s;animation-fill-mode: forwards;}
 
             .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
 
@@ -563,12 +563,12 @@
                         oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
                         destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
 
-                        destContents.find("h2 .divider").css({"left": "50%", "right": "50%"});
+                        destContents.find("h2 .underbar").css({"left": "50%", "right": "50%"});
                         destContents.fadeIn({duration: 700, queue: false})
 
 
                         var animEndFun = function () {
-                            destContents.find("h2 .divider").delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
+                            destContents.find("h2 .underbar").delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
                         }
 
                         if (destContents.find(".twin").size() > 0) {
@@ -1041,7 +1041,7 @@
             <li>
                 <div >
                     <div class="center">
-                        <h2><span>About Me</span><span class="divider"></span></h2>
+                        <h2><span>About Me</span><span class="underbar"></span></h2>
                         <div>
                             <img src="https://lh3.googleusercontent.com/ZeUEl-_MQw6SpGg01eJg9Zfsp6jsvm1kZWCN3RfGN3Yyszg2_SfhqqAevQmxWE2AjQ=s180-rw" style="width:100px;">
                             <!--http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png-->
@@ -1054,8 +1054,8 @@
             <li>
                 <div>
                     <div class="twin">
-                        <h2><span>Work experiences</span><span class="divider"></span></h2>     
-                        <p class="divider"></p>
+                        <h2><span>Work experiences</span><span class="underbar"></span></h2>     
+                        <p class="underbar"></p>
                         <ol class="work_experiences scrollable"  >
                             <li>
                                 <!--class="middle"-->
@@ -1090,7 +1090,7 @@
                             </li>
                     </div>
                     <div class="twin">
-                        <h2><span>Skills</span><span class="divider"></span></h2>     
+                        <h2><span>Skills</span><span class="underbar"></span></h2>     
                         <ul class="skills scrollable">
                             <li>
                                 <h3>Android</h3>
@@ -1184,11 +1184,11 @@
             </li>
             <li>
                 <div>
-                    <h2><span>My Works</span><span class="divider"></span></h2>     
+                    <h2><span>My Works</span><span class="underbar"></span></h2>     
                     <ul class="grid_filter">
-                        <li class="on keep" data-filter="*">ALL<div class="divider"></div></li
-                        ><li data-filter=".app">APP<div class="divider"></div></li
-                        ><li data-filter=".web">WEB<div class="divider"></div></li>
+                        <li class="on keep" data-filter="*">ALL<div class="underbar"></div></li
+                        ><li data-filter=".app">APP<div class="underbar"></div></li
+                        ><li data-filter=".web">WEB<div class="underbar"></div></li>
                     </ul>
 
                     <div class="my_works scrollable">
@@ -1258,7 +1258,7 @@
             <li>
                 <div>
                     <div class="center">
-                        <h2><span>Epilogue</span><span class="divider"></span></h2>     
+                        <h2><span>Epilogue</span><span class="underbar"></span></h2>     
                         <div>
                             안녕하세요~~~~ 태보는 지금 전세계적으로 선풍적인 인기를 끌고 있는데요! 태보란 우리나라의 태권도와 복싱을 접목한 운동입니다! 2달 동안 태보를 했더니 조혜련이 이렇게 완벽한 몸매가 됐습니다 와! 태보를 하루에 25분만 투자한다면 런닝머신 한시간! 여러분도 하루에 25분만! 태보의 세계로 들어가봅시다!<br>
                             @==(^0^)@ @(^0^)==@
