@@ -34,7 +34,7 @@
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js?ver=2" ></script>
-        <script type="text/javascript" src="slider.js?ver=31"></script>
+        <script type="text/javascript" src="slider.js?ver=32"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.js"></script>
@@ -184,12 +184,12 @@
             }
 
             @keyframes underbar_in{
-                from {width:0px;}
-                to {width:50px;}
+                from {width:0px}
+                to {width:100%;}
             }
 
             @keyframes underbar_out{
-                from {width:50px}
+                from {width:100%}
                 to {width:0px}
             }
 
@@ -313,7 +313,8 @@
             .work_experiences .thumbnail {display:inline-block;width:150px;height:50px;background-size:100%;}
 
             .grid_filter {width:auto;margin-bottom:10px;}
-            .grid_filter > li {display:inline-block;position:relative;cursor:pointer;padding:0px 20px;font-weight:100;font-size:1.1em;line-height:1em;border-right:solid 1px #FFF;}
+            .grid_filter > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;margin:0px 10px;font-weight:100;font-size:1.1em;line-height:1em;}
+            .grid_filter > li.divider{padding:0;margin:0;width:1px;background:white;height:16px;margin-bottom:-2px;}
             .grid_filter > li:last-child {border:0}
 
             .grid_filter > li .underbar{width:0px;left:0;right:0;margin:auto;border-bottom:solid 1px white;bottom:-10px;animation:underbar_out 0.4s;animation-fill-mode: forwards;}
@@ -324,74 +325,27 @@
             .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
 
             button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
+            
+            .drawer {position:fixed;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;}
+            .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
+            .drawer li {cursor:pointer;}
+            .drawer li > p {font-size:2em;padding:10px;position:relative;display:inline-block;white-space: nowrap;}
+            .drawer li.on > p {color:#aaa}
+            .drawer li > p:after {content:'';position:absolute;bottom:0;width:0%;border-bottom:solid 2px white;left:0%;right:0%;margin:0 auto;display:block;transition:width 0.4s;}
+            .drawer li:hover > p:after {width:100%;}
+            
+            .menu {z-index:5000;font-size: 15px;position: fixed;display: inline-block;width: 2em;height: 2em;cursor: pointer;top:20px;right:20px;}
+            .menu span {position: absolute;top: 50%;left: 0;display: block;width: 100%;height: 0.2em;margin-top: -0.1em;background-color: #fff;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-transition: transform 0.3s;transition: background-color 0.3s, transform 0.3s;}
+            .menu span:after,.menu span:before {position: absolute;left: 0;width: 100%;height: 100%;background: #fff;content: '';-webkit-transition: -webkit-transform 0.3s;transition: transform 0.3s;}
+            .menu span {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+            .menu span:before {-webkit-transform: translateY(-0.5em);transform: translateY(-0.5em);}
+            .menu span:after {-webkit-transform: translateY(0.5em);transform: translateY(0.5em);}
+            .menu.open span {background-color : rgba(0,0,0,0);-webkit-transform: rotate(-180deg);transform: rotate(-180deg) opacity(0f);}
+            .menu.open span:before {-webkit-transform: rotate(45deg);transform: rotate(45deg);}
+            .menu.open span:after {-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
 
 
-            .menu span {
-                position: absolute;
-                top: 50%;
-                left: 0;
-                display: block;
-                width: 100%;
-                height: 0.2em;
-                margin-top: -0.1em;
-                background-color: #fff;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                -webkit-transition: transform 0.3s;
-                transition: background-color 0.3s, transform 0.3s;
-            }
-
-            .menu span:after,
-            .menu span:before {
-                position: absolute;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #fff;
-                content: '';
-                -webkit-transition: -webkit-transform 0.3s;
-                transition: transform 0.3s;
-            }
-
-            .menu span {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-
-            .menu span:before {
-                -webkit-transform: translateY(-0.5em);
-                transform: translateY(-0.5em);
-            }
-
-            .menu span:after {
-                -webkit-transform: translateY(0.5em);
-                transform: translateY(0.5em);
-            }
-
-            .menu.open span {
-                background-color : rgba(0,0,0,0);
-                -webkit-transform: rotate(-180deg);
-                transform: rotate(-180deg) opacity(0f);
-            }
-
-            .menu.open span:before {
-                -webkit-transform: translateY(-0.43em) translateX(0.55em) rotate(45deg) scaleX(0.7);
-/*                transform: translateY(-0.43em) translateX(0.55em) rotate(45deg) scaleX(0.7);*/
-                transform: rotate(45deg);
-            }
-
-            .menu.open span:after {
-                -webkit-transform: translateY(0.43em) translateX(0.55em) rotate(-45deg) scaleX(0.7);
-                /*transform: translateY(0.43em) translateX(0.55em) rotate(-45deg) scaleX(0.7);*/
-                transform: rotate(-45deg);
-            }
-
-
-
+            /*@반응형*/
             /* Mobile */
             @media screen and (max-width: 600px){
                 .grid > li {width:50%;}
@@ -399,6 +353,8 @@
             /* PC */
             @media screen and (min-width: 600px){
                 .grid > li {width:33.3333%;}
+                .menu {display:none;}
+                .drawer {display:none;}
             }
 
 
@@ -512,7 +468,7 @@
             }
             
             function initDrawer(){
-                $(".drawer").hide();
+                $(".drawer").fadeOut(1, function(){$(this).css("display", "none")});
                 $(".drawer li").each(function(i, val){
                     $(this).attr("onclick", "toggleDrawer();slider.goPage("+(i+1)+");");
                 });
@@ -950,11 +906,32 @@
                     }
                 }
             }
+            
+            function toggleDrawer() {
+                //close
+                if($(".menu").hasClass("open")){
+                    slider.current()
+                    left = "+200%";
+                    $(".drawer").stop().delay(100).fadeOut(400, function(){$(".drawer li").removeClass("on");});
+                    
+                //open
+                }else{
+                    $(".drawer li:eq("+(slider.current()-1)+")").addClass("on");
+                    $(".drawer li").css("margin-left", "-200%");
+                    left = "0%";
+                    $(".drawer").stop().delay(100).fadeIn();
+                }
+                $(".drawer li").each(function(i, val){
+                    $(this).stop().delay(50*i).animate({"margin-left" : left});
+                })
+                $(".menu").toggleClass('open');
+            }
 
         </script>
     </head>
     <body>
         
+        <!--@loader-->
         <div id="loader" >
             <div class="multi-spinner-container">
                 <div class="multi-spinner">
@@ -971,6 +948,7 @@
             </div>
         </div>
         
+        <!--@cube-->
         <div class="cube_wrap">
             <div class="cube">
                 <div class="top"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg"></div>
@@ -982,47 +960,15 @@
             </div>
         </div>
         
-        <style>
-            .menu {
-                z-index:5000;
-                font-size: 15px;
-                position: fixed;
-                display: inline-block;
-                width: 2em;
-                height: 2em;
-                cursor: pointer;
-                top:20px;
-                right:20px;
-            }
-
-            .drawer {position:fixed;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;}
-            .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
-            .drawer li {font-size:2em;white-space: nowrap;cursor:pointer;padding:10px;}
-        </style>
-        <script>
-            function toggleDrawer() {
-                if($(".menu").hasClass("open")){
-                    console.log(left);
-                    left = "-200%";
-                    $(".drawer").stop().delay(100).fadeOut();
-                }else{
-                    left = "0%";
-                    $(".drawer").stop().delay(100).fadeIn();
-                }
-                $(".drawer li").each(function(i, val){
-                    $(this).stop().delay(50*i).animate({"margin-left" : left});
-                })
-                $(".menu").toggleClass('open');
-            }
-        </script>
+        <!--@drawer-->
         <div class="drawer">
         <ol>
-            <li>Home</li>
-            <li>About Me</li>
-            <li>Work experiences</li>
-            <li>Skills</li>
-            <li>My Works</li>
-            <li>Epilogue</li>
+            <li><p>Home</p></li>
+            <li><p>About Me</p></li>
+            <li><p>Work experiences</p></li>
+            <li><p>Skills</p></li>
+            <li><p>My Works</p></li>
+            <li><p>Epilogue</p></li>
         </ol>
         </div>
         
@@ -1187,7 +1133,9 @@
                     <h2><span>My Works</span><span class="underbar"></span></h2>     
                     <ul class="grid_filter">
                         <li class="on keep" data-filter="*">ALL<div class="underbar"></div></li
+                        ><li class="divider"></li
                         ><li data-filter=".app">APP<div class="underbar"></div></li
+                        ><li class="divider"></li
                         ><li data-filter=".web">WEB<div class="underbar"></div></li>
                     </ul>
 
