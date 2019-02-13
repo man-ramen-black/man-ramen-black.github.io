@@ -326,7 +326,7 @@
 
             button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
             
-            .drawer {position:fixed;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;}
+            .drawer {position:fixed;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;visibility:visible}
             .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
             .drawer li {cursor:pointer;}
             .drawer li > p {font-size:2em;padding:10px;position:relative;display:inline-block;white-space: nowrap;}
@@ -334,7 +334,7 @@
             .drawer li > p:after {content:'';position:absolute;bottom:0;width:0%;border-bottom:solid 2px white;left:0%;right:0%;margin:0 auto;display:block;transition:width 0.4s;}
             .drawer li:hover > p:after {width:100%;}
             
-            .menu {z-index:5000;font-size: 15px;position: fixed;display: inline-block;width: 2em;height: 2em;cursor: pointer;top:20px;right:20px;}
+            .menu {z-index:5000;font-size: 15px;position: fixed;display: inline-block;width: 2em;height: 2em;cursor: pointer;top:20px;right:20px;visibility:visible}
             .menu span {position: absolute;top: 50%;left: 0;display: block;width: 100%;height: 0.2em;margin-top: -0.1em;background-color: #fff;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-transition: transform 0.3s;transition: background-color 0.3s, transform 0.3s;}
             .menu span:after,.menu span:before {position: absolute;left: 0;width: 100%;height: 100%;background: #fff;content: '';-webkit-transition: -webkit-transform 0.3s;transition: transform 0.3s;}
             .menu span {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
@@ -353,8 +353,7 @@
             /* PC */
             @media screen and (min-width: 600px){
                 .grid > li {width:33.3333%;}
-                .menu {display:none;}
-                .drawer {display:none;}
+                .menu, .drawer {display:none;visibility:hidden;}
             }
 
 
@@ -791,8 +790,8 @@
 
             function showMyWorkPopup(myWorkName) {
                 slider.setEnabled(false);
-                $(".sections > li").fadeOut(600);
-//                 > div:first-child
+                $(".sections").fadeOut(600);
+                $(".menu").fadeOut(600);
                 $("#my_works_popup").css("visibility", "hidden").show();
                 var time = new Date().getTime();
 
@@ -824,10 +823,10 @@
                 $(".popup").fadeOut(600, function () {
                     $(this).html("")
                 });
-                $(".sections > li").fadeIn(600, function () {
+                $(".menu").fadeIn(600);
+                $(".sections").fadeIn(600, function () { 
                     adjustTwins();
                 });
-//                 > div:first-child
             }
 
             var swiper;
@@ -910,12 +909,14 @@
             function toggleDrawer() {
                 //close
                 if($(".menu").hasClass("open")){
+                    slider.setEnabled(true);
                     slider.current()
                     left = "+200%";
                     $(".drawer").stop().delay(100).fadeOut(400, function(){$(".drawer li").removeClass("on");});
                     
                 //open
                 }else{
+                    slider.setEnabled(false);
                     $(".drawer li:eq("+(slider.current()-1)+")").addClass("on");
                     $(".drawer li").css("margin-left", "-200%");
                     left = "0%";
@@ -972,8 +973,8 @@
         </ol>
         </div>
         
-         <div class="menu" onclick="toggleDrawer()"><span></span></div>
-
+        <div class="menu" onclick="toggleDrawer()"><span></span></div>
+        
         <ol class="sections">
             <li>
                 <div>
