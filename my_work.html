@@ -1,4 +1,30 @@
 <script>
+    
+    function onVisibilityChange(el, callback) {
+        var old_visible;
+        return function () {
+            var visible = isInViewport(el);
+            if (visible != old_visible) {
+                old_visible = visible;
+                if (typeof callback == 'function') {
+                    callback();
+                }
+            }
+        }
+    }
+
+    $("#my_works_popup").on('resize scroll', function(){
+        $("video").each(function(i, val){
+            if($(val).parent().parent().attr("class") == "swiper-wrapper") return;
+            
+            if(isInViewport(val)){
+                val.play();
+            }else if(!val.paused){
+                val.pause();
+            }
+        });
+    }); 
+
     var MY_WORKS = {
         /************
          * MOBI
@@ -19,8 +45,8 @@
                 {"type" : "mobile", "src" : "./images/mobi/regular.jpg"},
                 {"type" : "mobile", "src" : "./images/mobi/setting.jpg"},
             ],
-            "description" : "게임 사전등록 & 게임 쿠폰 제공 앱입니다.<br>"+
-                     "네이티브 앱이며 전 개발자 최초 개발 후 이 후 개발에 대해 100% 참여하였습니다.",
+            "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
+                     "전 개발자 최초 개발 후 디자인을 제외한 레이아웃 구성, DB 구성, 서버, 앱 등 개발에 대해 100% 참여하였습니다.",
              "dev" : [
                  {
                      "name" : "잠금화면",
@@ -38,12 +64,12 @@
                  {
                      "name" : "스페셜 쿠폰",
                      "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/SpecialActivity.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/mobi_srv.php#L4617"},
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/SpecialDetailActivity.java"},
+                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/mobi_srv.php#L4460"},
                      ],
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
-                         {"type" : "mobile", "src" : "./images/mobi/sp_detail.jpg"},
+                         {"type" : "mobile", "src" : "./images/mobi/sp_detail.jpg?ver=2"},
                      ],
                      "description" : "특정 미션을 완료 시 쿠폰을 발급받을 수 있는 스페셜 쿠폰 기능입니다."
                  },
@@ -73,6 +99,7 @@
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
             ],
             "preview" : [
+                {"type" : "video", "src" : "./images/looting/looting.mp4", "poster":"./images/looting/intro.jpg"},
                 {"type" : "mobile", "src" : "./images/looting/login.jpg"},
                 {"type" : "mobile", "src" : "./images/looting/main.jpg"},
                 {"type" : "mobile", "src" : "./images/looting/game_detail.jpg"},
@@ -88,11 +115,11 @@
                  {
                      "name" : "플러스 쿠폰",
                      "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/looting/src/main/java/com/ha/looting/fragment/PlusCouponFragment.java"},
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/looting/src/main/java/com/ha/looting/activity/PlusCouponDetailActivity.java"},
                          {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/looting/looting_srv.php#L2456"},
                      ],
                      "preview" : [
-                         {"type" : "mobile", "src" : "./images/looting/plus.jpg"},
+                         {"type" : "video", "src":"./images/looting/plus.mp4", "poster" : "./images/looting/plus.jpg"},
                          {"type" : "mobile", "src" : "./images/looting/plus_detail.jpg?ver=1"},
                      ],
                      "description" : "게임을 일정 시간 플레이하면 쿠폰을 발급해주는 플러스 쿠폰 기능입니다.<br>"+
@@ -111,6 +138,7 @@
                  },
              ],
         },
+        
         
         /************
          * Event
