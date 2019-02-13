@@ -280,6 +280,8 @@
         } else {
             window.addEventListener('onload', init(), false);
         }
+        
+        this.current = function(){return currentSlide;}
 
         //update 추가
         this.update = function () {
