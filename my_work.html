@@ -206,31 +206,30 @@
                 {"name" : "Web", "url" : "http://www.adbox.co.kr/"},
             ],
             "preview" : [
-                {"type" : "mobile", "src" : "./images/zzi/login.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/main.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/game.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/news.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/reserve.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/reserve_detail.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/bbs.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/cashbook.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/cashbook_coupon.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/main.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/play.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/campaign.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/detail.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/report.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/shop.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/bbs.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/menu.jpg?ver=1"},
             ],
-            "description" : "NCPI 방식의 인플루언서 마케팅 광고 서비스입니다.<br>"+
+            "description" : "NCPI 방식의 인플루언서 마케팅 서비스입니다.<br>"+
                             "하이브리드 앱, PC, Mobile 웹 서비스를 지원하고 있습니다.<br>"+
-                            "이 역시 모든 개발을... 저 혼자... 했습니다...",
+                            "디자인을 제외한 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
              "dev" : [
                  {
-                     "name" : "광고 트래킹, 포스트백",
+                     "name" : "클릭 URL / 광고 트래킹 / 포스트백",
                      "links" : [
                          {"name" : "Tracking Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
                          {"name" : "Postback Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
                      ],
                      "preview" : [
-                         {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
-                         {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
+                         
                      ],
-                     "description" : "광고 트래킹, 포스트백을 맨 땅에 헤딩하면서 직접 구현하였습니다.<br>"+
+                     "description" : "NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.<br>"+
                                     "만들라고 시키는 사람 조차 NCPI에 대한 정확한 지식, 방식도 모르는 상태에서 무작정 만들라고 요청이 와서 직접 일일이 알아보고 찾아가며 개발을 했습니다.<br>"+
                                     ""
                  },
@@ -241,8 +240,8 @@
                          {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/adbox/app/adbox_srv.php#L176"},
                      ],
                      "preview" : [
-                         {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
-                         {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
+                         {"type" : "video", "src":"./images/adbox/popup.mp4", "poster" : "./images/adbox/popup.jpg?ver=1"},
+                         {"type" : "mobile", "src":"./images/adbox/popup.jpg"},
                      ],
                      "description" : "게임 종료를 감지하여 광고 팝업을 노출하고 광고에 참여한 회원에게 포인트를 지급하는 게임 팝업 기능입니다.<br>"+
                                     ""
@@ -250,15 +249,14 @@
                  {
                      "name" : "앱 자동 설치",
                      "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/adbox/src/main/java/com/ha/adbox/activity/PopupActivity.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/adbox/app/adbox_srv.php#L176"},
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/adbox/src/main/java/com/ha/adbox/service/AutoInstallService.java"},
+                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/adbox/app/adbox_srv.php#L733"},
                      ],
                      "preview" : [
-                         {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
-                         {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
+                         {"type" : "mobile", "src":"./images/adbox/auto_install.jpg"},
                      ],
-                     "description" : "특정한 시간이 되면 백그라운드에서 앱을 자동으로 설치하고 회원에게 포인트를 지급하는 기능입니다.<br>"+
-                                    ""
+                     "description" : "백그라운드에서 앱을 자동으로 설치하고 회원에게 포인트를 지급하는 기능입니다.<br>"+
+                                    "service, webview, javascript 등을 사용하여 기능을 구현하였습니다. "
                  },
                          
                          
