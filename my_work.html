@@ -227,7 +227,8 @@
                          {"name" : "Postback Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
                      ],
                      "preview" : [
-                         
+                         {"type" : "video", "src":"./images/adbox/install_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
+                         {"type" : "video", "src":"./images/adbox/res_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
                      ],
                      "description" : "NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.<br>"+
                                     "만들라고 시키는 사람 조차 NCPI에 대한 정확한 지식, 방식도 모르는 상태에서 무작정 만들라고 요청이 와서 직접 일일이 알아보고 찾아가며 개발을 했습니다.<br>"+
@@ -263,11 +264,46 @@
              ],
         },
         
+        
+        /************
+         * 알바G
+         ************/
+        "albag" : {
+            "name" : "알바G",
+            "skills" : ["Android", "PHP", "MySQL", "Javascript"],
+            "links" : [
+                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/albag"},
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
+            ],
+            "preview" : [
+                {"type" : "mobile", "src" : "./images/albag/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/main.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/campaign.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/detail.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/withdraw.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/menu.jpg?ver=1"},
+            ],
+            "description" : "게임 관련 미션 완료시 회원에게 포인트를 지급하는 하이브리드 앱입니다.<br>"+
+                            "디자인을 제외한 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "흠....",
+                     "links" : [
+                         {"name" : "Tracking Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
+                         {"name" : "Postback Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
+                     ],
+                     "preview" : [
+                     ],
+                     "description" : "흐으음..."
+                 },
+             ],
+        },
+        
         /************
          * Event
          ************/
         "event" : {
-            "name" : "모바일 이벤트 페이지",
+            "name" : "모나와 이벤트 페이지",
             "skills" : ["Javascript", "CSS", "PHP", "MySQL"],
             "links" : [
                 {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/mobi/event"},
@@ -280,8 +316,8 @@
                 {"type" : "video", "src" : "./images/event/spin.mp4", "poster" : "./images/event/spin.jpg"},
                 {"type" : "video", "src" : "./images/event/typing.mp4", "poster" : "./images/event/typing.jpg"},
             ],
-            "description" : "앱 서비스에서 진행됐었던 이벤트 웹페이지입니다.<br>"+
-                            "디자인을 제외한 모든 개발에 대해 100% 참여하였습니다.",
+            "description" : "모나와의 앱 서비스에서 진행됐었던 이벤트 웹페이지들입니다.<br>"+
+                            "디자인, 퍼블리싱을 제외한 DB 구성, 서버, Javascript 등을 100% 직접 개발하였습니다.",
              "dev" : [
                  {
                      "name" : "애니메이션",
@@ -322,6 +358,108 @@
         },
         
         /************
+         * 관리자 페이지
+         ************/
+        "admin" : {
+            "name" : "모나와 관리자 페이지",
+            "skills" : ["PHP", "MySQL", "Javascript"],
+            "links" : [
+                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/html/admin"},
+            ],
+            "preview" : [
+                {"type" : "pc", "src" : "./images/admin/adbox_admin.png"},
+                {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_admin.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_roulette_admin.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_roulette_log.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
+                {"type" : "pc", "src" : "./images/admin/push2.png"},
+                
+            ],
+            "description" : "모나와의 각 서비스를 관리하기 위한 관리자 페이지입니다.<br>"+
+                            "애드박스, 알바G의 모든 관리자 페이지를 100% 직접 개발하였고, 그 외 서비스들의 푸시 발송 페이지, 이벤트 관리 페이지 등을 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "푸시 발송 페이지",
+                     "links" : [
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/albag/push.php"},
+                     ],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/admin/push2.png"},
+                     ],
+                     "description" : "푸시 발송을 위한 관리자 페이지입니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "쿠폰 등록 기능",
+                     "links" : [
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/common/coup_manager_new.php"},
+                     ],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/admin/coup_manager.png?ver=1"},
+                     ],
+                     "description" : "쿠폰 등록을 위한 관리자 페이지입니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "이벤트 확률 설정 기능",
+                     "links" : [
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/event/mobi_event_spin_gift.php"},
+                     ],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
+                     ],
+                     "description" : "이벤트 확률 설정을 위한 관리자 페이지입니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "애드박스 정산 페이지",
+                     "links" : [
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/adbox/main/_ad_avg_stat.php"},
+                     ],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
+                     ],
+                     "description" : "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+                                    ""
+                 },
+             ],
+        },
+        
+        /************
+         * 모비 루팅 찌 광고주 페이지
+         ************/
+        "mobi_advertiser" : {
+            "name" : "모비/루팅/찌 광고주 페이지",
+            "skills" : ["PHP", "MySQL", "Javascript"],
+            "links" : [
+                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobi.co.kr/admin"},
+            ],
+            "preview" : [
+                {"type" : "pc", "src" : "./images/mobi_advertiser/login.png"},
+                {"type" : "pc", "src" : "./images/mobi_advertiser/main.png"},
+                {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
+            ],
+            "description" : "모비/루팅/찌 광고주에게 제공되는 광고주 페이지입니다.<br>"+
+                            "디자인, 퍼블리싱을 제외한 Front-end, Back-end 를 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "광고 현황 상세 페이지",
+                     "links" : [
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobi.co.kr/admin/report.php"},
+                     ],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
+                     ],
+                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 상세 페이지입니다.<br>"+
+                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
+                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
+                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
+                 },
+             ],
+        },
+        
+        /************
          * 애드박스 광고주 페이지
          ************/
         "adbox_advertiser" : {
@@ -335,18 +473,18 @@
                 {"type" : "pc", "src" : "./images/adbox_advertiser/dashboard.png"},
                 {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
             ],
-            "description" : "애드박스 서비스의 광고주에게 제공되는 광고주 페이지입니다.<br>"+
+            "description" : "애드박스 광고주에게 제공되는 광고주 페이지입니다.<br>"+
                             "디자인, 퍼블리싱을 제외한 Front-end, Back-end 를 100% 직접 개발하였습니다.",
              "dev" : [
                  {
-                     "name" : "광고 상세 페이지",
+                     "name" : "광고 현황 상세 페이지",
                      "links" : [
                          {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/adbox/advertiser/report2.php"},
                      ],
                      "preview" : [
                          {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
                      ],
-                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 상세 페이지입니다.<br>"+
+                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 현황 상세 페이지입니다.<br>"+
                                     "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
                                     "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
                                     "차트는 구글 차트 라이브러리를 사용하였습니다."
@@ -365,12 +503,17 @@
                 {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/libs/hungryapp-sdk"},
             ],
             "preview" : [
-                {"type" : "pc", "src" : "./images/hungryapp_sdk/init.PNG"},
-                {"type" : "pc", "src" : "./images/hungryapp_sdk/ha_activity.PNG"},
-                {"type" : "pc", "src" : "./images/hungryapp_sdk/http_manager.PNG"},
-                {"type" : "pc", "src" : "./images/hungryapp_sdk/ha_splash_activity.PNG"},
-                {"type" : "pc", "src" : "./images/hungryapp_sdk/response_helper.PNG"},
-                {"type" : "pc", "src" : "./images/hungryapp_sdk/social_login_manager.PNG"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/intro_dialog.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/permission.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/splash_activity.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/close_dialog.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/play.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/install.jpg"},
+                
             ],
             "description" : "모나와 근무 당시 서비스하는 앱에 공통적으로 적용되었던 헝그리앱 SDK입니다.<br>"+
                             "공통되는 기능들의 재활용, 확장을 위해 개발되었습니다.<br>"+
@@ -382,7 +525,7 @@
                          {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/weekly/index.php#L387"},
                      ],
                      "preview" : [
-                         {"type" : "pc", "src" : "./images/hungryapp_sdk/response_helper.PNG"},
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
                      ],
                      "description" : "http 통신의 응답을 통해 Toast, Dialog, Notification 등을 노출하는 Class입니다.<br>"+
                                      "데이터, 상황에 따라 유동적으로 할 수 있도록 개발하였습니다."
@@ -393,7 +536,7 @@
                          {"name" : "Source", "url" : ""},
                      ],
                      "preview" : [
-                         {"type" : "pc", "src" : "./images/hungryapp_sdk/gcm_manager.PNG"},
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
                      ],
                      "description" : "GCM 기능을 위한 Class입니다.<br>"+
                                     "데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다."
@@ -404,7 +547,8 @@
                          {"name" : "Source", "url" : ""},
                      ],
                      "preview" : [
-                         {"type" : "mobile", "src" : "./images/event/social_login_manager.PNG"},
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/login1.jpg"},
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
                      ],
                      "description" : "구글, 페이스북, 네이버, 카카오 로그인을 간단하게 구현해주는 Class입니다.<br>"+
                                      ""
