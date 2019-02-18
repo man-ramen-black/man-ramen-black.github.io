@@ -260,8 +260,8 @@
             .thumbnail.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
 
             .thumbnail.mobi {background-image:url('./images/thumbnail/mobi.png')}
-            .thumbnail.admin {background-image:url('./images/thumbnail/admin.png')}
-            .thumbnail.advertiser {background-image:url('./images/thumbnail/mobi_advertiser.png')}
+            .thumbnail.admin {background-image:url('./images/thumbnail/admin.png?ver=1')}
+            .thumbnail.mobi_advertiser {background-image:url('./images/thumbnail/mobi_advertiser.png')}
             .thumbnail.looting {background-image:url('./images/thumbnail/looting.png')}
             .thumbnail.zzi {background-image:url('https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw')}
             .thumbnail.adbox {background-image:url('https://lh3.googleusercontent.com/zh3QWx5SR-F7XUa38rx92J_YodrJ3P5ZzbNuWpZuCA2_qEvTW5oWFEdsquj9ggrqMpDU=s180-rw')}
@@ -537,7 +537,8 @@
                             destContents.css("margin-top", "50px");
                             destContents
                                     .animate({"margin-top": 0}, {duration: 700, queue: false, complete: function () {
-                                            setTimeout(animEndFun, 100);
+                                            animEndFun();
+//                                            setTimeout(animEndFun, 100);
                                         }});
                         }
 
@@ -798,7 +799,7 @@
                 var time = new Date().getTime();
 
                 var url = "./my_work.html?ver=" + time;
-
+                
                 $("#my_works_popup").load(url, null, function (responseText, textStatus, jqXHR) {
                     initSwiper();
                     $("#my_works_popup img").click(function () {
@@ -1149,6 +1150,12 @@
                                     <p><span>MOBI</span></p>
                                 </div>
                             </li>
+                            
+                            <li class="web">
+                                <div class="thumbnail event" data-name="event">
+                                    <p><span>모바일 이벤트 페이지</span></p>
+                                </div>
+                            </li>
 
                             <li class="app">
                                 <div class="thumbnail looting" data-name="looting">
@@ -1162,42 +1169,36 @@
                                 </div>
                             </li>
                             
-                            <li class="web">
-                                <div class="thumbnail admin" data-name="admin">
-                                    <p>관리자 페이지</p>
+                            <li class="app">
+                                <div class="thumbnail hungryapp_sdk" data-name="hungryapp_sdk">
+                                    <p><span>헝그리앱 SDK</span></p>
                                 </div>
                             </li>
-
-                            <li class="web">
-                                <div class="thumbnail advertiser" data-name="advertiser">
-                                    <p>모비/루팅/찌 광고주 페이지</p>
-                                </div>
-                            </li>
-
+                            
                             <li class="app web">
                                 <div class="thumbnail adbox" data-name="adbox">
                                     <p>애드박스</p>
                                 </div>
                             </li>
-
+                            
+                            <li class="web">
+                                <div class="thumbnail admin" data-name="admin">
+                                    <p>관리자 페이지</p>
+                                </div>
+                            </li>
+                            
                             <li class="web">
                                 <div class="thumbnail adbox_advertiser" data-name="adbox_advertiser">
                                     <p><span>애드박스 광고주 페이지</span></p>
                                 </div>
                             </li>
 
-                            <li class="app">
-                                <div class="thumbnail hungryapp_sdk" data-name="hungryapp_sdk">
-                                    <p><span>헝그리앱 SDK</span></p>
+                            <li class="web">
+                                <div class="thumbnail mobi_advertiser" data-name="mobi_advertiser">
+                                    <p>모비/루팅/찌 광고주 페이지</p>
                                 </div>
                             </li>
 
-                            <li class="web">
-                                <div class="thumbnail event" data-name="event">
-                                    <p><span>모바일 이벤트 페이지</span></p>
-                                </div>
-                            </li>
-                            
                             <li class="app">
                                 <div class="thumbnail albag" data-name="albag">
                                     <p><span>알바G</span></p>
@@ -1214,14 +1215,20 @@
                     <div class="center">
                         <h2><span>Epilogue</span><span class="underbar"></span></h2>     
                         <div>
-                            안녕하세요~~~~ 태보는 지금 전세계적으로 선풍적인 인기를 끌고 있는데요! 태보란 우리나라의 태권도와 복싱을 접목한 운동입니다! 2달 동안 태보를 했더니 조혜련이 이렇게 완벽한 몸매가 됐습니다 와! 태보를 하루에 25분만 투자한다면 런닝머신 한시간! 여러분도 하루에 25분만! 태보의 세계로 들어가봅시다!<br>
+                            안녕하세요~~~~<br> 
+                            태보는 지금 전세계적으로 선풍적인 인기를 끌고 있는데요!<br>
+                            태보란 우리나라의 태권도와 복싱을 접목한 운동입니다!<br>
+                            2달 동안 태보를 했더니 조혜련이 이렇게 완벽한 몸매가 됐습니다 와!<br>
+                            태보를 하루에 25분만 투자한다면 런닝머신 한시간!<br>
+                            여러분도 하루에 25분만! 태보의 세계로 들어가봅시다!<br>
                             @==(^0^)@ @(^0^)==@
                         </div>
-                        <div>
-                            <img src="./images/location_white.png?ver=1" style="height:50px;" alt="location">
-                            <img src="./images/phone_white.png?ver=1" style="height:50px;" alt="phone">
-                            <img src="./images/github_white.png?ver=1" style="height:50px;" alt="github">
-                        </div>
+                        <ol>
+                            <li><img src="./images/mail.png?ver=1" style="height:30px;" alt="email"> ljh7795@gmail.com</li>
+                            <li><img src="./images/phone.png?ver=1" style="height:30px;" alt="phone"> 010-3013-7795</li>
+                            <li><img src="./images/location.png?ver=1" style="height:30px;" alt="location"> 전라북도 전주시 완산구</li>
+                            <li><img src="./images/github.png?ver=1" style="height:30px;" alt="github"> https://github.com/man-ramen-black/</li>
+                        </ol>
                     </div>
                 </div>
             </li>
