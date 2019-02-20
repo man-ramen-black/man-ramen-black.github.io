@@ -343,15 +343,14 @@
                      "description" : "Javascript Interface, 접근성을 활용하여, 게임 플레이 시간 감지 기능을 구현하였습니다."
                  },
                  {
-                     "name" : "확률 설정",
+                     "name" : "당첨 확률",
                      "links" : [
-                         {"name" : "Ajax Source", "url" : ""},
-                         {"name" : "Admin Source", "url" : ""},
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/spin/ajax.php#L31"},
                      ],
                      "preview" : [
-                         {"type" : "mobile", "src" : "./images/event/egg.jpg"},
+                         {"type" : "video", "src" : "./images/event/spin.mp4", "poster":"./images/event/spin.jpg"},
                      ],
-                     "description" : "확률에 따라 이벤트 상품을 당첨되게 구현하였습니다.<br>"+
+                     "description" : "관리자가 설정한 확률에 따라 이벤트 상품이 당첨되게 구현하였습니다.<br>"+
                                      "확률은 관리자들이 통계를 확인하며, 유동적으로 설정할 수 있습니다."
                  },
              ],
@@ -388,7 +387,9 @@
                          {"type" : "pc", "src" : "./images/admin/push2.png"},
                      ],
                      "description" : "푸시 발송을 위한 관리자 페이지입니다.<br>"+
-                                    ""
+                                    "제목과 내용 input에는 관리자들이 html 태그를 손쉽게 적용할 수 있도록 에디터 라이브러리를 적용하였습니다.<br>"+
+                                    "푸시 발송 시 Timeout 방지 및 전송 속도 향상을 위해 Ajax를 통한 분할 전송이 적용되어 있습니다.<br>"+
+                                    "옵션에 따라 다양한 타겟팅으로 푸시를 전송할 수 있으며, 테스트 전송 기능으로 실제 전송 전에 푸시 테스트가 가능합니다."
                  },
                  {
                      "name" : "쿠폰 등록 기능",
@@ -398,8 +399,8 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/admin/coup_manager.png?ver=1"},
                      ],
-                     "description" : "쿠폰 등록을 위한 관리자 페이지입니다.<br>"+
-                                    ""
+                     "description" : "게임 쿠폰 관련 서비스의 쿠폰 등록을 위한 관리자 페이지입니다.<br>"+
+                                    "jQuery File Upload 플러그인과 PHPExcel 라이브러리를 활용하여 관리자가 csv, xls, xlsx 파일 등록으로 간편하게 DB에 쿠폰을 insert 또는 update 할 수 있도록 개발하였습니다.<br>"
                  },
                  {
                      "name" : "이벤트 확률 설정 기능",
@@ -515,42 +516,54 @@
                 {"type" : "mobile", "src" : "./images/hungryapp_sdk/install.jpg"},
                 
             ],
-            "description" : "모나와 근무 당시 서비스하는 앱에 공통적으로 적용되었던 헝그리앱 SDK입니다.<br>"+
+            "description" : "모나와의 앱 서비스에 공통적으로 적용되었던 헝그리앱 SDK입니다.<br>"+
                             "공통되는 기능들의 재활용, 확장을 위해 개발되었습니다.<br>"+
-                            "모든 개발을 100% 직접하였습니다.",
+                            "모든 기능을 100% 직접 개발하였습니다.",
              "dev" : [
                  {
                      "name" : "ResponseHelper",
                      "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/weekly/index.php#L387"},
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/util/ResponseHelper.java"},
                      ],
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
                      ],
-                     "description" : "http 통신의 응답을 통해 Toast, Dialog, Notification 등을 노출하는 Class입니다.<br>"+
-                                     "데이터, 상황에 따라 유동적으로 할 수 있도록 개발하였습니다."
+                     "description" : "HTTP 통신으로 획득한 Bundle의 데이터에 따라 Toast, Dialog, Notification 등을 노출하는 Class입니다.<br>"+
+                                     "데이터, 상황에 따라 유동적으로 대응할 수 있도록 개발하였습니다."
                  },
                  {
                      "name" : "GCMManager",
                      "links" : [
-                         {"name" : "Source", "url" : ""},
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/util/GCMManager.java"},
                      ],
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
                      ],
                      "description" : "GCM 기능을 위한 Class입니다.<br>"+
-                                    "데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다."
+                                    "데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다.<br>"+
+                                    "알림 예약, 이미지, HTML 태그, 아이콘, Action 등을 지원합니다."
                  },
                  {
                      "name" : "SocialLoginManager",
                      "links" : [
-                         {"name" : "Source", "url" : ""},
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/social/SocialLoginManager.java"},
                      ],
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/login1.jpg"},
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
                      ],
-                     "description" : "구글, 페이스북, 네이버, 카카오 로그인을 간단하게 구현해주는 Class입니다.<br>"+
+                     "description" : "구글, 페이스북, 네이버, 카카오 로그인을 간단하게 연동해주는 Class입니다.<br>"+
+                                     "네이티브, 하이브리드에 맞게 "
+                 },
+                 {
+                     "name" : "HaWebView",
+                     "links" : [
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/webkit/HaWebView.java"},
+                     ],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
+                     ],
+                     "description" : "웹뷰입니다.<br>"+
                                      ""
                  },
              ],
