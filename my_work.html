@@ -272,31 +272,34 @@
             "name" : "알바G",
             "skills" : ["Android", "PHP", "MySQL", "Javascript"],
             "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/albag"},
+                {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/albag"},
+                {"name" : "Web Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/albag"},
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
             ],
             "preview" : [
                 {"type" : "mobile", "src" : "./images/albag/intro.jpg"},
                 {"type" : "mobile", "src" : "./images/albag/main.jpg"},
                 {"type" : "mobile", "src" : "./images/albag/campaign.jpg"},
-                {"type" : "mobile", "src" : "./images/albag/detail.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/detail.jpg?ver=1"},
                 {"type" : "mobile", "src" : "./images/albag/withdraw.jpg"},
                 {"type" : "mobile", "src" : "./images/albag/menu.jpg?ver=1"},
             ],
             "description" : "게임 관련 미션 완료시 회원에게 포인트를 지급하는 하이브리드 앱입니다.<br>"+
-                            "디자인을 제외한 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "흠....",
+                            "디자인을 제외한 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.<br>"+
+                            "모나와 근무 당시 가장 마지막으로 개발한 서비스입니다.",
+            "dev" : [
+                {
+                     "name" : "미션 기능",
                      "links" : [
-                         {"name" : "Tracking Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
-                         {"name" : "Postback Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
+                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/albag/mission/view.php#L338"},
                      ],
                      "preview" : [
+                         {"type" : "mobile", "src" : "./images/albag/detail.jpg"},
                      ],
-                     "description" : "흐으음..."
-                 },
-             ],
+                     "description" : "네이버 카페 가입, 블로그 포스트 작성, 게임 실행, 설치 유지 등의 미션을 구현하였습니다.<br>"+
+                                     ""
+                },
+            ]
         },
         
         /************
@@ -612,20 +615,26 @@
            $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
         });
         $(".description:eq(0)").html(my_work.description); 
-
-
-        my_work.dev.forEach(function(data){
-            var section = $.parseHTML($("#section_template").html());
-            $(section).find("h3").prepend(data.name);
-            data.links.forEach(function(link){
-                $(section).find(".links").append("<button onclick=\"window.open('"+link.url+"')\">"+link.name+"</button>");    
+        
+        if(!my_work.dev){
+            $("#dev").hide();
+            
+        }else{
+            my_work.dev.forEach(function(data){
+                var section = $.parseHTML($("#section_template").html());
+                $(section).find("h3").prepend(data.name);
+                data.links.forEach(function(link){
+                    $(section).find(".links").append("<button onclick=\"window.open('"+link.url+"')\">"+link.name+"</button>");    
+                });
+                data.preview.forEach(function(preview){
+                    $(section).find(".preview").append(getPreviewHtml(preview));
+                })
+                $(section).find(".description").html(data.description); 
+                $("#dev").append(section);
             });
-            data.preview.forEach(function(preview){
-                $(section).find(".preview").append(getPreviewHtml(preview));
-            })
-            $(section).find(".description").html(data.description); 
-            $("#dev").append(section);
-        });
+        }
+
+        
         
     })();
     
@@ -650,8 +659,9 @@
         <div class="description"></div>
     </div>
 
-    <h2 style="margin-bottom:20px">주요 개발<span class="underbar"></span></h2>
-    <div id="dev"></div>
+    <div id="dev">
+        <h2 style="margin-bottom:20px">주요 개발<span class="underbar"></span></h2>
+    </div>
 
     <div id="section_template" style="display:none;">
         <div class="section">
