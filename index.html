@@ -263,12 +263,12 @@
             .thumbnail.admin {background-image:url('./images/thumbnail/admin.png?ver=1')}
             .thumbnail.mobi_advertiser {background-image:url('./images/thumbnail/mobi_advertiser.png')}
             .thumbnail.looting {background-image:url('./images/thumbnail/looting.png')}
-            .thumbnail.zzi {background-image:url('https://lh3.googleusercontent.com/3FfmGMl0SG-2bKUN-mVfNYvOXfCRlAXH75pkHmG7FqphK4VaDnX5rf6CppeLyVd6XXo=s180-rw')}
-            .thumbnail.adbox {background-image:url('https://lh3.googleusercontent.com/zh3QWx5SR-F7XUa38rx92J_YodrJ3P5ZzbNuWpZuCA2_qEvTW5oWFEdsquj9ggrqMpDU=s180-rw')}
+            .thumbnail.zzi {background-image:url('./images/thumbnail/zzi.png')}
+            .thumbnail.adbox {background-image:url('./images/thumbnail/adbox.png')}
             .thumbnail.adbox_advertiser {background-image:url('./images/thumbnail/adbox_advertiser.png')}
             .thumbnail.hungryapp_sdk {background-image:url('./images/thumbnail/hungryapp_sdk.png?ver=1')}
             .thumbnail.event {background-image:url('./images/thumbnail/event.png')}
-            .thumbnail.albag {background-image:url('./images/thumbnail/albag.png')}
+            .thumbnail.albag {background-image:url('./images/thumbnail/albag.png?ver=1')}
 
             .underbar {position:absolute;bottom:0}
 
@@ -389,8 +389,6 @@
                 drawCharts();
 
                 $(".scrollable").each(function () {
-                    if (this.scrollHeight <= this.clientHeight + 10)
-                        return;
                     $(this).append("<div class='arrow down'></div>")
                             .on("scroll", function () {
                                 if ($(this).find(".arrow").size() == 0) {
@@ -982,8 +980,8 @@
             <li>
                 <div>
                     <div class="center">
-                        <!--                        <h1>이진혁</h1>
-                                                <h3>Android & PHP Developer</h3>-->
+                        <h1>이진혁</h1>
+                        <h3>Software Developer</h3>
                     </div>
                 </div>
                 <div class="arrow down"  onclick="slider.goPage(2)"></div>
@@ -993,10 +991,14 @@
                     <div class="center">
                         <h2><span>About Me</span><span class="underbar"></span></h2>
                         <div>
-                            <img src="https://lh3.googleusercontent.com/ZeUEl-_MQw6SpGg01eJg9Zfsp6jsvm1kZWCN3RfGN3Yyszg2_SfhqqAevQmxWE2AjQ=s180-rw" style="width:100px;">
-                            <!--http://img.hungryapp.co.kr/images/mobi/1545896072385MTB1K_PNG.png-->
-                            <p>Hello</p>
-                            남들보다 일찍이 웹 디자이너가 되겠다는 목표 하나로 특성화 고등학교인 미림여자정보과학교 ‘웹미디어과에 진학한 것이저의 프론트엔드 개발자의 첫 디딤돌이었습니다. 17살의 나이에 java , c , php등 프로그래밍을 배우며 힘든 부분도 있었으나 배우면 배울수록 내가 무심코 사용하던 것들의 구조와 만들어 지는 과정들을 알게 되면 뭔지 모를 쾌감을 느낄 수 있었습니다. 하지만 디자인에 몰두 하게 되면서 잠시 잊고 살게 되었고,  대학교를 졸업 후 취업을 하게 되면서 업무를 하기 위해 필요하였던 action script를 익히면서 고등학교 시절 배웠던  코딩들이 헛되지 않았다는 것을 깨달았습니다.  지속적으로 진로에 대한 고민을 하던 중 NCS 프론트엔드 과정을 수강하게 되었습니다.  수강을 통해 배운 html5, css, javascript, jqeury, php, mysql 등을 통해  전반적인 사이트의 구성이 가능해지면서 저의 가능성을 보았고, 보는 시야가 넓어지면서 더 많은 지식과 기술을 배우고 싶다는 꿈을 가지게 되었습니다. 
+                            <img src="./images/me.png" style="width:150px;">
+                            <div>
+                                <h4>안녕하세요. 저는 3년차 소프트웨어 개발자 이진혁 입니다.</h4>
+                                개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여 웹페이지, 윈도우 프로그램, 안드로이드 앱, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
+                                개발 시 재활용성, 확장성이 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>                               
+                                <br>
+                                <br>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1008,7 +1010,6 @@
                         <p class="underbar"></p>
                         <ol class="work_experiences scrollable"  >
                             <li>
-                                <!--class="middle"-->
                                 <div class="thumbnail monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
                                 <!--<h3>Android · PHP · MySQL · Front-end · SVN · Git</h3>-->
                                 <h3>Android / PHP / MySQL / Front-end / SVN / Git</h3>
@@ -1048,7 +1049,7 @@
                                     <canvas id="android_chart"></canvas>
                                 </div>
                                 <img class="touch" src="./images/hand.png" alt="hand" >
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>SDK 개발</li>
                                     <li>Activity, Service, Broadcast Receiver에 대한 이해</li>
                                     <li>네이티브 앱, 하이브리드 앱 100% 개발</li>
@@ -1059,7 +1060,7 @@
                                 <div class="chart_container">
                                     <canvas id="java_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>라이브러리 분석 및 수정</li>
                                     <li>Lambda</li>
                                 </ul>
@@ -1069,7 +1070,7 @@
                                 <div class="chart_container">
                                     <canvas id="kotlin_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>Lambda</li>
                                     <li>Studying...</li>
                                 </ul>
@@ -1079,7 +1080,7 @@
                                 <div class="chart_container">
                                     <canvas id="php_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>라이브러리 분석 경험</li>
                                     <li>cURL</li>
                                     <li>HTML Parsing</li>
@@ -1090,7 +1091,7 @@
                                 <div class="chart_container">
                                     <canvas id="mysql_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>DB 설계</li>
                                     <li>100만개 이상 데이터 쿼리</li>
                                 </ul>
@@ -1100,7 +1101,7 @@
                                 <div class="chart_container">
                                     <canvas id="js_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>jQuery</li>
                                     <li>Ajax</li>
                                     <li>라이브러리 분석 및 수정</li>
@@ -1112,7 +1113,7 @@
                                 <div class="chart_container">
                                     <canvas id="css_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>Animation</li>
                                     <li>Display, Position에 대한 이해</li>
                                     <li>간단한 페이지 Publishing 경험</li>
@@ -1123,7 +1124,7 @@
                                 <div class="chart_container">
                                     <canvas id="c_sharp_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail scrollable">
+                                <ul class="skill_detail">
                                     <li>시연용 프로그램 개발 경험</li>
                                 </ul>
                             </li>
@@ -1199,7 +1200,7 @@
                                 </div>
                             </li>
 
-                            <li class="app">
+                            <li class="app web">
                                 <div class="thumbnail albag" data-name="albag">
                                     <p><span>알바G</span></p>
                                 </div>
