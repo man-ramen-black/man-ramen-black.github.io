@@ -1,3 +1,14 @@
+function copyText(selector, keyword){
+    try{
+	document.querySelector(selector).select();
+	document.execCommand('copy');
+	var msg = "복사되었습니다.";
+	if(keyword) msg = keyword + " " + msg
+	alert(msg);
+    }catch(e){
+	alert("복사 기능을 지원하지 않는 브라우저입니다.");
+    }
+}
 function isInViewport (el) {
 
     //special bonus for those using jQuery
