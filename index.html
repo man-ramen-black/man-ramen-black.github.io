@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="util.js?ver=5" ></script>
+        <script type="text/javascript" src="util.js?ver=6" ></script>
         <script type="text/javascript" src="slider.js?ver=32"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
@@ -41,7 +41,7 @@
         <style>
             * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline:0;margin:0; padding:0; }
             html, body {margin: 0; height: 100%; overflow: hidden}
-            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:300;zoom:1;text-align:center;}
+            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:400;zoom:1;text-align:center;}
             body::-webkit-scrollbar{width:0;background-color:transparent;}
             h1{font-size:3em}
             h2{font-size:2em}
@@ -50,9 +50,11 @@
             a:active{text-decoration:none;border:none;}
             a:hover{text-decoration:none;border:none;}
             ul, ol, li{list-style: none}
-            dt {font-weight:bold;}
-            dl {margin-top:15px;}
+            dt {}
+            dl {}
             samp {display:inline-block;}
+	    
+	    .gone {position:absolute;left:9999px;top:9999px;width:1px;height:1px;}
 
 
             .arrow {position:absolute;left:0;right:0;width:50px;height:50px;margin:auto;animation: poke 1.5s infinite ease-in-out;background-position:center;background-size:100%;background-repeat:no-repeat;cursor:pointer;z-index:1000}
@@ -212,8 +214,8 @@
             .skills h3 {margin-bottom:5px}
             .chart_container {position:relative;height:70px;} 
 
-            .skill_detail {display:none;padding:10px 0;}
-            .skill_detail > li {font-size:1.1em;font-weight:300;}
+            .detail {display:none;padding:10px 0;}
+            .skills .detail > li {font-size:1.1em;padding:3px 0;}
 
             #my_works_popup img.icon {display:inline-block;width:30px;border-radius:1000px;}
 
@@ -251,7 +253,7 @@
             .close::after {transform: rotate(-45deg);}
 
             .thumbnail {position:relative;background-position:center;background-size:cover;background-repeat:no-repeat;overflow:hidden;cursor:pointer;}
-            .thumbnail > * {position:absolute;font-size:1.1rem;font-weight:300;text-align:center;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);animation:thumbnail_out 0.4s;animation-fill-mode: forwards;}
+            .thumbnail > * {position:absolute;font-size:1.1rem;text-align:center;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);animation:thumbnail_out 0.4s;animation-fill-mode: forwards;}
             .thumbnail > *:before {content:"";height:100%;display:inline-block;vertical-align:middle}
             .thumbnail:hover > * {animation:thumbnail_in 0.4s;animation-fill-mode: forwards;}
 
@@ -290,7 +292,7 @@
             .popup samp {width:100%;padding-bottom:50.9375%;background-size:100%;background-repeat:no-repeat;}
 
             .popup .use_skills {width:auto;margin-bottom:10px;}
-            .popup .use_skills > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;font-weight:300;font-size:1.1em;line-height:1em;border-right:solid 1px #FFF;}
+            .popup .use_skills > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;font-size:1.1em;line-height:1em;border-right:solid 1px #FFF;}
             .popup .use_skills > li:last-child {border:0}
 
             .popup .links {margin-bottom:10px;}
@@ -309,25 +311,22 @@
             .grid {width:100%;}
             .grid > li {padding:20px 22px;box-sizing:border-box}
 
-            .work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
-            .work_experiences > li {margin-bottom:20px;}
-            .work_experiences > li:last-child {margin-bottom:0px;}
-            .work_experiences .thumbnail {display:inline-block;width:150px;height:50px;background-size:100%;}
+            
 
             .grid_filter {width:auto;margin-bottom:10px;}
-            .grid_filter > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;margin:0px 10px;font-weight:100;font-size:1.1em;line-height:1em;}
+            .grid_filter > li {display:inline-block;position:relative;cursor:pointer;padding:0px 10px;margin:0px 10px;font-size:1.1em;line-height:1em;}
             .grid_filter > li.divider{padding:0;margin:0;width:1px;background:white;height:16px;margin-bottom:-2px;}
             .grid_filter > li:last-child {border:0}
 
             .grid_filter > li .underbar{width:0px;left:0;right:0;margin:auto;border-bottom:solid 1px white;bottom:-10px;animation:underbar_out 0.4s;animation-fill-mode: forwards;}
 
-            .grid_filter > li.on {font-weight:600}
+            .grid_filter > li.on {font-weight:bold}
             .grid_filter > li.on > .underbar {animation:underbar_in 0.4s;animation-fill-mode: forwards;}
 
             .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
 
             button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
-            
+
             .drawer {position:fixed;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;visibility:visible}
             .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
             .drawer li {cursor:pointer;}
@@ -335,7 +334,7 @@
             .drawer li.on > p {color:#aaa}
             .drawer li > p:after {content:'';position:absolute;bottom:0;width:0%;border-bottom:solid 2px white;left:0%;right:0%;margin:0 auto;display:block;transition:width 0.4s;}
             .drawer li:hover > p:after {width:100%;}
-            
+
             .menu {z-index:5000;font-size: 15px;position: fixed;display: inline-block;width: 2em;height: 2em;cursor: pointer;top:20px;right:20px;visibility:visible}
             .menu span {position: absolute;top: 50%;left: 0;display: block;width: 100%;height: 0.2em;margin-top: -0.1em;background-color: #fff;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-transition: transform 0.3s;transition: background-color 0.3s, transform 0.3s;}
             .menu span:after,.menu span:before {position: absolute;left: 0;width: 100%;height: 100%;background: #fff;content: '';-webkit-transition: -webkit-transform 0.3s;transition: transform 0.3s;}
@@ -346,593 +345,604 @@
             .menu.open span:before {-webkit-transform: rotate(45deg);transform: rotate(45deg);}
             .menu.open span:after {-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
 
-
-            /*@반응형*/
+	    /*@반응형*/
             /* Mobile */
-            @media screen and (max-width: 600px){
+            @media screen and (max-width: 700px){
                 .grid > li {width:50%;}
             }
             /* PC */
-            @media screen and (min-width: 600px){
+            @media screen and (min-width: 700px){
                 .grid > li {width:33.3333%;}
                 .menu, .drawer {display:none;visibility:hidden;}
             }
 
-
         </style>
         <script>
 
-            var rotationSpeed = 1;
-            var slider;
-            var grid;
-            window.onload = function () {
-                grid = $(".grid");
-                grid.isotope({
-                    percentPosition: true,
-                    masonry: {
-                        columnWidth: ".grid > li"
-                    },
-                    filter: "*"
-                });
+	    var rotationSpeed = 1;
+	    var slider;
+	    var grid;
+	    window.onload = function () {
+		grid = $(".grid");
+		grid.isotope({
+		    percentPosition: true,
+		    masonry: {
+			columnWidth: ".grid > li"
+		    },
+		    filter: "*"
+		});
 
-                //최상단으로 스크롤
-                setTimeout(function () {
-                    window.scrollTo(0, 0);
-                }, 1);
+		//최상단으로 스크롤
+		setTimeout(function () {
+		    window.scrollTo(0, 0);
+		}, 1);
 
-                initSwiper();
-                initSlider();
-                initDrawer();
-                adjustTwins();
-                startCubeRotate();
-                removeLoader(onHash);
-                drawCharts();
+		initSwiper();
+		initSlider();
+		initDrawer();
+		adjustTwins();
+		startCubeRotate();
+		removeLoader(onHash);
+		drawCharts();
+		
+		//set detail parent onclick 
+		$(".detail").each(function(i, val){
+		    if(!$(this).parent().attr("onclick")){
+			$(this).parent().attr("onclick", "toggleDetail(this)");
+		    }
+		});
 
-                $(".scrollable").each(function () {
-                    $(this).append("<div class='arrow down'></div>")
-                            .on("scroll", function () {
-                                if ($(this).find(".arrow").size() == 0) {
-                                    return;
-                                }
-                                if (this.scrollTop != 0) {
-                                    $(this).find(".arrow").fadeOut(300, function () {
-                                        $(this).remove();
-                                    });
-                                }
-                            })
-                });
+		$(".scrollable").each(function () {
+		    if (this.scrollHeight <= this.clientHeight + 10)
+			return;
+		    $(this).append("<div class='arrow down'></div>")
+			    .on("scroll", function () {
+				console.log($(this).find(".arrow").size());
+				if ($(this).find(".arrow").size() == 0) {
+				    return;
+				}
+				if (this.scrollTop != 0) {
+				    $(this).find(".arrow").fadeOut(300, function () {
+					$(this).remove();
+				    });
+				}
+			    })
+		});
 
-                $(".work_experiences .thumbnail > *").click(function () {
-                    var enabled = !isMobile();
-                    if (isMobile()) {
-                        if ($(this).hasClass("enabled")) {
-                            enabled = true;
-                            $(this).removeClass("enabled");
-                        } else {
-                            $(".thumbnail > *").removeClass("enabled");
-                            $(this).addClass("enabled");
-                            return;
-                        }
-                    }
-                    if (enabled) {
-                        window.open($(this).attr("data-url"));
-                    }
-                });
+		$(".work_experiences .thumbnail > *").click(function () {
+		    var enabled = !isMobile();
+		    if (isMobile()) {
+			if ($(this).hasClass("enabled")) {
+			    enabled = true;
+			    $(this).removeClass("enabled");
+			} else {
+			    $(".thumbnail > *").removeClass("enabled");
+			    $(this).addClass("enabled");
+			    return;
+			}
+		    }
+		    if (enabled) {
+			window.open($(this).attr("data-url"));
+		    }
+		});
 
-                $(".my_works .thumbnail > *").click(function () {
-                    var enabled = !isMobile();
-                    if (isMobile()) {
-                        if ($(this).hasClass("enabled")) {
-                            enabled = true;
-                            $(this).removeClass("enabled");
-                        } else {
-                            $(".thumbnail > *").removeClass("enabled");
-                            $(this).addClass("enabled");
-                            return;
-                        }
-                    }
-                    if (enabled) {
-                        location.href = "#my_work_" + $(this).parent().attr('data-name');
-                    }
-                });
+		$(".my_works .thumbnail > *").click(function () {
+		    var enabled = !isMobile();
+		    if (isMobile()) {
+			if ($(this).hasClass("enabled")) {
+			    enabled = true;
+			    $(this).removeClass("enabled");
+			} else {
+			    $(".thumbnail > *").removeClass("enabled");
+			    $(this).addClass("enabled");
+			    return;
+			}
+		    }
+		    if (enabled) {
+			location.href = "#my_work_" + $(this).parent().attr('data-name');
+		    }
+		});
 
-                $(".grid_filter > li").hover(function () {
-                    $(this).addClass("on");
-                }, function () {
-                    if ($(this).hasClass("keep"))
-                        return;
-                    $(this).removeClass("on");
-                });
+		$(".grid_filter > li").hover(function () {
+		    $(this).addClass("on");
+		}, function () {
+		    if ($(this).hasClass("keep"))
+			return;
+		    $(this).removeClass("on");
+		});
 
-                $(".grid_filter > li").click(function () {
-                    $(".grid_filter > li").removeClass("on").removeClass("keep");
-                    $(this).addClass("on").addClass("keep");
+		$(".grid_filter > li").click(function () {
+		    $(".grid_filter > li").removeClass("on").removeClass("keep");
+		    $(this).addClass("on").addClass("keep");
 
-                    var filter = $(this).attr("data-filter");
-                    grid.isotope({filter: filter});
-                });
-
-
-            };
-
-            window.onresize = function () {
-                adjustTwins();
-                if ($(".my_works_icon").size() > 0) {
-                    $(".my_works_icon").css("left", ($("#my_works_popup").offset().left + 20) + "px");
-                }
-            }
-
-            window.onhashchange = function (e) {
-                onHash();
-            }
-            
-            function initDrawer(){
-                $(".drawer").fadeOut(1, function(){$(this).css("display", "none")});
-                $(".drawer li").each(function(i, val){
-                    $(this).attr("onclick", "toggleDrawer();slider.goPage("+(i+1)+");");
-                });
-            }
-
-            function onHash() {
-                var hash = replaceAll(location.hash, "#", "");
-                if (!hash || hash == "") {
-                    closePopup();
-                } else if (hash.indexOf("my_work_") != -1) {
-                    showMyWorkPopup(hash.replace("my_work_", ""));
-                }
-            }
+		    var filter = $(this).attr("data-filter");
+		    grid.isotope({filter: filter});
+		});
 
 
-            function initSlider() {
-                slider = $.PageSlider(".sections", {
-                    indicator: false,
-                    onLeave: function (origin, destination, direction) {
-                        oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
-                        destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
-                        rotationSpeed = 10;
-                        setTimeout(function () {
-                            rotationSpeed = 1
-                        }, 500);
+	    };
 
-                        if (oriContents.find(".twin").size() > 0) {
-                            oriContents.find(".twin:eq(0)").fadeOut({duration: 700, queue: false}).animate({"left": "-50%"}, {duration: 700});
-                            oriContents.find(".twin:eq(1)").fadeOut({duration: 700, queue: false}).animate({"right": "-50%"}, {duration: 700});
+	    window.onresize = function () {
+		adjustTwins();
+		if ($(".my_works_icon").size() > 0) {
+		    $(".my_works_icon").css("left", ($("#my_works_popup").offset().left + 20) + "px");
+		}
+	    }
 
-                        } else {
-                            oriContents.fadeOut();
-                        }
+	    window.onhashchange = function (e) {
+		onHash();
+	    }
 
-                        destContents.hide();
+	    function initDrawer() {
+		$(".drawer").fadeOut(1, function () {
+		    $(this).css("display", "none")
+		});
+		$(".drawer li").each(function (i, val) {
+		    $(this).attr("onclick", "toggleDrawer();slider.goPage(" + (i + 1) + ");");
+		});
+	    }
 
-                        if (destContents.find(".twin").size() > 0) {
-                            destContents.find(".twin:eq(0)").css("left", "-50%");
-                            destContents.find(".twin:eq(1)").css("right", "-50%");
-                        }
-
-                        if (oriContents.find(".skills").size() != 0) {
-                            hideSkillDetails(true);
-                            clearCharts()
-                        }
-                    },
-                    onLeaveEnd: function (origin, destination, direction) {
-                        oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
-                        destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
-
-                        destContents.find("h2 .underbar").css({"left": "50%", "right": "50%"});
-                        destContents.fadeIn({duration: 700, queue: false})
+	    function onHash() {
+		var hash = replaceAll(location.hash, "#", "");
+		if (!hash || hash == "") {
+		    closePopup();
+		} else if (hash.indexOf("my_work_") != -1) {
+		    showMyWorkPopup(hash.replace("my_work_", ""));
+		}
+	    }
 
 
-                        var animEndFun = function () {
-                            destContents.find("h2 .underbar").delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
-                        }
+	    function initSlider() {
+		slider = $.PageSlider(".sections", {
+		    indicator: false,
+		    onLeave: function (origin, destination, direction) {
+			oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
+			destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
+			rotationSpeed = 10;
+			setTimeout(function () {
+			    rotationSpeed = 1
+			}, 500);
 
-                        if (destContents.find(".twin").size() > 0) {
-                            destContents.find(".twin:eq(0)").fadeIn({duration: 700, queue: false}).animate({"left": "0px"}, {duration: 700, queue: false, complete: animEndFun});
-                            destContents.find(".twin:eq(1)").fadeIn({duration: 700, queue: false}).animate({"right": "0px"}, {duration: 700, queue: false, complete: animEndFun});
+			if (oriContents.find(".twin").size() > 0) {
+			    oriContents.find(".twin:eq(0)").fadeOut({duration: 700, queue: false}).animate({"left": "-50%"}, {duration: 700});
+			    oriContents.find(".twin:eq(1)").fadeOut({duration: 700, queue: false}).animate({"right": "-50%"}, {duration: 700});
+
+			} else {
+			    oriContents.fadeOut();
+			}
+
+			destContents.hide();
+
+			if (destContents.find(".twin").size() > 0) {
+			    destContents.find(".twin:eq(0)").css("left", "-50%");
+			    destContents.find(".twin:eq(1)").css("right", "-50%");
+			}
+
+			if (oriContents.find(".skills").size() != 0) {
+			    hideDetails(true);
+			    clearCharts()
+			}
+		    },
+		    onLeaveEnd: function (origin, destination, direction) {
+			oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
+			destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
+
+			destContents.find("h2 .underbar").css({"left": "50%", "right": "50%"});
+			destContents.fadeIn({duration: 700, queue: false})
 
 
-                        } else {
-                            destContents.css("margin-top", "50px");
-                            destContents
-                                    .animate({"margin-top": 0}, {duration: 700, queue: false, complete: function () {
-                                            animEndFun();
+			var animEndFun = function () {
+			    destContents.find("h2 .underbar").delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
+			}
+
+			if (destContents.find(".twin").size() > 0) {
+			    destContents.find(".twin:eq(0)").fadeIn({duration: 700, queue: false}).animate({"left": "0px"}, {duration: 700, queue: false, complete: animEndFun});
+			    destContents.find(".twin:eq(1)").fadeIn({duration: 700, queue: false}).animate({"right": "0px"}, {duration: 700, queue: false, complete: animEndFun});
+
+
+			} else {
+			    destContents.css("margin-top", "50px");
+			    destContents
+				    .animate({"margin-top": 0}, {duration: 700, queue: false, complete: function () {
+					    animEndFun();
 //                                            setTimeout(animEndFun, 100);
-                                        }});
-                        }
+					}});
+			}
 
-                        if (destContents.find(".skills").size() != 0) {
-                            setTimeout(function () {
-                                startChartsAnimation();
-                            }, 600)
-                        }
-
-
-                        $(".scrollable").each(function (i, obj) {
-                            setTimeout(function () {
-                                $(obj).scrollTop(0);
-                            }, 1);
-                            $(this).attr("onscroll", "");
-                        });
-                    }
-                });
-            }
-
-            function removeLoader(callback) {
-                setTimeout(function () {
-                    $(".sections > li:first-child > div:first-child").addClass("fade_in");
-                    $(".multi-spinner-container").fadeOut(400, function () {
-                        $("#loader").fadeOut(400, function () {
-                            $("#loader").remove();
-                            if (callback) {
-                                callback();
-                            }
-                        });
-                    });
-                }, 600)
-            }
+			if (destContents.find(".skills").size() != 0) {
+			    setTimeout(function () {
+				startChartsAnimation();
+			    }, 600)
+			}
 
 
-            var deg = new Date().getTime() / 50;
-            function startCubeRotate() {
-                $(".cube div").fadeIn();
-                setInterval(function () {
-                    $('.cube').css('transform', 'rotateX(' + deg + 'deg)' + 'rotateY(' + deg + 'deg)');
-                    deg += 0.5 * rotationSpeed;
-                }, 20);
-            }
+			$(".scrollable").each(function (i, obj) {
+			    setTimeout(function () {
+				$(obj).scrollTop(0);
+			    }, 1);
+			    $(this).attr("onscroll", "");
+			});
+		    }
+		});
+	    }
 
-            var chartOptions = [
-                {"id": "android_chart", "percent": 75, "background": '153, 194, 65'},
-                {"id": "java_chart", "percent": 75, "background": '234, 27, 9'},
-                {"id": "kotlin_chart", "percent": 30, "background": '72, 126, 207'},
-                {"id": "mysql_chart", "percent": 65, "background": '222, 146, 12'},
-                {"id": "js_chart", "percent": 65, "background": '232, 220, 42'},
-                {"id": "php_chart", "percent": 75, "background": '127, 136, 196'},
-                {"id": "css_chart", "percent": 40, "background": '77, 143, 204'},
-                {"id": "c_sharp_chart", "percent": 15, "background": '121, 30, 145'}
-            ];
-            var charts = [];
-
-            var isSkillDetailAnimated = false;
-
-            function hideSkillDetails(immediately) {
-                var duration = 400;
-                $(".skills").find(".skill_detail").each(function () {
-                    var detail = this;
-                    if ($(detail).css("display") == "none") {
-                        return;
-                    }
-
-                    if (immediately) {
-                        $(detail).hide().parent().css("height", "auto");
-                        return;
-                    }
-
-                    hideSkillDetail(detail, 400);
-                });
-            }
-
-            function hideSkillDetail(skillDetail, duration) {
-                var parent = $(skillDetail).parent();
-                $(skillDetail).fadeOut({"duration": duration, "queue": false, "complete": function () {
-                        var curHeight = parent.height();
-                        var autoHeight = parent.css('height', 'auto').height();
-                        parent.height(curHeight);
-                        parent.animate({"height": autoHeight + "px"}, duration);
-                    }});
-            }
-
-            function toggleSkillDetail(obj) {
-                if (isSkillDetailAnimated)
-                    return;
-
-                isSkillDetailAnimated = true;
-                var duration = 400;
-
-                if ($(obj).find(".skill_detail").css("display") != "none") {
-                    hideSkillDetail($(obj).find(".skill_detail"), duration);
-                    setTimeout(function () {
-                        isSkillDetailAnimated = false;
-                    }, (duration * 2) + 200);
-                    return;
-                }
-
-                $(".skills").animate({"scrollTop": 0}, {"duration": duration, "queue": false});
-
-                hideSkillDetails();
-
-                $(".skills .touch").remove();
-                $(obj).css({"position": "absolute", "top": $(obj).position().top});
-                $(obj).animate({"top": ""}, {"duration": duration, "queue": false});
-                $(obj).next().css({"margin-top": $(obj).outerHeight(true) + "px"});
-                $(obj).next().animate({"margin-top": ""}, {"duration": duration, "queue": false});
-                $(obj).parent().animate({"padding-top": $(obj).outerHeight(true) + "px"}, {"duration": duration, "queue": false, complete: function () {
-                        $(obj).parent().css("padding-top", "");
-                        $(obj).css({"position": "relative"});
-                        $(obj).parent().prepend($(obj));
-                        $(obj).animate({"height": ($(obj).height() + $(obj).find(".skill_detail").innerHeight()) + "px"}, {"duration": duration, "queue": false, complete: function () {
-                                $(obj).find(".skill_detail").fadeIn(duration);
-                            }});
-                    }});
-                setTimeout(function () {
-                    isSkillDetailAnimated = false;
-                }, (duration * 3) + 200);
-            }
+	    function removeLoader(callback) {
+		setTimeout(function () {
+		    $(".sections > li:first-child > div:first-child").addClass("fade_in");
+		    $(".multi-spinner-container").fadeOut(400, function () {
+			$("#loader").fadeOut(400, function () {
+			    $("#loader").remove();
+			    if (callback) {
+				callback();
+			    }
+			});
+		    });
+		}, 600)
+	    }
 
 
-            function startChartsAnimation() {
-                for (var i = 0; i < charts.length; i++) {
-                    charts[i].data.datasets[0].data[0] = chartOptions[i].percent;
-                    charts[i].data.datasets[1].data[0] = 100 - chartOptions[i].percent;
-                    const id = chartOptions[i].id;
-                    charts[i].options.animation = {duration: 600, onComplete: function () {
-                            $("#" + id).parent().parent().attr("onclick", "toggleSkillDetail(this)");
+	    var deg = new Date().getTime() / 50;
+	    function startCubeRotate() {
+		$(".cube div").fadeIn();
+		setInterval(function () {
+		    $('.cube').css('transform', 'rotateX(' + deg + 'deg)' + 'rotateY(' + deg + 'deg)');
+		    deg += 0.5 * rotationSpeed;
+		}, 20);
+	    }
+
+	    var chartOptions = [
+		{"id": "android_chart", "percent": 75, "background": '153, 194, 65'},
+		{"id": "java_chart", "percent": 75, "background": '234, 27, 9'},
+		{"id": "kotlin_chart", "percent": 30, "background": '72, 126, 207'},
+		{"id": "mysql_chart", "percent": 65, "background": '222, 146, 12'},
+		{"id": "js_chart", "percent": 65, "background": '232, 220, 42'},
+		{"id": "php_chart", "percent": 75, "background": '127, 136, 196'},
+		{"id": "css_chart", "percent": 55, "background": '77, 143, 204'},
+		{"id": "c_sharp_chart", "percent": 20, "background": '121, 30, 145'}
+	    ];
+	    var charts = [];
+
+	    var isDetailAnimated = false;
+
+	    function hideDetails(immediately) {
+		var duration = 400;
+		$(".detail").each(function () {
+		    var detail = this;
+		    if ($(detail).css("display") == "none") {
+			return;
+		    }
+
+		    if (immediately) {
+			$(detail).hide().parent().css("height", "auto");
+			return;
+		    }
+
+		    hideDetail(detail, 400);
+		});
+	    }
+
+	    function hideDetail(skillDetail, duration) {
+		var parent = $(skillDetail).parent();
+		$(skillDetail).fadeOut({"duration": duration, "queue": false, "complete": function () {
+			var curHeight = parent.height();
+			var autoHeight = parent.css('height', 'auto').height();
+			parent.height(curHeight);
+			parent.animate({"height": autoHeight + "px"}, duration);
+		    }});
+	    }
+
+	    function toggleDetail(obj) {
+		if (isDetailAnimated)
+		    return;
+
+		isDetailAnimated = true;
+		var duration = 400;
+
+		if ($(obj).find(".detail").css("display") != "none") {
+		    hideDetail($(obj).find(".detail"), duration);
+		    setTimeout(function () {
+			isDetailAnimated = false;
+		    }, (duration * 2) + 200);
+		    return;
+		}
+
+		$(obj).parent().animate({"scrollTop": 0}, {"duration": duration, "queue": false});
+
+		hideDetails();
+
+		$(obj).parent().find(".touch").remove();
+		$(obj).css({"position": "absolute", "top": $(obj).position().top});
+		$(obj).animate({"top": ""}, {"duration": duration, "queue": false});
+		$(obj).next().css({"margin-top": $(obj).outerHeight(true) + "px"});
+		$(obj).next().animate({"margin-top": ""}, {"duration": duration, "queue": false});
+		$(obj).parent().animate({"padding-top": $(obj).outerHeight(true) + "px"}, {"duration": duration, "queue": false, complete: function () {
+			$(obj).parent().css("padding-top", "");
+			$(obj).css({"position": "relative"});
+			$(obj).parent().prepend($(obj));
+			$(obj).animate({"height": ($(obj).height() + $(obj).find(".detail").innerHeight()) + "px"}, {"duration": duration, "queue": false, complete: function () {
+				$(obj).find(".detail").fadeIn(duration);
+			    }});
+		    }});
+		setTimeout(function () {
+		    isDetailAnimated = false;
+		}, (duration * 3) + 200);
+	    }
+
+
+	    function startChartsAnimation() {
+		for (var i = 0; i < charts.length; i++) {
+		    charts[i].data.datasets[0].data[0] = chartOptions[i].percent;
+		    charts[i].data.datasets[1].data[0] = 100 - chartOptions[i].percent;
+		    const id = chartOptions[i].id;
+		    charts[i].options.animation = {duration: 600, onComplete: function () {
                         }};
-                    charts[i].update();
-                }
-                if ($(".skills").find(".touch").size() != 0) {
-                    setTimeout(function () {
-                        $(".skills .touch").fadeIn();
-                    }, 600);
-                }
-            }
+		    charts[i].update();
+		}
+		if ($(".skills").find(".touch").size() != 0) {
+		    setTimeout(function () {
+			$(".skills .touch").fadeIn();
+		    }, 600);
+		}
+	    }
 
-            function clearCharts() {
-                for (var i = 0; i < charts.length; i++) {
-                    charts[i].data.datasets[0].data[0] = 1;
-                    charts[i].data.datasets[1].data[0] = 99;
-                    charts[i].update();
-                }
-            }
+	    function clearCharts() {
+		for (var i = 0; i < charts.length; i++) {
+		    charts[i].data.datasets[0].data[0] = 1;
+		    charts[i].data.datasets[1].data[0] = 99;
+		    charts[i].update();
+		}
+	    }
 
-            function redrawCharts() {
-                if (charts.length >= 1) {
-                    charts.forEach(function (chart) {
-                        chart.destroy();
-                    });
-                    charts = [];
-                }
-                drawCharts();
-                startChartsAnimation();
-            }
+	    function redrawCharts() {
+		if (charts.length >= 1) {
+		    charts.forEach(function (chart) {
+			chart.destroy();
+		    });
+		    charts = [];
+		}
+		drawCharts();
+		startChartsAnimation();
+	    }
 
-            function drawCharts() {
-                if (charts.length >= 1) {
-                    return;
-                }
+	    function drawCharts() {
+		if (charts.length >= 1) {
+		    return;
+		}
 
-                chartOptions.forEach(function (option) {
-                    var ctx = document.getElementById(option.id).getContext('2d');
-                    var chart = new Chart(ctx, {
-                        type: 'horizontalBar',
-                        data: {
-                            datasets: [{
-                                    data: [1],
-                                    backgroundColor: ["rgba(" + option.background + ", 1)"],
-                                    borderColor: ["rgba(" + option.background + ", 1)"],
-                                    borderWidth: 1,
-                                },
-                                {
-                                    data: [99],
-                                    backgroundColor: ["transparent"],
-                                    borderColor: ["#FFF"],
-                                    borderWidth: 1,
-                                }
-                            ]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            title: {
-                                display: false
-                            },
-                            legend: {
-                                display: false,
-                            },
-                            layout: {
-                                padding: {
-                                    left: 0,
-                                    right: 0,
-                                    top: 0,
-                                    bottom: 0
-                                }
-                            },
-                            scales: {
-                                xAxes: [{
-                                        stacked: true,
-                                        scaleLabel: {
-                                            display: true,
-                                        },
-                                        ticks: {
-                                            beginAtZero: true,
-                                            min: 0,
-                                            max: 100,
-                                            stepSize: 10,
-                                            callback: function (label, index, labels) {
-                                                switch (label) {
-                                                    case 10 :
-                                                        label = "경험";
-                                                        break;
-                                                    case 30 :
-                                                        label = "초급";
-                                                        break;
-                                                    case 50 :
-                                                        label = "중급";
-                                                        break;
-                                                    case 70 :
-                                                        label = "고급";
-                                                        break;
-                                                    case 90 :
-                                                        label = "전문가";
-                                                        break;
-                                                    default :
-                                                        label = "";
-                                                        break;
-                                                }
-                                                return label;
-                                            },
-                                            fontColor: '#DDDDDD',
-                                        }
-                                    }],
-                                yAxes: [{
-                                        stacked: true,
-                                        display: false,
-                                    }]
-                            },
-                            tooltips: {enabled: false, },
-                            animation: {
-                                duration: 0,
-                            }
-                        }
-                    });
-                    charts.push(chart);
-                });
-            }
+		chartOptions.forEach(function (option) {
+		    var ctx = document.getElementById(option.id).getContext('2d');
+		    var chart = new Chart(ctx, {
+			type: 'horizontalBar',
+			data: {
+			    datasets: [{
+				    data: [1],
+				    backgroundColor: ["rgba(" + option.background + ", 1)"],
+				    borderColor: ["rgba(" + option.background + ", 1)"],
+				    borderWidth: 1,
+				},
+				{
+				    data: [99],
+				    backgroundColor: ["transparent"],
+				    borderColor: ["#FFF"],
+				    borderWidth: 1,
+				}
+			    ]
+			},
+			options: {
+			    responsive: true,
+			    maintainAspectRatio: false,
+			    title: {
+				display: false
+			    },
+			    legend: {
+				display: false,
+			    },
+			    layout: {
+				padding: {
+				    left: 0,
+				    right: 0,
+				    top: 0,
+				    bottom: 0
+				}
+			    },
+			    scales: {
+				xAxes: [{
+					stacked: true,
+					scaleLabel: {
+					    display: true,
+					},
+					ticks: {
+					    beginAtZero: true,
+					    min: 0,
+					    max: 100,
+					    stepSize: 10,
+					    callback: function (label, index, labels) {
+						switch (label) {
+						    case 10 :
+							label = "경험";
+							break;
+						    case 30 :
+							label = "초급";
+							break;
+						    case 50 :
+							label = "중급";
+							break;
+						    case 70 :
+							label = "고급";
+							break;
+						    case 90 :
+							label = "전문가";
+							break;
+						    default :
+							label = "";
+							break;
+						}
+						return label;
+					    },
+					    fontColor: '#DDDDDD',
+					}
+				    }],
+				yAxes: [{
+					stacked: true,
+					display: false,
+				    }]
+			    },
+			    tooltips: {enabled: false, },
+			    animation: {
+				duration: 0,
+			    }
+			}
+		    });
+		    charts.push(chart);
+		});
+	    }
 
-            function showMyWorkPopup(myWorkName) {
-                slider.setEnabled(false);
-                $(".sections").fadeOut(600);
-                $(".menu").fadeOut(600);
-                $("#my_works_popup").css("visibility", "hidden").show();
-                var time = new Date().getTime();
+	    function showMyWorkPopup(myWorkName) {
+		slider.setEnabled(false);
+		$(".sections").fadeOut(600);
+		$(".menu").fadeOut(600);
+		$("#my_works_popup").css("visibility", "hidden").show();
+		var time = new Date().getTime();
 
-                var url = "./my_work.html?ver=" + time;
-                
-                $("#my_works_popup").load(url, null, function (responseText, textStatus, jqXHR) {
-                    initSwiper();
-                    $("#my_works_popup img").click(function () {
-                        window.open($(this).attr('src'));
-                    });
-                    $("#my_works_popup video").click(function () {
-                        window.open($(this).find("source:eq(0)").attr('src'));
-                    });
-                    $("#my_works_popup samp").click(function () {
-                        var url = $(this).css('background-image');
-                        if (url.indexOf("\"") != -1) {
-                            url = url.split("\"")[1];
-                        } else if (url.indexOf("'") != -1) {
-                            url = url.split("'")[1];
-                        }
-                        window.open(url);
-                    });
-                    $("#my_works_popup").css("visibility", "visible").hide().fadeIn(600);
-                });
-            }
+		var url = "./my_work.html?ver=" + time;
 
-            function closePopup() {
-                slider.setEnabled(true);
-                $(".popup").fadeOut(600, function () {
-                    $(this).html("")
-                });
-                $(".menu").fadeIn(600);
-                $(".sections").fadeIn(600, function () { 
-                    adjustTwins();
-                });
-            }
+		$("#my_works_popup").load(url, null, function (responseText, textStatus, jqXHR) {
+		    initSwiper();
+		    $("#my_works_popup img").click(function () {
+			window.open($(this).attr('src'));
+		    });
+		    $("#my_works_popup video").click(function () {
+			window.open($(this).find("source:eq(0)").attr('src'));
+		    });
+		    $("#my_works_popup samp").click(function () {
+			var url = $(this).css('background-image');
+			if (url.indexOf("\"") != -1) {
+			    url = url.split("\"")[1];
+			} else if (url.indexOf("'") != -1) {
+			    url = url.split("'")[1];
+			}
+			window.open(url);
+		    });
+		    $("#my_works_popup").css("visibility", "visible").hide().fadeIn(600);
+		});
+	    }
 
-            var swiper;
-            function initSwiper() {
-                $(".swiper-wrapper > *").addClass("swiper-slide");
-                var slidesPerView = 3;
-                if ($(".swiper-container").hasClass("web")) {
-                    slidesPerView = 1;
-                }
-                swiper = new Swiper('.swiper-container', {
-                    slidesPerView: slidesPerView,
-                    effect: "coverflow",
-                    loop: true,
-                    centeredSlides: true,
-                    on: {
-                        "touchStart": function () {
-                            var video = $(this.slides[this.activeIndex]).find("video");
-                            if (video.size() >= 1) {
-                                video.get(0).pause();
-                            }
-                        },
-                        "transitionEnd": function () {
-                            var video = $(this.slides[this.activeIndex]).find("video");
-                            if (video.size() >= 1) {
-                                video.get(0).play();
-                            }
-                        }
-                    }
-                })
-            }
+	    function closePopup() {
+		slider.setEnabled(true);
+		$(".popup").fadeOut(600, function () {
+		    $(this).html("")
+		});
+		$(".menu").fadeIn(600);
+		$(".sections").fadeIn(600, function () {
+		    adjustTwins();
+		});
+	    }
 
-            function adjustTwins() {
-                if ($('.popup').css("display") != "none") {
-                    return;
-                }
-                if (window.innerWidth <= 700) {
-                    if ($(".twin").size() > 0) {
-                        $(".sections > li > div:first-child").fadeIn();
+	    var swiper;
+	    function initSwiper() {
+		$(".swiper-wrapper > *").addClass("swiper-slide");
+		var slidesPerView = 3;
+		if ($(".swiper-container").hasClass("web")) {
+		    slidesPerView = 1;
+		}
+		swiper = new Swiper('.swiper-container', {
+		    slidesPerView: slidesPerView,
+		    effect: "coverflow",
+		    loop: true,
+		    centeredSlides: true,
+		    on: {
+			"touchStart": function () {
+			    var video = $(this.slides[this.activeIndex]).find("video");
+			    if (video.size() >= 1) {
+				video.get(0).pause();
+			    }
+			},
+			"transitionEnd": function () {
+			    var video = $(this.slides[this.activeIndex]).find("video");
+			    if (video.size() >= 1) {
+				video.get(0).play();
+			    }
+			}
+		    }
+		})
+	    }
 
-                        var twinRight = $(".twin:eq(1)").clone();
-                        twinRight.removeClass("twin").addClass("twin_dna");
-                        $(".twin").parent().parent().after("<li></li>");
-                        $(".twin").parent().parent().next().append(twinRight);
+	    function adjustTwins() {
+		if ($('.popup').css("display") != "none") {
+		    return;
+		}
+		if (window.innerWidth <= 700) {
+		    if ($(".twin").size() > 0) {
+			$(".sections > li > div:first-child").fadeIn();
 
-                        //left
-                        $(".twin:eq(0)").removeClass("twin").addClass("twin_dna");
+			var twinRight = $(".twin:eq(1)").clone();
+			twinRight.removeClass("twin").addClass("twin_dna");
+			$(".twin").parent().parent().after("<li></li>");
+			$(".twin").parent().parent().next().append(twinRight);
 
-                        $(".twin").remove();
-                        $(".twin_dna").removeAttr('style');
-                        slider.update();
+			//left
+			$(".twin:eq(0)").removeClass("twin").addClass("twin_dna");
 
-                        if ($(".my_works_icon").size() > 0) {
-                            $(".sections > li > div:first-child").hide();
-                        }
-                        redrawCharts();
-                    }
-                } else {
-                    if ($(".twin_dna").size() > 0) {
+			$(".twin").remove();
+			$(".twin_dna").removeAttr('style');
+			slider.update();
 
-                        $(".sections > li > div:first-child").fadeIn();
-                        var twinRight = $(".twin_dna:eq(1)").clone();
-                        twinRight.removeClass("twin_dna").addClass("twin");
-                        $(".twin_dna:eq(0)").after(twinRight);
+			if ($(".my_works_icon").size() > 0) {
+			    $(".sections > li > div:first-child").hide();
+			}
+			redrawCharts();
+		    }
+		} else {
+		    if ($(".twin_dna").size() > 0) {
 
-                        //left
-                        $(".twin_dna:eq(0)").removeClass("twin_dna").addClass("twin");
+			$(".sections > li > div:first-child").fadeIn();
+			var twinRight = $(".twin_dna:eq(1)").clone();
+			twinRight.removeClass("twin_dna").addClass("twin");
+			$(".twin_dna:eq(0)").after(twinRight);
 
-                        $(".twin_dna").parent().remove();
-                        $(".twin").removeAttr('style');
-                        slider.update();
+			//left
+			$(".twin_dna:eq(0)").removeClass("twin_dna").addClass("twin");
 
-                        if ($(".my_works_icon").size() > 0) {
-                            $(".sections > li > div:first-child").hide();
-                        }
-                        redrawCharts();
-                    }
-                }
-            }
-            
-            function toggleDrawer() {
-                //close
-                if($(".menu").hasClass("open")){
-                    slider.setEnabled(true);
-                    slider.current()
-                    left = "+200%";
-                    $(".drawer").stop().delay(100).fadeOut(400, function(){$(".drawer li").removeClass("on");});
-                    
-                //open
-                }else{
-                    slider.setEnabled(false);
-                    $(".drawer li:eq("+(slider.current()-1)+")").addClass("on");
-                    $(".drawer li").css("margin-left", "-200%");
-                    left = "0%";
-                    $(".drawer").stop().delay(100).fadeIn();
-                }
-                $(".drawer li").each(function(i, val){
-                    $(this).stop().delay(50*i).animate({"margin-left" : left});
-                })
-                $(".menu").toggleClass('open');
-            }
+			$(".twin_dna").parent().remove();
+			$(".twin").removeAttr('style');
+			slider.update();
+
+			if ($(".my_works_icon").size() > 0) {
+			    $(".sections > li > div:first-child").hide();
+			}
+			redrawCharts();
+		    }
+		}
+	    }
+
+	    function toggleDrawer() {
+		//close
+		if ($(".menu").hasClass("open")) {
+		    slider.setEnabled(true);
+		    slider.current()
+		    left = "+200%";
+		    $(".drawer").stop().delay(100).fadeOut(400, function () {
+			$(".drawer li").removeClass("on");
+		    });
+
+		    //open
+		} else {
+		    slider.setEnabled(false);
+		    $(".drawer li:eq(" + (slider.current() - 1) + ")").addClass("on");
+		    $(".drawer li").css("margin-left", "-200%");
+		    left = "0%";
+		    $(".drawer").stop().delay(100).fadeIn();
+		}
+		$(".drawer li").each(function (i, val) {
+		    $(this).stop().delay(50 * i).animate({"margin-left": left});
+		})
+		$(".menu").toggleClass('open');
+	    }
 
         </script>
     </head>
     <body>
-        
+
         <!--@loader-->
         <div id="loader" >
             <div class="multi-spinner-container">
@@ -949,33 +959,33 @@
                 </div>
             </div>
         </div>
-        
+
         <!--@cube-->
         <div class="cube_wrap">
-            <div class="cube">
-                <div class="top"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg"></div>
+            <div class="cube healing">
+                <div class="top"><img src="http://www.gukjenews.com/news/photo/201810/1013115_787089_237.jpg"></div>
                 <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg"></div>
                 <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244"></div>
-                <div class="left"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148702"></div>
-                <div class="back"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148705"></div>
-                <div class="front"><img src="https://thumb.pann.com/tc_480/https://fimg4.pann.com/new/download.jsp?FileID=48148708"></div>
+                <div class="left"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg"></div>
+                <div class="back"><img src=""></div>
+                <div class="front"><img src="https://lh3.googleusercontent.com/6wOZGswXz9r3FHpYdOM5R4ymc-otX0LQ4c856t5SJ8el3XXbNgVjg3vly8xMZWcA_cR-jX3lukLAJ9-6ZyUJwbc8zC7g73KTTHa-8HTQTZM0k4k7Te5Zwtcsq7HBHXtQg7F4I_Dq1nJLrZU4-A_UJSiuAKG46uFoHVytaRW7PSmu1IieIGg6GPpETnOFAYma7t85iAoT9LjCmXeaTFzQxBqDNyBzunCQswXhlkHTPDKdn0EbxMkNlgkyKPtw2y2reK632WI_N7TLrAQudFyT6xk4kExmYS8jvMA8LjQvJXrXikceTqlZVbp6ebpmr_pAm6TfDgWnEOdtbygrjmPf8ECqojToYNCOK51LFhmoJ_gMEcGiyhryifKxCae3Qecb7Q92400BwilPdhshqGQfc18ASz58FcdBWfkKd_DqxTDT7CCrMlh1ZP1D6g-J9f2z8BMF_c7ArH3k9tmgi7DoaHDex_2Pd2vavNCK3rqdQJvYQqQKnBgFVebzh8i2yrb10uvTW7VlL8JJETqft5eDvty_QnnXYi4Y53cPUpAgPx-I4d6RziuY3biOTAXT1O-ucjpMoG0Ae8hkHSCp0En2D2nPEIo635wr0YHdx8w1Nssyk93IBV1Q3Yle_v-mIEJOWEVww3yH5JqqQZAGpDK4ca6-=s916-no"></div>
             </div>
         </div>
-        
+
         <!--@drawer-->
         <div class="drawer">
-        <ol>
-            <li><p>Home</p></li>
-            <li><p>About Me</p></li>
-            <li><p>Work experiences</p></li>
-            <li><p>Skills</p></li>
-            <li><p>My Works</p></li>
-            <li><p>Epilogue</p></li>
-        </ol>
+	    <ol>
+		<li><p>Home</p></li>
+		<li><p>About Me</p></li>
+		<li><p>Work experiences</p></li>
+		<li><p>Skills</p></li>
+		<li><p>My Works</p></li>
+		<li><p>Epilogue</p></li>
+	    </ol>
         </div>
-        
+
         <div class="menu" onclick="toggleDrawer()"><span></span></div>
-        
+
         <ol class="sections">
             <li>
                 <div>
@@ -1003,40 +1013,68 @@
                     </div>
                 </div>
             </li>
+	    <!--@work_experiences-->
+	    <style>
+		.work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
+		.work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
+		.work_experiences .thumbnail {display:inline-block;width:250px;height:90px;background-size:100%;}
+		.work_experiences .info {font-size:1.15em;padding:10px 0px;}
+		.work_experiences dt {font-size:1.1em;margin-top:15px;}
+		.work_experiences dt:first-child {margin-top:0px}
+		.work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
+	    </style>
             <li>
                 <div>
                     <div class="twin">
-                        <h2><span>Work experiences</span><span class="underbar"></span></h2>     
-                        <p class="underbar"></p>
-                        <ol class="work_experiences scrollable"  >
+                        <h2><span>Work experiences</span><span class="underbar"></span></h2>
+                        <ol class="work_experiences scrollable" >
                             <li>
                                 <div class="thumbnail monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
-                                <!--<h3>Android · PHP · MySQL · Front-end · SVN · Git</h3>-->
-                                <h3>Android / PHP / MySQL / Front-end / SVN / Git</h3>
-                                <h4>2015. 07 ~ 2019. 02</h4>
-                                <dl>
-                                    <dt>MOBI</dt>
-                                    <dd>전 개발자 최초 개발 이후 모든 개발에 대해 100% 참여</dd>
-                                    <dd>안드로이드 앱 외 DB, 서버, 관리자 페이지, 광고주 페이지, 이벤트 페이지 100% 직접 구성 및 개발</dd>
+                                <div class="info">
+				    Android / PHP / MySQL / Front-end / SVN / Git<br>
+				    2015.07 - 2019.02
+				</div>
+                                <dl class="detail">
+                                    <dt>안드로이드 네이티브, 하이브리드 앱 개발</dt>
+				    <dd>디자인을 제외한 앱, xml, DB, 서버, Javascript 등 직접 구성 및 개발</dd>
+				    
+				    <dt>PHP 웹페이지 개발</dt>
+				    <dd>이벤트 페이지, 광고주 페이지, 관리자 페이지 등</dd>
+				    <dd>DB, 서버, Javascript 등 직접 구성 및 개발</dd>
+				    
+				    <dt>라이브러리, SDK, API 개발</dt>
+				    <dt>업체와 협업하여 SDK, API 연동 경험</dt>
+				    <dt>트래킹 기능, 포스트백 서버 구현 경험</dt>
+                                    <dt>Git, SVN 도입</dt>
                                 </dl>
                             </li>
                             <li>
                                 <div class="thumbnail isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
-                                <h3>Android · C#</h3>
-                                <h4>2014. 06 ~ 2015. 06</h4>
-                                <dl>
-                                    <dt>동도금 측정기 앱 개발</dt>
-                                    <dd>나 혼자 개발</dd>
+                                <div class="info">
+				    Android / C#<br>
+				    2014.06 - 2015.06
+				</div>
+                                <dl class="detail">
+                                    <dt>동도금 두께 측정기(iTG-B10) 앱 개발</dt>
+                                    <dd>블루투스 통신을 활용한 안드로이드 네이티브 앱</dd>
+				    <dd>디자인 포함 100% 직접 개발</dd>
+				    
+				    <dt>동도금 두께 측정 자동화 장비(iTG-C10) 시연용 프로그램 개발</dt>
+                                    <dd>RS-485 시리얼 통신, Windows Forms를 활용한 C# 프로그램</dd>
+				    <dd>디자인 포함 100% 직접 개발</dd>
                                 </dl>
                             </li>
                             <li>
                                 <div class="thumbnail tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
-                                <h3>JSP · PHP · MySQL · Front-end · SVN</h3>
-                                <h4>2012. 08 ~ 2013. 10</h4>
-                                <dl>
-                                    <dt>교리 문헌 관리 체계</dt>
+                                <div class="info">
+				    JSP / PHP / MySQL / Front-end / SVN<br>
+				    2012.08 - 2013.10
+				</div>
+                                <dl class="detail">
+                                    <dt>교리 문헌 관리 체계 개발</dt>
+				    <dd>육해공군 교범을 통합 관리하는 JSP 기반 인트라넷 웹 시스템</dd>
                                     <dd>전체 개발 및 디자인에 70% 이상 참여</dd>
-                                    <dd>최고 선임으로서 팀원들에게 업무 분배 및 팀원들의 코드 분석 후 기술 조언</dd>
+                                    <dd>최고 선임으로서 팀원들에게 업무 분배 및 기술 조언</dd>
                                 </dl>
                             </li>
                     </div>
@@ -1049,10 +1087,14 @@
                                     <canvas id="android_chart"></canvas>
                                 </div>
                                 <img class="touch" src="./images/hand.png" alt="hand" >
-                                <ul class="skill_detail">
-                                    <li>SDK 개발</li>
-                                    <li>Activity, Service, Broadcast Receiver에 대한 이해</li>
+                                <ul class="detail">
+				    <li>Activity, Service, Broadcast Receiver에 대한 이해</li>
                                     <li>네이티브 앱, 하이브리드 앱 100% 개발</li>
+				    <li>라이브러리 분석 및 수정</li>
+				    <li>SDK 개발</li>
+				    <li>GCM, Social Login 등 SDK, API 연동 경험</li>
+				    <li>접근성</li>
+				    <li>WebView, Javascript Interface</li>
                                 </ul>
                             </li>
                             <li>
@@ -1060,8 +1102,9 @@
                                 <div class="chart_container">
                                     <canvas id="java_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
-                                    <li>라이브러리 분석 및 수정</li>
+                                <ul class="detail">
+				    <li>Class, Interface, Abstract, Static에 대한 이해</li>
+				    <li>추상화, 캡슐화, 상속성, 다형성에 대한 이해</li>
                                     <li>Lambda</li>
                                 </ul>
                             </li>
@@ -1070,7 +1113,11 @@
                                 <div class="chart_container">
                                     <canvas id="kotlin_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
+                                <ul class="detail">
+				    <li>Companion Object</li>
+				    <li>Nullable, NonNull 처리</li>
+				    <li>let, it 활용</li>
+				    <li>상속</li>
                                     <li>Lambda</li>
                                     <li>Studying...</li>
                                 </ul>
@@ -1080,10 +1127,12 @@
                                 <div class="chart_container">
                                     <canvas id="php_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
+                                <ul class="detail">
                                     <li>라이브러리 분석 경험</li>
                                     <li>cURL</li>
-                                    <li>HTML Parsing</li>
+                                    <li>JSON Parsing</li>
+				    <li>Crawling</li>
+				    <li>파일 다운로드, 업로드 구현</li>
                                 </ul>
                             </li>
                             <li>
@@ -1091,9 +1140,9 @@
                                 <div class="chart_container">
                                     <canvas id="mysql_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
+                                <ul class="detail">
                                     <li>DB 설계</li>
-                                    <li>100만개 이상 데이터 쿼리</li>
+                                    <li>100만개 이상의 데이터 처리, 조회 쿼리</li>
                                 </ul>
                             </li>
                             <li>
@@ -1101,11 +1150,12 @@
                                 <div class="chart_container">
                                     <canvas id="js_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
+                                <ul class="detail">
                                     <li>jQuery</li>
                                     <li>Ajax</li>
+				    <li>Animation</li>
                                     <li>라이브러리 분석 및 수정</li>
-                                    <li>간단한 라이브러리 개발 </li>
+                                    <li>간단한 플러그인 개발</li>
                                 </ul>
                             </li>
                             <li>
@@ -1113,9 +1163,11 @@
                                 <div class="chart_container">
                                     <canvas id="css_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
+                                <ul class="detail">
                                     <li>Animation</li>
+				    <li>Selector</li>
                                     <li>Display, Position에 대한 이해</li>
+				    <li>반응형 레이아웃</li>
                                     <li>간단한 페이지 Publishing 경험</li>
                                 </ul>
                             </li>
@@ -1124,7 +1176,8 @@
                                 <div class="chart_container">
                                     <canvas id="c_sharp_chart"></canvas>
                                 </div>
-                                <ul class="skill_detail">
+                                <ul class="detail">
+				    <li>WinForms</li>
                                     <li>시연용 프로그램 개발 경험</li>
                                 </ul>
                             </li>
@@ -1145,13 +1198,13 @@
                     </ul>
 
                     <div class="my_works scrollable">
-                        <ol class="grid">
+                        <ul class="grid">
                             <li class="app">
                                 <div class="thumbnail mobi" data-name="mobi">
                                     <p><span>MOBI</span></p>
                                 </div>
                             </li>
-                            
+
                             <li class="web">
                                 <div class="thumbnail event" data-name="event">
                                     <p><span>모바일 이벤트 페이지</span></p>
@@ -1169,25 +1222,25 @@
                                     <p>게임을 낚다 - ZZI</p>
                                 </div>
                             </li>
-                            
+
                             <li class="app">
                                 <div class="thumbnail hungryapp_sdk" data-name="hungryapp_sdk">
                                     <p><span>헝그리앱 SDK</span></p>
                                 </div>
                             </li>
-                            
+
                             <li class="app web">
                                 <div class="thumbnail adbox" data-name="adbox">
                                     <p>애드박스</p>
                                 </div>
                             </li>
-                            
+
                             <li class="web">
                                 <div class="thumbnail admin" data-name="admin">
                                     <p>관리자 페이지</p>
                                 </div>
                             </li>
-                            
+
                             <li class="web">
                                 <div class="thumbnail adbox_advertiser" data-name="adbox_advertiser">
                                     <p><span>애드박스 광고주 페이지</span></p>
@@ -1206,7 +1259,7 @@
                                 </div>
                             </li>
 
-                        </ol>
+                        </ul>
                     </div>
                 </div>
             </li>
@@ -1224,12 +1277,15 @@
                             여러분도 하루에 25분만! 태보의 세계로 들어가봅시다!<br>
                             @==(^0^)@ @(^0^)==@
                         </div>
-                        <ol>
-                            <li><img src="./images/mail.png?ver=1" style="height:30px;" alt="email"> ljh7795@gmail.com</li>
-                            <li><img src="./images/phone.png?ver=1" style="height:30px;" alt="phone"> 010-3013-7795</li>
-                            <li><img src="./images/location.png?ver=1" style="height:30px;" alt="location"> 전라북도 전주시 완산구</li>
-                            <li><img src="./images/github.png?ver=1" style="height:30px;" alt="github"> https://github.com/man-ramen-black/</li>
-                        </ol>
+                        <ul>
+                            <li><a href="mailto:ljh7795@gmail.com"><img src="./images/mail.png?ver=1" style="height:30px;" alt="email"> ljh7795@gmail.com</a></li>
+                            <li onclick="copyText('#phone', '전화번호가')"><img src="./images/phone.png?ver=1" style="height:30px;" alt="phone"> 
+				010-3013-7795
+				<input type="text" id="phone" class="gone" value="01030137795">
+			    </li>
+                            <li onclick="window.open('https://www.google.com/maps/place/%EC%A0%84%EB%9D%BC%EB%B6%81%EB%8F%84+%EC%A0%84%EC%A3%BC%EC%8B%9C+%EC%99%84%EC%82%B0%EA%B5%AC/@35.7882141,127.096406,13z/data=!3m1!4b1!4m5!3m4!1s0x357024d4493b4d8f:0xb43db9b6163aa009!8m2!3d35.812111!4d127.1199201')"><img src="./images/location.png?ver=1" style="height:30px;" alt="location"> 전라북도 전주시 완산구</li>
+                            <li onclick="window.open('https://github.com/man-ramen-black/')"><img src="./images/github.png?ver=1" style="height:30px;" alt="github"> https://github.com/man-ramen-black/</li>
+                        </ul>
                     </div>
                 </div>
             </li>
