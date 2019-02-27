@@ -1,5 +1,11 @@
 <script>
     
+    function scrollToTop(){
+	$('#my_works_popup').animate({
+	    scrollTop: 0
+	}, 400);
+    }
+    
     function onVisibilityChange(el, callback) {
         var old_visible;
         return function () {
@@ -12,8 +18,14 @@
             }
         }
     }
-
+    
     $("#my_works_popup").on('resize scroll', function(){
+	if(this.scrollTop > 0){
+	    $(".top").fadeIn();
+	}else{
+	    $(".top").fadeOut();
+	}
+	
         $("video").each(function(i, video){
             if($(video).parent().parent().attr("class") == "swiper-wrapper") return;
             
@@ -678,4 +690,6 @@
             <div class="description"></div>
         </div>
     </div>
+    
+    <div class="top_btn" onclick="scrollToTop()"></div>
 </div>
