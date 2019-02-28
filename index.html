@@ -386,7 +386,7 @@
 
 		initSwiper();
 		initSlider();
-		initDrawer();
+		initIndicator();
 		adjustTwins();
 		startCubeRotate();
 		removeLoader(onHash);
@@ -480,12 +480,16 @@
 		onHash();
 	    }
 
-	    function initDrawer() {
+	    function initIndicator() {
 		$(".drawer").fadeOut(1, function () {
 		    $(this).css("display", "none")
 		});
 		$(".drawer li").each(function (i, val) {
 		    $(this).attr("onclick", "toggleDrawer();slider.goPage(" + (i + 1) + ");");
+		});
+		
+		$(".indicator li").each(function (i, val) {
+		    $(this).attr("onclick", "slider.goPage(" + (i + 1) + ");");
 		});
 	    }
 
@@ -505,6 +509,10 @@
 		    onLeave: function (origin, destination, direction) {
 			oriContents = $(".sections > li:eq(" + (origin - 1) + ") > div:first-child");
 			destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
+			
+			$(".indicator li").removeClass("on");
+			$(".indicator li:eq("+(destination - 1)+")").addClass("on");
+		
 			rotationSpeed = 10;
 			setTimeout(function () {
 			    rotationSpeed = 1
@@ -996,6 +1004,23 @@
         </div>
 
         <div class="menu" onclick="toggleDrawer()"><span></span></div>
+	<style>
+	    .indicator {position:fixed;display:table;right:20px;height:100%;width:auto;;z-index:2000;}
+	    .indicator ol {display:table-cell;position:relative;vertical-align:middle;}
+	    .indicator li {min-width:50px;height:50px;cursor:pointer;}
+	    .indicator li > p {float:right;width:30px;height:35px;font-size:1.1em;font-weight:100;line-height:7em;background:rgba(0,0,0,0);overflow:hidden;border-bottom:solid 1px white;clear:both;transition:line-height 0.3s, background 0.3s, width .3s .2s;}
+	    .indicator li.on > p {width:40px;border-bottom:solid 2px white;transition:width .3s;}
+	    .indicator li:hover > p {width:120px;line-height:2em;background:rgba(0,0,0,.6);transition:line-height .3s .2s, width .3s, background .3s .2s;}
+	</style>
+	<div class="indicator">
+	    <ol>
+		<li class="on"><p>Home</p></li>
+		<li><p>About Me</p></li>
+		<li><p>Experiences</p></li>
+		<li><p>My Works</p></li>
+		<li><p>Epilogue</p></li>
+	    </ol>
+	</div>
 
         <ol class="sections">
             <li>
