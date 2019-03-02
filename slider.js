@@ -17,7 +17,7 @@
         var touchSlideEnabled = null;
 
         var option = $.extend({}, {
-            indicator: true,
+            indicator: false,
             //콜백 추가
             onLeave: null,
             //종료 콜백 추가
@@ -36,20 +36,37 @@
         
         function isSlideEnabled(event, direction){
             var isEnabled = "all";
-            event.path.forEach(function(dom){
-                if(dom.className && dom.className.indexOf("slider__") != -1 || !isEnabled) return;
-
+	    
+	    for(var i = 0 ; i < event.path.length ;i++){
+		dom = event.path[i];
+		//slider__ 는 스크롤이 가능하지만 상관없이 slide가능, 
+		if((dom.className && dom.className.indexOf("slider__") !== -1)){
+		    continue;
+		} 
+		
+		//1개라도 슬라이드 이동 불가능한 상태인 경우
+		if(!isEnabled){
+		    break;
+		}
+		
+		//dom이 스크롤이 가능한 상태
                 if(dom.scrollHeight > dom.clientHeight+10){
+		    
+		    //스크롤이 최상단인 경우 위로만 슬라이드 이동 가능
                     if(dom.scrollTop == 0){
                         isEnabled = "up";
-                        
+                    
+		    //스크롤이 최하단인 경우 아래로만 슬라이드 이동 가능
                     }else if(dom.scrollTop + dom.clientHeight + 10 >= dom.scrollHeight){
                         isEnabled = "down";
+			
+		    //스크롤이 중간인 경우 슬라이드 이동 불가능
                     }else{
                         isEnabled = null;
                     }
                 }
-            });
+	    }
+	    
             if(direction){
                 return (isEnabled == "all" || isEnabled == direction)?true:false;
                 
@@ -65,7 +82,7 @@
             whatWheel = 'onwheel' in document.createElement('div') ? 'wheel' : document.onmousewheel !== undefined ? 'mousewheel' : 'DOMMouseScroll';
             wheelFun = function (e) {
                 var direction = (e.wheelDelta || e.deltaY) > 0?"up":"down";
-                
+		
                 if(!isSlideEnabled(e, direction)){
                     return;
                 }
@@ -217,14 +234,15 @@
                 return;
             }
             
-            directionStr = direction > 0 ? "down" : "up";
+            directionText = direction > 0 ? "down" : "up";
             
-            if((directionStr == "up" && !enabled.up) || (directionStr == "down" && !enabled.down)){
+            if((directionText == "up" && !enabled.up) || (directionText == "down" && !enabled.down)){
                 return;
             }
+	    
 
             //콜백 추가
-            onLeaveData = {"original" : currentSlide, "destination" : currentSlide + direction, "direction" : directionStr};
+            onLeaveData = {"original" : currentSlide, "destination" : currentSlide + direction, "direction" : directionText};
             if (option.onLeave) {
                 option.onLeave(onLeaveData.original, onLeaveData.destination, onLeaveData.direction);
             }
