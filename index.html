@@ -34,14 +34,14 @@
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js?ver=6" ></script>
-        <script type="text/javascript" src="slider.js?ver=32"></script>
+        <script type="text/javascript" src="slider.js?ver=42"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
         <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.js"></script>
         <style>
             * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline:0;margin:0; padding:0; }
             html, body {margin: 0; height: 100%; overflow: hidden}
-            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;background: #000000;font-weight:400;zoom:1;text-align:center;}
+            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;font-weight:400;zoom:1;text-align:center;}
             body::-webkit-scrollbar{width:0;background-color:transparent;}
             h1{font-size:3em}
             h2{font-size:2em}
@@ -54,9 +54,10 @@
             dl {}
             samp {display:inline-block;}
 	    
+	    #wrap {max-width:1200px;background:black;height:100%;position:relative;overflow:hidden;margin:auto;}
+	    
 	    .gone {position:absolute;left:9999px;top:9999px;width:1px;height:1px;}
-
-
+	    
             .arrow {position:absolute;left:0;right:0;width:50px;height:50px;margin:auto;animation: poke 1.5s infinite ease-in-out;background-position:center;background-size:100%;background-repeat:no-repeat;cursor:pointer;z-index:1000}
             .arrow.down{background-image:url('./images/arrow_down.png');bottom:0}
             .arrow.up{background-image:url('./images/arrow_up.png');top:0}
@@ -98,7 +99,7 @@
 
             .center {width:100%;position:absolute;top:50%;transform: translateY(-50%);}
 
-            .cube_wrap {position:fixed;width:100%;height:200px;top:0;bottom:0;margin:auto;}
+            .cube_wrap {position:absolute;width:100%;height:200px;top:0;bottom:0;margin:auto;}
 
             .cube {
                 width: 200px;
@@ -129,6 +130,8 @@
             .cube div.left {transform: rotateY(-90deg);margin-left: -100px;}
             .cube div.front {transform: translateZ(100px); }
             .cube div.back {transform: translateZ(-100px); }
+	    
+	    
 
 
 
@@ -204,6 +207,39 @@
                 from {opacity:1}
                 to {opacity:0}
             }
+	    
+	    
+	    .indicator {position:absolute;display:table;right:20px;height:100%;width:auto;;z-index:2000;}
+	    .indicator ol {display:table-cell;position:relative;vertical-align:middle;}
+	    .indicator li {min-width:50px;height:50px;cursor:pointer;}
+	    .indicator li > p {float:right;width:30px;height:35px;font-size:1.1em;font-weight:100;line-height:7em;background:rgba(0,0,0,0);overflow:hidden;border-bottom:solid 1px white;clear:both;transition:line-height 0.3s, background 0.3s, width .3s .2s;}
+	    .indicator li.on > p {width:40px;border-bottom:solid 2px white;transition:width .3s;}
+	    .indicator li:hover > p {width:120px;line-height:2em;background:rgba(0,0,0,.6);transition:line-height .3s .2s, width .3s, background .3s .2s;}
+	    
+	    .drawer {position:absolute;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;visibility:visible}
+            .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
+            .drawer li {cursor:pointer;}
+            .drawer li > p {font-size:2em;padding:10px;position:relative;display:inline-block;white-space: nowrap;}
+            .drawer li.on > p {color:#aaa}
+            .drawer li > p:after {content:'';position:absolute;bottom:0;width:0%;border-bottom:solid 2px white;left:0%;right:0%;margin:0 auto;display:block;transition:width 0.4s;}
+            .drawer li:hover > p:after {width:100%;}
+
+            .menu {z-index:5000;font-size: 15px;position: absolute;display: inline-block;width: 2em;height: 2em;cursor: pointer;top:20px;right:20px;visibility:visible}
+            .menu span {position: absolute;top: 50%;left: 0;display: block;width: 100%;height: 0.2em;margin-top: -0.1em;background-color: #fff;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-transition: transform 0.3s;transition: background-color 0.3s, transform 0.3s;}
+            .menu span:after,.menu span:before {position: absolute;left: 0;width: 100%;height: 100%;background: #fff;content: '';-webkit-transition: -webkit-transform 0.3s;transition: transform 0.3s;}
+            .menu span {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+            .menu span:before {-webkit-transform: translateY(-0.5em);transform: translateY(-0.5em);}
+            .menu span:after {-webkit-transform: translateY(0.5em);transform: translateY(0.5em);}
+            .menu.open span {background-color : rgba(0,0,0,0);-webkit-transform: rotate(-180deg);transform: rotate(-180deg) opacity(0f);}
+            .menu.open span:before {-webkit-transform: rotate(45deg);transform: rotate(45deg);}
+            .menu.open span:after {-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
+	    
+	    .top_btn {position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:black;z-index:2000;border:solid 2px white;cursor:pointer;display:none;}
+	    .top_btn:before, .top_btn:after {content:"";position: absolute;top:0;bottom:0;left:0;right:0;margin:auto;width: 20px;height:2px;background:white}
+	    .top_btn:before {transform: rotate(45deg) translateX(0.3em) translateY(-0.3em);}
+	    .top_btn:after {transform: rotate(-45deg) translateX(-0.3em) translateY(-0.3em);}
+	    .top_btn:hover {background:white;transition:background 0.5s}
+	    .top_btn:hover:before, .top_btn:hover:after {background:black;transition:background 0.5s}
 
 
             #debug {position:fixed;color:white}
@@ -327,31 +363,6 @@
 
             button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
 
-            .drawer {position:fixed;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;visibility:visible}
-            .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
-            .drawer li {cursor:pointer;}
-            .drawer li > p {font-size:2em;padding:10px;position:relative;display:inline-block;white-space: nowrap;}
-            .drawer li.on > p {color:#aaa}
-            .drawer li > p:after {content:'';position:absolute;bottom:0;width:0%;border-bottom:solid 2px white;left:0%;right:0%;margin:0 auto;display:block;transition:width 0.4s;}
-            .drawer li:hover > p:after {width:100%;}
-
-            .menu {z-index:5000;font-size: 15px;position: fixed;display: inline-block;width: 2em;height: 2em;cursor: pointer;top:20px;right:20px;visibility:visible}
-            .menu span {position: absolute;top: 50%;left: 0;display: block;width: 100%;height: 0.2em;margin-top: -0.1em;background-color: #fff;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-transition: transform 0.3s;transition: background-color 0.3s, transform 0.3s;}
-            .menu span:after,.menu span:before {position: absolute;left: 0;width: 100%;height: 100%;background: #fff;content: '';-webkit-transition: -webkit-transform 0.3s;transition: transform 0.3s;}
-            .menu span {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
-            .menu span:before {-webkit-transform: translateY(-0.5em);transform: translateY(-0.5em);}
-            .menu span:after {-webkit-transform: translateY(0.5em);transform: translateY(0.5em);}
-            .menu.open span {background-color : rgba(0,0,0,0);-webkit-transform: rotate(-180deg);transform: rotate(-180deg) opacity(0f);}
-            .menu.open span:before {-webkit-transform: rotate(45deg);transform: rotate(45deg);}
-            .menu.open span:after {-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
-	    
-	    .top_btn {position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:black;z-index:2000;border:solid 2px white;cursor:pointer;display:none;}
-	    .top_btn:before, .top_btn:after {content:"";position: absolute;top:0;bottom:0;left:0;right:0;margin:auto;width: 20px;height:2px;background:white}
-	    .top_btn:before {transform: rotate(45deg) translateX(0.3em) translateY(-0.3em);}
-	    .top_btn:after {transform: rotate(-45deg) translateX(-0.3em) translateY(-0.3em);}
-	    .top_btn:hover {background:white;transition:background 0.5s}
-	    .top_btn:hover:before, .top_btn:hover:after {background:black;transition:background 0.5s}
-	    
 	    /*@반응형*/
             /* Mobile */
             @media screen and (max-width: 700px){
@@ -360,8 +371,16 @@
             /* PC */
             @media screen and (min-width: 700px){
                 .grid > li {width:33.3333%;}
-                .menu, .drawer {display:none;visibility:hidden;}
             }
+	    
+	    @media screen and (max-width: 1000px){
+		.indicator {display:none;visibility:hidden;}
+	    }
+	    
+	    @media screen and (min-width: 1000px){
+		.menu, .drawer {display:none;visibility:hidden;}
+		.sections > li {padding:10px 80px;}
+	    }
 
         </style>
         <script>
@@ -962,371 +981,372 @@
         </script>
     </head>
     <body>
-        <!--@loader-->
-        <div id="loader" >
-            <div class="multi-spinner-container">
-                <div class="multi-spinner">
-                    <div class="multi-spinner">
-                        <div class="multi-spinner">
-                            <div class="multi-spinner">
-                                <div class="multi-spinner">
-                                    <div class="multi-spinner"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--@cube-->
-        <div class="cube_wrap">
-            <div class="cube healing">
-                <div class="top"><img src="http://www.gukjenews.com/news/photo/201810/1013115_787089_237.jpg"></div>
-                <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg"></div>
-                <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244"></div>
-                <div class="left"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg"></div>
-                <div class="back"><img src=""></div>
-                <div class="front"><img src="https://lh3.googleusercontent.com/6wOZGswXz9r3FHpYdOM5R4ymc-otX0LQ4c856t5SJ8el3XXbNgVjg3vly8xMZWcA_cR-jX3lukLAJ9-6ZyUJwbc8zC7g73KTTHa-8HTQTZM0k4k7Te5Zwtcsq7HBHXtQg7F4I_Dq1nJLrZU4-A_UJSiuAKG46uFoHVytaRW7PSmu1IieIGg6GPpETnOFAYma7t85iAoT9LjCmXeaTFzQxBqDNyBzunCQswXhlkHTPDKdn0EbxMkNlgkyKPtw2y2reK632WI_N7TLrAQudFyT6xk4kExmYS8jvMA8LjQvJXrXikceTqlZVbp6ebpmr_pAm6TfDgWnEOdtbygrjmPf8ECqojToYNCOK51LFhmoJ_gMEcGiyhryifKxCae3Qecb7Q92400BwilPdhshqGQfc18ASz58FcdBWfkKd_DqxTDT7CCrMlh1ZP1D6g-J9f2z8BMF_c7ArH3k9tmgi7DoaHDex_2Pd2vavNCK3rqdQJvYQqQKnBgFVebzh8i2yrb10uvTW7VlL8JJETqft5eDvty_QnnXYi4Y53cPUpAgPx-I4d6RziuY3biOTAXT1O-ucjpMoG0Ae8hkHSCp0En2D2nPEIo635wr0YHdx8w1Nssyk93IBV1Q3Yle_v-mIEJOWEVww3yH5JqqQZAGpDK4ca6-=s916-no"></div>
-            </div>
-        </div>
-
-        <!--@drawer-->
-        <div class="drawer">
-	    <ol>
-		<li><p>Home</p></li>
-		<li><p>About Me</p></li>
-		<li><p>Work experiences</p></li>
-		<li><p>Skills</p></li>
-		<li><p>My Works</p></li>
-		<li><p>Epilogue</p></li>
-	    </ol>
-        </div>
-
-        <div class="menu" onclick="toggleDrawer()"><span></span></div>
-	<style>
-	    .indicator {position:fixed;display:table;right:20px;height:100%;width:auto;;z-index:2000;}
-	    .indicator ol {display:table-cell;position:relative;vertical-align:middle;}
-	    .indicator li {min-width:50px;height:50px;cursor:pointer;}
-	    .indicator li > p {float:right;width:30px;height:35px;font-size:1.1em;font-weight:100;line-height:7em;background:rgba(0,0,0,0);overflow:hidden;border-bottom:solid 1px white;clear:both;transition:line-height 0.3s, background 0.3s, width .3s .2s;}
-	    .indicator li.on > p {width:40px;border-bottom:solid 2px white;transition:width .3s;}
-	    .indicator li:hover > p {width:120px;line-height:2em;background:rgba(0,0,0,.6);transition:line-height .3s .2s, width .3s, background .3s .2s;}
-	</style>
-	<div class="indicator">
-	    <ol>
-		<li class="on"><p>Home</p></li>
-		<li><p>About Me</p></li>
-		<li><p>Experiences</p></li>
-		<li><p>My Works</p></li>
-		<li><p>Epilogue</p></li>
-	    </ol>
+	<div style="position:absolute;z-index:0;top:0;left:0;color:black;font-weight:300;font-size:1.2em;font-family:Monospace;text-align:left;">
+	    System.out.println("Hello World");
+	    <div style="float:left;width:1200px;margin:auto;height:1200px;transform: translateX(20%);">&nbsp;</div>
 	</div>
-
-        <ol class="sections">
-            <li>
-                <div>
-                    <div class="center">
-                        <h1>이진혁</h1>
-                        <h3>Software Developer</h3>
-                    </div>
-                </div>
-                <div class="arrow down"  onclick="slider.goPage(2)"></div>
-            </li>
-            <li>
-                <div >
-                    <div class="center">
-                        <h2><span>About Me</span><span class="underbar"></span></h2>
-                        <div>
-                            <img src="./images/me.png" style="width:150px;">
-                            <div>
-                                <h4>안녕하세요. 저는 3년차 소프트웨어 개발자 이진혁 입니다.</h4>
-                                개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여 웹페이지, 윈도우 프로그램, 안드로이드 앱, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
-                                개발 시 재활용성, 확장성이 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>                               
-                                <br>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-	    <!--@work_experiences-->
-	    <style>
-		.work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
-		.work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
-		.work_experiences .thumbnail {display:inline-block;width:250px;height:90px;background-size:100%;}
-		.work_experiences .info {font-size:1.15em;padding:10px 0px;}
-		.work_experiences dt {font-size:1.1em;margin-top:15px;}
-		.work_experiences dt:first-child {margin-top:0px}
-		.work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
-	    </style>
-            <li>
-                <div>
-                    <div class="twin">
-                        <h2><span>Work experiences</span><span class="underbar"></span></h2>
-                        <ol class="work_experiences scrollable" >
-                            <li>
-                                <div class="thumbnail monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
-                                <div class="info">
-				    Android / PHP / MySQL / Front-end / SVN / Git<br>
-				    2015.07 - 2019.02
+	<div id="wrap" class="slider__wrap">
+	    <!--@loader-->
+	    <div id="loader" >
+		<div class="multi-spinner-container">
+		    <div class="multi-spinner">
+			<div class="multi-spinner">
+			    <div class="multi-spinner">
+				<div class="multi-spinner">
+				    <div class="multi-spinner">
+					<div class="multi-spinner"></div>
+				    </div>
 				</div>
-                                <dl class="detail">
-                                    <dt>안드로이드 네이티브, 하이브리드 앱 개발</dt>
-				    <dd>디자인을 제외한 앱, xml, DB, 서버, Javascript 등 직접 구성 및 개발</dd>
-				    
-				    <dt>PHP 웹페이지 개발</dt>
-				    <dd>이벤트 페이지, 광고주 페이지, 관리자 페이지 등</dd>
-				    <dd>DB, 서버, Javascript 등 직접 구성 및 개발</dd>
-				    
-				    <dt>라이브러리, SDK, API 개발</dt>
-				    <dt>업체와 협업하여 SDK, API 연동 경험</dt>
-				    <dt>트래킹 기능, 포스트백 서버 구현 경험</dt>
-                                    <dt>Git, SVN 도입</dt>
-                                </dl>
-                            </li>
-                            <li>
-                                <div class="thumbnail isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
-                                <div class="info">
-				    Android / C#<br>
-				    2014.06 - 2015.06
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+
+	    <!--@cube-->
+	    <div class="cube_wrap">
+		<div class="cube healing">
+		    <div class="top"><img src="http://www.gukjenews.com/news/photo/201810/1013115_787089_237.jpg"></div>
+		    <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg"></div>
+		    <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244"></div>
+		    <div class="left"><img src="http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg"></div>
+		    <div class="back"><img src=""></div>
+		    <div class="front"><img src="https://lh3.googleusercontent.com/6wOZGswXz9r3FHpYdOM5R4ymc-otX0LQ4c856t5SJ8el3XXbNgVjg3vly8xMZWcA_cR-jX3lukLAJ9-6ZyUJwbc8zC7g73KTTHa-8HTQTZM0k4k7Te5Zwtcsq7HBHXtQg7F4I_Dq1nJLrZU4-A_UJSiuAKG46uFoHVytaRW7PSmu1IieIGg6GPpETnOFAYma7t85iAoT9LjCmXeaTFzQxBqDNyBzunCQswXhlkHTPDKdn0EbxMkNlgkyKPtw2y2reK632WI_N7TLrAQudFyT6xk4kExmYS8jvMA8LjQvJXrXikceTqlZVbp6ebpmr_pAm6TfDgWnEOdtbygrjmPf8ECqojToYNCOK51LFhmoJ_gMEcGiyhryifKxCae3Qecb7Q92400BwilPdhshqGQfc18ASz58FcdBWfkKd_DqxTDT7CCrMlh1ZP1D6g-J9f2z8BMF_c7ArH3k9tmgi7DoaHDex_2Pd2vavNCK3rqdQJvYQqQKnBgFVebzh8i2yrb10uvTW7VlL8JJETqft5eDvty_QnnXYi4Y53cPUpAgPx-I4d6RziuY3biOTAXT1O-ucjpMoG0Ae8hkHSCp0En2D2nPEIo635wr0YHdx8w1Nssyk93IBV1Q3Yle_v-mIEJOWEVww3yH5JqqQZAGpDK4ca6-=s916-no"></div>
+		</div>
+	    </div>
+
+	    <!--@drawer-->
+	    <div class="drawer">
+		<ol>
+		    <li><p>Home</p></li>
+		    <li><p>About Me</p></li>
+		    <li><p>Work experiences</p></li>
+		    <li><p>Skills</p></li>
+		    <li><p>My Works</p></li>
+		    <li><p>Epilogue</p></li>
+		</ol>
+	    </div>
+
+	    <div class="menu" onclick="toggleDrawer()"><span></span></div>
+	    
+	    
+	    <div class="indicator">
+		<ol>
+		    <li class="on"><p>Home</p></li>
+		    <li><p>About Me</p></li>
+		    <li><p>Experiences</p></li>
+		    <li><p>My Works</p></li>
+		    <li><p>Epilogue</p></li>
+		</ol>
+	    </div>
+
+	    <ol class="sections">
+		<li>
+		    <div>
+			<div class="center">
+			    <h1>이진혁</h1>
+			    <h3>Software Developer</h3>
+			</div>
+		    </div>
+		    <div class="arrow down"  onclick="slider.goPage(2)"></div>
+		</li>
+		<li>
+		    <div >
+			<div class="center">
+			    <h2><span>About Me</span><span class="underbar"></span></h2>
+			    <div>
+				<img src="./images/me.png" style="width:150px;">
+				<div>
+				    <h4>안녕하세요. 저는 3년차 소프트웨어 개발자 이진혁 입니다.</h4>
+				    개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br> 
+				    웹페이지, 윈도우 프로그램, 안드로이드 앱, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
+				    개발 시 재활용성, 확장성이 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>                               
+				    <br>
+				    <br>
 				</div>
-                                <dl class="detail">
-                                    <dt>동도금 두께 측정기(iTG-B10) 앱 개발</dt>
-                                    <dd>블루투스 통신을 활용한 안드로이드 네이티브 앱</dd>
-				    <dd>디자인 포함 100% 직접 개발</dd>
-				    
-				    <dt>동도금 두께 측정 자동화 장비(iTG-C10) 시연용 프로그램 개발</dt>
-                                    <dd>RS-485 시리얼 통신, Windows Forms를 활용한 C# 프로그램</dd>
-				    <dd>디자인 포함 100% 직접 개발</dd>
-                                </dl>
-                            </li>
-                            <li>
-                                <div class="thumbnail tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
-                                <div class="info">
-				    JSP / PHP / MySQL / Front-end / SVN<br>
-				    2012.08 - 2013.10
-				</div>
-                                <dl class="detail">
-                                    <dt>교리 문헌 관리 체계 개발</dt>
-				    <dd>육해공군 교범을 통합 관리하는 JSP 기반 인트라넷 웹 시스템</dd>
-                                    <dd>전체 개발 및 디자인에 70% 이상 참여</dd>
-                                    <dd>최고 선임으로서 팀원들에게 업무 분배 및 기술 조언</dd>
-                                </dl>
-                            </li>
-                    </div>
-                    <div class="twin">
-                        <h2><span>Skills</span><span class="underbar"></span></h2>     
-                        <ul class="skills scrollable">
-                            <li>
-                                <h3>Android</h3>
-                                <div class="chart_container">
-                                    <canvas id="android_chart"></canvas>
-                                </div>
-                                <img class="touch" src="./images/hand.png" alt="hand" >
-                                <ul class="detail">
-				    <li>Activity, Service, Broadcast Receiver에 대한 이해</li>
-                                    <li>네이티브 앱, 하이브리드 앱 100% 개발</li>
-				    <li>라이브러리 분석 및 수정</li>
-				    <li>SDK 개발</li>
-				    <li>GCM, Social Login 등 SDK, API 연동 경험</li>
-				    <li>접근성</li>
-				    <li>WebView, Javascript Interface</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>Java</h3>
-                                <div class="chart_container">
-                                    <canvas id="java_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-				    <li>Class, Interface, Abstract, Static에 대한 이해</li>
-				    <li>추상화, 캡슐화, 상속성, 다형성에 대한 이해</li>
-                                    <li>Lambda</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>Kotlin</h3>
-                                <div class="chart_container">
-                                    <canvas id="kotlin_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-				    <li>Companion Object</li>
-				    <li>Nullable, NonNull 처리</li>
-				    <li>let, it 활용</li>
-				    <li>상속</li>
-                                    <li>Lambda</li>
-                                    <li>Studying...</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>PHP</h3>
-                                <div class="chart_container">
-                                    <canvas id="php_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-                                    <li>라이브러리 분석 경험</li>
-                                    <li>cURL</li>
-                                    <li>JSON Parsing</li>
-				    <li>Crawling</li>
-				    <li>파일 다운로드, 업로드 구현</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>MySQL</h3>
-                                <div class="chart_container">
-                                    <canvas id="mysql_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-                                    <li>DB 설계</li>
-                                    <li>100만개 이상의 데이터 처리, 조회 쿼리</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>Javascript</h3>
-                                <div class="chart_container">
-                                    <canvas id="js_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-                                    <li>jQuery</li>
-                                    <li>Ajax</li>
-				    <li>Animation</li>
-                                    <li>라이브러리 분석 및 수정</li>
-                                    <li>간단한 플러그인 개발</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>CSS</h3>
-                                <div class="chart_container">
-                                    <canvas id="css_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-                                    <li>Animation</li>
-				    <li>Selector</li>
-                                    <li>Display, Position에 대한 이해</li>
-				    <li>반응형 레이아웃</li>
-                                    <li>간단한 페이지 Publishing 경험</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>C#</h3>
-                                <div class="chart_container">
-                                    <canvas id="c_sharp_chart"></canvas>
-                                </div>
-                                <ul class="detail">
-				    <li>WinForms</li>
-                                    <li>시연용 프로그램 개발 경험</li>
-                                </ul>
-                            </li>
+			    </div>
+			</div>
+		    </div>
+		</li>
+		<!--@work_experiences-->
+		<style>
+		    .work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
+		    .work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
+		    .work_experiences .thumbnail {display:inline-block;width:250px;height:90px;background-size:100%;}
+		    .work_experiences .info {font-size:1.15em;padding:10px 0px;}
+		    .work_experiences dt {font-size:1.1em;margin-top:15px;}
+		    .work_experiences dt:first-child {margin-top:0px}
+		    .work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
+		</style>
+		<li>
+		    <div>
+			<div class="twin">
+			    <h2><span>Work experiences</span><span class="underbar"></span></h2>
+			    <ol class="work_experiences scrollable" >
+				<li>
+				    <div class="thumbnail monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
+				    <div class="info">
+					Android / PHP / MySQL / Front-end / Git<br>
+					2015.07 - 2019.02
+				    </div>
+				    <dl class="detail">
+					<dt>안드로이드 네이티브, 하이브리드 앱 개발</dt>
+					<dd>디자인을 제외한 앱, xml, DB, 서버, Javascript 등 직접 구성 및 개발</dd>
 
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <h2><span>My Works</span><span class="underbar"></span></h2>     
-                    <ul class="grid_filter">
-                        <li class="on keep" data-filter="*">ALL<div class="underbar"></div></li
-                        ><li class="divider"></li
-                        ><li data-filter=".app">APP<div class="underbar"></div></li
-                        ><li class="divider"></li
-                        ><li data-filter=".web">WEB<div class="underbar"></div></li>
-                    </ul>
+					<dt>PHP 웹페이지 개발</dt>
+					<dd>이벤트 페이지, 광고주 페이지, 관리자 페이지 등</dd>
+					<dd>DB, 서버, Javascript 등 직접 구성 및 개발</dd>
 
-                    <div class="my_works scrollable">
-                        <ul class="grid">
-                            <li class="app">
-                                <div class="thumbnail mobi" data-name="mobi">
-                                    <p><span>MOBI</span></p>
-                                </div>
-                            </li>
+					<dt>라이브러리, SDK, API 개발</dt>
+					<dt>업체와 협업하여 SDK, API 연동 경험</dt>
+					<dt>트래킹 기능, 포스트백 서버 구현 경험</dt>
+					<dt>Git, SVN 도입</dt>
+				    </dl>
+				</li>
+				<li>
+				    <div class="thumbnail isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
+				    <div class="info">
+					Android / C#<br>
+					2014.06 - 2015.06
+				    </div>
+				    <dl class="detail">
+					<dt>동도금 두께 측정기(iTG-B10) 앱 개발</dt>
+					<dd>블루투스 통신을 활용한 안드로이드 네이티브 앱</dd>
+					<dd>디자인 포함 100% 직접 개발</dd>
 
-                            <li class="web">
-                                <div class="thumbnail event" data-name="event">
-                                    <p><span>모바일 이벤트 페이지</span></p>
-                                </div>
-                            </li>
+					<dt>동도금 두께 측정 자동화 장비(iTG-C10) 시연용 프로그램 개발</dt>
+					<dd>RS-485 시리얼 통신, Windows Forms를 활용한 C# 프로그램</dd>
+					<dd>디자인 포함 100% 직접 개발</dd>
+				    </dl>
+				</li>
+				<li>
+				    <div class="thumbnail tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
+				    <div class="info">
+					JSP / PHP / MySQL / Front-end / SVN<br>
+					2012.08 - 2013.10
+				    </div>
+				    <dl class="detail">
+					<dt>교리 문헌 관리 체계 개발</dt>
+					<dd>육해공군 교범을 통합 관리하는 JSP 기반 인트라넷 웹 시스템</dd>
+					<dd>전체 개발 및 디자인에 70% 이상 참여</dd>
+					<dd>최고 선임으로서 팀원들에게 업무 분배 및 기술 조언</dd>
+				    </dl>
+				</li>
+			</div>
+			<div class="twin">
+			    <h2><span>Skills</span><span class="underbar"></span></h2>     
+			    <ul class="skills scrollable">
+				<li>
+				    <h3>Android</h3>
+				    <div class="chart_container">
+					<canvas id="android_chart"></canvas>
+				    </div>
+				    <img class="touch" src="./images/hand.png" alt="hand" >
+				    <ul class="detail">
+					<li>Activity, Service, Broadcast Receiver에 대한 이해</li>
+					<li>네이티브 앱, 하이브리드 앱 100% 개발</li>
+					<li>라이브러리 분석 및 수정</li>
+					<li>SDK 개발</li>
+					<li>GCM, Social Login 등 SDK, API 연동 경험</li>
+					<li>접근성</li>
+					<li>WebView, Javascript Interface</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>Java</h3>
+				    <div class="chart_container">
+					<canvas id="java_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>Class, Interface, Abstract, Static에 대한 이해</li>
+					<li>추상화, 캡슐화, 상속성, 다형성에 대한 이해</li>
+					<li>Lambda</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>Kotlin</h3>
+				    <div class="chart_container">
+					<canvas id="kotlin_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>Companion Object</li>
+					<li>Nullable, NonNull 처리</li>
+					<li>let, it 활용</li>
+					<li>상속</li>
+					<li>Lambda</li>
+					<li>Studying...</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>PHP</h3>
+				    <div class="chart_container">
+					<canvas id="php_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>라이브러리 분석 경험</li>
+					<li>cURL</li>
+					<li>JSON Parsing</li>
+					<li>Crawling</li>
+					<li>파일 다운로드, 업로드 구현</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>MySQL</h3>
+				    <div class="chart_container">
+					<canvas id="mysql_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>DB 설계</li>
+					<li>100만개 이상의 데이터 처리, 조회 쿼리</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>Javascript</h3>
+				    <div class="chart_container">
+					<canvas id="js_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>jQuery</li>
+					<li>Ajax</li>
+					<li>Animation</li>
+					<li>라이브러리 분석 및 수정</li>
+					<li>간단한 플러그인 개발</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>CSS</h3>
+				    <div class="chart_container">
+					<canvas id="css_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>Animation</li>
+					<li>Selector</li>
+					<li>Display, Position에 대한 이해</li>
+					<li>반응형 레이아웃</li>
+					<li>간단한 페이지 Publishing 경험</li>
+				    </ul>
+				</li>
+				<li>
+				    <h3>C#</h3>
+				    <div class="chart_container">
+					<canvas id="c_sharp_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+					<li>WinForms</li>
+					<li>시연용 프로그램 개발 경험</li>
+				    </ul>
+				</li>
 
-                            <li class="app">
-                                <div class="thumbnail looting" data-name="looting">
-                                    <p>루팅</p>
-                                </div>
-                            </li>
+			    </ul>
+			</div>
+		    </div>
+		</li>
+		<li>
+		    <div>
+			<h2><span>My Works</span><span class="underbar"></span></h2>     
+			<ul class="grid_filter">
+			    <li class="on keep" data-filter="*">ALL<div class="underbar"></div></li
+			    ><li class="divider"></li
+			    ><li data-filter=".app">APP<div class="underbar"></div></li
+			    ><li class="divider"></li
+			    ><li data-filter=".web">WEB<div class="underbar"></div></li>
+			</ul>
 
-                            <li class="app"> 
-                                <div class="thumbnail zzi" data-name="zzi">
-                                    <p>게임을 낚다 - ZZI</p>
-                                </div>
-                            </li>
+			<div class="my_works scrollable">
+			    <ul class="grid">
+				<li class="app">
+				    <div class="thumbnail mobi" data-name="mobi">
+					<p><span>MOBI</span></p>
+				    </div>
+				</li>
 
-                            <li class="app">
-                                <div class="thumbnail hungryapp_sdk" data-name="hungryapp_sdk">
-                                    <p><span>헝그리앱 SDK</span></p>
-                                </div>
-                            </li>
+				<li class="web">
+				    <div class="thumbnail event" data-name="event">
+					<p><span>모바일 이벤트 페이지</span></p>
+				    </div>
+				</li>
 
-                            <li class="app web">
-                                <div class="thumbnail adbox" data-name="adbox">
-                                    <p>애드박스</p>
-                                </div>
-                            </li>
+				<li class="app">
+				    <div class="thumbnail looting" data-name="looting">
+					<p>루팅</p>
+				    </div>
+				</li>
 
-                            <li class="web">
-                                <div class="thumbnail admin" data-name="admin">
-                                    <p>관리자 페이지</p>
-                                </div>
-                            </li>
+				<li class="app"> 
+				    <div class="thumbnail zzi" data-name="zzi">
+					<p>게임을 낚다 - ZZI</p>
+				    </div>
+				</li>
 
-                            <li class="web">
-                                <div class="thumbnail adbox_advertiser" data-name="adbox_advertiser">
-                                    <p><span>애드박스 광고주 페이지</span></p>
-                                </div>
-                            </li>
+				<li class="app">
+				    <div class="thumbnail hungryapp_sdk" data-name="hungryapp_sdk">
+					<p><span>헝그리앱 SDK</span></p>
+				    </div>
+				</li>
 
-                            <li class="web">
-                                <div class="thumbnail mobi_advertiser" data-name="mobi_advertiser">
-                                    <p>모비/루팅/찌 광고주 페이지</p>
-                                </div>
-                            </li>
+				<li class="app web">
+				    <div class="thumbnail adbox" data-name="adbox">
+					<p>애드박스</p>
+				    </div>
+				</li>
 
-                            <li class="app web">
-                                <div class="thumbnail albag" data-name="albag">
-                                    <p><span>알바G</span></p>
-                                </div>
-                            </li>
+				<li class="web">
+				    <div class="thumbnail admin" data-name="admin">
+					<p>관리자 페이지</p>
+				    </div>
+				</li>
 
-                        </ul>
-                    </div>
-                </div>
-            </li>
+				<li class="web">
+				    <div class="thumbnail adbox_advertiser" data-name="adbox_advertiser">
+					<p><span>애드박스 광고주 페이지</span></p>
+				    </div>
+				</li>
 
-            <li>
-                <div>
-                    <div class="center">
-                        <h2><span>Epilogue</span><span class="underbar"></span></h2>     
-                        <div>
-                            안녕하세요~~~~<br> 
-                            태보는 지금 전세계적으로 선풍적인 인기를 끌고 있는데요!<br>
-                            태보란 우리나라의 태권도와 복싱을 접목한 운동입니다!<br>
-                            2달 동안 태보를 했더니 조혜련이 이렇게 완벽한 몸매가 됐습니다 와!<br>
-                            태보를 하루에 25분만 투자한다면 런닝머신 한시간!<br>
-                            여러분도 하루에 25분만! 태보의 세계로 들어가봅시다!<br>
-                            @==(^0^)@ @(^0^)==@
-                        </div>
-                        <ul>
-                            <li><a href="mailto:ljh7795@gmail.com"><img src="./images/mail.png?ver=1" style="height:30px;" alt="email"> ljh7795@gmail.com</a></li>
-                            <li onclick="copyText('#phone', '전화번호가')"><img src="./images/phone.png?ver=1" style="height:30px;" alt="phone"> 
-				010-3013-7795
-				<input type="text" id="phone" class="gone" value="01030137795">
-			    </li>
-                            <li onclick="window.open('https://www.google.com/maps/place/%EC%A0%84%EB%9D%BC%EB%B6%81%EB%8F%84+%EC%A0%84%EC%A3%BC%EC%8B%9C+%EC%99%84%EC%82%B0%EA%B5%AC/@35.7882141,127.096406,13z/data=!3m1!4b1!4m5!3m4!1s0x357024d4493b4d8f:0xb43db9b6163aa009!8m2!3d35.812111!4d127.1199201')"><img src="./images/location.png?ver=1" style="height:30px;" alt="location"> 전라북도 전주시 완산구</li>
-                            <li onclick="window.open('https://github.com/man-ramen-black/')"><img src="./images/github.png?ver=1" style="height:30px;" alt="github"> https://github.com/man-ramen-black/</li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        </ol>
+				<li class="web">
+				    <div class="thumbnail mobi_advertiser" data-name="mobi_advertiser">
+					<p>모비/루팅/찌 광고주 페이지</p>
+				    </div>
+				</li>
 
-        <div id="my_works_popup" class="popup scrollable"></div>
+				<li class="app web">
+				    <div class="thumbnail albag" data-name="albag">
+					<p><span>알바G</span></p>
+				    </div>
+				</li>
+
+			    </ul>
+			</div>
+		    </div>
+		</li>
+
+		<li>
+		    <div>
+			<div class="center">
+			    <h2><span>Epilogue</span><span class="underbar"></span></h2>     
+			    <div>
+				안녕하세요~~~~<br> 
+				태보는 지금 전세계적으로 선풍적인 인기를 끌고 있는데요!<br>
+				태보란 우리나라의 태권도와 복싱을 접목한 운동입니다!<br>
+				2달 동안 태보를 했더니 조혜련이 이렇게 완벽한 몸매가 됐습니다 와!<br>
+				태보를 하루에 25분만 투자한다면 런닝머신 한시간!<br>
+				여러분도 하루에 25분만! 태보의 세계로 들어가봅시다!<br>
+				@==(^0^)@ @(^0^)==@
+			    </div>
+			    <ul>
+				<li><a href="mailto:ljh7795@gmail.com"><img src="./images/mail.png?ver=1" style="height:30px;" alt="email"> ljh7795@gmail.com</a></li>
+				<li onclick="copyText('#phone', '전화번호가')"><img src="./images/phone.png?ver=1" style="height:30px;" alt="phone"> 
+				    010-3013-7795
+				    <input type="text" id="phone" class="gone" value="01030137795">
+				</li>
+				<li onclick="window.open('https://www.google.com/maps/place/%EC%A0%84%EB%9D%BC%EB%B6%81%EB%8F%84+%EC%A0%84%EC%A3%BC%EC%8B%9C+%EC%99%84%EC%82%B0%EA%B5%AC/@35.7882141,127.096406,13z/data=!3m1!4b1!4m5!3m4!1s0x357024d4493b4d8f:0xb43db9b6163aa009!8m2!3d35.812111!4d127.1199201')"><img src="./images/location.png?ver=1" style="height:30px;" alt="location"> 전라북도 전주시 완산구</li>
+				<li onclick="window.open('https://github.com/man-ramen-black/')"><img src="./images/github.png?ver=1" style="height:30px;" alt="github"> https://github.com/man-ramen-black/</li>
+			    </ul>
+			</div>
+		    </div>
+		</li>
+	    </ol>
+
+	    <div id="my_works_popup" class="popup scrollable"></div>
+			</div>
     </body>
 </html>
