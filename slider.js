@@ -15,6 +15,7 @@
         var onLeaveData = {};
         var touchStartEvent = null;
         var touchSlideEnabled = null;
+	var debugMode = false;
 
         var option = $.extend({}, {
             indicator: false,
@@ -23,6 +24,10 @@
             //종료 콜백 추가
             onLeaveEnd: null,
         }, data);
+	
+	function log(obj){
+	    if(debugMode) console.log(obj);
+	}
 
         //removeListener를 위한 addListener 추가
         function addListener(name, listener, dom) {
@@ -39,15 +44,21 @@
 	    
 	    for(var i = 0 ; i < event.path.length ;i++){
 		dom = event.path[i];
+		
 		//slider__ 는 스크롤이 가능하지만 상관없이 slide가능, 
 		if((dom.className && dom.className.indexOf("slider__") !== -1)){
+		    log("slider__");
 		    continue;
 		} 
 		
 		//1개라도 슬라이드 이동 불가능한 상태인 경우
 		if(!isEnabled){
+		    log("!isEnabled");
 		    break;
 		}
+		
+		log(dom);
+		log(dom.scrollHeight + " : " +  dom.clientHeight);
 		
 		//dom이 스크롤이 가능한 상태
                 if(dom.scrollHeight > dom.clientHeight+10){
@@ -66,6 +77,8 @@
                     }
                 }
 	    }
+	    
+	    log("isSlideEnabled : " + isEnabled);
 	    
             if(direction){
                 return (isEnabled == "all" || isEnabled == direction)?true:false;
@@ -323,6 +336,10 @@
 
             this.listeners = {};
         }
+	
+	this.debug = function (isDebug){
+	   debugMode = isDebug; 
+	}
 
         return this;
     };
