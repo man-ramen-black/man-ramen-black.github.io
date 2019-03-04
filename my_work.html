@@ -20,10 +20,11 @@
     }
     
     $("#my_works_popup").on('resize scroll', function(){
+	console.log("scroll : " + this.scrollTop);
 	if(this.scrollTop > 0){
-	    $(".top").fadeIn();
+	    $(".top_btn").fadeIn();
 	}else{
-	    $(".top").fadeOut();
+	    $(".top_btn").fadeOut();
 	}
 	
         $("video").each(function(i, video){
@@ -691,5 +692,5 @@
         </div>
     </div>
     
-    <div class="top_btn" onclick="scrollToTop()"></div>
+    <div class="top_btn" onclick="scrollToTop()"><p></p></div>
 </div>
