@@ -1,4 +1,489 @@
 <script>
+    var MY_WORKS = {
+        /************
+         * MOBI
+         ************/
+        "mobi" : {
+            "name" : "MOBI",
+            "skills" : ["Android", "PHP", "MySQL"],
+            "links" : [
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.mobi"},
+            ],
+            "preview" : [
+                {"type" : "video", "src" : "./images/mobi/mobi.mp4", "poster" : "./images/mobi/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/login.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/main.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/bbs.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/regular.jpg"},
+                {"type" : "mobile", "src" : "./images/mobi/setting.jpg"},
+            ],
+            "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
+                     "전 개발자 최초 개발 후 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "잠금화면",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/mobi/mobi_lock.mp4", "poster" : "./images/mobi/lock.jpg"}    
+                     ],
+                     "description" : "포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.<br>"+
+                                    "SQLite, Cache를 활용하여 로딩 속도를 최적화 및 네트워크 미연결 상태에도 대응하였습니다.<br>"+
+                                    "잠금화면의 View, 동작을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다."
+                 },
+                 {
+                     "name" : "스페셜 쿠폰",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
+                         {"type" : "mobile", "src" : "./images/mobi/sp_detail.jpg?ver=2"},
+                     ],
+                     "description" : "특정 미션을 완료 시 쿠폰을 발급받을 수 있는 스페셜 쿠폰 기능입니다."
+                 },
+                 {
+                     "name" : "팝업 푸시",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/mobi/popup_push.jpg"},
+                         {"type" : "mobile", "src" : "./images/mobi/point_push.jpg"},
+                     ],
+                     "description" : "사전 예약 참여 유도 및 게임 출시 안내, 보너스 포인트 지급을 위한 팝업 푸시 기능입니다."
+                 },
+                 
+             ],
+        },
+        
+        /************
+         * 루팅
+         ************/
+        "looting" : {
+            "name" : "루팅",
+            "skills" : ["Android", "PHP", "MySQL"],
+            "links" : [
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
+            ],
+            "preview" : [
+                {"type" : "video", "src" : "./images/looting/looting.mp4", "poster":"./images/looting/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/login.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/main.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/game_detail.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/plus.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/plus_detail.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/shop.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/my_coup.jpg"},
+                {"type" : "mobile", "src" : "./images/looting/menu.jpg"},
+            ],
+            "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
+                            "레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "플러스 쿠폰",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src":"./images/looting/plus.mp4", "poster" : "./images/looting/plus.jpg"},
+                         {"type" : "mobile", "src" : "./images/looting/plus_detail.jpg?ver=1"},
+                     ],
+                     "description" : "게임을 일정 시간 플레이하면 쿠폰을 발급해주는 플러스 쿠폰 기능입니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "설치 푸시",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/looting/install_push.mp4", "poster" : "./images/looting/intro.jpg"},
+                         {"type" : "mobile", "src" : "./images/looting/install_push.jpg"},
+                     ],
+                     "description" : "사전 예약을 참여한 게임을 설치할 경우 쿠폰을 즉시 복사할 수 있는 Notification을 노출하는 기능입니다."
+                 },
+             ],
+        },
+        
+        /************
+         * ZZI
+         ************/
+        "zzi" : {
+            "name" : "게임을 낚다 - ZZI",
+            "skills" : ["Android", "PHP", "MySQL"],
+            "links" : [
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.zzi"},
+            ],
+            "preview" : [
+                {"type" : "video", "src" : "./images/zzi/zzi.mp4", "poster":"./images/zzi/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/login.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/main.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/game.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/news.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/reserve.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/reserve_detail.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/bbs.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/cashbook.jpg"},
+                {"type" : "mobile", "src" : "./images/zzi/cashbook_coupon.jpg"},
+            ],
+            "description" : "게임 추천과 게임 가계부 서비스를 제공하는 네이티브 앱입니다.<br>"+
+                            "전 개발자 최초 개발 후 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "게임 가계부",
+                     "links" : [
+                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
+                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
+                     ],
+                     "preview" : [
+                         {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
+                         {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
+                     ],
+                     "description" : "구글 결제 내역을 정리하여 보여주는 게임 가계부 기능입니다.<br>"+
+                                    "구글 결제 내역 페이지를 크롤링 후 데이터로 파싱하여 회원에게 정보를 노출합니다."
+                 },
+                 {
+                     "name" : "내 게임",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/zzi/my_game.jpg"},
+                     ],
+                     "description" : "현재 설치되어 있는 게임들의 쿠폰을 받을 수 있는 각 서비스로 이동시켜주는 기능입니다.<br>"+
+                                    "웹페이지로 구성되어 있습니다."
+                 },
+             ],
+        },
+        
+        
+        /************
+         * ADBox
+         ************/
+        "adbox" : {
+            "name" : "ADBox",
+            "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
+            "links" : [
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.adbox"},
+                {"name" : "Web", "url" : "http://www.adbox.co.kr/"},
+            ],
+            "preview" : [
+                {"type" : "mobile", "src" : "./images/adbox/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/main.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/play.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/campaign.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/detail.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/report.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/shop.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/bbs.jpg"},
+                {"type" : "mobile", "src" : "./images/adbox/menu.jpg?ver=1"},
+            ],
+            "description" : "NCPI 방식의 인플루언서 마케팅 서비스입니다.<br>"+
+                            "하이브리드 앱, PC, Mobile 웹 서비스를 지원하고 있습니다.<br>"+
+                            "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "클릭 URL / 광고 트래킹 / 포스트백",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src":"./images/adbox/install_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
+                         {"type" : "video", "src":"./images/adbox/res_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
+                     ],
+                     "description" : "NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.<br>"+
+                                    "만들라고 시키는 사람 조차 NCPI에 대한 정확한 지식, 방식도 모르는 상태에서 무작정 만들라고 요청이 와서 직접 일일이 알아보고 찾아가며 개발을 했습니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "게임 팝업",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src":"./images/adbox/popup.mp4", "poster" : "./images/adbox/popup.jpg?ver=1"},
+                         {"type" : "mobile", "src":"./images/adbox/popup.jpg"},
+                     ],
+                     "description" : "게임 종료를 감지하여 광고 팝업을 노출하고 광고에 참여한 회원에게 포인트를 지급하는 게임 팝업 기능입니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "앱 자동 설치",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src":"./images/adbox/auto_install.jpg"},
+                     ],
+                     "description" : "백그라운드에서 앱을 자동으로 설치하고 회원에게 포인트를 지급하는 기능입니다.<br>"+
+                                    "Service, WebView, JavaScript 등을 사용하여 기능을 구현하였습니다. "
+                 },
+                         
+                         
+             ],
+        },
+        
+        
+        /************
+         * 알바G
+         ************/
+        "albag" : {
+            "name" : "알바G",
+            "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
+            "links" : [
+                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
+            ],
+            "preview" : [
+                {"type" : "mobile", "src" : "./images/albag/intro.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/main.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/campaign.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/detail.jpg?ver=1"},
+                {"type" : "mobile", "src" : "./images/albag/withdraw.jpg"},
+                {"type" : "mobile", "src" : "./images/albag/menu.jpg?ver=1"},
+            ],
+            "description" : "게임 관련 미션 완료시 회원에게 포인트를 지급하는 하이브리드 앱입니다.<br>"+
+                            "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.<br>"+
+                            "모나와 재직 당시 가장 마지막으로 개발한 서비스입니다.",
+            "dev" : [
+                {
+                     "name" : "미션 기능",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/albag/detail.jpg"},
+                     ],
+                     "description" : "알바G의 핵심인 카페 가입, 블로그 작성, 게임 실행, 설치 유지 등의 미션을 구현하였습니다.<br>"+
+                                     "카페 가입, 블로그 작성 미션은 네이버 API를 활용하여 구현하였습니다.<br>"+
+                                     "게임 실행, 레벨 달성 등의 미션은 설치, 이벤트 포스트백을 활용하여 구현하였습니다.<br>"+
+                                     "설치 유지 미션은 헝그리앱 SDK의 설치, 삭제 감지 기능을 활용하여 구현하였습니다."
+                                     
+                },
+            ]
+        },
+        
+        /************
+         * Event
+         ************/
+        "event" : {
+            "name" : "모나와 이벤트 페이지",
+            "skills" : ["JavaScript", "CSS", "PHP", "MySQL"],
+            "links" : [],
+            "preview" : [
+                {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
+                {"type" : "video", "src" : "./images/event/scratch.mp4", "poster" : "./images/event/scratch.jpg"},
+                {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
+                {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
+                {"type" : "video", "src" : "./images/event/spin.mp4", "poster" : "./images/event/spin.jpg"},
+                {"type" : "video", "src" : "./images/event/typing.mp4", "poster" : "./images/event/typing.jpg"},
+            ],
+            "description" : "모나와의 앱 서비스에서 진행됐었던 이벤트 웹페이지들입니다.<br>"+
+                            "DB 구성, 서버, JavaScript 등을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "애니메이션",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
+                         {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
+                     ],
+                     "description" : "jQuery Animation, CSS Animation 등을 활용하여 애니메이션을 구현하였습니다.<br>"+
+                                    "애니메이션의 속성들을 변수로 통제할 수 있도록 고려하여 개발하였습니다."
+                 },
+                 {
+                     "name" : "게임 플레이",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
+                     ],
+                     "description" : "JavaScript Interface, 접근성을 활용하여, 게임 플레이 시간 감지 기능을 구현하였습니다."
+                 },
+                 {
+                     "name" : "당첨 확률",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/event/spin.mp4", "poster":"./images/event/spin.jpg"},
+                     ],
+                     "description" : "관리자가 설정한 확률에 따라 이벤트 상품이 당첨되게 구현하였습니다.<br>"+
+                                     "확률은 관리자들이 통계를 확인하며, 유동적으로 설정할 수 있습니다."
+                 },
+             ],
+        },
+        
+        /************
+         * 관리자 페이지
+         ************/
+        "admin" : {
+            "name" : "모나와 관리자 페이지",
+            "skills" : ["PHP", "MySQL", "JavaScript"],
+            "links" : [],
+            "preview" : [
+                {"type" : "pc", "src" : "./images/admin/adbox_admin.png"},
+                {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_admin.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_roulette_admin.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_roulette_log.png"},
+                {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
+                {"type" : "pc", "src" : "./images/admin/push2.png"},
+                
+            ],
+            "description" : "모나와의 각 서비스를 관리하기 위한 관리자 페이지입니다.<br>"+
+                            "애드박스, 알바G의 모든 관리자 페이지를 100% 직접 개발하였고, 그 외 서비스들의 푸시 발송 페이지, 이벤트 관리 페이지 등을 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "푸시 발송 페이지",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/admin/push2.png"},
+                     ],
+                     "description" : "푸시 발송을 위한 관리자 페이지입니다.<br>"+
+                                    "제목과 내용 input에는 관리자들이 html 태그를 손쉽게 적용할 수 있도록 에디터 라이브러리를 적용하였습니다.<br>"+
+                                    "푸시 발송 시 Timeout 방지 및 전송 속도 향상을 위해 Ajax를 통한 분할 전송이 적용되어 있습니다.<br>"+
+                                    "옵션에 따라 다양한 타겟팅으로 푸시를 전송할 수 있으며, 테스트 전송 기능으로 실제 전송 전에 푸시 테스트가 가능합니다."
+                 },
+                 {
+                     "name" : "쿠폰 등록 기능",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/admin/coup_manager.png?ver=1"},
+                     ],
+                     "description" : "게임 쿠폰 관련 서비스의 쿠폰 등록을 위한 관리자 페이지입니다.<br>"+
+                                    "jQuery File Upload 플러그인과 PHPExcel 라이브러리를 활용하여 관리자가 csv, xls, xlsx 파일 등록으로 간편하게 DB에 쿠폰을 insert 또는 update 할 수 있도록 개발하였습니다.<br>"
+                 },
+                 {
+                     "name" : "이벤트 확률 설정 기능",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
+                     ],
+                     "description" : "이벤트 확률 설정을 위한 관리자 페이지입니다.<br>"+
+                                    ""
+                 },
+                 {
+                     "name" : "애드박스 정산 페이지",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
+                     ],
+                     "description" : "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+                                    ""
+                 },
+             ],
+        },
+        
+        /************
+         * 모비 루팅 찌 광고주 페이지
+         ************/
+        "mobi_advertiser" : {
+            "name" : "모비/루팅/찌 광고주 페이지",
+            "skills" : ["PHP", "MySQL", "JavaScript"],
+            "links" : [
+                {"name" : "Web", "url" : "http://www.mobi.co.kr/admin"},
+            ],
+            "preview" : [
+                {"type" : "pc", "src" : "./images/mobi_advertiser/login.png"},
+                {"type" : "pc", "src" : "./images/mobi_advertiser/main.png"},
+                {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
+            ],
+            "description" : "모비/루팅/찌 광고주에게 제공되는 광고주 페이지입니다.<br>"+
+                            "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "광고 현황 상세 페이지",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
+                     ],
+                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 상세 페이지입니다.<br>"+
+                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
+                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
+                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
+                 },
+             ],
+        },
+        
+        /************
+         * 애드박스 광고주 페이지
+         ************/
+        "adbox_advertiser" : {
+            "name" : "애드박스 광고주 페이지",
+            "skills" : ["PHP", "MySQL", "JavaScript"],
+            "links" : [
+                {"name" : "Web", "url" : "http://www.adbox.co.kr/advertiser/"},
+            ],
+            "preview" : [
+                {"type" : "pc", "src" : "./images/adbox_advertiser/login.png"},
+                {"type" : "pc", "src" : "./images/adbox_advertiser/dashboard.png"},
+                {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
+            ],
+            "description" : "애드박스 광고주에게 제공되는 광고주 페이지입니다.<br>"+
+                            "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "광고 현황 상세 페이지",
+                     "links" : [
+                         {},
+                     ],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
+                     ],
+                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 현황 상세 페이지입니다.<br>"+
+                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
+                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
+                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
+                 },
+             ],
+        },
+        
+        
+        /************
+         * 헝그리앱SDK
+         ************/
+        "hungryapp_sdk" : {
+            "name" : "헝그리앱 SDK",
+            "skills" : ["Android", "Java", "Kotlin"],
+            "links" : [],
+            "preview" : [
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/intro_dialog.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/permission.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/splash_activity.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/close_dialog.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/play.jpg"},
+                {"type" : "mobile", "src" : "./images/hungryapp_sdk/install.jpg"},
+                
+            ],
+            "description" : "모나와의 앱 서비스에 공통적으로 적용되었던 헝그리앱 SDK입니다.<br>"+
+                            "공통되는 기능들의 재활용, 확장을 위해 개발되었습니다.<br>"+
+                            "모든 기능을 100% 직접 개발하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "ResponseHelper",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
+                     ],
+                     "description" : "HTTP 통신으로 획득한 Bundle의 데이터에 따라 Toast, Dialog, Notification 등을 노출하는 Class입니다.<br>"+
+                                     "데이터, 상황에 따라 유동적으로 대응할 수 있도록 개발하였습니다."
+                 },
+                 {
+                     "name" : "GCMManager",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
+                     ],
+                     "description" : "GCM 기능을 위한 Class입니다.<br>"+
+                                    "데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다.<br>"+
+                                    "알림 예약, 이미지, HTML 태그, 아이콘, Action 등을 지원합니다."
+                 },
+                 {
+                     "name" : "SocialLoginManager",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/login1.jpg"},
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
+                     ],
+                     "description" : "구글, 페이스북, 네이버, 카카오 로그인을 간단하게 연동해주는 Class입니다.<br>"+
+                                     "네이티브, 하이브리드에 맞게 "
+                 },
+                 {
+                     "name" : "HaWebView",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
+                     ],
+                     "description" : "웹뷰입니다.<br>"+
+                                     ""
+                 },
+             ],
+        },
+    };
     
     function scrollToTop(){
 	$('#my_works_popup').animate({
@@ -39,559 +524,6 @@
             }
         });
     }); 
-
-    var MY_WORKS = {
-        /************
-         * MOBI
-         ************/
-        "mobi" : {
-            "name" : "MOBI",
-            "skills" : ["Android", "PHP", "MySQL"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/mobi"},
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.mobi"},
-            ],
-            "preview" : [
-                {"type" : "video", "src" : "./images/mobi/mobi.mp4", "poster" : "./images/mobi/intro.jpg"},
-                {"type" : "mobile", "src" : "./images/mobi/login.jpg"},
-                {"type" : "mobile", "src" : "./images/mobi/main.jpg"},
-                {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
-                {"type" : "mobile", "src" : "./images/mobi/bbs.jpg"},
-                {"type" : "mobile", "src" : "./images/mobi/regular.jpg"},
-                {"type" : "mobile", "src" : "./images/mobi/setting.jpg"},
-            ],
-            "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
-                     "전 개발자 최초 개발 후 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "잠금화면",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/LockScreenActivity.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/mobi_cash.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src" : "./images/mobi/mobi_lock.mp4", "poster" : "./images/mobi/lock.jpg"}    
-                     ],
-                     "description" : "포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.<br>"+
-                                    "SQLite, Cache를 활용하여 로딩 속도를 최적화 및 네트워크 미연결 상태에도 대응하였습니다.<br>"+
-                                    "잠금화면의 View, 동작을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다."
-                 },
-                 {
-                     "name" : "스페셜 쿠폰",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/SpecialDetailActivity.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/mobi_srv.php#L4460"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
-                         {"type" : "mobile", "src" : "./images/mobi/sp_detail.jpg?ver=2"},
-                     ],
-                     "description" : "특정 미션을 완료 시 쿠폰을 발급받을 수 있는 스페셜 쿠폰 기능입니다."
-                 },
-                 {
-                     "name" : "팝업 푸시",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/activity/PopupPushActivity.java"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/mobi/popup_push.jpg"},
-                         {"type" : "mobile", "src" : "./images/mobi/point_push.jpg"},
-                     ],
-                     "description" : "사전 예약 참여 유도 및 게임 출시 안내, 보너스 포인트 지급을 위한 팝업 푸시 기능입니다."
-                 },
-                 
-             ],
-        },
-        
-        /************
-         * 루팅
-         ************/
-        "looting" : {
-            "name" : "루팅",
-            "skills" : ["Android", "PHP", "MySQL"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/looting"},
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
-            ],
-            "preview" : [
-                {"type" : "video", "src" : "./images/looting/looting.mp4", "poster":"./images/looting/intro.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/login.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/main.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/game_detail.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/plus.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/plus_detail.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/shop.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/my_coup.jpg"},
-                {"type" : "mobile", "src" : "./images/looting/menu.jpg"},
-            ],
-            "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
-                            "레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "플러스 쿠폰",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/looting/src/main/java/com/ha/looting/activity/PlusCouponDetailActivity.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/looting/looting_srv.php#L2456"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src":"./images/looting/plus.mp4", "poster" : "./images/looting/plus.jpg"},
-                         {"type" : "mobile", "src" : "./images/looting/plus_detail.jpg?ver=1"},
-                     ],
-                     "description" : "게임을 일정 시간 플레이하면 쿠폰을 발급해주는 플러스 쿠폰 기능입니다.<br>"+
-                                    ""
-                 },
-                 {
-                     "name" : "설치 푸시",
-                     "links" : [
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/looting/looting_srv.php#L2230"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src" : "./images/looting/install_push.mp4", "poster" : "./images/looting/intro.jpg"},
-                         {"type" : "mobile", "src" : "./images/looting/install_push.jpg"},
-                     ],
-                     "description" : "사전 예약을 참여한 게임을 설치할 경우 쿠폰을 즉시 복사할 수 있는 Notification을 노출하는 기능입니다."
-                 },
-             ],
-        },
-        
-        /************
-         * ZZI
-         ************/
-        "zzi" : {
-            "name" : "게임을 낚다 - ZZI",
-            "skills" : ["Android", "PHP", "MySQL"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/zzi"},
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.zzi"},
-            ],
-            "preview" : [
-                {"type" : "video", "src" : "./images/zzi/zzi.mp4", "poster":"./images/zzi/intro.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/login.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/main.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/game.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/news.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/reserve.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/reserve_detail.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/bbs.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/cashbook.jpg"},
-                {"type" : "mobile", "src" : "./images/zzi/cashbook_coupon.jpg"},
-            ],
-            "description" : "게임 추천과 게임 가계부 서비스를 제공하는 네이티브 앱입니다.<br>"+
-                            "전 개발자 최초 개발 후 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "게임 가계부",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
-                         {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
-                     ],
-                     "description" : "구글 결제 내역을 정리하여 보여주는 게임 가계부 기능입니다.<br>"+
-                                    "구글 결제 내역 페이지를 크롤링 후 데이터로 파싱하여 회원에게 정보를 노출합니다."
-                 },
-                 {
-                     "name" : "내 게임",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_mygame.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/zzi/my_game.jpg"},
-                     ],
-                     "description" : "현재 설치되어 있는 게임들의 쿠폰을 받을 수 있는 각 서비스로 이동시켜주는 기능입니다.<br>"+
-                                    "웹페이지로 구성되어 있습니다."
-                 },
-             ],
-        },
-        
-        
-        /************
-         * ADBox
-         ************/
-        "adbox" : {
-            "name" : "ADBox",
-            "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/adbox"},
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.adbox"},
-                {"name" : "Web", "url" : "http://www.adbox.co.kr/"},
-            ],
-            "preview" : [
-                {"type" : "mobile", "src" : "./images/adbox/intro.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/main.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/play.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/campaign.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/detail.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/report.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/shop.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/bbs.jpg"},
-                {"type" : "mobile", "src" : "./images/adbox/menu.jpg?ver=1"},
-            ],
-            "description" : "NCPI 방식의 인플루언서 마케팅 서비스입니다.<br>"+
-                            "하이브리드 앱, PC, Mobile 웹 서비스를 지원하고 있습니다.<br>"+
-                            "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "클릭 URL / 광고 트래킹 / 포스트백",
-                     "links" : [
-                         {"name" : "Tracking Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
-                         {"name" : "Postback Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src":"./images/adbox/install_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
-                         {"type" : "video", "src":"./images/adbox/res_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
-                     ],
-                     "description" : "NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.<br>"+
-                                    "만들라고 시키는 사람 조차 NCPI에 대한 정확한 지식, 방식도 모르는 상태에서 무작정 만들라고 요청이 와서 직접 일일이 알아보고 찾아가며 개발을 했습니다.<br>"+
-                                    ""
-                 },
-                 {
-                     "name" : "게임 팝업",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/adbox/src/main/java/com/ha/adbox/activity/PopupActivity.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/adbox/app/adbox_srv.php#L176"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src":"./images/adbox/popup.mp4", "poster" : "./images/adbox/popup.jpg?ver=1"},
-                         {"type" : "mobile", "src":"./images/adbox/popup.jpg"},
-                     ],
-                     "description" : "게임 종료를 감지하여 광고 팝업을 노출하고 광고에 참여한 회원에게 포인트를 지급하는 게임 팝업 기능입니다.<br>"+
-                                    ""
-                 },
-                 {
-                     "name" : "앱 자동 설치",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/adbox/src/main/java/com/ha/adbox/service/AutoInstallService.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/adbox/app/adbox_srv.php#L733"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src":"./images/adbox/auto_install.jpg"},
-                     ],
-                     "description" : "백그라운드에서 앱을 자동으로 설치하고 회원에게 포인트를 지급하는 기능입니다.<br>"+
-                                    "Service, WebView, JavaScript 등을 사용하여 기능을 구현하였습니다. "
-                 },
-                         
-                         
-             ],
-        },
-        
-        
-        /************
-         * 알바G
-         ************/
-        "albag" : {
-            "name" : "알바G",
-            "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
-            "links" : [
-                {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/albag"},
-                {"name" : "Web Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/albag"},
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
-            ],
-            "preview" : [
-                {"type" : "mobile", "src" : "./images/albag/intro.jpg"},
-                {"type" : "mobile", "src" : "./images/albag/main.jpg"},
-                {"type" : "mobile", "src" : "./images/albag/campaign.jpg"},
-                {"type" : "mobile", "src" : "./images/albag/detail.jpg?ver=1"},
-                {"type" : "mobile", "src" : "./images/albag/withdraw.jpg"},
-                {"type" : "mobile", "src" : "./images/albag/menu.jpg?ver=1"},
-            ],
-            "description" : "게임 관련 미션 완료시 회원에게 포인트를 지급하는 하이브리드 앱입니다.<br>"+
-                            "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.<br>"+
-                            "모나와 재직 당시 가장 마지막으로 개발한 서비스입니다.",
-            "dev" : [
-                {
-                     "name" : "미션 기능",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/albag/mission/view.php#L338"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/albag/detail.jpg"},
-                     ],
-                     "description" : "알바G의 핵심인 카페 가입, 블로그 작성, 게임 실행, 설치 유지 등의 미션을 구현하였습니다.<br>"+
-                                     "카페 가입, 블로그 작성 미션은 네이버 API를 활용하여 구현하였습니다.<br>"+
-                                     "게임 실행, 레벨 달성 등의 미션은 설치, 이벤트 포스트백을 활용하여 구현하였습니다.<br>"+
-                                     "설치 유지 미션은 헝그리앱 SDK의 설치, 삭제 감지 기능을 활용하여 구현하였습니다."
-                                     
-                },
-            ]
-        },
-        
-        /************
-         * Event
-         ************/
-        "event" : {
-            "name" : "모나와 이벤트 페이지",
-            "skills" : ["JavaScript", "CSS", "PHP", "MySQL"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/mobi/event"},
-            ],
-            "preview" : [
-                {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
-                {"type" : "video", "src" : "./images/event/scratch.mp4", "poster" : "./images/event/scratch.jpg"},
-                {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
-                {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
-                {"type" : "video", "src" : "./images/event/spin.mp4", "poster" : "./images/event/spin.jpg"},
-                {"type" : "video", "src" : "./images/event/typing.mp4", "poster" : "./images/event/typing.jpg"},
-            ],
-            "description" : "모나와의 앱 서비스에서 진행됐었던 이벤트 웹페이지들입니다.<br>"+
-                            "DB 구성, 서버, JavaScript 등을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "애니메이션",
-                     "links" : [
-                         {"name" : "Source1", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/weekly/index.php#L387"},
-                         {"name" : "Source2", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/ball/index.php#L386"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
-                         {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
-                     ],
-                     "description" : "jQuery Animation, CSS Animation 등을 활용하여 애니메이션을 구현하였습니다.<br>"+
-                                    "애니메이션의 속성들을 변수로 통제할 수 있도록 고려하여 개발하였습니다."
-                 },
-                 {
-                     "name" : "게임 플레이",
-                     "links" : [
-                         {"name" : "Web", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/event_1year.php#L531"},
-                         {"name" : "App", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/MobiApplication.java#L402"},
-                         {"name" : "Server", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/mobi/src/main/java/com/ha/mobi/MobiApplication.java#L402"},
-                         
-                         
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
-                     ],
-                     "description" : "JavaScript Interface, 접근성을 활용하여, 게임 플레이 시간 감지 기능을 구현하였습니다."
-                 },
-                 {
-                     "name" : "당첨 확률",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/mobi/event/spin/ajax.php#L31"},
-                     ],
-                     "preview" : [
-                         {"type" : "video", "src" : "./images/event/spin.mp4", "poster":"./images/event/spin.jpg"},
-                     ],
-                     "description" : "관리자가 설정한 확률에 따라 이벤트 상품이 당첨되게 구현하였습니다.<br>"+
-                                     "확률은 관리자들이 통계를 확인하며, 유동적으로 설정할 수 있습니다."
-                 },
-             ],
-        },
-        
-        /************
-         * 관리자 페이지
-         ************/
-        "admin" : {
-            "name" : "모나와 관리자 페이지",
-            "skills" : ["PHP", "MySQL", "JavaScript"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/html/admin"},
-            ],
-            "preview" : [
-                {"type" : "pc", "src" : "./images/admin/adbox_admin.png"},
-                {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
-                {"type" : "pc", "src" : "./images/admin/mobi_admin.png"},
-                {"type" : "pc", "src" : "./images/admin/mobi_roulette_admin.png"},
-                {"type" : "pc", "src" : "./images/admin/mobi_roulette_log.png"},
-                {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
-                {"type" : "pc", "src" : "./images/admin/push2.png"},
-                
-            ],
-            "description" : "모나와의 각 서비스를 관리하기 위한 관리자 페이지입니다.<br>"+
-                            "애드박스, 알바G의 모든 관리자 페이지를 100% 직접 개발하였고, 그 외 서비스들의 푸시 발송 페이지, 이벤트 관리 페이지 등을 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "푸시 발송 페이지",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/albag/push.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "pc", "src" : "./images/admin/push2.png"},
-                     ],
-                     "description" : "푸시 발송을 위한 관리자 페이지입니다.<br>"+
-                                    "제목과 내용 input에는 관리자들이 html 태그를 손쉽게 적용할 수 있도록 에디터 라이브러리를 적용하였습니다.<br>"+
-                                    "푸시 발송 시 Timeout 방지 및 전송 속도 향상을 위해 Ajax를 통한 분할 전송이 적용되어 있습니다.<br>"+
-                                    "옵션에 따라 다양한 타겟팅으로 푸시를 전송할 수 있으며, 테스트 전송 기능으로 실제 전송 전에 푸시 테스트가 가능합니다."
-                 },
-                 {
-                     "name" : "쿠폰 등록 기능",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/common/coup_manager_new.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/admin/coup_manager.png?ver=1"},
-                     ],
-                     "description" : "게임 쿠폰 관련 서비스의 쿠폰 등록을 위한 관리자 페이지입니다.<br>"+
-                                    "jQuery File Upload 플러그인과 PHPExcel 라이브러리를 활용하여 관리자가 csv, xls, xlsx 파일 등록으로 간편하게 DB에 쿠폰을 insert 또는 update 할 수 있도록 개발하였습니다.<br>"
-                 },
-                 {
-                     "name" : "이벤트 확률 설정 기능",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/event/mobi_event_spin_gift.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
-                     ],
-                     "description" : "이벤트 확률 설정을 위한 관리자 페이지입니다.<br>"+
-                                    ""
-                 },
-                 {
-                     "name" : "애드박스 정산 페이지",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/html/admin/adbox/main/_ad_avg_stat.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
-                     ],
-                     "description" : "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-                                    ""
-                 },
-             ],
-        },
-        
-        /************
-         * 모비 루팅 찌 광고주 페이지
-         ************/
-        "mobi_advertiser" : {
-            "name" : "모비/루팅/찌 광고주 페이지",
-            "skills" : ["PHP", "MySQL", "JavaScript"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobi.co.kr/admin"},
-            ],
-            "preview" : [
-                {"type" : "pc", "src" : "./images/mobi_advertiser/login.png"},
-                {"type" : "pc", "src" : "./images/mobi_advertiser/main.png"},
-                {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
-            ],
-            "description" : "모비/루팅/찌 광고주에게 제공되는 광고주 페이지입니다.<br>"+
-                            "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "광고 현황 상세 페이지",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobi.co.kr/admin/report.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
-                     ],
-                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 상세 페이지입니다.<br>"+
-                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
-                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
-                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
-                 },
-             ],
-        },
-        
-        /************
-         * 애드박스 광고주 페이지
-         ************/
-        "adbox_advertiser" : {
-            "name" : "애드박스 광고주 페이지",
-            "skills" : ["PHP", "MySQL", "JavaScript"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/adbox/advertiser"},
-            ],
-            "preview" : [
-                {"type" : "pc", "src" : "./images/adbox_advertiser/login.png"},
-                {"type" : "pc", "src" : "./images/adbox_advertiser/dashboard.png"},
-                {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
-            ],
-            "description" : "애드박스 광고주에게 제공되는 광고주 페이지입니다.<br>"+
-                            "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "광고 현황 상세 페이지",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/tree/master/mobile/adbox/advertiser/report2.php"},
-                     ],
-                     "preview" : [
-                         {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
-                     ],
-                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 현황 상세 페이지입니다.<br>"+
-                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
-                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
-                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
-                 },
-             ],
-        },
-        
-        
-        /************
-         * 헝그리앱SDK
-         ************/
-        "hungryapp_sdk" : {
-            "name" : "헝그리앱 SDK",
-            "skills" : ["Android", "Java", "Kotlin"],
-            "links" : [
-                {"name" : "Github", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/tree/master/libs/hungryapp-sdk"},
-            ],
-            "preview" : [
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/intro_dialog.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/permission.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/splash_activity.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/close_dialog.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/play.jpg"},
-                {"type" : "mobile", "src" : "./images/hungryapp_sdk/install.jpg"},
-                
-            ],
-            "description" : "모나와의 앱 서비스에 공통적으로 적용되었던 헝그리앱 SDK입니다.<br>"+
-                            "공통되는 기능들의 재활용, 확장을 위해 개발되었습니다.<br>"+
-                            "모든 기능을 100% 직접 개발하였습니다.",
-             "dev" : [
-                 {
-                     "name" : "ResponseHelper",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/util/ResponseHelper.java"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
-                     ],
-                     "description" : "HTTP 통신으로 획득한 Bundle의 데이터에 따라 Toast, Dialog, Notification 등을 노출하는 Class입니다.<br>"+
-                                     "데이터, 상황에 따라 유동적으로 대응할 수 있도록 개발하였습니다."
-                 },
-                 {
-                     "name" : "GCMManager",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/util/GCMManager.java"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
-                     ],
-                     "description" : "GCM 기능을 위한 Class입니다.<br>"+
-                                    "데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다.<br>"+
-                                    "알림 예약, 이미지, HTML 태그, 아이콘, Action 등을 지원합니다."
-                 },
-                 {
-                     "name" : "SocialLoginManager",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/social/SocialLoginManager.java"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/login1.jpg"},
-                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
-                     ],
-                     "description" : "구글, 페이스북, 네이버, 카카오 로그인을 간단하게 연동해주는 Class입니다.<br>"+
-                                     "네이티브, 하이브리드에 맞게 "
-                 },
-                 {
-                     "name" : "HaWebView",
-                     "links" : [
-                         {"name" : "Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/libs/hungryapp-sdk/src/main/java/com/ha/webkit/HaWebView.java"},
-                     ],
-                     "preview" : [
-                         {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
-                     ],
-                     "description" : "웹뷰입니다.<br>"+
-                                     ""
-                 },
-             ],
-        },
-    };
     
     function getPreviewHtml(data){
         var html = "";
