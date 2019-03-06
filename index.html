@@ -41,7 +41,7 @@
         <style>
             * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline:0;margin:0; padding:0; }
             html, body {margin: 0; height: 100%; overflow: hidden}
-            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;font-weight:400;zoom:1;text-align:center;background:black;}
+            body {font-size:15px;font-family: 'Noto Sans KR', 'Apple SD Gothic Neo','맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,sans-serif;color:#FFFFFF;font-weight:400;zoom:1;text-align:center;background:black;transition:font-weight .3s;}
             body::-webkit-scrollbar{width:0;background-color:transparent;}
             h1{font-size:3em}
             h2{font-size:2em}
@@ -54,7 +54,11 @@
             dl {}
             samp {display:inline-block;}
 	    
-	    #wrap {max-width:1400px;background:black;height:100%;position:relative;overflow:hidden;margin:auto;}
+	    button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
+	    
+	    .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
+	    
+	    #wrap {max-width:1460px;background:black;height:100%;position:relative;overflow:hidden;margin:auto;}
 	    
 	    .gone {position:absolute;left:9999px;top:9999px;width:1px;height:1px;}
 	    
@@ -84,7 +88,7 @@
                     transform: scale(1.2);
                 }
             }
-
+	    
             .scrollable{overflow:auto;}
             .scrollable::-webkit-scrollbar{width:0;background-color:transparent;}
 
@@ -99,8 +103,7 @@
 
             .center {width:100%;position:absolute;top:50%;transform: translateY(-50%);}
 
-            .cube_wrap {position:absolute;width:350px;height:350px;top:0;bottom:0;left:0;right:0;margin:auto;transition:width .3s, height .3s;}
-
+            .cube_wrap {position:absolute;width:300px;height:300px;top:0;bottom:0;left:0;right:0;margin:auto;transition:width .3s, height .3s;}
             .cube {
                 width: 100%;
                 height: 100%;
@@ -124,12 +127,9 @@
             .cube div.right {transform: rotateY(90deg); margin-left: 50%;}
             .cube div.bottom {transform: rotateX(90deg);margin-top: 50%;}
             .cube div.left {transform: rotateY(-90deg);margin-left: -50%;}
-            .cube div.front {transform: translateZ(175px);transition:transform .3s}
-            .cube div.back {transform: translateZ(-175px);transition:transform .3s}
+            .cube div.front {transform: translateZ(150px);transition:transform .3s}
+            .cube div.back {transform: translateZ(-150px);transition:transform .3s}
 	    
-	    
-
-
 
             #loader {background:#fff;position:absolute;top:0;bottom:0;left:0;right:0;z-index:10000}
             .multi-spinner-container {
@@ -209,8 +209,8 @@
 	    .indicator ol {display:table-cell;position:relative;vertical-align:middle;}
 	    .indicator li {min-width:50px;height:50px;cursor:pointer;}
 	    .indicator li > p {float:right;width:30px;height:35px;font-size:1.1em;font-weight:100;line-height:7em;background:rgba(0,0,0,0);overflow:hidden;border-bottom:solid 1px white;clear:both;transition:line-height 0.3s, background 0.3s, width .3s .2s;}
-	    .indicator li.on > p {width:40px;border-bottom:solid 2px white;transition:width .3s;}
-	    .indicator li:hover > p {width:120px;line-height:2em;background:rgba(0,0,0,.6);transition:line-height .3s .2s, width .3s, background .3s .2s;}
+	    .indicator li.on > p {width:50px;border-bottom:solid 2px white;transition:width .3s;}
+	    .indicator li:hover > p {width:150px;line-height:2em;background:rgba(0,0,0,.6);transition:line-height .3s .2s, width .3s, background .3s .2s;}
 	    
 	    .drawer {position:absolute;display:table;background:rgba(0,0,0,0.8);width:100%;height:100%;z-index:2900;visibility:visible}
             .drawer > ol {display:table-cell;height:100%;vertical-align:middle;}
@@ -230,12 +230,13 @@
             .menu.open span:before {-webkit-transform: rotate(45deg);transform: rotate(45deg);}
             .menu.open span:after {-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
 	    
-	    .top_btn {position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:black;z-index:2000;border:solid 2px white;cursor:pointer;display:none;}
-	    .top_btn:before, .top_btn:after {content:"";position: absolute;top:0;bottom:0;left:0;right:0;margin:auto;width: 20px;height:2px;background:white}
-	    .top_btn:before {transform: rotate(45deg) translateX(0.3em) translateY(-0.3em);}
-	    .top_btn:after {transform: rotate(-45deg) translateX(-0.3em) translateY(-0.3em);}
-	    .top_btn:hover {background:white;transition:background 0.5s}
-	    .top_btn:hover:before, .top_btn:hover:after {background:black;transition:background 0.5s}
+	    .top_btn {position:absolute;bottom:20px;right:20px;width:40px;height:40px;display:none;}
+	    .top_btn > p {position:fixed;width:40px;height:40px;z-index:2000;background:black;border:solid 2px white;cursor:pointer;}
+	    .top_btn > p:before, .top_btn > p:after {content:"";position: absolute;top:0;bottom:0;left:0;right:0;margin:auto;width: 20px;height:2px;background:white;z-index:2500;}
+	    .top_btn > p:before {transform: rotate(45deg) translateX(0.3em) translateY(-0.3em);}
+	    .top_btn > p:after {transform: rotate(-45deg) translateX(-0.3em) translateY(-0.3em);}
+	    .top_btn > p:hover {background:white;transition:background 0.5s}
+	    .top_btn > p:hover:before, .top_btn > p:hover:after {background:black;transition:background 0.5s}
 
 
             #debug {position:fixed;color:white}
@@ -283,6 +284,10 @@
             }
             .close::before {transform: rotate(45deg);}
             .close::after {transform: rotate(-45deg);}
+	    
+	    .me {width:200px;transition:width .3s;}
+	    
+	    .scalable {font-size:1em;transition:font-size .3s;}
 
             .thumbnail {position:relative;background-position:center;background-size:cover;background-repeat:no-repeat;overflow:hidden;cursor:pointer;}
             .thumbnail > * {position:absolute;font-size:1.1rem;text-align:center;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);animation:thumbnail_out 0.4s;animation-fill-mode: forwards;}
@@ -303,6 +308,14 @@
             .thumbnail.hungryapp_sdk {background-image:url('./images/thumbnail/hungryapp_sdk.png?ver=1')}
             .thumbnail.event {background-image:url('./images/thumbnail/event.png')}
             .thumbnail.albag {background-image:url('./images/thumbnail/albag.png?ver=1')}
+	    
+	    .work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
+	    .work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
+	    .work_experiences .thumbnail {display:inline-block;width:250px;height:90px;background-size:100%;}
+	    .work_experiences .info {font-size:1.15em;padding:10px 0px;}
+	    .work_experiences dt {font-size:1.1em;margin-top:15px;}
+	    .work_experiences dt:first-child {margin-top:0px}
+	    .work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
 
             .underbar {position:absolute;bottom:0}
 
@@ -341,7 +354,7 @@
             .my_works .thumbnail {display:inline-block;width:100%;padding-bottom:100%;background-color:rgba(0,0,0,0.8);border:solid 1px #FFF;box-sizing:border-box}
 
             .grid {width:100%;}
-            .grid > li {padding:20px 22px;box-sizing:border-box}
+            .grid > li {padding:10px 11px;box-sizing:border-box}
 
             
 
@@ -355,9 +368,13 @@
             .grid_filter > li.on {font-weight:bold}
             .grid_filter > li.on > .underbar {animation:underbar_in 0.4s;animation-fill-mode: forwards;}
 
-            .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
-
-            button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
+	    .contact img {height:40px;display:inline-block;margin-bottom:10px;}
+	    .contact li > * {vertical-align:middle;}
+	    .contact li {cursor:pointer;padding:20px 5px;float:left;width:50%;box-sizing:border-box;}
+	    .contact {margin-top:10px;max-width:700px;width:100%;display:inline-block;}
+	    
+	    .main dt {font-weight:400;font-size:4em;}
+	    .main dd {font-weight:400;font-size:2em;}
 
 	    /*@반응형*/
             /* Mobile */
@@ -370,6 +387,11 @@
             /* PC */
             @media screen and (min-width: 700px){
                 .grid > li {width:33.3333%;}
+		.me {width:300px;}
+		.scalable {font-size:1.3em;}
+		body {font-weight:300;}
+		.main dt {font-weight:400;font-size:5em;}
+		.main dd {font-weight:400;font-size:2.5em;}
             }
 	    
 	    @media screen and (max-width: 1000px){
@@ -388,7 +410,6 @@
 	    var slider;
 	    var grid;
 	    window.onload = function () {
-		initTyping();
 		grid = $(".grid");
 		grid.isotope({
 		    percentPosition: true,
@@ -495,22 +516,20 @@
 		}
 	    }
 
-	    window.onhashchange = function (e) {
-		onHash();
-	    }
-
 	    function initIndicator() {
 		$(".drawer, .indicator").fadeOut(1, function () {
 		    $(this).css("display", "none")
 		});
 		$(".drawer li").each(function (i, val) {
-		    $(this).attr("onclick", "toggleDrawer();slider.goPage(" + (i + 1) + ");");
+		    $(this).attr("onclick", "toggleDrawer();goPage('"+$(this).find("p").text()+"');");
 		});
 		
 		$(".indicator li").each(function (i, val) {
-		    $(this).attr("onclick", "slider.goPage(" + (i + 1) + ");");
+		    $(this).attr("onclick", "goPage('"+$(this).find("p").text()+"');");
 		});
 	    }
+	    
+	    window.onhashchange = onHash;
 
 	    function onHash() {
 		var hash = replaceAll(location.hash, "#", "");
@@ -531,6 +550,7 @@
 			
 			$(".indicator li").removeClass("on");
 			$(".indicator li:eq("+(destination - 1)+")").addClass("on");
+			
 		
 			rotationSpeed = 10;
 			setTimeout(function () {
@@ -620,7 +640,7 @@
 		$(".cube div").fadeIn();
 		setInterval(function () {
 		    $('.cube').css('transform', 'rotateX(' + deg + 'deg)' + 'rotateY(' + deg + 'deg)');
-		    deg += 0.5 * rotationSpeed;
+		    deg += 0.4 * rotationSpeed;
 		}, 20);
 	    }
 
@@ -978,28 +998,21 @@
 		$(".menu").toggleClass('open');
 	    }
 	    
-	    function initTyping(){
-//		var hello = "Hello World!";
-//		var arr = ['System.out.println("");', 'console.log("");', 'alert("");', 'body:before {content:""}', 'Log.d("")', 'document.write("")', 'println("")', 'echo "";'];
-//		var text = "";
-//		for(var i = 0 ; i < 300 ; i++){
-//		    text += arr[Math.floor(Math.random() * arr.length)].replace('""','"'+hello+'"')+" ";
-//		}
-//		$("#typing").text(text);
-//		var words = text.split("");
-//		var i = 0;
-//		setInterval(function(){
-//		    $("#typing").prepend(words[i]);
-//		    i++;
-//		}, 300);
+	    function goPage(pageName){
+		if(pageName == "Home"){
+		    slider.goPage(1);
+		    return;
+		}
+		
+		$(".sections > li").each(function(){
+		    if($(this).html().indexOf(pageName) !== -1){
+			slider.goPage($(this).attr("data-slider-index"));
+		    }
+		});
 	    }
-
         </script>
     </head>
     <body>
-	<div id="typing" class="slider__exclude" style="position:absolute;z-index:0;top:0;left:0;color:#666;font-weight:600;font-size:2em;font-family:Monospace;text-align:left;word-break: break-all;height:100%;overflow:hidden;background:black">
-	</div>
-	
 	<!--@loader-->
 	    <div id="loader" >
 		<div class="multi-spinner-container">
@@ -1021,7 +1034,7 @@
 
 	    <!--@cube-->
 	    <div class="cube_wrap">
-		<div class="cube healing">
+		<div class="cube">
 		    <div class="top"><img src="http://www.gukjenews.com/news/photo/201810/1013115_787089_237.jpg"></div>
 		    <div class="right"><img src="http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg"></div>
 		    <div class="bottom"><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244"></div>
@@ -1036,7 +1049,7 @@
 		<ol>
 		    <li><p>Home</p></li>
 		    <li><p>About Me</p></li>
-		    <li><p>Work experiences</p></li>
+		    <li><p>Work Experiences</p></li>
 		    <li><p>Skills</p></li>
 		    <li><p>My Works</p></li>
 		    <li><p>Contact</p></li>
@@ -1050,7 +1063,7 @@
 		<ol>
 		    <li class="on"><p>Home</p></li>
 		    <li><p>About Me</p></li>
-		    <li><p>Experiences</p></li>
+		    <li><p>Work Experiences</p></li>
 		    <li><p>My Works</p></li>
 		    <li><p>Contact</p></li>
 		</ol>
@@ -1059,10 +1072,10 @@
 	    <ol class="sections">
 		<li>
 		    <div>
-			<div class="center">
-			    <h1>이진혁</h1>
-			    <h3>Software Developer</h3>
-			</div>
+			<dl class="main center">
+			    <dt>이진혁</dt>
+			    <dd>Software Developer</dd>
+			</dl>
 		    </div>
 		    <div class="arrow down"  onclick="slider.goPage(2)"></div>
 		</li>
@@ -1071,9 +1084,9 @@
 			<div class="center">
 			    <h2><span>About Me</span><span class="underbar"></span></h2>
 			    <div>
-				<img src="./images/me.png" style="width:150px;">
-				<div>
-				    <h4>안녕하세요. 저는 3년차 소프트웨어 개발자 이진혁 입니다.</h4>
+				<img class="me" src="./images/me.png">
+				<div class="scalable">
+				    <strong>안녕하세요. 저는 3년차 소프트웨어 개발자 이진혁 입니다.</strong><br>
 				    개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br> 
 				    웹페이지, 윈도우 프로그램, 안드로이드 앱, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
 				    개발 시 재활용성, 확장성이 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>                               
@@ -1085,19 +1098,10 @@
 		    </div>
 		</li>
 		<!--@work_experiences-->
-		<style>
-		    .work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
-		    .work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
-		    .work_experiences .thumbnail {display:inline-block;width:250px;height:90px;background-size:100%;}
-		    .work_experiences .info {font-size:1.15em;padding:10px 0px;}
-		    .work_experiences dt {font-size:1.1em;margin-top:15px;}
-		    .work_experiences dt:first-child {margin-top:0px}
-		    .work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
-		</style>
 		<li>
 		    <div>
 			<div class="twin">
-			    <h2><span>Work experiences</span><span class="underbar"></span></h2>
+			    <h2><span>Work Experiences</span><span class="underbar"></span></h2>
 			    <ol class="work_experiences scrollable" >
 				<li>
 				    <div class="thumbnail monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
@@ -1320,7 +1324,7 @@
 
 				<li class="web">
 				    <div class="thumbnail mobi_advertiser" data-name="mobi_advertiser">
-					<p>모비/루팅/찌 광고주 페이지</p>
+					<p>모비/루팅/찌<br>광고주 페이지</p>
 				    </div>
 				</li>
 
@@ -1339,15 +1343,9 @@
 		    <div>
 			<div class="center">
 			    <h2><span>Contact</span><span class="underbar"></span></h2>
-			    <div>
-				지금까지 저의 포트폴리오를 봐주셔서 감사합니다!
+			    <div class="scalable">
+				<h3>지금까지 저의 포트폴리오를 봐주셔서 감사합니다!</h3>
 			    </div>
-			    <style>
-				.contact img {height:40px;display:inline-block;margin-bottom:10px;}
-				.contact li > * {vertical-align:middle;}
-				.contact li {cursor:pointer;padding:20px 0;float:left;width:50%;}
-				.contact {margin-top:30px;max-width:700px;width:100%;display:inline-block;}
-			    </style>
 			    <input type="text" id="phone" class="gone" value="01030137795">
 			    <ul class="contact">
 				<li onclick="location.href='mailto:ljh7795@gmail.com'"><img src="./images/mail.png?ver=1" alt="email"><br>ljh7795@gmail.com</li>
