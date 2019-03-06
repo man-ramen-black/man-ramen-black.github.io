@@ -521,7 +521,7 @@
 		    $(this).css("display", "none")
 		});
 		$(".drawer li").each(function (i, val) {
-		    $(this).attr("onclick", "toggleDrawer();goPage('"+$(this).find("p").text()+"');");
+		    $(this).attr("onclick", "cancelBubbling();toggleDrawer();goPage('"+$(this).find("p").text()+"');");
 		});
 		
 		$(".indicator li").each(function (i, val) {
@@ -891,7 +891,7 @@
 		$(".popup").fadeOut(600, function () {
 		    $(this).html("")
 		});
-		$(".menu, .indicator").fadeIn(600);
+		$(".menu, .indicator").fadeIn(600).delay(10).css("display", "table");
 		$(".sections").fadeIn(600, function () {
 		    adjustTwins();
 		});
@@ -987,7 +987,17 @@
 		    //open
 		} else {
 		    slider.setEnabled(false);
-		    $(".drawer li:eq(" + (slider.current() - 1) + ")").addClass("on");
+		    if(slider.current() == 1){
+			$(".drawer li:eq(0)").addClass("on");	
+			
+		    }else{
+			$(".drawer li").each(function(){
+			    if($(".sections > li:eq("+(slider.current() - 1)+")").html().indexOf($(this).find("p").text()) !== -1){
+				$(this).addClass("on");
+			    }
+			});
+		    }
+		    
 		    $(".drawer li").css("margin-left", "-200%");
 		    left = "0%";
 		    $(".drawer").stop().delay(100).fadeIn();
@@ -1045,7 +1055,7 @@
 	    </div>
 
 	    <!--@drawer-->
-	    <div class="drawer">
+	    <div class="drawer" onclick="toggleDrawer()">
 		<ol>
 		    <li><p>Home</p></li>
 		    <li><p>About Me</p></li>
@@ -1170,6 +1180,7 @@
 					<li>GCM, Social Login 등 SDK, API 연동 경험</li>
 					<li>접근성</li>
 					<li>WebView, Javascript Interface</li>
+					<li>ProGuard</li>
 				    </ul>
 				</li>
 				<li>
