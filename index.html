@@ -56,7 +56,7 @@
 	    
 	    button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;background:#000;cursor:pointer}
 	    
-	    .middle:before {content:"";height:100%;display:inline-block;vertical-align:middle}
+	    .middle {display:inline-block;vertical-align:middle}
 	    
 	    #wrap {max-width:1460px;background:black;height:100%;position:relative;overflow:hidden;margin:auto;}
 	    
@@ -290,9 +290,10 @@
 	    .scalable {font-size:1em;transition:font-size .3s;}
 
             .thumbnail {position:relative;background-position:center;background-size:cover;background-repeat:no-repeat;overflow:hidden;cursor:pointer;}
-            .thumbnail > * {position:absolute;font-size:1.1rem;text-align:center;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);animation:thumbnail_out 0.4s;animation-fill-mode: forwards;}
-            .thumbnail > *:before {content:"";height:100%;display:inline-block;vertical-align:middle}
-            .thumbnail:hover > * {animation:thumbnail_in 0.4s;animation-fill-mode: forwards;}
+	    .thumbnail > p {position:absolute;display:table-cell;font-size:1.4rem;font-weight:400;text-align:center;width:100%;height:100%;vertical-align:middle;background:rgba(0,0,0,0.6);top:100%;transition:top .3s;}
+	    .thumbnail > p:before {content:"";display:inline-block;height:100%;vertical-align:middle;}
+	    .thumbnail:hover > p {top:0;}
+	    .thumbnail.link > p:after {content:"";display:inline-block;width:20px;height:20px;background-image:url('./images/link.png');background-size:100%;margin-left:5px;vertical-align:middle;}
 
             .thumbnail.monawa {background-image:url('http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg')}
             .thumbnail.isp {background-image:url('./images/isp.jpg?ver=2')}
@@ -311,11 +312,11 @@
 	    
 	    .work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
 	    .work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
-	    .work_experiences .thumbnail {display:inline-block;width:250px;height:90px;background-size:100%;}
 	    .work_experiences .info {font-size:1.15em;padding:10px 0px;}
 	    .work_experiences dt {font-size:1.1em;margin-top:15px;}
 	    .work_experiences dt:first-child {margin-top:0px}
 	    .work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
+	    .work_experiences .thumbnail {display:table;margin: 0 auto;width:250px;height:90px;background-size:100%;}
 
             .underbar {position:absolute;bottom:0}
 
@@ -455,39 +456,12 @@
 				}
 			    })
 		});
-
-		$(".work_experiences .thumbnail > *").click(function () {
-		    var enabled = !isMobile();
-		    if (isMobile()) {
-			if ($(this).hasClass("enabled")) {
-			    enabled = true;
-			    $(this).removeClass("enabled");
-			} else {
-			    $(".thumbnail > *").removeClass("enabled");
-			    $(this).addClass("enabled");
-			    return;
-			}
-		    }
-		    if (enabled) {
-			window.open($(this).attr("data-url"));
-		    }
-		});
-
+		
+		
+		$(".work_experiences .thumbnail").click(cancelBubbling);
+		
 		$(".my_works .thumbnail > *").click(function () {
-		    var enabled = !isMobile();
-		    if (isMobile()) {
-			if ($(this).hasClass("enabled")) {
-			    enabled = true;
-			    $(this).removeClass("enabled");
-			} else {
-			    $(".thumbnail > *").removeClass("enabled");
-			    $(this).addClass("enabled");
-			    return;
-			}
-		    }
-		    if (enabled) {
-			location.href = "#my_work_" + $(this).parent().attr('data-name');
-		    }
+		    location.href = "#my_work_" + $(this).parent().attr('data-name');
 		});
 
 		$(".grid_filter > li").hover(function () {
@@ -1114,7 +1088,7 @@
 			    <h2><span>Work Experiences</span><span class="underbar"></span></h2>
 			    <ol class="work_experiences scrollable" >
 				<li>
-				    <div class="thumbnail monawa"><p data-url="http://www.hungryapp.co.kr/">㈜모나와</p></div>
+				    <div class="thumbnail monawa link" onclick="cancelBubbling();"><p onclick="window.open('http://www.hungryapp.co.kr/')">㈜모나와</p></div>
 				    <div class="info">
 					Android / PHP / MySQL / Front-end / Git<br>
 					2015.07 - 2019.02
@@ -1134,7 +1108,7 @@
 				    </dl>
 				</li>
 				<li>
-				    <div class="thumbnail isp"><p data-url="http://www.ispxrf.com/">㈜아이에스피</p></div>
+				    <div class="thumbnail isp link" onclick="cancelBubbling();"><p onclick="window.open('http://www.ispxrf.com/');">㈜아이에스피</p></div>
 				    <div class="info">
 					Android / C#<br>
 					2014.06 - 2015.06
@@ -1150,7 +1124,7 @@
 				    </dl>
 				</li>
 				<li>
-				    <div class="thumbnail tradoc"><p data-url="http://tradoc.mil.kr/new/">육군교육사령부</p></div>
+				    <div class="thumbnail tradoc link" onclick="cancelBubbling();"><p onclick="window.open('http://tradoc.mil.kr/new/')">육군교육사령부</p></div>
 				    <div class="info">
 					JSP / PHP / MySQL / Front-end / SVN<br>
 					2012.08 - 2013.10
@@ -1329,13 +1303,13 @@
 
 				<li class="web">
 				    <div class="thumbnail adbox_advertiser" data-name="adbox_advertiser">
-					<p><span>애드박스 광고주 페이지</span></p>
+					<p><span class="middle">애드박스<br>광고주 페이지</span></p>
 				    </div>
 				</li>
 
 				<li class="web">
 				    <div class="thumbnail mobi_advertiser" data-name="mobi_advertiser">
-					<p>모비/루팅/찌<br>광고주 페이지</p>
+					<p><span class="middle">모비/루팅/찌<br>광고주 페이지<br><button>자세히</button></span></p>
 				    </div>
 				</li>
 
