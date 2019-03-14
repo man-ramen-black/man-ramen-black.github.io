@@ -77,7 +77,7 @@
                 }
             }
 
-            .touch {width:20px;animation:touch 1.5s infinite ease-in-out;display:none;position:absolute;}
+            .touch {width:20px;animation:touch 1.5s infinite ease-in-out;position:absolute;}
             .skills .touch{top:50px;left:50%;}
 
             @keyframes touch {
@@ -285,7 +285,9 @@
             .close::before {transform: rotate(45deg);}
             .close::after {transform: rotate(-45deg);}
 	    
-	    .me {width:200px;transition:width .3s;}
+	    .me {width:150px;border-radius:1000px;transition:width .3s;margin-bottom:10px;}
+	    .introduce {line-height:1.8em}
+	    .introduce strong {font-size:1.1em}
 	    
 	    .scalable {font-size:1em;transition:font-size .3s;}
 
@@ -311,12 +313,13 @@
             .thumbnail.albag {background-image:url('./images/thumbnail/albag.png?ver=1')}
 	    
 	    .work_experiences {position:absolute;top:70px;bottom:20px;width:100%;}
-	    .work_experiences > li {width:100%;cursor:pointer;padding:10px 0;}
+	    .work_experiences > li {width:100%;cursor:pointer;padding:10px 0;position:relative;}
 	    .work_experiences .info {font-size:1.15em;padding:10px 0px;}
 	    .work_experiences dt {font-size:1.1em;margin-top:15px;}
 	    .work_experiences dt:first-child {margin-top:0px}
 	    .work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
 	    .work_experiences .thumbnail {display:table;margin: 0 auto;width:250px;height:90px;background-size:100%;}
+	    .work_experiences .touch {left:50%;bottom:20px;}
 
             .underbar {position:absolute;bottom:0}
 
@@ -384,12 +387,14 @@
 		.cube_wrap {width:200px;height:200px;}
 		.cube div.front {transform: translateZ(100px); }
 		.cube div.back {transform: translateZ(-100px); }
+		.introduce .no_br {display:none;}
+		.introduce strong {font-size:1em}
             }
             /* PC */
             @media screen and (min-width: 700px){
                 .grid > li {width:33.3333%;}
-		.me {width:300px;}
-		.scalable {font-size:1.3em;}
+		.me {width:150px;}
+		.scalable {font-size:1.2em;}
 		body {font-weight:300;}
 		.main dt {font-weight:400;font-size:5em;}
 		.main dd {font-weight:400;font-size:2.5em;}
@@ -557,10 +562,9 @@
 
 			destContents.find("h2 .underbar").css({"left": "50%", "right": "50%"});
 			destContents.fadeIn({duration: 700, queue: false})
-
-
+			
 			var animEndFun = function () {
-			    destContents.find("h2 .underbar").delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
+			    destContents.find("h2 .underbar").stop().delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
 			}
 
 			if (destContents.find(".twin").size() > 0) {
@@ -705,11 +709,6 @@
 		    charts[i].options.animation = {duration: 600, onComplete: function () {
                         }};
 		    charts[i].update();
-		}
-		if ($(".skills").find(".touch").size() != 0) {
-		    setTimeout(function () {
-			$(".skills .touch").fadeIn();
-		    }, 600);
 		}
 	    }
 
@@ -994,6 +993,14 @@
 		    }
 		});
 	    }
+	    
+	    function getPhone(){
+		if(isMobile()){
+		    location.href="tel:01030137795";
+		}else{
+		    copyText('#phone', '전화번호가');
+		}
+	    }
         </script>
     </head>
     <body>
@@ -1069,9 +1076,9 @@
 			    <h2><span>About Me</span><span class="underbar"></span></h2>
 			    <div>
 				<img class="me" src="./images/me.png">
-				<div class="scalable">
-				    <strong>안녕하세요. 저는 3년차 소프트웨어 개발자 이진혁 입니다.</strong><br>
-				    개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br> 
+				<div class="introduce scalable">
+				    <strong>안녕하세요! 저는 3년차 소프트웨어 개발자 이진혁 입니다.</strong><br>
+				    개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br class="no_br"> 
 				    웹페이지, 윈도우 프로그램, 안드로이드 앱, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
 				    개발 시 재활용성, 확장성이 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>                               
 				    <br>
@@ -1090,6 +1097,7 @@
 				<li>
 				    <div class="thumbnail monawa link" onclick="cancelBubbling();"><p onclick="window.open('http://www.hungryapp.co.kr/')">㈜모나와</p></div>
 				    <div class="info">
+					<img class="touch" src="./images/hand.png" alt="hand" >
 					Android / PHP / MySQL / Front-end / Git<br>
 					2015.07 - 2019.02
 				    </div>
@@ -1334,7 +1342,7 @@
 			    <input type="text" id="phone" class="gone" value="01030137795">
 			    <ul class="contact">
 				<li onclick="location.href='mailto:ljh7795@gmail.com'"><img src="./images/mail.png?ver=1" alt="email"><br>ljh7795@gmail.com</li>
-				<li onclick="copyText('#phone', '전화번호가')"><img src="./images/phone.png?ver=1" alt="phone"><br>010-3013-7795</li>
+				<li onclick="getPhone();"><img src="./images/phone.png?ver=1" alt="phone"><br>010-3013-7795</li>
 				<li onclick="window.open('https://goo.gl/ZhBhzz')"><img src="./images/location.png?ver=1" alt="location"><br>전라북도 전주시 완산구 효자1동</li>
 				<li onclick="window.open('https://github.com/man-ramen-black/')"><img src="./images/github.png?ver=1" alt="github"><br>https://github.com/man-ramen-black/</li>
 			    </ul>
