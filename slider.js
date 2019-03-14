@@ -275,6 +275,9 @@
 
         // go to spesific slide if it exists
         var gotoSlide = function (where) {
+	    if(!document.querySelector(where)){
+		return;
+	    }
             var target = document.querySelector(where).getAttribute('data-slider-index');
             if (target != currentSlide && document.querySelector(where)) {
                 changeSlide(target - currentSlide);
