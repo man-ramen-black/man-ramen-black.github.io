@@ -145,6 +145,7 @@
             }
 
             var index = 1;
+	    pages = [];
             [].forEach.call(document.querySelectorAll(sliderElement + ' > *'), function (section) {
 
                 if (option.indicator) {
@@ -286,6 +287,8 @@
 
         //페이지 이동 함수 추가
         this.goPage = function (page) {
+	    if(page <= 0) page = 1;
+	    if(page > pages.length) page = pages.length;
             gotoSlide('*[data-slider-index = "' + page + '"]');
         }
 
