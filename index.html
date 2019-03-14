@@ -533,22 +533,6 @@
 			}, 500);
 			
 			$(".sections > li").removeClass("on");
-			
-
-//			if (oriContents.find(".twin").size() > 0) {
-//			    oriContents.find(".twin:eq(0)").fadeOut({duration: 700, queue: false}).animate({"left": "-50%"}, {duration: 700});
-//			    oriContents.find(".twin:eq(1)").fadeOut({duration: 700, queue: false}).animate({"right": "-50%"}, {duration: 700});
-//
-//			} else {
-//			    oriContents.fadeOut();
-//			}
-//
-//			destContents.hide();
-//
-//			if (destContents.find(".twin").size() > 0) {
-//			    destContents.find(".twin:eq(0)").css("left", "-50%");
-//			    destContents.find(".twin:eq(1)").css("right", "-50%");
-//			}
 
 			if (oriContents.find(".skills").size() != 0) {
 			    hideDetails(true);
@@ -560,26 +544,6 @@
 			destContents = $(".sections > li:eq(" + (destination - 1) + ") > div:first-child");
 			
 			$(".sections > li:eq(" + (destination - 1) + ")").addClass("on");
-
-//			destContents.find("h2 .underbar").css({"left": "50%", "right": "50%"});
-//			destContents.fadeIn({duration: 700, queue: false})
-//			
-//			var animEndFun = function () {
-//			    destContents.find("h2 .underbar").stop().delay(600).animate({left: 0, right: 0}, {duration: 500, queue: false});
-//			}
-//
-//			if (destContents.find(".twin").size() > 0) {
-//			    destContents.find(".twin:eq(0)").fadeIn({duration: 700, queue: false}).animate({"left": "0px"}, {duration: 700, queue: false, complete: animEndFun});
-//			    destContents.find(".twin:eq(1)").fadeIn({duration: 700, queue: false}).animate({"right": "0px"}, {duration: 700, queue: false, complete: animEndFun});
-//
-//
-//			} else {
-//			    destContents.css("margin-top", "50px");
-//			    destContents
-//				    .animate({"margin-top": 0}, {duration: 700, queue: false, complete: function () {
-//					    animEndFun();
-//					}});
-//			}
 
 			if (destContents.find(".skills").size() != 0) {
 			    setTimeout(function () {
