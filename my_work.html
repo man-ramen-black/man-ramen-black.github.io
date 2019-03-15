@@ -541,13 +541,14 @@
         return html;
     }
     
-    (function(){
-        var my_work = null;
+    var my_work = null;
     
-        var hash = replaceAll(location.hash, "#", "");
-        if(hash.indexOf("my_work_") != -1){
-            my_work = MY_WORKS[hash.replace("my_work_", "")];
-        }
+    var hash = replaceAll(location.hash, "#", "");
+    if(hash.indexOf("my_work_") != -1){
+	my_work = MY_WORKS[hash.replace("my_work_", "")];
+    }
+    
+    (function(){
 
         if(!my_work){
             $("#my_work_wrap").hide();
@@ -563,13 +564,16 @@
         my_work.links.forEach(function(data){
            $(".header .links").append("<button onclick=\"window.open('"+data.url+"')\">"+data.name+"</button>"); 
         });
-        my_work.preview.forEach(function(data){
+    })();
+    
+    function initMyWork(){
+	my_work.preview.forEach(function(data){
            $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
         });
         $(".description:eq(0)").html(my_work.description); 
         
         if(!my_work.dev){
-            $("#dev").hide();
+            $("#dev").remove();
             
         }else{
             my_work.dev.forEach(function(data){
@@ -585,10 +589,7 @@
                 $("#dev").append(section);
             });
         }
-
-        
-        
-    })();
+    }
     
     
     
@@ -598,7 +599,7 @@
         <h2><span class="underbar"></span></h2>
         <ul class="use_skills"></ul>
         <div class="links"></div>
-        <div class="close" onclick="history.back();"></div>
+        <div class="close" onclick="history.back();$(this).attr('onclick','');"></div>
     </div>
 
     <div class="section">
@@ -612,7 +613,7 @@
     </div>
 
     <div id="dev">
-        <h2 style="margin-bottom:20px">주요 개발<span class="underbar"></span></h2>
+        <h2>주요 개발<span class="underbar"></span></h2>
     </div>
 
     <div id="section_template" style="display:none;">
