@@ -95,6 +95,7 @@
             .sections {max-width:1300px;left: 0;right: 0;margin: auto;}
             .sections > li {position:relative;padding:10px 20px;width:100%;height:100%;box-sizing:border-box;}
             .sections > li > div:first-child{position:relative;width:100%;height:100%;text-align:center;background:rgba(0,0,0,0.5);margin-top:50px;opacity:0;transition:margin .7s, opacity .7s;}
+	    .sections > li.relax > div:first-child {margin-top:0}
 	    /*display:none;*/
 	    .sections > li.on > div{opacity:1;margin-top:0;display:block;}
             .sections > li:nth-child(1) > div:first-child{background:rgba(0,0,0,0)}
@@ -103,13 +104,13 @@
 	    .sections h2.underbar:after {content:"";width:0;border-bottom:solid white 2px;left:0;right:0;bottom:0;position:absolute;transition:width .5s .6s;margin:auto;}
 	    .sections li.on h2.underbar:after {width:100%;}
 	    .sections li .twin{transition:left .8s, right .8s;}
-	    .sections li .twin:first-child{left:-100%;}
-	    .sections li .twin:last-child{right:-100%;}
-	    .sections li.on .twin:first-child{left:0%;}
-	    .sections li.on .twin:last-child{right:0%;}
+	    .sections li .twin:nth-child(odd){left:-100%;}
+	    .sections li .twin:nth-child(even){right:-100%;}
+	    .sections li.on .twin:nth-child(odd){left:0%;}
+	    .sections li.on .twin:nth-child(even){right:0%;}
 
             .twin {width:49%;position:absolute;box-sizing:border-box;height:100%;}
-            .twin:nth-child(2) {right:0}
+            .twin:nth-child(even) {right:0}
             .twin_dna {height:100%;}
 
             .center {width:100%;position:absolute;top:50%;transform: translateY(-50%);}
@@ -194,32 +195,6 @@
                 }
             }
 
-            @keyframes hover{
-                from {margin-top:50px}
-                to {margin-top:0}
-            }
-
-            @keyframes underbar_in{
-                from {width:0px}
-                to {width:100%;}
-            }
-
-            @keyframes underbar_out{
-                from {width:100%}
-                to {width:0px}
-            }
-
-            @keyframes thumbnail_in{
-                from {opacity:0}
-                to {opacity:1}
-            }
-
-            @keyframes thumbnail_out{
-                from {opacity:1}
-                to {opacity:0}
-            }
-	    
-	    
 	    .indicator {position:absolute;display:table;right:20px;height:100%;width:auto;;z-index:2000;}
 	    .indicator ol {display:table-cell;position:relative;vertical-align:middle;}
 	    .indicator li {min-width:50px;height:50px;cursor:pointer;}
@@ -296,6 +271,11 @@
             .close::before {transform: rotate(45deg);}
             .close::after {transform: rotate(-45deg);}
 	    
+	    
+	    .main dt {font-weight:400;font-size:4em;}
+	    .main dd {font-weight:400;font-size:2em;}
+	    
+	    
 	    .me {width:150px;border-radius:1000px;transition:width .3s;margin-bottom:10px;}
 	    .introduce {line-height:1.8em}
 	    .introduce strong {font-size:1.1em}
@@ -303,7 +283,7 @@
 	    .scalable {font-size:1em;transition:font-size .3s;}
 
             .thumbnail {position:relative;background-position:center;background-size:cover;background-repeat:no-repeat;overflow:hidden;cursor:pointer;}
-	    .thumbnail > p {position:absolute;display:table-cell;font-size:1.4rem;font-weight:400;text-align:center;width:100%;height:100%;vertical-align:middle;background:rgba(0,0,0,0.6);top:100%;transition:top .3s, font-size .3s;}
+	    .thumbnail > p {position:absolute;display:table-cell;font-size:1.4em;font-weight:400;text-align:center;width:100%;height:100%;vertical-align:middle;background:rgba(0,0,0,0.6);top:100%;transition:top .3s, font-size .3s;}
 	    .thumbnail > p:before {content:"";display:inline-block;height:100%;vertical-align:middle;}
 	    .thumbnail:hover > p {top:0;}
 	    .thumbnail.link > p:after {content:"";display:inline-block;width:20px;height:20px;background-image:url('./images/link.png');background-size:100%;margin-left:5px;vertical-align:middle;}
@@ -332,7 +312,25 @@
 	    .work_experiences .thumbnail {display:table;margin: 0 auto;width:250px;height:90px;background-size:100%;}
 	    .work_experiences .touch {left:50%;bottom:20px;}
 
-            .popup {position:fixed;padding:20px;display:none;max-width:1160px;margin:auto;top:0px;bottom:0px;left:0px;right:0px;background:rgba(0,0,0,0.5);}
+            .my_works {width:100%;position:absolute;top:115px;bottom:20px;}
+            .my_works .thumbnail {display:inline-block;width:100%;padding-bottom:100%;background-color:rgba(0,0,0,0.8);border:solid 1px #FFF;box-sizing:border-box}
+	    .my_works button {background:rgba(0,0,0,0.4);font-size:0.8rem;padding:4px 20px;margin-top:10px;transition:background .3s, color .3s}
+	    .my_works button:hover {background:white;color:black;}
+	    
+            .grid {width:100%;}
+            .grid > li {padding:10px 11px;box-sizing:border-box}
+
+            .grid_filter {margin-bottom:10px;}
+	    .grid_filter ul {display:inline-block;width:auto;}
+            .grid_filter li {float:left;display:inline-block;position:relative;cursor:pointer;padding:0px 20px;font-size:1.1em;line-height:1em;border-right:solid 1px white;}
+	    .grid_filter li:last-child {border-right:0;}
+	    .grid_filter li:after{content:"";position:absolute;bottom:-10px;left:100%;right:100%;border-bottom:solid 1px white;margin:auto;transition:left .3s, right .3s;}
+	    .grid_filter li:hover:after{left:10px;right:10px;}
+	    .grid_filter li.on {font-weight:bold}
+	    .grid_filter li.on:after {left:10px;right:10px;}
+	    
+	    
+	    .popup {position:fixed;padding:20px;display:none;max-width:1160px;margin:auto;top:0px;bottom:0px;left:0px;right:0px;background:rgba(0,0,0,0.5);}
 	    
 	    .popup #dev {visibility:hidden;margin-bottom:20px}
 
@@ -361,31 +359,13 @@
 
             .swiper-container {margin:20px 0;}
             .swiper-container li > * {width:100%;}
-
-            .my_works {width:100%;position:absolute;top:115px;bottom:20px;}
-            .my_works .thumbnail {display:inline-block;width:100%;padding-bottom:100%;background-color:rgba(0,0,0,0.8);border:solid 1px #FFF;box-sizing:border-box}
-	    .my_works button {background:rgba(0,0,0,0.4);font-size:0.7em;padding:4px 20px;margin-top:10px;transition:background .3s, color .3s}
-	    .my_works button:hover {background:white;color:black;}
 	    
-            .grid {width:100%;}
-            .grid > li {padding:10px 11px;box-sizing:border-box}
-
-            .grid_filter {margin-bottom:10px;}
-	    .grid_filter ul {display:inline-block;width:auto;}
-            .grid_filter li {float:left;display:inline-block;position:relative;cursor:pointer;padding:0px 20px;font-size:1.1em;line-height:1em;border-right:solid 1px white;}
-	    .grid_filter li:last-child {border-right:0;}
-	    .grid_filter li:after{content:"";position:absolute;bottom:-10px;left:100%;right:100%;border-bottom:solid 1px white;margin:auto;transition:left .3s, right .3s;}
-	    .grid_filter li:hover:after{left:10px;right:10px;}
-	    .grid_filter li.on {font-weight:bold}
-	    .grid_filter li.on:after {left:10px;right:10px;}
 
 	    .contact img {height:40px;display:inline-block;margin-bottom:10px;}
 	    .contact li > * {vertical-align:middle;}
 	    .contact li {cursor:pointer;padding:20px 5px;float:left;width:50%;box-sizing:border-box;}
 	    .contact {margin-top:10px;max-width:700px;width:100%;display:inline-block;}
 	    
-	    .main dt {font-weight:400;font-size:4em;}
-	    .main dd {font-weight:400;font-size:2em;}
 
 	    /*@반응형*/
             /* Mobile */
@@ -409,13 +389,18 @@
 		.main dd {font-weight:400;font-size:2.5em;}
             }
 	    
+	    /*Small*/
 	    @media screen and (max-width: 1000px){
 		.indicator {display:none;visibility:hidden;}
 	    }
 	    
+	    /*Big*/
 	    @media screen and (min-width: 1000px){
 		.menu, .drawer {display:none;visibility:hidden;}
 		.sections > li {padding:10px 80px;}
+		.my_works .thumbnail p {font-size:1.6em}
+		.my_works button {font-size:0.9rem}
+		.grid > li {width:25%;}
 	    }
 
         </style>
@@ -880,6 +865,7 @@
 		if (window.innerWidth <= 700) {
 		    if ($(".twin").size() > 0) {
 			$(".sections > li > div:first-child").fadeIn();
+			$(".twin").parent().parent().removeClass("relax");
 
 			var twinRight = $(".twin:eq(1)").clone();
 			twinRight.removeClass("twin").addClass("twin_dna");
@@ -911,6 +897,7 @@
 
 			$(".twin_dna").parent().remove();
 			$(".twin").removeAttr('style');
+			$(".twin").parent().parent().addClass("relax");
 			slider.update();
 
 			if ($(".my_works_icon").size() > 0) {
@@ -919,6 +906,7 @@
 			redrawCharts();
 		    }
 		}
+		$(".sections > li").removeClass("on");
 		$(".sections > li:eq("+(slider.current()-1)+")").addClass("on");
 	    }
 
@@ -1064,7 +1052,7 @@
 		    </div>
 		</li>
 		<!--@work_experiences-->
-		<li>
+		<li class="relax">
 		    <div>
 			<div class="twin">
 			    <h2 class="underbar">Work Experiences</h2>
