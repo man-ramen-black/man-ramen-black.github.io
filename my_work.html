@@ -5,6 +5,7 @@
          ************/
         "mobi" : {
             "name" : "MOBI",
+	    "type" : "mobile",
             "skills" : ["Android", "PHP", "MySQL"],
             "links" : [
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.mobi"},
@@ -58,6 +59,7 @@
          ************/
         "looting" : {
             "name" : "루팅",
+	    "type" : "mobile",
             "skills" : ["Android", "PHP", "MySQL"],
             "links" : [
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
@@ -103,6 +105,7 @@
          ************/
         "zzi" : {
             "name" : "게임을 낚다 - ZZI",
+	    "type" : "mobile",
             "skills" : ["Android", "PHP", "MySQL"],
             "links" : [
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.zzi"},
@@ -153,6 +156,7 @@
          ************/
         "adbox" : {
             "name" : "ADBox",
+	    "type" : "mobile",
             "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
             "links" : [
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.adbox"},
@@ -214,6 +218,7 @@
          ************/
         "albag" : {
             "name" : "알바G",
+	    "type" : "mobile",
             "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
             "links" : [
                 {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
@@ -250,6 +255,7 @@
          ************/
         "event" : {
             "name" : "모나와 이벤트 페이지",
+	    "type" : "mobile",
             "skills" : ["JavaScript", "CSS", "PHP", "MySQL"],
             "links" : [],
             "preview" : [
@@ -298,6 +304,7 @@
          ************/
         "admin" : {
             "name" : "모나와 관리자 페이지",
+	    "type" : "pc",
             "skills" : ["PHP", "MySQL", "JavaScript"],
             "links" : [],
             "preview" : [
@@ -358,7 +365,8 @@
          * 모비 루팅 찌 광고주 페이지
          ************/
         "mobi_advertiser" : {
-            "name" : "모비/루팅/찌 광고주 페이지",
+            "name" : "<small>모비/루팅/찌 광고주 페이지</small>",
+	    "type" : "pc",
             "skills" : ["PHP", "MySQL", "JavaScript"],
             "links" : [
                 {"name" : "Web", "url" : "http://www.mobi.co.kr/admin"},
@@ -390,6 +398,7 @@
          ************/
         "adbox_advertiser" : {
             "name" : "애드박스 광고주 페이지",
+	    "type" : "pc",
             "skills" : ["PHP", "MySQL", "JavaScript"],
             "links" : [
                 {"name" : "Web", "url" : "http://www.adbox.co.kr/advertiser/"},
@@ -424,6 +433,7 @@
          ************/
         "hungryapp_sdk" : {
             "name" : "헝그리앱 SDK",
+	    "type" : "mobile",
             "skills" : ["Android", "Java", "Kotlin"],
             "links" : [],
             "preview" : [
@@ -492,11 +502,11 @@
     }
     
     function onVisibilityChange(el, callback) {
-        var old_visible;
+        var oldVisible;
         return function () {
             var visible = isInViewport(el);
-            if (visible != old_visible) {
-                old_visible = visible;
+            if (visible != oldVisible) {
+                oldVisible = visible;
                 if (typeof callback == 'function') {
                     callback();
                 }
@@ -541,42 +551,44 @@
         return html;
     }
     
-    var my_work = null;
+    var myWork = null;
     
     var hash = replaceAll(location.hash, "#", "");
     if(hash.indexOf("my_work_") != -1){
-	my_work = MY_WORKS[hash.replace("my_work_", "")];
+	myWork = MY_WORKS[hash.replace("my_work_", "")];
     }
     
     (function(){
 
-        if(!my_work){
+        if(!myWork){
             $("#my_work_wrap").hide();
             alert("올바르지 않은 페이지입니다.");
             history.back();
             return;
         }
 
-        $(".header h2").prepend(my_work.name);
-        my_work.skills.forEach(function(val){
+        $(".header h2").prepend(myWork.name);
+        myWork.skills.forEach(function(val){
            $(".header .use_skills").append("<li>"+val+"</li>");
         });
-        my_work.links.forEach(function(data){
+        myWork.links.forEach(function(data){
            $(".header .links").append("<button onclick=\"window.open('"+data.url+"')\">"+data.name+"</button>"); 
         });
+	
+	$(".swiper-container").addClass(myWork.type);
     })();
     
     function initMyWork(){
-	my_work.preview.forEach(function(data){
+	myWork.preview.forEach(function(data){
            $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
         });
-        $(".description:eq(0)").html(my_work.description); 
+        $(".description:eq(0)").html(myWork.description); 
         
-        if(!my_work.dev){
+        if(!myWork.dev){
             $("#dev").remove();
             
         }else{
-            my_work.dev.forEach(function(data){
+            myWork.dev.forEach(function(data){
                 var section = $.parseHTML($("#section_template").html());
                 $(section).find("h3").prepend(data.name);
                 data.links.forEach(function(link){
