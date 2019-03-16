@@ -77,8 +77,12 @@
                 }
             }
 
-            .touch {width:20px;position:absolute;animation:touch 1.5s infinite ease-in-out;}
-            .skills .touch{top:50px;left:50%;}
+	    .hand {width:20px;height:26px;display:block;background-image:url('./images/hand.png');background-size:100%;position:absolute;z-index:1000;transition:background .4s}
+            .hand.touch {animation:touch 1.5s infinite ease-in-out;}
+	    .skills .hand.touch{top:50px;left:50%;}
+	    
+	    .hand.swipe {animation:swipe 1.5s infinite;}
+	    .swiper-container .hand.swipe {top:50%;left:50%;}
 
             @keyframes touch {
                 0%, 100% {
@@ -86,6 +90,26 @@
                 }
                 50% {
                     transform: scale(1.2);
+                }
+            }
+	    
+	    @-webkit-keyframes swipe {
+                0%, 10% {
+		    margin-left:100px;
+		    transform: scale(1.2);
+		    opacity : 1;
+                }
+		30% {
+		    margin-left:100px;
+		    transform: scale(1);
+                }
+		80% {
+		    margin-left:-100px;
+		    opacity : 1;
+                }
+                100% {
+		    margin-left:-100px;
+                    opacity : 0;
                 }
             }
 	    
@@ -173,18 +197,6 @@
 
 
             @-webkit-keyframes spin {
-                from {
-                    -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-                }
-                to {
-                    -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
-                }
-            }
-
-
-            @keyframes spin {
                 from {
                     -webkit-transform: rotate(0deg);
                     transform: rotate(0deg);
@@ -782,12 +794,12 @@
 	    }
 	    
 	    var time = new Date().getTime();
-
+	    var firstPopup = true;
+	    
 	    function showMyWorkPopup(myWorkName) {
 		slider.setEnabled(false);
 		$(".menu, .indicator").fadeOut(600);
 		$(".sections").animate({"left":"-100%", "opacity":"0"},{duration:600});
-//		$("#my_works_popup").css("visibility", "hidden").show();
 
 		var url = "./my_work.html?ver=" + time;
 		$("#my_works_popup").load(url, null, function (responseText, textStatus, jqXHR) {
@@ -821,6 +833,12 @@
 					window.open(url);
 				    }
 				});
+				
+				if(firstPopup){
+				    firstPopup = false;
+				    $(".swiper-container").append("<div class='hand swipe'></div>");
+				}
+				
 				$("#my_works_popup .section, #my_works_popup #dev")
 					.hide()
 					.css("visibility", "visible")
@@ -849,6 +867,7 @@
 		if ($(".swiper-container").hasClass("pc")) {
 		    slidesPerView = {0 : 2, 800 : 1, 600 : 1 };
 		}
+		var isFirst = true;
 		swiper = new Swiper('.swiper-container', {
 		    slidesPerView: slidesPerView[0],
 		    effect: "coverflow",
@@ -878,6 +897,12 @@
 			    if (video.size() >= 1) {
 				video.get(0).play();
 			    }
+			},
+			"sliderMove" : function (){
+			    if(!isFirst) return;
+			    
+			    isFirst = false;
+			    $(".swiper-container .hand").remove();
 			}
 		    },
 		})
@@ -1055,6 +1080,7 @@
 			    <dt>이진혁</dt>
 			    <dd>Software Developer</dd>
 			</dl>
+			<div class="swipe"></div>
 			<div class="arrow down"  onclick="slider.goPage(2)"></div>
 		    </div>
 		</li>
@@ -1085,7 +1111,7 @@
 				<li>
 				    <div class="thumbnail monawa link" onclick="cancelBubbling();"><p onclick="window.open('http://www.hungryapp.co.kr/')">㈜모나와</p></div>
 				    <div class="info">
-					<img class="touch" src="./images/hand.png" alt="hand" >
+					<div class="hand touch" ></div>
 					Android / PHP / MySQL / Front-end / Git<br>
 					2015.07 - 2019.02
 				    </div>
@@ -1141,7 +1167,7 @@
 				    <div class="chart_container">
 					<canvas id="android_chart"></canvas>
 				    </div>
-				    <img class="touch" src="./images/hand.png" alt="hand" >
+				    <div class="hand touch" ></div>
 				    <ul class="detail">
 					<li>Activity, Service, Broadcast Receiver에 대한 이해</li>
 					<li>네이티브 앱, 하이브리드 앱 100% 개발</li>
