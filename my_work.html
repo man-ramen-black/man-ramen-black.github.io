@@ -28,9 +28,9 @@
                      "preview" : [
                          {"type" : "video", "src" : "./images/mobi/mobi_lock.mp4", "poster" : "./images/mobi/lock.jpg"}    
                      ],
-                     "description" : "포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.<br>"+
-                                    "SQLite, Cache를 활용하여 로딩 속도를 최적화 및 네트워크 미연결 상태에도 대응하였습니다.<br>"+
-                                    "잠금화면의 View, 동작을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다."
+                     "description" : "<p>포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.<p>"+
+                                    "<p>SQLite, Cache를 활용하여 로딩 속도 최적화 및 네트워크 미연결 상태에도 대응하였습니다.</p>"+
+                                    "<p>잠금화면의 View, 동작 대부분을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다.</p>"
                  },
                  {
                      "name" : "스페셜 쿠폰",
@@ -39,7 +39,9 @@
                          {"type" : "mobile", "src" : "./images/mobi/sp.jpg"},
                          {"type" : "mobile", "src" : "./images/mobi/sp_detail.jpg?ver=2"},
                      ],
-                     "description" : "특정 미션을 완료 시 쿠폰을 발급받을 수 있는 스페셜 쿠폰 기능입니다."
+                     "description" : "<p>특정 미션을 완료 시 쿠폰을 발급받을 수 있는 스페셜 쿠폰 기능입니다.</p>"+
+				    "<p>페이스북 공유 미션은 페이스북 SDK를 통해 구현하였습니다.</p>"+
+				    "<p>게임 플레이 미션은 접근성 기능을 활용하여 구현하였습니다.</p>"
                  },
                  {
                      "name" : "팝업 푸시",
@@ -48,7 +50,9 @@
                          {"type" : "mobile", "src" : "./images/mobi/popup_push.jpg"},
                          {"type" : "mobile", "src" : "./images/mobi/point_push.jpg"},
                      ],
-                     "description" : "사전 예약 참여 유도 및 게임 출시 안내, 보너스 포인트 지급을 위한 팝업 푸시 기능입니다."
+                     "description" : "<p>사전 예약 참여 유도 및 게임 출시 안내, 보너스 포인트 지급을 위한 팝업 푸시 기능입니다.</p>"+
+				    "<p>팝업 푸시의 버튼 동작은 푸시 발송 시의 데이터를 통해 유동적으로 변경할 수 있습니다.</p>"+
+				    "<p>팝업 푸시의 버튼 터치 시에 서버 통신이 발생하며 유입률 등을 체크할 수 있도록 개발되었습니다.</p>"
                  },
                  
              ],
@@ -85,8 +89,9 @@
                          {"type" : "video", "src":"./images/looting/plus.mp4", "poster" : "./images/looting/plus.jpg"},
                          {"type" : "mobile", "src" : "./images/looting/plus_detail.jpg?ver=1"},
                      ],
-                     "description" : "게임을 일정 시간 플레이하면 쿠폰을 발급해주는 플러스 쿠폰 기능입니다.<br>"+
-                                    ""
+                     "description" : "<p>게임을 일정 시간 플레이하면 쿠폰을 발급해주는 플러스 쿠폰 기능입니다.</p>"+
+                                    "<p>게임 플레이 감지 기능은 접근성을 활용하여 개발하였습니다.</p>"+
+				    "<p>미션 완료 후 쿠폰은 관리자가 설정한 확률에 따라 일반 쿠폰, 레전드 쿠폰, 꽝 등이 랜덤으로 발급되도록 개발되어 있습니다.</p>"
                  },
                  {
                      "name" : "설치 푸시",
@@ -95,7 +100,9 @@
                          {"type" : "video", "src" : "./images/looting/install_push.mp4", "poster" : "./images/looting/intro.jpg"},
                          {"type" : "mobile", "src" : "./images/looting/install_push.jpg"},
                      ],
-                     "description" : "사전 예약을 참여한 게임을 설치할 경우 쿠폰을 즉시 복사할 수 있는 Notification을 노출하는 기능입니다."
+                     "description" : "<p>사전 예약을 참여한 게임을 설치할 경우 쿠폰을 즉시 복사할 수 있는 Notification을 노출하는 기능입니다.</p>" + 
+			     "<p>Notification의 복사 버튼은 Notification Action을 활용하여 구현하였으며, 동작과 텍스트 등은 서버에서 유동적으로 변경할 수 있습니다.</p>"+
+			     "<p>안드로이드 8.0 오레오 버전의 암시적 브로드캐스트 제한에 대해서도 대응할 수 있게끔 개발되어 있습니다.</p>"
                  },
              ],
         },
@@ -127,16 +134,14 @@
              "dev" : [
                  {
                      "name" : "게임 가계부",
-                     "links" : [
-                         {"name" : "App Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-App/blob/master/zzi/src/main/java/com/ha/zzi/fragment/CashbookFragment.java"},
-                         {"name" : "Server Source", "url" : "https://github.com/man-ramen-black/Portfolio-Monawa-Web/blob/master/mobile/zzi/zzi_srv.php#L3385"},
-                     ],
+                     "links" : [],
                      "preview" : [
                          {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
                          {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
                      ],
-                     "description" : "구글 결제 내역을 정리하여 보여주는 게임 가계부 기능입니다.<br>"+
-                                    "구글 결제 내역 페이지를 크롤링 후 데이터로 파싱하여 회원에게 정보를 노출합니다."
+                     "description" : "<p>구글 결제 내역을 정리하여 보여주는 게임 가계부 기능입니다.</p>"+
+                                    "<p>구글 결제 내역 페이지를 크롤링 후 데이터로 파싱하여 회원에게 정보를 노출합니다.</p>"+
+				    "<p>파싱된 데이터는 SQLite로 저장되고, 이 후 페이지를 열 때는 SQLite에서 데이터를 불러와서 페이지를 빠르게 표시합니다.</p>"
                  },
                  {
                      "name" : "내 게임",
@@ -144,8 +149,9 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/zzi/my_game.jpg"},
                      ],
-                     "description" : "현재 설치되어 있는 게임들의 쿠폰을 받을 수 있는 각 서비스로 이동시켜주는 기능입니다.<br>"+
-                                    "웹페이지로 구성되어 있습니다."
+                     "description" : "<p>기기에 설치되어 있는 내 게임들의 쿠폰을 받을 수 있는 각 서비스로 이동시켜주는 기능입니다.</p>"+
+                                    "<p>웹뷰와 Javascript Interface를 활용하여 구현하였습니다.</p>"+
+				    "<p>게임의 정보와 쿠폰 보유 여부는 Cron을 통해 주기적으로 갱신되며 갱신용 Cron 파일 또한 직접 개발하였습니다.</p>"
                  },
              ],
         },
@@ -184,8 +190,8 @@
                          {"type" : "video", "src":"./images/adbox/install_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
                          {"type" : "video", "src":"./images/adbox/res_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
                      ],
-                     "description" : "NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.<br>"+
-                                    "만들라고 시키는 사람 조차 NCPI에 대한 정확한 지식, 방식도 모르는 상태에서 무작정 만들라고 요청이 와서 직접 일일이 알아보고 찾아가며 개발을 했습니다.<br>"+
+                     "description" : "<p>NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.</p>"+
+                                    "<p></p>"+
                                     ""
                  },
                  {
@@ -356,7 +362,18 @@
                          {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
                      ],
                      "description" : "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-                                    ""
+                                    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
+				    "애드박스 정산을 위한 통계 페이지입니다.<br>"
                  },
              ],
         },
@@ -413,9 +430,7 @@
              "dev" : [
                  {
                      "name" : "광고 현황 상세 페이지",
-                     "links" : [
-                         {},
-                     ],
+                     "links" : [],
                      "preview" : [
                          {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
                      ],
@@ -496,7 +511,7 @@
     };
     
     function scrollToTop(){
-	$('#my_works_popup').animate({
+	$('#my_work_popup').animate({
 	    scrollTop: 0
 	}, 400);
     }
@@ -514,7 +529,7 @@
         }
     }
     
-    $("#my_works_popup").on('resize scroll', function(){
+    $("#my_work_popup").on('resize scroll', function(){
 	console.log("scroll : " + this.scrollTop);
 	if(this.scrollTop > 0){
 	    $(".top_btn").fadeIn();
@@ -530,6 +545,7 @@
                     video.play();
                 }
             }else if(!video.paused){
+		console.log("pause");
                 video.pause();
             }
         });
@@ -561,7 +577,7 @@
     (function(){
 
         if(!myWork){
-            $("#my_work_wrap").hide();
+            $(".wrap").hide();
             alert("올바르지 않은 페이지입니다.");
             history.back();
             return;
@@ -580,25 +596,30 @@
     
     function initMyWork(){
 	myWork.preview.forEach(function(data){
-           $(".section:eq(0) .swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
+           $(".swiper-wrapper").append("<li>"+getPreviewHtml(data)+"</li>"); 
         });
         $(".description:eq(0)").html(myWork.description); 
         
         if(!myWork.dev){
-            $("#dev").remove();
+            $("#devs").remove();
             
         }else{
             myWork.dev.forEach(function(data){
-                var section = $.parseHTML($("#section_template").html());
+                var section = $.parseHTML($("#dev_template").html());
                 $(section).find("h3").prepend(data.name);
+		
                 data.links.forEach(function(link){
                     $(section).find(".links").append("<button onclick=\"window.open('"+link.url+"')\">"+link.name+"</button>");    
                 });
+		if(data.links.length < 1){
+		    $(section).find(".links").remove();
+		}
+		
                 data.preview.forEach(function(preview){
-                    $(section).find(".preview").append(getPreviewHtml(preview));
+                    $(section).find("dt").append(getPreviewHtml(preview));
                 })
-                $(section).find(".description").html(data.description); 
-                $("#dev").append(section);
+                $(section).find(".description").html("<div class='middle'>"+data.description+"</div>"); 
+                $("#devs").append(section);
             });
         }
     }
@@ -606,35 +627,40 @@
     
     
 </script>
-<div id="my_work_wrap">
+<div class="wrap">
     <div class="header">
-        <h2><span class="underbar"></span></h2>
+        <h2></h2>
         <ul class="use_skills"></ul>
         <div class="links"></div>
         <div class="close" onclick="history.back();$(this).attr('onclick','');"></div>
     </div>
 
-    <div class="section">
+    <div class="summary">
         <div class="swiper-container">
             <ul class="swiper-wrapper">
             </ul>
         </div>
 
-        <h3>프로젝트 소개<span class="underbar"></span></h3>
+        <h3>프로젝트 소개</h3>
         <div class="description"></div>
     </div>
-
-    <div id="dev">
-        <h2>주요 개발<span class="underbar"></span></h2>
+    
+    <div id="devs">
+	<h2>주요 개발</h2>
     </div>
+    
 
-    <div id="section_template" style="display:none;">
-        <div class="section">
-            <h3><span class="underbar"></span></h3>
-            <div class="links"></div>
-            <div class="preview"></div>
-            <div class="description"></div>
-        </div>
+    <div id="dev_template" style="display:none;">
+        <dl class="dev">
+	    <dt></dt>
+	    <dd>
+		<div>
+		    <h3></h3>
+		    <div class="links"></div>
+		    <div class="description"></div>
+		</div>
+	    </dd>
+        </dl>
     </div>
     
     <div class="top_btn" onclick="scrollToTop()"><p></p></div>
