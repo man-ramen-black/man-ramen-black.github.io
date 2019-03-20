@@ -347,9 +347,9 @@
             .popup h2 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 20px 5px 20px;font-size:1.7em}
             .popup h2:after {content:"";position:absolute;border-bottom:solid 2px white;left:10px;right:10px;display:block;}
 
-            .popup h3 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 10px 5px 10px;font-size:1.3em}
+            .popup h3 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 10px;font-size:1.3em}
 	    
-	    .popup h3:after {content:"";position:absolute;border-bottom:solid 1px white;left:0px;right:0px;display:block;}
+	    .popup h3:after {content:"";position:absolute;border-bottom:solid 1px white;left:0px;right:0px;display:block;bottom:-3px;}
 	    
 	    .popup #devs {visibility:hidden;margin-bottom:20px}
 	    
@@ -368,11 +368,13 @@
             .popup video {cursor:pointer}
             .popup samp {cursor:pointer;width:100%;padding-bottom:50.9375%;background-size:100%;background-repeat:no-repeat;}
 
+	    .popup .dev h3 {padding:0px 20px 0px 0px;text-align:left;}
             .dev dt {width:100%;margin:10px 0;}
 	    .dev dd {position:relative;width:100%;}
 	    .dev dd:before {content:"";height:100%;display:inline-block;vertical-align:middle;margin-left:-10px;}
-	    .dev dd > * {display:inline-block;vertical-align:middle;}
-	    .dev .description {padding:0 20px;}
+	    .dev dd > * {display:inline-block;vertical-align:middle;text-align:left;}
+	    .dev .description {}
+	    .dev .description p {padding:7px 0;}
             .dev video, .dev img {width:40%;text-align:center;margin:0 1%;}
 
             
@@ -438,6 +440,11 @@
 		.dev dd{position:absolute;top:0;bottom:0;width:50%;}
 		.dev:nth-child(even) dd{right:0}
 		.dev:nth-child(odd) dd{left:0}
+		
+		.dev:nth-child(even) dd > * {padding-left:40px;}
+		.dev:nth-child(odd) dd > * {padding-right:40px;}
+		
+		
 	    }
 
         </style>
