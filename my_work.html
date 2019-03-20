@@ -184,15 +184,17 @@
                             "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.",
              "dev" : [
                  {
-                     "name" : "클릭 URL / 광고 트래킹 / 포스트백",
+                     "name" : "클릭 URL / 트래킹 / 포스트백",
                      "links" : [],
                      "preview" : [
                          {"type" : "video", "src":"./images/adbox/install_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
                          {"type" : "video", "src":"./images/adbox/res_postback.mp4", "poster" : "./images/adbox/detail.jpg?ver=1"},
                      ],
-                     "description" : "<p>NCPI 광고에 필요한 클릭 URL 생성, 광고 트래킹, 포스트백 처리를 직접 구현하였습니다.</p>"+
-                                    "<p></p>"+
-                                    ""
+                     "description" : "<p>NCPI 광고에 필요한 클릭 URL 생성, 트래킹, 포스트백 처리를 직접 구현하였습니다.</p>"+
+                                    "<p>클릭 URL은 PHP의 pack, base64encode 함수를 활용하여 클릭 URL의 일련 번호를 문자 형태로 변환하는 방식으로 구현하였습니다.</p>"+
+                                    "<p>클릭 URL 클릭 시 IP, Referrer, 브라우저, OS 등이 수집되도록 구현하였습니다.</p>"+
+				    "<p>포스트백 서버는 설치, 이벤트 포스트백를 단일 페이지에서 처리 가능하며, 30개 이상의 광고 네트워크와 유연하게 연동되어 있습니다.</p>" +
+				     "<p>포스트백 서버 내에서 자체적으로 CTIT, ADID, IP 등의 데이터에 따라 포스트백을 분류하는 기능도 구현되어 있습니다.</p>"
                  },
                  {
                      "name" : "게임 팝업",
@@ -201,8 +203,9 @@
                          {"type" : "video", "src":"./images/adbox/popup.mp4", "poster" : "./images/adbox/popup.jpg?ver=1"},
                          {"type" : "mobile", "src":"./images/adbox/popup.jpg"},
                      ],
-                     "description" : "게임 종료를 감지하여 광고 팝업을 노출하고 광고에 참여한 회원에게 포인트를 지급하는 게임 팝업 기능입니다.<br>"+
-                                    ""
+                     "description" : "<p>게임 종료를 감지하여 광고 팝업을 노출하고 광고에 참여한 회원에게 포인트를 지급하는 게임 팝업 기능입니다.</p>"+
+                                    "<p>게임 종료 감지 기능은 접근성을 활용하여 구현하였습니다.</p>"+
+				    "<p>게임 팝업의 옵션, View, 동작들은 서버에서 유동적으로 변경할 수 있게 구현하였습니다.</p>"
                  },
                  {
                      "name" : "앱 자동 설치",
@@ -210,8 +213,11 @@
                      "preview" : [
                          {"type" : "mobile", "src":"./images/adbox/auto_install.jpg"},
                      ],
-                     "description" : "백그라운드에서 앱을 자동으로 설치하고 회원에게 포인트를 지급하는 기능입니다.<br>"+
-                                    "Service, WebView, JavaScript 등을 사용하여 기능을 구현하였습니다. "
+                     "description" : "<p>백그라운드에서 앱을 자동으로 설치하고 회원에게 포인트를 지급하는 기능입니다.</p>"+
+				    "<p>CPI 광고 앱, 자체 설정 앱이 자동으로 설치되게 구현되어 있습니다.</p>"+
+                                    "<p>Service, WebView, JavaScript 등을 활용하여 기능을 구현하였습니다.</p>"+
+				    "<p>안드로이드 8.0 오레오 버전의 암시적 브로드캐스트 제한에 대해서도 대응할 수 있게끔 개발되어 있습니다.</p>"+
+				    ""
                  },
                          
                          
@@ -247,10 +253,10 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/albag/detail.jpg"},
                      ],
-                     "description" : "알바G의 핵심인 카페 가입, 블로그 작성, 게임 실행, 설치 유지 등의 미션을 구현하였습니다.<br>"+
-                                     "카페 가입, 블로그 작성 미션은 네이버 API를 활용하여 구현하였습니다.<br>"+
-                                     "게임 실행, 레벨 달성 등의 미션은 설치, 이벤트 포스트백을 활용하여 구현하였습니다.<br>"+
-                                     "설치 유지 미션은 헝그리앱 SDK의 설치, 삭제 감지 기능을 활용하여 구현하였습니다."
+                     "description" : "<p>알바G의 핵심인 카페 가입, 블로그 작성, 게임 실행, 설치 유지 등의 미션을 구현하였습니다.</p>"+
+                                     "<p>카페 가입, 블로그 작성 미션은 네이버 API를 활용하여 구현하였습니다.</p>"+
+                                     "<p>게임 실행, 레벨 달성 등의 미션은 설치, 이벤트 포스트백을 활용하여 구현하였습니다.</p>"+
+                                     "<p>설치 유지 미션은 헝그리앱 SDK의 설치, 삭제 감지 기능을 활용하여 구현하였습니다.</p>"
                                      
                 },
             ]
@@ -282,16 +288,19 @@
                          {"type" : "video", "src" : "./images/event/coin.mp4", "poster" : "./images/event/coin.jpg"},
                          {"type" : "video", "src" : "./images/event/ball.mp4", "poster" : "./images/event/ball.jpg"},
                      ],
-                     "description" : "jQuery Animation, CSS Animation 등을 활용하여 애니메이션을 구현하였습니다.<br>"+
-                                    "애니메이션의 속성들을 변수로 통제할 수 있도록 고려하여 개발하였습니다."
+                     "description" : "<p>jQuery Animation, CSS Transition 등을 활용하여 이벤트 애니메이션을 구현하였습니다.</p>"+
+                                    "<p>애니메이션의 속성들을 변수를 통해 유동적으로 변경할 수 있도록 개발하였습니다.</p>"+
+				    ""
                  },
                  {
-                     "name" : "게임 플레이",
+                     "name" : "게임 플레이 이벤트",
                      "links" : [],
                      "preview" : [
                          {"type" : "video", "src" : "./images/event/egg.mp4", "poster" : "./images/event/egg.jpg"},
                      ],
-                     "description" : "JavaScript Interface, 접근성을 활용하여, 게임 플레이 시간 감지 기능을 구현하였습니다."
+                     "description" : "<p>게임 플레이 시간에 따라 보상을 지급하는 게임 플레이 이벤트를 개발하였습니다.</p>"+
+				    "<p>JavaScript Interface, 접근성을 활용하여 게임 플레이 시간 감지 기능을 구현하였습니다.</p>"+
+				    ""
                  },
                  {
                      "name" : "당첨 확률",
@@ -299,8 +308,9 @@
                      "preview" : [
                          {"type" : "video", "src" : "./images/event/spin.mp4", "poster":"./images/event/spin.jpg"},
                      ],
-                     "description" : "관리자가 설정한 확률에 따라 이벤트 상품이 당첨되게 구현하였습니다.<br>"+
-                                     "확률은 관리자들이 통계를 확인하며, 유동적으로 설정할 수 있습니다."
+                     "description" : "<p>관리자가 설정한 확률에 따라 이벤트 상품이 당첨되게 구현하였습니다.</p>"+
+                                     "<p>확률은 관리자들이 통계를 확인하며, 유동적으로 설정할 수 있습니다.</p>"+
+				     "<p>추가로 예산 제한, 상품 소진 시 미당첨 등의 기능을 통해 보다 안정적인 이벤트 진행이 이뤄지도록 개발을 진행했습니다.</p>"
                  },
              ],
         },
@@ -324,7 +334,10 @@
                 
             ],
             "description" : "모나와의 각 서비스를 관리하기 위한 관리자 페이지입니다.<br>"+
-                            "애드박스, 알바G의 모든 관리자 페이지를 100% 직접 개발하였고, 그 외 서비스들의 푸시 발송 페이지, 이벤트 관리 페이지 등을 직접 개발하였습니다.",
+                            "애드박스, 알바G의 모든 관리자 페이지를 100% 직접 개발하였습니다.<br>"+
+			    "그 외 서비스들의 푸시 발송 페이지, 이벤트 관리 페이지 등을 직접 개발하였습니다."+
+			    ""
+		    ,
              "dev" : [
                  {
                      "name" : "푸시 발송 페이지",
@@ -332,10 +345,10 @@
                      "preview" : [
                          {"type" : "pc", "src" : "./images/admin/push2.png"},
                      ],
-                     "description" : "푸시 발송을 위한 관리자 페이지입니다.<br>"+
-                                    "제목과 내용 input에는 관리자들이 html 태그를 손쉽게 적용할 수 있도록 에디터 라이브러리를 적용하였습니다.<br>"+
-                                    "푸시 발송 시 Timeout 방지 및 전송 속도 향상을 위해 Ajax를 통한 분할 전송이 적용되어 있습니다.<br>"+
-                                    "옵션에 따라 다양한 타겟팅으로 푸시를 전송할 수 있으며, 테스트 전송 기능으로 실제 전송 전에 푸시 테스트가 가능합니다."
+                     "description" : "<p>푸시 발송을 위한 관리자 페이지입니다.</p>"+
+                                    "<p>제목과 내용 input에는 관리자들이 html 태그를 손쉽게 적용할 수 있도록 에디터 라이브러리를 적용하였습니다.</p>"+
+                                    "<p>푸시 발송 시 Timeout 방지 및 전송 속도 향상을 위해 Ajax를 통한 분할 전송이 적용되어 있습니다.</p>"+
+                                    "<p>옵션에 따라 다양한 타겟팅으로 푸시를 전송할 수 있으며, 테스트 전송 기능으로 실제 전송 전에 푸시 테스트가 가능합니다.</p>"
                  },
                  {
                      "name" : "쿠폰 등록 기능",
@@ -343,8 +356,8 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/admin/coup_manager.png?ver=1"},
                      ],
-                     "description" : "게임 쿠폰 관련 서비스의 쿠폰 등록을 위한 관리자 페이지입니다.<br>"+
-                                    "jQuery File Upload 플러그인과 PHPExcel 라이브러리를 활용하여 관리자가 csv, xls, xlsx 파일 등록으로 간편하게 DB에 쿠폰을 insert 또는 update 할 수 있도록 개발하였습니다.<br>"
+                     "description" : "<p>게임 쿠폰 관련 서비스의 쿠폰 등록을 위한 관리자 페이지입니다.</p>"+
+                                    "<p>jQuery File Upload 플러그인과 PHPExcel 라이브러리를 활용하여 관리자가 csv, xls, xlsx 파일 등록으로 간편하게 DB에 쿠폰을 insert 또는 update 할 수 있도록 개발하였습니다.</p>"
                  },
                  {
                      "name" : "이벤트 확률 설정 기능",
@@ -352,8 +365,9 @@
                      "preview" : [
                          {"type" : "pc", "src" : "./images/admin/mobi_roulette_percent.png"},
                      ],
-                     "description" : "이벤트 확률 설정을 위한 관리자 페이지입니다.<br>"+
-                                    ""
+                     "description" : "<p>이벤트 확률 설정을 위한 관리자 페이지입니다.</p>"+
+                                    "<p>적절한 확률 설정을 위해 현재 진행 중인 이벤트 상황을 실시간으로 비교하여 설정할 수 있도록 개발하였습니다.</p>"+
+				    ""
                  },
                  {
                      "name" : "애드박스 정산 페이지",
@@ -361,19 +375,11 @@
                      "preview" : [
                          {"type" : "pc", "src" : "./images/admin/adbox_stats.png"},
                      ],
-                     "description" : "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-                                    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"+
-				    "애드박스 정산을 위한 통계 페이지입니다.<br>"
+                     "description" : "<p>애드박스 정산을 위한 통계 페이지입니다.</p>"+
+                                    "<p>약 10개의 테이블의 데이터를 정리하여 서비스의 진행 상황을 한 눈에 알아볼 수 있도록 개발하였습니다.</p>"+
+				    "<p>통계 조회시 10초 미만의 시간으로 페이지가 출력되도록 개발하였습니다.</p>"+
+				    "<p>상세 내역 조회, 일별 조회, 월별 조회, 엑셀 출력 등의 여러가지 기능을 지원하도록 개발하였습니다.</p>"+
+				    ""
                  },
              ],
         },
@@ -402,10 +408,11 @@
                      "preview" : [
                          {"type" : "pc", "src" : "./images/mobi_advertiser/report.png"},
                      ],
-                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 상세 페이지입니다.<br>"+
-                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
-                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
-                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
+                     "description" : "<p>광고 정보 및 진행 상황을 한 눈에 확인할 수 있는 광고 상세 페이지입니다.</p>"+
+                                    "<p>빠른 데이터 로딩을 위해 Ajax를 적극 활용하였습니다.</p>"+
+                                    "<p>조회 시 백엔드에서 약 10개의 테이블의 데이터를 파싱하여 리턴하며 View 페이지에서 파싱된 데이터로 각 View를 그려주도록 구현하였습니다.</p>"+
+				    "<p>출력되는 데이터는 관리자 페이지와 기타 페이지 등에서도 활용되는 데이터이기 때문에 데이터를 파싱하는 구문을 함수화하여 cURL 또는 함수 호출로 간단하게 데이터를 조회할 수 있도록 개발하였습니다.</p>"+
+                                    ""
                  },
              ],
         },
@@ -429,15 +436,16 @@
                             "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
              "dev" : [
                  {
-                     "name" : "광고 현황 상세 페이지",
+                     "name" : "캠페인 현황 상세 페이지",
                      "links" : [],
                      "preview" : [
                          {"type" : "pc", "src" : "./images/adbox_advertiser/report.png"},
                      ],
-                     "description" : "광고 정보 및 진행 내역을 한 눈에 확인할 수 있는 광고 현황 상세 페이지입니다.<br>"+
-                                    "빠른 데이터 로딩 속도를 위해 Ajax를 적극 활용하였습니다.<br>"+
-                                    "Ajax를 통해 4~5개의 테이블의 데이터를 JSON 데이터로 불러온 후 jQuery를 통해 HTML을 추가합니다.<br>"+
-                                    "차트는 구글 차트 라이브러리를 사용하였습니다."
+                     "description" : "<p>캠페인 정보 및 진행 상황을 한 눈에 확인할 수 있는 캠페인 상세 페이지입니다.</p>"+
+                                    "<p>빠른 데이터 로딩을 위해 Ajax를 적극 활용하였습니다.</p>"+
+                                    "<p>조회 시 백엔드에서 약 5개의 테이블의 데이터를 파싱하여 리턴하며 View 페이지에서 파싱된 데이터로 각 View를 그려주도록 구현하였습니다.</p>"+
+				    "<p>캠페인의 타입(설치형, 이벤트형, 사전예약형 등)에 따라 텍스트, 노출되는 항목, 데이터가 달라질 수 있도록 유동적으로 개발하였습니다.</p>"+
+				    ""
                  },
              ],
         },
@@ -474,8 +482,8 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/response.jpg"},
                      ],
-                     "description" : "HTTP 통신으로 획득한 Bundle의 데이터에 따라 Toast, Dialog, Notification 등을 노출하는 Class입니다.<br>"+
-                                     "데이터, 상황에 따라 유동적으로 대응할 수 있도록 개발하였습니다."
+                     "description" : "<p>HTTP 통신으로 획득한 Bundle의 데이터에 따라 Toast, Dialog, Notification 등을 노출하는 Class입니다.</p>"+
+                                     "<p>텍스트, 동작 변경 등이 필요할 경우 실시간으로 변경이 가능하도록 개발하였습니다.</p>"
                  },
                  {
                      "name" : "GCMManager",
@@ -483,9 +491,9 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/notification.jpg"},
                      ],
-                     "description" : "GCM 기능을 위한 Class입니다.<br>"+
-                                    "데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다.<br>"+
-                                    "알림 예약, 이미지, HTML 태그, 아이콘, Action 등을 지원합니다."
+                     "description" : "<p>GCM 기능을 위한 Class입니다.</p>"+
+                                    "<p>전송 데이터에 따라 푸시를 유동적으로 노출할 수 있도록 개발하였습니다.</p>"+
+                                    "<p>알림 예약, 이미지, HTML 태그, 아이콘, Action 등을 지원합니다.</p>"
                  },
                  {
                      "name" : "SocialLoginManager",
@@ -494,8 +502,10 @@
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/login1.jpg"},
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/login2.jpg"},
                      ],
-                     "description" : "구글, 페이스북, 네이버, 카카오 로그인을 간단하게 연동해주는 Class입니다.<br>"+
-                                     "네이티브, 하이브리드에 맞게 "
+                     "description" : "<p>구글, 페이스북, 네이버, 카카오 로그인을 간단하게 연동해주는 Class입니다.</p>"+
+				     "<p>메서드 체이닝 패턴을 적용하여 개발하였습니다.</p>"+
+                                     "<p>네이티브, 하이브리드 앱 모두 사용할 수 있게 개발하였습니다.</p>"+
+				     ""
                  },
                  {
                      "name" : "HaWebView",
@@ -503,8 +513,11 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/hungryapp_sdk/webview.jpg"},
                      ],
-                     "description" : "웹뷰입니다.<br>"+
-                                     ""
+                     "description" : "<p>복잡한 초기화없이 개선된 웹 환경을 제공하기 위해 개발한 웹뷰 Class입니다.</p>"+
+                                     "<p>파일 다운로드, 업로드, Window.open 등의 기능이 별도의 초기화없이 동작하도록 개발하였습니다.</p>"+
+				     "<p>그 외에 Progress View, Swipe Refresh 등을 간단하게 설정할 수 있도록 개발하였습니다.</p>"+
+				     "<p>공유, 앱 설치 확인, 앱 실행 등의 자주 사용되는 Javascript Interface도 기본적으로 지원되게 하여 웹 서비스에서 보다 향상된 기능을 제공할 수 있도록 개발하였습니다.</p>"+
+				    ""
                  },
              ],
         },
@@ -530,7 +543,6 @@
     }
     
     $("#my_work_popup").on('resize scroll', function(){
-	console.log("scroll : " + this.scrollTop);
 	if(this.scrollTop > 0){
 	    $(".top_btn").fadeIn();
 	}else{
@@ -545,7 +557,6 @@
                     video.play();
                 }
             }else if(!video.paused){
-		console.log("pause");
                 video.pause();
             }
         });
