@@ -258,7 +258,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .thumbnail:hover > p {top:0;}
 .thumbnail.link > p:after {content:"";display:inline-block;width:20px;height:20px;background-image:url('./images/link.png');background-size:100%;margin-left:5px;vertical-align:middle;}
 
-.thumbnail.monawa {background-image:url('http://pds.saramin.co.kr/company/logo/201502/11/1423641825_bc70-b44633f1_logo.jpg')}
+.thumbnail.monawa {background-image:url('./images/monawa.jpg')}
 .thumbnail.isp {background-image:url('./images/isp.jpg?ver=2')}
 .thumbnail.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
 
