@@ -42,9 +42,10 @@
         function isSlideEnabled(event, direction){
             var isEnabled = "all";
 	    
-	    for(var i = 0 ; i < event.path.length ;i++){
-		dom = event.path[i];
-		
+	    log(event.target);
+	    
+	    dom = event.target;
+	    while(true){
 		//slider__ 는 스크롤이 가능하지만 상관없이 slide가능, 
 		if((dom.className && dom.className.indexOf("slider__") !== -1)){
 		    log("slider__");
@@ -76,6 +77,9 @@
                         isEnabled = null;
                     }
                 }
+		
+		dom = event.parentNode;
+		if(!dom) break;
 	    }
 	    
 	    log("isSlideEnabled : " + isEnabled);
@@ -264,7 +268,8 @@
             currentSlide += direction;
             isChanging = true;
             changeCss(document.querySelector(sliderElement), {
-                transform: 'translate3d(0, ' + -(currentSlide - 1) * 100 + '%, 0)'
+                transform: 'translate3d(0, ' + -(currentSlide - 1) * 100 + '%, 0)',
+		"-webkit-transform": 'translate3d(0, ' + -(currentSlide - 1) * 100 + '%, 0)'
             });
 
             if (option.indicator) {
