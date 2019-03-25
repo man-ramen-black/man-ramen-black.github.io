@@ -44,8 +44,19 @@
 	    
 	    log(event.target);
 	    
-	    dom = event.target;
+	    var dom = null;
 	    while(true){
+		
+		if(dom == null){
+		    dom = event.target;
+		}else{
+		    dom = dom.parentNode;
+		}
+		
+		if(dom == null || typeof dom === "undefined"){
+		    break;
+		}
+		
 		//slider__ 는 스크롤이 가능하지만 상관없이 slide가능, 
 		if((dom.className && dom.className.indexOf("slider__") !== -1)){
 		    log("slider__");
@@ -77,9 +88,6 @@
                         isEnabled = null;
                     }
                 }
-		
-		dom = event.parentNode;
-		if(!dom) break;
 	    }
 	    
 	    log("isSlideEnabled : " + isEnabled);
