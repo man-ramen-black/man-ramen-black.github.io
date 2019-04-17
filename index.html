@@ -8,23 +8,23 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta property="og:image" content="./images/me.png?ver=1">
 
-        <link rel="shortcut icon" href="./favicon/favicon.ico?ver=3">
-        <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png?ver=2">
-        <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png?ver=2">
-        <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png?ver=2">
-        <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png?ver=2">
-        <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png?ver=2">
-        <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png?ver=2">
-        <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png?ver=2">
-        <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png?ver=2">
-        <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png?ver=2">
-        <link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png?ver=2">
-        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png?ver=2">
-        <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png?ver=2">
-        <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png?ver=2">
+        <link rel="shortcut icon" href="./favicon/favicon.ico?ver=6">
+        <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png?ver=5">
+        <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png?ver=5">
+        <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png?ver=5">
+        <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png?ver=5">
+        <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png?ver=5">
+        <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png?ver=5">
+        <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png?ver=5">
+        <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png?ver=5">
+        <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png?ver=5">
+        <link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png?ver=5">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png?ver=5">
+        <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png?ver=5">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png?ver=5">
         <link rel="manifest" href="./favico/n/manifest.json">
         <meta name="msapplication-TileColor" content="#000000">
-        <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png?ver=2">
+        <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png?ver=5">
         <meta name="theme-color" content="#000000" />
 
         <title>Jinhyuk Lee - Software Developer</title>
@@ -45,15 +45,6 @@
 	    var slider;
 	    var grid;
 	    window.onload = function () {
-		grid = $(".grid");
-		grid.isotope({
-		    percentPosition: true,
-		    masonry: {
-			columnWidth: ".grid > li"
-		    },
-		    filter: "*"
-		});
-
 		//최상단으로 스크롤
 		setTimeout(function () {
 		    window.scrollTo(0, 0);
@@ -65,14 +56,31 @@
 		startCubeRotate();
 		removeLoader(onHash);
 		drawCharts();
-		
-		//set detail parent onclick 
-		$(".detail").each(function(i, val){
-		    if(!$(this).parent().attr("onclick")){
-			$(this).parent().attr("onclick", "toggleDetail(this)");
-		    }
-		});
+		initScrollable()
+		initDetail();
+		initThumbnail();
+		initGrid();
+		initGridFilter();
 
+	    };
+
+	    window.onresize = function(){
+		adjustTwins();
+	    };
+	    
+	    window.onhashchange = onHash;
+	    
+	    function onHash(){
+		var hash = replaceAll(location.hash, "#", "");
+		if (!hash || hash == "") {
+		    closePopup();
+		} else if (hash.indexOf("my_work_") != -1) {
+		    showMyWorkPopup(hash.replace("my_work_", ""));
+		}
+	    }
+	    
+	    
+	    function initScrollable(){
 		$(".scrollable").each(function () {
 		    if (this.scrollHeight <= this.clientHeight + 10)
 			return;
@@ -89,14 +97,36 @@
 				}
 			    })
 		});
-		
-		
+	    }
+	    
+	    function initDetail(){
+		$(".detail").each(function(i, val){
+		    if(!$(this).parent().attr("onclick")){
+			$(this).parent().attr("onclick", "toggleDetail(this)");
+		    }
+		});
+	    }
+	    
+	    function initThumbnail(){
 		$(".work_experiences .thumbnail").click(cancelBubbling);
 		
 		$(".my_works .thumbnail > *").click(function () {
 		    location.href = "#my_work_" + $(this).parent().attr('data-name');
+		});		
+	    }
+	    
+	    function initGrid(){
+		grid = $(".grid");
+		grid.isotope({
+		    percentPosition: true,
+		    masonry: {
+			columnWidth: ".grid > li"
+		    },
+		    filter: "*"
 		});
-
+	    }
+	    
+	    function initGridFilter(){
 		$(".grid_filter li").click(function () {
 		    $(".grid_filter li").removeClass("on");
 		    $(this).addClass("on");
@@ -104,12 +134,7 @@
 		    var filter = $(this).attr("data-filter");
 		    grid.isotope({filter: filter});
 		});
-
-	    };
-
-	    window.onresize = function(){
-		adjustTwins();
-	    };
+	    }
 
 	    function initIndicator() {
 		$(".drawer, .indicator").fadeOut(1, function () {
@@ -124,18 +149,6 @@
 		});
 	    }
 	    
-	    window.onhashchange = onHash;
-
-	    function onHash() {
-		var hash = replaceAll(location.hash, "#", "");
-		if (!hash || hash == "") {
-		    closePopup();
-		} else if (hash.indexOf("my_work_") != -1) {
-		    showMyWorkPopup(hash.replace("my_work_", ""));
-		}
-	    }
-
-
 	    function initSlider() {
 		slider = $.PageSlider(".sections", {
 		    indicator: false,
@@ -213,12 +226,50 @@
 		{"id": "js_chart", "percent": 65, "background": '232, 220, 42'},
 		{"id": "php_chart", "percent": 75, "background": '127, 136, 196'},
 		{"id": "css_chart", "percent": 55, "background": '77, 143, 204'},
-		{"id": "c_sharp_chart", "percent": 20, "background": '121, 30, 145'}
 	    ];
 	    var charts = [];
 
-	    var isDetailAnimated = false;
+	    var isDetailAnimating = false;
 
+	    function toggleDetail(obj) {
+		if (isDetailAnimating)
+		    return;
+
+		isDetailAnimating = true;
+		var duration = 400;
+
+		if ($(obj).find(".detail").css("display") != "none") {
+		    hideDetail($(obj).find(".detail"), duration);
+		    setTimeout(function () {
+			isDetailAnimating = false;
+		    }, (duration * 2) + 200);
+		    return;
+		}
+
+		$(obj).parent().animate({"scrollTop": 0}, {"duration": duration, "queue": false});
+
+		hideDetails();
+
+		$(obj).parent().find(".touch").fadeOut(400, function(){$(this).remove()});
+		$(obj).css({"position": "absolute", "top": $(obj).position().top});
+		$(obj).animate({"top": ""}, {"duration": duration, "queue": false});
+		$(obj).next().css({"margin-top": $(obj).outerHeight(true) + "px"});
+		$(obj).next().animate({"margin-top": ""}, {"duration": duration, "queue": false});
+		$(obj).parent().animate({"padding-top": $(obj).outerHeight(true) + "px"}, {
+		    "duration": duration, 
+		    "queue": false, 
+		    complete: function () {
+			$(obj).parent().css("padding-top", "");
+			$(obj).css({"position": "relative"});
+			$(obj).parent().prepend($(obj));
+			$(obj).animate({"height": ($(obj).height() + $(obj).find(".detail").innerHeight()) + "px"}, {"duration": duration, "queue": false, complete: function () { $(obj).find(".detail").fadeIn(duration); }});
+		    }
+		});
+		setTimeout(function () {
+		    isDetailAnimating = false;
+		}, (duration * 3) + 200);
+	    }
+	    
 	    function hideDetails(immediately) {
 		var duration = 400;
 		$(".detail").each(function () {
@@ -244,43 +295,6 @@
 			parent.height(curHeight);
 			parent.animate({"height": autoHeight + "px"}, duration);
 		    }});
-	    }
-
-	    function toggleDetail(obj) {
-		if (isDetailAnimated)
-		    return;
-
-		isDetailAnimated = true;
-		var duration = 400;
-
-		if ($(obj).find(".detail").css("display") != "none") {
-		    hideDetail($(obj).find(".detail"), duration);
-		    setTimeout(function () {
-			isDetailAnimated = false;
-		    }, (duration * 2) + 200);
-		    return;
-		}
-
-		$(obj).parent().animate({"scrollTop": 0}, {"duration": duration, "queue": false});
-
-		hideDetails();
-
-		$(obj).parent().find(".touch").fadeOut(400, function(){$(this).remove()});
-		$(obj).css({"position": "absolute", "top": $(obj).position().top});
-		$(obj).animate({"top": ""}, {"duration": duration, "queue": false});
-		$(obj).next().css({"margin-top": $(obj).outerHeight(true) + "px"});
-		$(obj).next().animate({"margin-top": ""}, {"duration": duration, "queue": false});
-		$(obj).parent().animate({"padding-top": $(obj).outerHeight(true) + "px"}, {"duration": duration, "queue": false, complete: function () {
-			$(obj).parent().css("padding-top", "");
-			$(obj).css({"position": "relative"});
-			$(obj).parent().prepend($(obj));
-			$(obj).animate({"height": ($(obj).height() + $(obj).find(".detail").innerHeight()) + "px"}, {"duration": duration, "queue": false, complete: function () {
-				$(obj).find(".detail").fadeIn(duration);
-			    }});
-		    }});
-		setTimeout(function () {
-		    isDetailAnimated = false;
-		}, (duration * 3) + 200);
 	    }
 
 
@@ -693,7 +707,7 @@
 
 	    <ol class="sections">
 		<li class="on">
-		    <div style="display:block;">
+		    <div>
 			<dl class="main center">
 			    <dt>이진혁</dt>
 			    <dd>Software Developer</dd>
@@ -709,10 +723,10 @@
 			    <div>
 				<img class="me" src="./images/me.png?ver=1">
 				<div class="introduce scalable">
-				    <strong>안녕하세요! 저는 3년차 소프트웨어 개발자 이진혁 입니다.</strong><br>
-				    개인, 팀 프로젝트를 진행하며 C#, Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br class="no_br"> 
-				    웹페이지, 윈도우 프로그램, 안드로이드 앱, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
-				    개발 시 재활용성, 확장성이 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>                               
+				    <strong>안녕하세요! 3년차 소프트웨어 개발자 이진혁 입니다.</strong><br>
+				    개인, 팀 프로젝트를 진행하며 Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br class="no_br"> 
+				    안드로이드 앱, 웹페이지, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
+				    개발 시 유연하고 가독성 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>      
 				    <br>
 				    <br>
 				</div>
@@ -816,7 +830,7 @@
 				    <ul class="detail">
 					<li>Companion Object</li>
 					<li>Nullable, NonNull 처리</li>
-					<li>let, it 활용</li>
+					<li>let 활용</li>
 					<li>Lambda</li>
 					<li>Studying...</li>
 				    </ul>
@@ -873,17 +887,6 @@
 					<li>간단한 페이지 Publishing 경험</li>
 				    </ul>
 				</li>
-				<li>
-				    <h3>C#</h3>
-				    <div class="chart_container">
-					<canvas id="c_sharp_chart"></canvas>
-				    </div>
-				    <ul class="detail">
-					<li>WinForms</li>
-					<li>시연용 프로그램 개발 경험</li>
-				    </ul>
-				</li>
-
 			    </ul>
 			</div>
 		    </div>
