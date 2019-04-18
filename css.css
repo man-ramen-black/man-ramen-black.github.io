@@ -129,11 +129,11 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .cube div.front {transform: translateZ(150px);-webkit-transform: translateZ(150px);transition:transform .3s;-webkit-transition:transform .3s}
 .cube div.back {transform: translateZ(-150px);-webkit-transform: translateZ(-150px);transition:transform .3s;-webkit-transition:transform .3s}
 
-.cube.healing .top {background:url('http://www.gukjenews.com/news/photo/201810/1013115_787089_237.jpg')}
-.cube.healing  .right {background:url('http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg')}
-.cube.healing  .bottom {background:url('https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244')}
-.cube.healing  .left {background:url('http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg')}
-.cube.healing  .front {background:url('https://lh3.googleusercontent.com/6wOZGswXz9r3FHpYdOM5R4ymc-otX0LQ4c856t5SJ8el3XXbNgVjg3vly8xMZWcA_cR-jX3lukLAJ9-6ZyUJwbc8zC7g73KTTHa-8HTQTZM0k4k7Te5Zwtcsq7HBHXtQg7F4I_Dq1nJLrZU4-A_UJSiuAKG46uFoHVytaRW7PSmu1IieIGg6GPpETnOFAYma7t85iAoT9LjCmXeaTFzQxBqDNyBzunCQswXhlkHTPDKdn0EbxMkNlgkyKPtw2y2reK632WI_N7TLrAQudFyT6xk4kExmYS8jvMA8LjQvJXrXikceTqlZVbp6ebpmr_pAm6TfDgWnEOdtbygrjmPf8ECqojToYNCOK51LFhmoJ_gMEcGiyhryifKxCae3Qecb7Q92400BwilPdhshqGQfc18ASz58FcdBWfkKd_DqxTDT7CCrMlh1ZP1D6g-J9f2z8BMF_c7ArH3k9tmgi7DoaHDex_2Pd2vavNCK3rqdQJvYQqQKnBgFVebzh8i2yrb10uvTW7VlL8JJETqft5eDvty_QnnXYi4Y53cPUpAgPx-I4d6RziuY3biOTAXT1O-ucjpMoG0Ae8hkHSCp0En2D2nPEIo635wr0YHdx8w1Nssyk93IBV1Q3Yle_v-mIEJOWEVww3yH5JqqQZAGpDK4ca6-=s916-no')}
+.cube.healing .top {background:url('http://www.gukjenews.com/news/photo/201810/1013115_787089_237.jpg');background-size:100%;}
+.cube.healing  .right {background:url('http://image.sportsseoul.com/2018/01/14/news/20180114173632_1.jpg');background-size:100%;}
+.cube.healing  .bottom {background:url('https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBOlOdD.img?h=496&w=500&m=6&q=60&o=f&l=f&x=263&y=244');background-size:100%;}
+.cube.healing  .left {background:url('http://image.chosun.com/sitedata/image/201710/10/2017101002285_0.jpg');background-size:100%;}
+.cube.healing  .front {background:url('https://lh3.googleusercontent.com/6wOZGswXz9r3FHpYdOM5R4ymc-otX0LQ4c856t5SJ8el3XXbNgVjg3vly8xMZWcA_cR-jX3lukLAJ9-6ZyUJwbc8zC7g73KTTHa-8HTQTZM0k4k7Te5Zwtcsq7HBHXtQg7F4I_Dq1nJLrZU4-A_UJSiuAKG46uFoHVytaRW7PSmu1IieIGg6GPpETnOFAYma7t85iAoT9LjCmXeaTFzQxBqDNyBzunCQswXhlkHTPDKdn0EbxMkNlgkyKPtw2y2reK632WI_N7TLrAQudFyT6xk4kExmYS8jvMA8LjQvJXrXikceTqlZVbp6ebpmr_pAm6TfDgWnEOdtbygrjmPf8ECqojToYNCOK51LFhmoJ_gMEcGiyhryifKxCae3Qecb7Q92400BwilPdhshqGQfc18ASz58FcdBWfkKd_DqxTDT7CCrMlh1ZP1D6g-J9f2z8BMF_c7ArH3k9tmgi7DoaHDex_2Pd2vavNCK3rqdQJvYQqQKnBgFVebzh8i2yrb10uvTW7VlL8JJETqft5eDvty_QnnXYi4Y53cPUpAgPx-I4d6RziuY3biOTAXT1O-ucjpMoG0Ae8hkHSCp0En2D2nPEIo635wr0YHdx8w1Nssyk93IBV1Q3Yle_v-mIEJOWEVww3yH5JqqQZAGpDK4ca6-=s916-no');background-size:100%;}
 
 #loader {background:#fff;position:absolute;top:0;bottom:0;left:0;right:0;z-index:10000;}
 .multi-spinner-container {

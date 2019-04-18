@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="slider.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
-	<link rel="stylesheet" href="css.css?ver=3">
+	<link rel="stylesheet" href="css.css?ver=4">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js?ver=6" ></script>
@@ -86,7 +86,7 @@
 			return;
 		    $(this).append("<div class='arrow down'></div>")
 			    .on("scroll", function () {
-				console.log($(this).find(".arrow").size());
+//				console.log($(this).find(".arrow").size());
 				if ($(this).find(".arrow").size() == 0) {
 				    return;
 				}
@@ -302,7 +302,6 @@
 		for (var i = 0; i < charts.length; i++) {
 		    charts[i].data.datasets[0].data[0] = chartOptions[i].percent;
 		    charts[i].data.datasets[1].data[0] = 100 - chartOptions[i].percent;
-		    const id = chartOptions[i].id;
 		    charts[i].options.animation = {duration: 600, onComplete: function () {
                         }};
 		    charts[i].update();
@@ -723,8 +722,8 @@
 			    <div>
 				<img class="me" src="./images/me.png?ver=1">
 				<div class="introduce scalable">
-				    <strong>안녕하세요! 3년차 소프트웨어 개발자 이진혁 입니다.</strong><br>
-				    개인, 팀 프로젝트를 진행하며 Android, JSP, JavaScript, PHP, MySQL 등을 활용하여<br class="no_br"> 
+				    <strong>안녕하세요! 3년 차 소프트웨어 개발자 이진혁입니다.</strong><br>
+				    개인, 팀 프로젝트를 진행하며 Android, PHP, MySQL, JavaScript 등을 활용하여<br class="no_br"> 
 				    안드로이드 앱, 웹페이지, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
 				    개발 시 유연하고 가독성 높은 코드로 빠른 유지보수와 유연한 기능 확장을 지향합니다.<br>      
 				    <br>
@@ -749,14 +748,14 @@
 				    </div>
 				    <dl class="detail">
 					<dt>안드로이드 네이티브, 하이브리드 앱 개발</dt>
-					<dd>디자인을 제외한 앱, xml, DB, 서버, Javascript 등 직접 구성 및 개발</dd>
+					<dd>앱, DB, 서버, Javascript 등 직접 구성 및 개발</dd>
 
 					<dt>PHP 개발</dt>
 					<dd>이벤트 페이지, 광고주 페이지, 관리자 페이지 등</dd>
 					<dd>DB, 서버, Javascript 등 직접 구성 및 개발</dd>
 
 					<dt>라이브러리, SDK, API 개발</dt>
-					<dt>업체와 협업하여 SDK, API 연동 경험</dt>
+					<dt>SDK, API 연동 경험</dt>
 					<dt>트래킹 기능, 포스트백 서버 구현 경험</dt>
 					<dt>Git, SVN 도입</dt>
 				    </dl>
@@ -787,7 +786,7 @@
 					<dt>교리 문헌 관리 체계 개발</dt>
 					<dd>육해공군 교범을 통합 관리하는 JSP 기반 인트라넷 웹 시스템</dd>
 					<dd>전체 개발 및 디자인에 70% 이상 참여</dd>
-					<dd>최고 선임으로서 팀원들에게 업무 분배 및 기술 조언</dd>
+					<dd>팀장으로서 팀원들에게 업무 분배 및 기술 조언</dd>
 				    </dl>
 				</li>
 			</div>
@@ -803,8 +802,9 @@
 				    <ul class="detail">
 					<li>Activity, Service, Broadcast Receiver에 대한 이해</li>
 					<li>네이티브 앱, 하이브리드 앱 100% 개발</li>
+					<li>레이아웃 구성</li>
 					<li>라이브러리 분석 및 수정</li>
-					<li>SDK 개발</li>
+					<li>SDK, 라이브러리 개발</li>
 					<li>GCM, Social Login 등 SDK, API 연동 경험</li>
 					<li>접근성</li>
 					<li>WebView, Javascript Interface</li>
@@ -819,6 +819,7 @@
 				    <ul class="detail">
 					<li>Class, Interface, Abstract, Static에 대한 이해</li>
 					<li>상속, 추상화, 캡슐화, 다형성에 대한 이해</li>
+					<li>메서드 체이닝</li>
 					<li>Lambda</li>
 				    </ul>
 				</li>
@@ -828,6 +829,7 @@
 					<canvas id="kotlin_chart"></canvas>
 				    </div>
 				    <ul class="detail">
+					<li>상속, 오버라이딩</li>
 					<li>Companion Object</li>
 					<li>Nullable, NonNull 처리</li>
 					<li>let 활용</li>
@@ -858,7 +860,7 @@
 				    </div>
 				    <ul class="detail">
 					<li>DB 설계</li>
-					<li>100만개 이상의 데이터 처리, 조회 쿼리</li>
+					<li>100만개 이상의 데이터 처리, 조회 쿼리 작성 경험</li>
 				    </ul>
 				</li>
 				<li>
