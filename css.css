@@ -252,7 +252,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .main dd {font-weight:400;font-size:2em;}
 
 
-.me {width:150px;border-radius:1000px;transition:width .3s;margin-bottom:10px;-webkit-transition:width .3s;margin-bottom:10px;}
+.me {width:200px;border-radius:1000px;transition:width .3s;margin-bottom:10px;-webkit-transition:width .3s;margin-bottom:10px;}
 .introduce {line-height:1.8em}
 .introduce strong {font-size:1.1em}
 
@@ -359,6 +359,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
     .cube_wrap {width:200px;height:200px;}
     .cube div.front {transform: translateZ(100px); -webkit-transform: translateZ(100px);}
     .cube div.back {transform: translateZ(-100px); -webkit-transform: translateZ(-100px);}
+    
     .introduce .no_br {display:none;}
     .introduce strong {font-size:1em}
     .introduce strong {font-size:1em}
@@ -409,6 +410,4 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 
     .dev:nth-child(even) dd > * {padding-left:40px;}
     .dev:nth-child(odd) dd > * {padding-right:40px;}
-
-
 }
