@@ -9,6 +9,9 @@
 	<script>
 	    window.onload = function(){
 		var arr = [];
+		for(var i = 1 ; i <= 10000;i++){
+		    arr.push({"idx":10+i,"type":"receive","chatRoomIdx":10000, "msg":i+"번째 메시지", "date":"2019-05-22 19:25:00"});
+		}
 		$("#input").val(JSON.stringify(arr));
 	    }
 	    
