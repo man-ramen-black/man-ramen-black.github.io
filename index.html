@@ -27,11 +27,11 @@
         <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png?ver=5">
         <meta name="theme-color" content="#000000" />
 
-        <title>Jinhyuk Lee - Software Developer</title>
+        <title>Jinhyuk Lee - Android Developer</title>
         <link rel="stylesheet" href="slider.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
-	<link rel="stylesheet" href="css.css?ver=7">
+	<link rel="stylesheet" href="css.css?ver=8">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js?ver=6" ></script>
@@ -44,6 +44,12 @@
 	    var rotationSpeed = 1;
 	    var slider;
 	    var grid;
+            //경력 년차
+            var careerYear = (function(){
+                var currentYear = new Date().getFullYear();
+                return currentYear - 2014;
+            })();
+            
 	    window.onload = function () {
 		//최상단으로 스크롤
 		setTimeout(function () {
@@ -54,14 +60,13 @@
 		initIndicator();
 		adjustTwins();
 		startCubeRotate();
-		removeLoader(onHash);
+		hideLoader(onHash);
 		drawCharts();
 		initScrollable()
 		initDetail();
 		initThumbnail();
 		initGrid();
 		initGridFilter();
-
 	    };
 
 	    window.onresize = function(){
@@ -195,7 +200,7 @@
 //		slider.debug(true);
 	    }
 
-	    function removeLoader(callback) {
+	    function hideLoader(callback) {
 		setTimeout(function () {
 		    $(".sections > li:first-child > div:first-child").addClass("fade_in");
 		    $(".multi-spinner-container").fadeOut(400, function () {
@@ -206,7 +211,7 @@
 			    }
 			});
 		    });
-		}, 1500)
+		}, 1)
 	    }
 
 
@@ -709,7 +714,7 @@
 		    <div>
 			<dl class="main center">
 			    <dt>이진혁</dt>
-			    <dd>Software Developer</dd>
+			    <dd>Android Developer</dd>
 			</dl>
 			<div class="swipe"></div>
 			<div class="arrow down"  onclick="slider.goPage(2)"></div>
@@ -722,10 +727,12 @@
 			    <div>
 				<img class="me" src="./images/me.png?ver=3">
 				<div class="introduce scalable">
-				    <strong>안녕하세요! 4년 차 소프트웨어 개발자 이진혁입니다.</strong><br>
-				    개인, 팀 프로젝트를 통해 Android, PHP, MySQL, JavaScript 등을 활용하여<br class="no_br"> 
-				    안드로이드 앱, 웹페이지, 라이브러리, API 등을 개발한 경험이 있습니다.<br>
-				    트렌드에 뒤처지지 않고 유연하고 깔끔한 코드로 개발을 하기 위해 고민하고, 노력하며 개발을 해오고 있습니다.<br>
+				    <strong>안녕하세요! <script>document.write(careerYear)</script>년 차 안드로이드 개발자 이진혁입니다.</strong><br>
+                                    지난 <script>document.write(careerYear)</script>년간 3곳의 기업에 재직하며 네이티브 앱, 하이브리드 앱, SDK 등 <br class="no_br"> 
+                                    다수의 서비스를 개발하고 설계하며 다양한 노하우를 쌓아왔습니다.<br>
+                                    안드로이드 외에도 플러터, 유니티, 백엔드, 프론트엔드, DB 구성 등 다양한 실무 경험으로 <br class="no_br">
+                                    서비스 전반에 대한 이해도가 높은 편이며, 타 분야 개발자들과의 협업과 소통에 원할합니다.<br>
+                                    빠른 개발 속도, 깔끔하고 유연한 코드, 퀄리티있는 결과물로 좋은 평가를 받아오고 있습니다.
 				    <br>
 				    <br>
 				</div>
@@ -1037,8 +1044,7 @@
 			    <ul class="contact">
 				<li onclick="location.href='mailto:ljh7795@gmail.com'"><img src="./images/mail.png?ver=1" alt="email"><br>ljh7795@gmail.com</li>
 				<li onclick="getPhone();"><img src="./images/phone.png?ver=1" alt="phone"><br>010-3013-7795</li>
-				<li onclick="window.open('https://goo.gl/ZhBhzz')"><img src="./images/location.png?ver=1" alt="location"><br>전라북도 전주시 완산구 효자1동</li>
-				<li onclick="window.open('https://github.com/man-ramen-black/')"><img src="./images/github.png?ver=1" alt="github"><br>https://github.com/man-ramen-black/</li>
+				<li onclick="window.open('http://kko.to/IkLNaOPYp')"><img src="./images/location.png?ver=1" alt="location"><br>서웉특별시 구로구 구로3동</li>
 			    </ul>
 			</div>
 		    </div>
