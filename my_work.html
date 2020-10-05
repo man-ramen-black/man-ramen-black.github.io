@@ -6,9 +6,9 @@
         "mobi" : {
             "name" : "MOBI",
 	    "type" : "mobile",
-            "skills" : ["Android", "PHP", "MySQL"],
+            "skills" : ["Android", "Java", "PHP", "MySQL"],
             "links" : [
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.mobi"},
+                {"name" : "Google Play", "url" : "https://play.google.com/store/apps/details?id=com.ha.mobi"},
             ],
             "preview" : [
                 {"type" : "video", "src" : "./images/mobi/mobi.mp4", "poster" : "./images/mobi/intro.jpg"},
@@ -20,7 +20,8 @@
                 {"type" : "mobile", "src" : "./images/mobi/setting.jpg"},
             ],
             "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
-                     "전 개발자 최초 개발 후 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+                     "단독으로 유지보수를 진행하며 스페셜쿠폰, 정기쿠폰, 쿠폰나눔 등 앱의 70% 이상의 기능을 직접 설계하여 구현하였습니다.<br>"+
+                     "서비스와 관련된 DB, 백엔드 등도 직접 설계, 구현하였습니다.",
              "dev" : [
                  {
                      "name" : "잠금화면",
@@ -28,9 +29,9 @@
                      "preview" : [
                          {"type" : "video", "src" : "./images/mobi/mobi_lock.mp4", "poster" : "./images/mobi/lock.jpg"}    
                      ],
-                     "description" : "<p>포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.</p>"+
-                                    "<p>SQLite, Cache를 활용하여 로딩 속도 최적화 및 네트워크 미연결 상태에도 대응하였습니다.</p>"+
-                                    "<p>잠금화면의 View, 동작 대부분을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다.</p>"
+                     "description" : "포인트 적립 및 게임 관련 정보를 제공하는 잠금화면 기능입니다.<br>"+
+                                    "SQLite, Cache를 활용하여 로딩 속도 최적화 및 네트워크 미연결 상태에도 대응하였습니다.<br>"+
+                                    "잠금화면의 View, 동작 대부분을 서버에서 유동적으로 변경할 수 있도록 개발하였습니다."
                  },
                  {
                      "name" : "스페셜 쿠폰",
@@ -64,9 +65,9 @@
         "looting" : {
             "name" : "루팅",
 	    "type" : "mobile",
-            "skills" : ["Android", "PHP", "MySQL"],
+            "skills" : ["Android", "Java",  "PHP", "MySQL"],
             "links" : [
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
+                {"name" : "Google Play", "url" : "https://play.google.com/store/apps/details?id=com.ha.looting"},
             ],
             "preview" : [
                 {"type" : "video", "src" : "./images/looting/looting.mp4", "poster":"./images/looting/intro.jpg"},
@@ -80,7 +81,9 @@
                 {"type" : "mobile", "src" : "./images/looting/menu.jpg"},
             ],
             "description" : "게임 사전등록 & 게임 쿠폰 서비스를 제공하는 네이티브 앱입니다.<br>"+
-                            "레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+                            "서비스의 최초 설계, 개발부터 유지보수까지 전부 단독으로 진행하였습니다.<br>" + 
+                            "서비스와 관련된 DB, 백엔드 등도 직접 설계하고 구현하였습니다.",
+             
              "dev" : [
                  {
                      "name" : "플러스 쿠폰",
@@ -113,9 +116,9 @@
         "zzi" : {
             "name" : "게임을 낚다 - ZZI",
 	    "type" : "mobile",
-            "skills" : ["Android", "PHP", "MySQL"],
+            "skills" : ["Android", "Java", "PHP", "MySQL"],
             "links" : [
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.zzi"},
+                {"name" : "Google Play", "url" : "https://play.google.com/store/apps/details?id=com.ha.zzi"},
             ],
             "preview" : [
                 {"type" : "video", "src" : "./images/zzi/zzi.mp4", "poster":"./images/zzi/intro.jpg"},
@@ -130,7 +133,8 @@
                 {"type" : "mobile", "src" : "./images/zzi/cashbook_coupon.jpg"},
             ],
             "description" : "게임 추천과 게임 가계부 서비스를 제공하는 네이티브 앱입니다.<br>"+
-                            "전 개발자 최초 개발 후 레이아웃 구성, DB 구성, 서버, 앱 등을 100% 직접 개발하였습니다.",
+                            "서비스의 최초 설계, 개발부터 유지보수까지 전부 단독으로 진행하였습니다.<br>" + 
+                            "서비스와 관련된 DB, 백엔드 등을 직접 설계하고 구현하였습니다.",
              "dev" : [
                  {
                      "name" : "게임 가계부",
@@ -139,9 +143,9 @@
                          {"type" : "video", "src":"./images/zzi/cashbook.mp4", "poster" : "./images/zzi/cashbook_coupon.jpg?ver=1"},
                          {"type" : "mobile", "src":"./images/zzi/cashbook.jpg"},
                      ],
-                     "description" : "<p>구글 결제 내역을 정리하여 보여주는 게임 가계부 기능입니다.</p>"+
-                                    "<p>구글 결제 내역 페이지를 크롤링 후 데이터로 파싱하여 회원에게 정보를 노출합니다.</p>"+
-				    "<p>파싱된 데이터는 SQLite로 저장되고, 이 후 페이지를 열 때는 SQLite에서 데이터를 불러와서 페이지를 빠르게 표시합니다.</p>"
+                     "description" : "구글 결제 내역을 정리하여 보여주는 게임 가계부 기능입니다.<br>"+
+                                    "구글 결제 내역 웹페이지를 크롤링하여 회원에게 정보를 노출하는 방식으로 동작합니다.<br>"+
+				    "크롤링 데이터는 SQLite에 캐싱되고, 이 후 페이지를 열 때는 SQLite에서 캐싱된 데이터를 불러와서 페이지를 빠르게 표시합니다."
                  },
                  {
                      "name" : "내 게임",
@@ -149,9 +153,9 @@
                      "preview" : [
                          {"type" : "mobile", "src" : "./images/zzi/my_game.jpg"},
                      ],
-                     "description" : "<p>기기에 설치되어 있는 내 게임들의 쿠폰을 받을 수 있는 각 서비스로 이동시켜주는 기능입니다.</p>"+
-                                    "<p>웹뷰와 Javascript Interface를 활용하여 구현하였습니다.</p>"+
-				    "<p>게임의 정보와 쿠폰 보유 여부는 Cron을 통해 주기적으로 DB에 업데이트되며 업데이트용 Cron 파일 또한 직접 개발하였습니다.</p>"
+                     "description" : "기기에 설치되어 있는 내 게임들의 쿠폰을 받을 수 있는 각 서비스로 이동시켜주는 기능입니다.<br>"+
+                                    "웹뷰와 Javascript Interface를 활용하여 구현하였습니다.<br>"+
+				    "게임의 정보와 쿠폰 보유 여부는 Cron을 통해 주기적으로 DB에 업데이트되며 업데이트용 Cron은 직접 구현하였습니다."
                  },
              ],
         },
@@ -163,9 +167,9 @@
         "adbox" : {
             "name" : "ADBox",
 	    "type" : "mobile",
-            "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
+            "skills" : ["Android", "Java", "PHP", "MySQL", "JavaScript"],
             "links" : [
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.adbox"},
+                {"name" : "Google Play", "url" : "https://play.google.com/store/apps/details?id=com.ha.adbox"},
                 {"name" : "Web", "url" : "http://www.adbox.co.kr/"},
             ],
             "preview" : [
@@ -181,7 +185,8 @@
             ],
             "description" : "NCPI 방식의 인플루언서 마케팅 서비스입니다.<br>"+
                             "하이브리드 앱, PC, Mobile 웹 서비스를 지원하고 있습니다.<br>"+
-                            "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.",
+                            "서비스의 최초 설계, 개발부터 유지보수까지 전부 단독으로 진행하였습니다.<br>" + 
+                            "서비스와 관련된 DB, 백엔드, 프론트엔드 등을 직접 설계하고 구현하였습니다.",
              "dev" : [
                  {
                      "name" : "클릭 URL / 트래킹 / 포스트백",
@@ -231,9 +236,9 @@
         "albag" : {
             "name" : "알바G",
 	    "type" : "mobile",
-            "skills" : ["Android", "PHP", "MySQL", "JavaScript"],
+            "skills" : ["Android", "Java",  "PHP", "MySQL", "JavaScript"],
             "links" : [
-                {"name" : "Play Store", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
+                {"name" : "Google Play", "url" : "https://play.google.com/store/apps/details?id=com.ha.albag"},
             ],
             "preview" : [
                 {"type" : "mobile", "src" : "./images/albag/intro.jpg"},
@@ -244,8 +249,8 @@
                 {"type" : "mobile", "src" : "./images/albag/menu.jpg?ver=1"},
             ],
             "description" : "게임 관련 미션 완료시 회원에게 포인트를 지급하는 하이브리드 앱입니다.<br>"+
-                            "DB 구성, 서버, 앱, JavaScript 등을 100% 직접 개발하였습니다.<br>"+
-                            "",
+                            "서비스의 최초 설계, 개발부터 유지보수까지 전부 단독으로 진행하였습니다.<br>" + 
+                            "서비스와 관련된 DB, 백엔드, 프론트엔드 등을 직접 설계하고 구현하였습니다.",
             "dev" : [
                 {
                      "name" : "미션 기능",
@@ -279,7 +284,7 @@
                 {"type" : "video", "src" : "./images/event/typing.mp4", "poster" : "./images/event/typing.jpg"},
             ],
             "description" : "모나와의 앱 서비스에서 진행됐었던 이벤트 웹페이지들입니다.<br>"+
-                            "DB 구성, 서버, JavaScript 등을 100% 직접 개발하였습니다.",
+                            "이벤트에 관련된 DB, 백엔드, 프론트엔드 등을 직접 설계하고 구현하였습니다.",
              "dev" : [
                  {
                      "name" : "애니메이션",
@@ -334,7 +339,7 @@
                 
             ],
             "description" : "모나와의 각 서비스를 관리하기 위한 관리자 페이지입니다.<br>"+
-                            "애드박스, 알바G의 모든 관리자 페이지를 100% 직접 개발하였습니다.<br>"+
+                            "애드박스, 알바G의 모든 관리자 페이지를 단독으로 설계하고 개발하였습니다.<br>"+
 			    "그 외 서비스들의 푸시 발송 페이지, 이벤트 관리 페이지 등을 직접 개발하였습니다."+
 			    ""
 		    ,
@@ -400,7 +405,7 @@
                 {"type" : "pc", "src" : "./images/mobi_advertiser/report1.png"},
             ],
             "description" : "모비/루팅/찌 광고주에게 제공되는 광고주 페이지입니다.<br>"+
-                            "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
+                            "DB, 백엔드, 프론트엔드 부분 모두를 직접 설계하고 개발하였습니다.",
              "dev" : [
                  {
                      "name" : "광고 현황 상세 페이지",
@@ -433,7 +438,7 @@
                 {"type" : "pc", "src" : "./images/adbox_advertiser/report1.png"},
             ],
             "description" : "애드박스 광고주에게 제공되는 광고주 페이지입니다.<br>"+
-                            "디자인을 제외한 모든 부분을 100% 직접 개발하였습니다.",
+                            "DB, 백엔드, 프론트엔드 부분 모두를 직접 설계하고 개발하였습니다.",
              "dev" : [
                  {
                      "name" : "캠페인 현황 상세 페이지",
@@ -474,7 +479,7 @@
             ],
             "description" : "모나와의 앱 서비스에 공통적으로 적용되었던 사내 프레임워크 헝그리앱 SDK입니다.<br>"+
                             "공통되는 기능들의 공유 및 관리를 위해 개발하였습니다.<br>"+
-                            "모든 기능을 100% 직접 개발하였습니다.",
+                            "모든 기능을 직접 설계하고 개발하였습니다.",
              "dev" : [
                  {
                      "name" : "ResponseHelper",
@@ -518,6 +523,80 @@
 				     "<p>그 외에 Progress View, Swipe Refresh 등을 간단하게 설정할 수 있도록 개발하였습니다.</p>"+
 				     "<p>공유, 앱 설치 확인, 앱 실행 등의 자주 사용되는 Javascript Interface도 기본적으로 지원되게 하여 웹 서비스에서 보다 향상된 기능을 제공할 수 있도록 개발하였습니다.</p>"+
 				    ""
+                 },
+             ],
+        },
+        
+        /************
+         * 넷마블SDK
+         ************/
+        "netmarble_sdk" : {
+            "name" : "넷마블 SDK",
+	    "type" : "pc",
+            "skills" : ["Android", "Java", "Kotlin", "Unity", "C#"],
+            "links" : [],
+            "preview" : [
+                {"type" : "pc", "src" : "./images/netmarble_sdk/tos.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/social_login.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/notice.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/promotion.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/guide.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/customer_support.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/forum.jpg"},
+                {"type" : "pc", "src" : "./images/netmarble_sdk/purchase.jpg"},
+                
+            ],
+            "description" : "넷마블 게임에 공통적으로 적용되었던 넷마블 SDK입니다.<br>" + 
+                            "소셜 로그인, 인앱결제, 푸시, 웹뷰 등 다양한 기능이 모듈 별로 탑재되어 있으며, 유니티 게임의 SDK 연동 편의을 위해 브릿지 방식으로 구현된 유니티 SDK도 제공되고 있습니다.<br>" +
+                            "버그 수정, 신규 기능 및 모듈 추가, OS 업데이트 대응 등을 진행하였으며 안드로이드 SDK, 유니티 SDK, SDK 테스트를 위한 안드로이드 앱, 유니티 앱 유지보수를 진행하였습니다.<br>" + 
+                            "신규 기능 및 모듈 추가 시 직접 설계하거나 설계에 참여하여 개발 진행하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "통합 웹뷰 모듈 개발",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "pc", "src" : "./images/netmarble_sdk/notice.jpg"},
+                     ],
+                     "description" : "기존에 공지사항, 게임가이드, 고객센터 등 불필요하게 파편화되어 있는 웹뷰 관련 모듈들을 하나로 합친 통합 웹뷰 모듈을 직접 설계하여 단독 개발하였습니다.<br>"+
+                                     "Kotlin을 사용하여 총 9개의 모듈을 통합하였고 설계, 개발, 테스트 코드 작성 등 프로젝트 완료에 3달의 시간이 소요되었습니다.<br>"+
+                                     "통합 모듈 개발 후 유지보수에 필요한 리소스가 크게 감소하였으며, 유연하고 확장성 높은 설계로 신규 웹뷰 추가, 타 모듈에 웹뷰 모듈 탑재 등의 작업 리소스가 감소하였습니다."
+                                     
+                 },
+             ],
+        },
+        
+        /************
+         * 블레이드&소울 레볼루션 월드
+         ************/
+        "bnsmw" : {
+            "name" : "블레이드&소울 레볼루션 월드",
+	    "type" : "mobile",
+            "skills" : ["Android", "Java", "Flutter", "Dart"],
+            "links" : [
+                {"name" : "Google Play", "url" : "https://play.google.com/store/apps/details?id=com.netmarble.bnsmw"},
+            ],
+            "preview" : [
+                {"type" : "mobile", "src" : "./images/bnsmw/main2.jpg"},
+                {"type" : "mobile", "src" : "./images/bnsmw/main.jpg"},
+                {"type" : "mobile", "src" : "./images/bnsmw/community.jpg"},
+                {"type" : "mobile", "src" : "./images/bnsmw/forum.jpg"},
+                {"type" : "mobile", "src" : "./images/bnsmw/chat.jpg"},
+                {"type" : "mobile", "src" : "./images/bnsmw/guide.jpg"},
+                {"type" : "mobile", "src" : "./images/bnsmw/setting.jpg"},
+            ],
+            "description" : "블레이드&소울 레볼루션 게임의 포럼(커뮤니티), 캐릭터 정보 확인, 채팅 등의 기능을 제공하는 안드로이드 앱입니다.<br>" + 
+                            "버그 수정, OS 업데이트 대응 등의 유지보수 업무를 단독으로 맡아 진행하였습니다.",
+             "dev" : [
+                 {
+                     "name" : "Flutter 앱 재개발 프로젝트",
+                     "links" : [],
+                     "preview" : [
+                         {"type" : "video", "src" : "./images/bnsmw/android.mp4", "poster" : "./images/bnsmw/splash.jpg", "title" : "Android"},
+                         {"type" : "video", "src" : "./images/bnsmw/flutter.mp4", "poster" : "./images/bnsmw/splash.jpg", "title" : "Flutter"},
+                     ],
+                     "description" : "서비스 중인 기존 앱을 플러터로 재개발하는 프로젝트를 진행하였습니다.<br>"+
+                                     "프로젝트는 저를 포함하여 2명의 개발자가 진행하였고, 3개월 동안 기존 앱의 모든 UI를 100% 구현하였고, 기존 기능의 약 30% 정도를 재현하였습니다.<br>" + 
+                                     "처음 접한 언어와 프레임워크에 빠르게 적응한 부분, 코드 가독성, 확장성 등에 대해 좋은 평가를 받았습니다."
                  },
              ],
         },
@@ -566,15 +645,20 @@
         var html = "";
         switch(data.type){
             case "video" : 
-                html += "<video loop poster='"+data.poster+"'><source src='"+data.src+"' type='video/mp4'>이 브라우저에서는 동영상이 지원되지 않습니다.</video>";
+                html += "<video class='video' loop poster='"+data.poster+"'><source src='"+data.src+"' type='video/mp4'>이 브라우저에서는 동영상이 지원되지 않습니다.</video>";
                 break;
             case "mobile" :
-                html += "<img src='"+data.src+"'>";
+                html += "<img class='mobile' src='"+data.src+"'>";
                 break;
             case "pc" : 
-                html += "<samp style=\"background-image:url('"+data.src+"')\"></samp>";
+                html += "<samp class='pc' style=\"background-image:url('"+data.src+"')\"></samp>";
                 break;
         }
+        
+        if(data.title){
+        html += "<p>"+data.title+"</p>";
+        }
+        
         return html;
     }
     
@@ -588,7 +672,6 @@
     (function(){
 
         if(!myWork){
-            $(".wrap").hide();
             alert("올바르지 않은 페이지입니다.");
             history.back();
             return;
@@ -627,7 +710,7 @@
 		}
 		
                 data.preview.forEach(function(preview){
-                    $(section).find("dt").append(getPreviewHtml(preview));
+                    $(section).find("dt").append("<div class='"+preview.type+"'>" + getPreviewHtml(preview) + "</div>");
                 })
                 $(section).find(".description").html("<div class='middle'>"+data.description+"</div>"); 
                 $("#devs").append(section);
@@ -652,7 +735,7 @@
             </ul>
         </div>
 
-        <h3>프로젝트 소개</h3>
+        <h3>서비스 소개</h3>
         <div class="description"></div>
     </div>
     

@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="slider.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
-	<link rel="stylesheet" href="css.css?ver=8">
+	<link rel="stylesheet" href="css.css?ver=20">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js?ver=6" ></script>
@@ -224,13 +224,14 @@
 	    }
 
 	    var chartOptions = [
-		{"id": "android_chart", "percent": 68, "background": '153, 194, 65'},
-		{"id": "java_chart", "percent": 68, "background": '234, 27, 9'},
-		{"id": "kotlin_chart", "percent": 30, "background": '72, 126, 207'},
-		{"id": "mysql_chart", "percent": 70, "background": '222, 146, 12'},
-		{"id": "js_chart", "percent": 68, "background": '232, 220, 42'},
-		{"id": "php_chart", "percent": 68, "background": '127, 136, 196'},
-		{"id": "css_chart", "percent": 55, "background": '77, 143, 204'},
+		{"id": "android_chart", "percent": 75, "background": '153, 194, 65'},
+		{"id": "java_chart", "percent": 75, "background": '234, 27, 9'},
+		{"id": "kotlin_chart", "percent": 75, "background": '72, 126, 207'},
+		{"id": "mysql_chart", "percent": 60, "background": '222, 146, 12'},
+		{"id": "js_chart", "percent": 60, "background": '232, 220, 42'},
+		{"id": "php_chart", "percent": 60, "background": '127, 136, 196'},
+		{"id": "css_chart", "percent": 60, "background": '77, 143, 204'},
+                {"id": "flutter_chart", "percent": 50, "background": '84, 197, 248'},
 	    ];
 	    var charts = [];
 
@@ -440,45 +441,49 @@
 
 		var url = "./my_work.html?ver=" + time;
 		$("#my_work_popup").load(url, null, function (responseText, textStatus, jqXHR) {
+                    if(!myWork){
+                        return;
+                    }
+                    
 		    $("#my_work_popup")
 			.css({"left":"100%","right":"-100%","opacity":"0"})
 			.show()
 			.animate(
 			    {"left":"0%","right":"0%", "opacity":"1"},
 			    {duration:600, complete:function(){
-				initMyWork();
-				initSwiper();
-				$("#my_work_popup img").click(function () {
-				    if(!$(this).parent().hasClass("swiper-slide") || $(this).parent().hasClass("swiper-slide-active")){
-					window.open($(this).attr('src'));	
-				    }
-				});
-				$("#my_work_popup video").click(function () {
-				    if(!$(this).parent().hasClass("swiper-slide") || $(this).parent().hasClass("swiper-slide-active")){
-					window.open($(this).find("source:eq(0)").attr('src'));
-				    }
-				});
-				$("#my_work_popup samp").click(function () {
-				    var url = $(this).css('background-image');
-				    if (url.indexOf("\"") != -1) {
-					url = url.split("\"")[1];
-				    } else if (url.indexOf("'") != -1) {
-					url = url.split("'")[1];
-				    }
-				    if(!$(this).parent().hasClass("swiper-slide") || $(this).parent().hasClass("swiper-slide-active")){
-					window.open(url);
-				    }
-				});
-				
-				if(firstPopup){
-				    firstPopup = false;
-				    $(".swiper-container").append("<div class='hand swipe'></div>");
-				}
-				
-				$("#my_work_popup").find(".summary, #devs")
-					.hide()
-					.css("visibility", "visible")
-					.fadeIn();
+                                    initMyWork();
+                                    initSwiper();
+                                    $("#my_work_popup img").click(function () {
+                                        if(!$(this).parent().hasClass("swiper-slide") || $(this).parent().hasClass("swiper-slide-active")){
+                                            window.open($(this).attr('src'));	
+                                        }
+                                    });
+                                    $("#my_work_popup video").click(function () {
+                                        if(!$(this).parent().hasClass("swiper-slide") || $(this).parent().hasClass("swiper-slide-active")){
+                                            window.open($(this).find("source:eq(0)").attr('src'));
+                                        }
+                                    });
+                                    $("#my_work_popup samp").click(function () {
+                                        var url = $(this).css('background-image');
+                                        if (url.indexOf("\"") != -1) {
+                                            url = url.split("\"")[1];
+                                        } else if (url.indexOf("'") != -1) {
+                                            url = url.split("'")[1];
+                                        }
+                                        if(!$(this).parent().hasClass("swiper-slide") || $(this).parent().hasClass("swiper-slide-active")){
+                                            window.open(url);
+                                        }
+                                    });
+
+                                    if(firstPopup){
+                                        firstPopup = false;
+                                        $(".swiper-container").append("<div class='hand swipe'></div>");
+                                    }
+
+                                    $("#my_work_popup").find(".summary, #devs")
+                                            .hide()
+                                            .css("visibility", "visible")
+                                            .fadeIn();
 			    }}
 			);
 		});
@@ -729,8 +734,8 @@
 				<div class="introduce scalable">
 				    <strong>안녕하세요! <script>document.write(careerYear)</script>년 차 안드로이드 개발자 이진혁입니다.</strong><br>
                                     지난 <script>document.write(careerYear)</script>년간 3곳의 기업에 재직하며 네이티브 앱, 하이브리드 앱, SDK 등 <br class="no_br"> 
-                                    다수의 서비스를 개발하고 설계하며 다양한 노하우를 쌓아왔습니다.<br>
-                                    안드로이드 외에도 플러터, 유니티, 백엔드, 프론트엔드, DB 구성 등 다양한 실무 경험으로 <br class="no_br">
+                                    다수의 서비스를 개발하고 설계해본 경험을 가지고 있습니다.<br>
+                                    안드로이드 외에도 플러터, 유니티, 백엔드, 프론트엔드, DB 구성 등 다양한 분야의 실무 경험으로 <br class="no_br">
                                     서비스 전반에 대한 이해도가 높은 편이며, 타 분야 개발자들과의 협업과 소통에 원할합니다.<br>
                                     빠른 개발 속도, 깔끔하고 유연한 코드, 퀄리티있는 결과물로 좋은 평가를 받아오고 있습니다.
 				    <br>
@@ -746,20 +751,44 @@
 			<div class="twin">
 			    <h2 class="underbar">Work Experiences</h2>
 			    <ol class="work_experiences scrollable" >
-				<li>
-				    <div class="thumbnail monawa link" onclick="cancelBubbling();"><p onclick="window.open('http://www.hungryapp.co.kr/')">㈜모나와</p></div>
+                                <li>
+				    <div class="thumbnail netmarble link" onclick="cancelBubbling();"><p onclick="window.open('https://company.netmarble.com/')">넷마블</p></div>
 				    <div class="info">
 					<div class="hand touch" ></div>
-					Android / PHP / MySQL / Front-end / Git<br>
+					Android(Java, Kotlin) / Unity(C#) / Flutter(Dart)<br>
+					2019.07 - 재직 중
+				    </div>
+				    <dl class="detail">
+					<dt>모바일 게임 SDK 개발</dt>
+					<dd>Android(Java, Kotlin), Unity(C#) SDK 설계 및 개발</dd>
+                                        <dd>인앱 결제, 소셜 로그인, 웹뷰, 푸시 등의 기능 탑재</dd>
+
+					<dt>블레이드&소울 레볼루션 월드 앱 개발</dt>
+					<dd>포럼(커뮤니티), 캐릭터 정보 확인, 채팅 등의 기능을<br>
+                                             탑재한 안드로이드 앱 유지보수 진행</dd>
+                                        <dd>Flutter 앱 재개발 프로젝트 진행</dd>
+                                        
+                                        <dt>Gradle, Jenkins, Jacoco, SonarQube 연동 및 관리</dt>
+                                        <dt>Gitlab을 통한 브랜치, 마일스톤, 이슈 관리</dt>
+                                        <dt>테스트 자동화</dt>
+                                        
+				    </dl>
+				</li>
+				<li>
+				    <div class="thumbnail monawa link" onclick="cancelBubbling();"><p onclick="window.open('http://www.hungryapp.co.kr/')">모나와</p></div>
+				    <div class="info">
+					Android(Java, Kotlin) / PHP / MySQL / Front-end<br>
 					2015.07 - 2019.02
 				    </div>
 				    <dl class="detail">
-					<dt>안드로이드 네이티브, 하이브리드 앱 개발</dt>
-					<dd>앱, DB, PHP 서버, Javascript 등 직접 구성 및 개발</dd>
+                                        <dt>사내 단독 안드로이드 개발자로 재직</dt>
+                                        
+					<dt>안드로이드 네이티브, 하이브리드 앱 다수 개발</dt>
+					<dd>앱, 백엔드(PHP), 프론트엔드, DB 등 직접 설계 및 개발</dd>
 
 					<dt>웹 개발</dt>
 					<dd>이벤트 페이지, 광고주 페이지, 관리자 페이지 등 개발</dd>
-					<dd>DB, PHP 서버, Javascript 등 직접 구성 및 개발</dd>
+					<dd>DB, 백엔드(PHP), Javascript 등 직접 설계 및 개발</dd>
 
 					<dt>사내 프레임워크, SDK, API 개발</dt>
 					<dt>SDK, API 연동 경험</dt>
@@ -771,7 +800,7 @@
 				<li>
 				    <div class="thumbnail isp link" onclick="cancelBubbling();"><p onclick="window.open('http://www.ispxrf.com/');">㈜아이에스피</p></div>
 				    <div class="info">
-					Android / C#<br>
+					Android(Java) / C#<br>
 					2014.06 - 2015.06
 				    </div>
 				    <dl class="detail">
@@ -811,27 +840,12 @@
 				    </div>
 				    <div class="hand touch" ></div>
 				    <ul class="detail">
-					<li>Activity, Service, Broadcast Receiver 활용</li>
-					<li>네이티브 앱, 하이브리드 앱 100% 개발</li>
-					<li>레이아웃 구성</li>
-					<li>라이브러리 분석 및 수정</li>
-					<li>SDK, 라이브러리, 사내 프레임워크 개발</li>
-					<li>GCM, Social Login 등 SDK, API 연동 경험</li>
-					<li>접근성</li>
-					<li>WebView, Javascript Interface</li>
-					<li>ProGuard</li>
-				    </ul>
-				</li>
-				<li>
-				    <h3>Java</h3>
-				    <div class="chart_container">
-					<canvas id="java_chart"></canvas>
-				    </div>
-				    <ul class="detail">
-					<li>Class, Interface, Abstract, Static 활용</li>
-					<li>상속, 추상화, 다형성, 캡슐화의 활용</li>
-					<li>메서드 체이닝</li>
-					<li>Lambda</li>
+					<li>네이티브 앱, 하이브리드 앱 단독 개발 경험</li>
+                                        <li>SDK, 라이브러리, 사내 프레임워크 개발</li>
+                                        <li>인앱결제, 푸시, 웹뷰, GPS, 블루투스, 파일, 접근성 등 다양한 기능 구현 경험</li>
+                                        <li>서비스 설계 경험</li>
+					<li>SDK, API 연동</li>
+                                        <li>테스트 자동화</li>
 				    </ul>
 				</li>
 				<li>
@@ -840,12 +854,20 @@
 					<canvas id="kotlin_chart"></canvas>
 				    </div>
 				    <ul class="detail">
-					<li>상속, 오버라이딩</li>
-					<li>Companion Object</li>
-					<li>Nullable, NonNull 처리</li>
-					<li>let 활용</li>
-					<li>Lambda</li>
-					<li>Studying...</li>
+                                        <li>최근 2년 이상 실무 사용</li>
+					<li>let, also, apply, run 활용</li>
+                                        <li>by lazy, lateinit 활용</li>
+                                        <li>Kotlin Extension 활용</li>
+				    </ul>
+				</li>
+                                <li>
+				    <h3>Java</h3>
+				    <div class="chart_container">
+					<canvas id="java_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+                                        <li>6년 이상 실무 사용</li>
+					<li>상속, 추상화, 다형성, 캡슐화 등 객체 지향 개발 방법 숙지</li>
 				    </ul>
 				</li>
 				<li>
@@ -855,13 +877,12 @@
 				    </div>
 				    <ul class="detail">
 					<li>라이브러리 분석 경험</li>
-					<li>cURL</li>
-					<li>JSON Parsing</li>
-					<li>Crawling</li>
+					<li>cURL 활용</li>
+					<li>크롤링 구현</li>
 					<li>파일 다운로드, 업로드 서버 구현</li>
 					<li>API 개발</li>
-					<li>앱, 포스트백 서버 개발</li>
-					<li>통계 페이지 개발</li>
+					<li>앱 서버, 포스트백 서버 개발</li>
+					<li>데이터 통계 구현</li>
 				    </ul>
 				</li>
 				<li>
@@ -870,8 +891,9 @@
 					<canvas id="mysql_chart"></canvas>
 				    </div>
 				    <ul class="detail">
-					<li>DB 설계</li>
-					<li>100만개 이상의 데이터 처리, 조회 쿼리 작성 경험</li>
+					<li>DB 설계 및 구성</li>
+					<li>100만개 이상의 데이터 운용</li>
+                                        <li>쿼리 최적화</li>
 				    </ul>
 				</li>
 				<li>
@@ -880,11 +902,10 @@
 					<canvas id="js_chart"></canvas>
 				    </div>
 				    <ul class="detail">
-					<li>jQuery</li>
-					<li>Ajax</li>
+					<li>jQuery, Ajax 활용</li>
 					<li>Animation</li>
 					<li>라이브러리 분석 및 수정</li>
-					<li>간단한 플러그인 개발</li>
+					<li>플러그인 개발</li>
 				    </ul>
 				</li>
 				<li>
@@ -895,9 +916,19 @@
 				    <ul class="detail">
 					<li>Animation</li>
 					<li>Selector</li>
-					<li>Display, Position에 대한 이해</li>
 					<li>반응형 레이아웃</li>
-					<li>간단한 페이지 Publishing 경험</li>
+					<li>퍼블리싱 경험</li>
+				    </ul>
+				</li>
+                                <li>
+				    <h3>Flutter</h3>
+				    <div class="chart_container">
+					<canvas id="flutter_chart"></canvas>
+				    </div>
+				    <ul class="detail">
+                                        <li>앱 개발 프로젝트 진행 경험</li>
+					<li>레이아웃 구현</li>
+                                        <li>플러그인 연동 및 개발</li>
 				    </ul>
 				</li>
 			    </ul>
@@ -909,14 +940,38 @@
 			<h2 class="underbar">My Works</h2>     
 			<div class="grid_filter scalable">
 			    <ul>
-				<li class="on" data-filter="*">ALL</li>
-				<li data-filter=".app">APP</li>
-				<li data-filter=".web">WEB</li>
+				<li class="on" data-filter="*">All</li>
+				<li data-filter=".app">Mobile</li>
+				<li data-filter=".web">Web</li>
 			    </ul>
 			</div>
 
 			<div class="my_works scrollable">
 			    <ul class="grid">
+                                
+                                <li class="app">
+				    <div class="thumbnail netmarble_sdk" data-name="netmarble_sdk">
+					<p>
+					    <span class="middle">
+						넷마블 SDK<br>
+						<button>자세히 보기</button>
+					    </span>
+					</p>
+				    </div>
+				</li>
+                                
+                                <li class="app">
+				    <div class="thumbnail bnsmw" data-name="bnsmw">
+					<p>
+					    <span class="middle">
+						블레이드&소울 레볼루션<br>
+                                                월드<br>
+						<button>자세히 보기</button>
+					    </span>
+					</p>
+				    </div>
+				</li>
+                                
 				<li class="app">
 				    <div class="thumbnail mobi" data-name="mobi">
 					<p>

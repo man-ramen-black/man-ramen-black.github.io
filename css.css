@@ -264,10 +264,13 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .thumbnail:hover > p {top:0;}
 .thumbnail.link > p:after {content:"";display:inline-block;width:20px;height:20px;background-image:url('./images/link.png');background-size:100%;margin-left:5px;vertical-align:middle;}
 
+.thumbnail.netmarble {background-image:url('./images/netmarble.png')}
 .thumbnail.monawa {background-image:url('./images/monawa.jpg')}
 .thumbnail.isp {background-image:url('./images/isp.jpg?ver=2')}
 .thumbnail.tradoc {background-image:url('./images/tradoc.jpg?ver=4')}
 
+.thumbnail.netmarble_sdk {background-image:url('./images/thumbnail/netmarblesdk.png')}
+.thumbnail.bnsmw {background-image:url('./images/thumbnail/bnsmw.png')}
 .thumbnail.mobi {background-image:url('./images/thumbnail/mobi.png')}
 .thumbnail.admin {background-image:url('./images/thumbnail/admin.png?ver=1')}
 .thumbnail.mobi_advertiser {background-image:url('./images/thumbnail/mobi_advertiser.png')}
@@ -285,7 +288,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .work_experiences dt {font-size:1.1em;margin-top:15px;}
 .work_experiences dt:first-child {margin-top:0px}
 .work_experiences dd {padding:2px 0;font-size:0.95em;color:#DFDFDF}
-.work_experiences .thumbnail {display:table;margin: 0 auto;width:250px;height:90px;background-size:100%;}
+.work_experiences .thumbnail {display:table;margin: 0 auto;width:250px;height:90px;background-size:100%;background-color:#FFF;}
 .work_experiences .touch {left:50%;bottom:20px;}
 
 .my_works {width:100%;position:absolute;top:115px;bottom:20px;}
@@ -328,24 +331,22 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .popup .links {margin-bottom:10px;}
 .popup .links > button {background-position:10px 50%;background-size:15px;background-repeat:no-repeat;background-image:url('./images/link.png');padding:5px 10px 5px 35px;margin:0 5px;}
 
-.popup img {cursor:pointer}
-.popup video {cursor:pointer}
+.popup video, .popup img {cursor:pointer}
 .popup samp {cursor:pointer;width:100%;padding-bottom:50.9375%;background-size:100%;background-repeat:no-repeat;}
 
 .popup .dev h3 {padding:0px 20px 0px 0px;text-align:left;}
-.dev dt {width:100%;margin:10px 0;}
+.dev dt {width:100%;margin:20px 0;}
 .dev dd {position:relative;width:100%;}
 .dev dd:before {content:"";height:100%;display:inline-block;vertical-align:middle;margin-left:-10px;}
 .dev dd > * {display:inline-block;vertical-align:middle;text-align:left;}
-.dev .description {}
+.dev .description {line-height:1.7em}
 .dev .description p {padding:7px 0;}
-.dev video, .dev img {width:40%;text-align:center;margin:0 1%;}
-
-
+.dev dt > .video, .dev dt > .mobile {display:inline-block;width:40%;text-align:center;margin:0 1%;}
+.dev video, .dev img{width:100%;}
+.dev dt p {font-weight:bold;font-size:1.3em} 
 
 .swiper-container {margin:10px 0;}
 .swiper-container li > * {width:100%;}
-
 
 .contact img {height:40px;display:inline-block;margin-bottom:10px;}
 .contact li > * {vertical-align:middle;}
