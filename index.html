@@ -46,8 +46,10 @@
 	    var grid;
             //경력 년차
             var careerYear = (function(){
-                var currentYear = new Date().getFullYear();
-                return currentYear - 2014;
+                var date = new Date();
+                var currentYear = date.getFullYear();
+                currentYear += (date.getMonth()+1) * 0.01
+                return Math.floor(currentYear - 2014.07);
             })();
             
 	    window.onload = function () {
@@ -734,10 +736,10 @@
 				<div class="introduce scalable">
 				    <strong>안녕하세요! <script>document.write(careerYear)</script>년 차 안드로이드 개발자 이진혁입니다.</strong><br>
                                     지난 <script>document.write(careerYear)</script>년간 3곳의 기업에 재직하며 네이티브 앱, 하이브리드 앱, SDK 등 <br class="no_br"> 
-                                    다수의 서비스를 개발하고 설계해본 경험을 가지고 있습니다.<br>
+                                    다수의 서비스를 개발해본 경험을 가지고 있습니다.<br>
                                     안드로이드 외에도 플러터, 유니티, 백엔드, 프론트엔드, DB 구성 등 다양한 분야의 실무 경험으로 <br class="no_br">
                                     서비스 전반에 대한 이해도가 높은 편이며, 타 분야 개발자들과의 협업과 소통에 원할합니다.<br>
-                                    빠른 개발 속도, 코드 가독성, 유연한 구조, 퀄리티있는 결과물 등으로 좋은 평가를 받아오고 있습니다.
+                                    안정적인 동작, 유연한 구조, 가독성 높은 코드를 작성하기 위해 항상 고민하고, 노력하며 개발을 해오고 있습니다.
 				    <br>
 				    <br>
 				</div>
@@ -855,7 +857,7 @@
 				    </div>
 				    <ul class="detail">
                                         <li>최근 2년 이상 실무 사용</li>
-					<li>let, also, apply, run 활용</li>
+					<li>let, apply 등 Scope 함수의 활용</li>
                                         <li>by lazy, lateinit 활용</li>
                                         <li>Kotlin Extension 활용</li>
 				    </ul>
