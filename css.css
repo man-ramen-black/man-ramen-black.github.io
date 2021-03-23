@@ -211,7 +211,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .skills > li {position:relative;padding-bottom:10px;;cursor:pointer;}
 .skills > li:last-child {padding-bottom:0}
 .skills h3 {margin-bottom:5px}
-.chart_container {position:relative;height:70px;} 
+.chart_container {position:relative;height:50px;} 
 
 .detail {display:none;padding:10px 0;}
 .skills .detail > li {font-size:1.1em;padding:3px 0;}
@@ -311,16 +311,16 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 
 .popup {position:fixed;padding:20px 40px;display:none;max-width:1160px;margin:auto;top:0px;bottom:0px;left:0px;right:0px;background:rgba(0,0,0,0.7);}
 
-.popup h2 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 20px 5px 20px;font-size:1.7em}
+.popup h2 {position:relative;display:inline-block;text-align:left;margin-bottom:10px;padding:0px 20px 5px 20px;font-size:1.7em}
 .popup h2:after {content:"";position:absolute;border-bottom:solid 2px white;left:10px;right:10px;display:block;}
 
-.popup h3 {position:relative;display:inline-block;text-align:center;margin-bottom:10px;padding:0px 10px;font-size:1.3em}
+.popup h3 {position:relative;display:inline-block;text-align:left;margin-bottom:10px;padding:0px 10px;font-size:1.3em}
 
 .popup h3:after {content:"";position:absolute;border-bottom:solid 1px white;left:0px;right:0px;display:block;bottom:-3px;}
 
 .popup #devs {visibility:hidden;margin-bottom:20px}
 
-.popup .summary {width:100%;margin-bottom:80px;visibility:hidden;float:left;}
+.popup .summary {width:100%;margin-bottom:80px;visibility:hidden;float:left;text-align:left}
 .popup .dev {width:100%;float:left;position:relative;}
 
 
@@ -334,13 +334,13 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
 .popup video, .popup img {cursor:pointer}
 .popup samp {cursor:pointer;width:100%;padding-bottom:50.9375%;background-size:100%;background-repeat:no-repeat;}
 
-.popup .dev h3 {padding:0px 20px 0px 0px;text-align:left;}
+.popup .dev h3 {padding:0px 20px 0px 0px;}
 .dev dt {width:100%;margin:20px 0;}
 .dev dd {position:relative;width:100%;}
 .dev dd:before {content:"";height:100%;display:inline-block;vertical-align:middle;margin-left:-10px;}
 .dev dd > * {display:inline-block;vertical-align:middle;text-align:left;}
-.dev .description {line-height:1.7em}
-.dev .description p {padding:7px 0;}
+.popup .description {line-height:1.7em;text-align:left;}
+.popup .description p {padding:7px 0;}
 .dev dt > .video, .dev dt > .mobile {display:inline-block;width:40%;text-align:center;margin:0 1%;}
 .dev video, .dev img{width:100%;}
 .dev dt p {font-weight:bold;font-size:1.3em} 
@@ -361,7 +361,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
     .cube div.front {transform: translateZ(100px); -webkit-transform: translateZ(100px);}
     .cube div.back {transform: translateZ(-100px); -webkit-transform: translateZ(-100px);}
     
-    .introduce .no_br {display:none;}
+    .no_br {display:none;}
     .introduce strong {font-size:1em}
     .introduce strong {font-size:1em}
     .my_works .thumbnail > p {font-size:1.2rem}

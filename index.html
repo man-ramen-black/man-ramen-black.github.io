@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="slider.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
-	<link rel="stylesheet" href="css.css?ver=20">
+	<link rel="stylesheet" href="css.css?ver=25">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="util.js?ver=6" ></script>
@@ -226,14 +226,14 @@
 	    }
 
 	    var chartOptions = [
-		{"id": "android_chart", "percent": 75, "background": '153, 194, 65'},
-		{"id": "java_chart", "percent": 75, "background": '234, 27, 9'},
-		{"id": "kotlin_chart", "percent": 75, "background": '72, 126, 207'},
-		{"id": "mysql_chart", "percent": 60, "background": '222, 146, 12'},
-		{"id": "js_chart", "percent": 60, "background": '232, 220, 42'},
-		{"id": "php_chart", "percent": 60, "background": '127, 136, 196'},
-		{"id": "css_chart", "percent": 60, "background": '77, 143, 204'},
-                {"id": "flutter_chart", "percent": 50, "background": '84, 197, 248'},
+		{"id": "android_chart", "percent": 90, "background": '153, 194, 65'},
+		{"id": "java_chart", "percent": 90, "background": '234, 27, 9'},
+		{"id": "kotlin_chart", "percent": 90, "background": '72, 126, 207'},
+		{"id": "mysql_chart", "percent": 65, "background": '222, 146, 12'},
+		{"id": "js_chart", "percent": 65, "background": '232, 220, 42'},
+		{"id": "php_chart", "percent": 65, "background": '127, 136, 196'},
+		{"id": "css_chart", "percent": 65, "background": '77, 143, 204'},
+                {"id": "flutter_chart", "percent": 40, "background": '84, 197, 248'},
 	    ];
 	    var charts = [];
 
@@ -373,7 +373,7 @@
 				    left: 0,
 				    right: 0,
 				    top: 0,
-				    bottom: 0
+				    bottom: -20
 				}
 			    },
 			    scales: {
@@ -391,6 +391,7 @@
 					    min: 0,
 					    max: 100,
 					    stepSize: 10,
+                                            display:false,
 					    callback: function (label, index, labels) {
 						switch (label) {
 						    case 10 :
@@ -770,9 +771,8 @@
                                              탑재한 안드로이드 앱 유지보수 진행</dd>
                                         <dd>Flutter 앱 재개발 프로젝트 진행</dd>
                                         
-                                        <dt>Gradle, Jenkins, Jacoco, SonarQube 연동 및 관리</dt>
-                                        <dt>Gitlab을 통한 브랜치, 마일스톤, 이슈 관리</dt>
-                                        <dt>테스트 자동화</dt>
+                                        <dt>Gitlab, Jira, Confluence, Jenkins 등의 업무 환경 경험</dt>
+                                        <dt>UI 테스트 자동화</dt>
                                         
 				    </dl>
 				</li>
@@ -806,7 +806,7 @@
 					2014.06 - 2015.06
 				    </div>
 				    <dl class="detail">
-					<dt>동도금 두께 측정기(iTG-B10) 앱 개발</dt>
+					<dt>동도금 두께 측정기 앱 개발</dt>
 					<dd>블루투스 통신을 활용한 안드로이드 네이티브 앱</dd>
 					<dd>디자인 포함 100% 직접 개발</dd>
 
@@ -843,10 +843,9 @@
 				    <div class="hand touch" ></div>
 				    <ul class="detail">
 					<li>네이티브 앱, 하이브리드 앱 단독 개발 경험</li>
-                                        <li>SDK, 라이브러리, 사내 프레임워크 개발 경험</li>
-                                        <li>인앱결제, 푸시, 웹뷰, GPS, 블루투스, 파일, 접근성 등 다양한 기능 구현 경험</li>
-                                        <li>서비스 설계 경험</li>
-					<li>SDK, API 연동</li>
+                                        <li>SDK, 사내 프레임워크 개발 경험</li>
+                                        <li>서비스 출시 경험</li>
+					<li>외부 SDK, API 연동 경험</li>
                                         <li>테스트 자동화</li>
 				    </ul>
 				</li>
@@ -857,9 +856,7 @@
 				    </div>
 				    <ul class="detail">
                                         <li>최근 2년 이상 실무 사용</li>
-					<li>let, apply 등 Scope 함수의 활용</li>
-                                        <li>by lazy, lateinit 활용</li>
-                                        <li>Kotlin Extension 활용</li>
+					<li>Scope 함수, 초기화 지연, null 처리 등 Kotlin 패턴 활용</li>
 				    </ul>
 				</li>
                                 <li>
@@ -893,9 +890,9 @@
 					<canvas id="mysql_chart"></canvas>
 				    </div>
 				    <ul class="detail">
-					<li>DB 설계 및 구성</li>
-					<li>100만개 이상의 데이터 운용</li>
-                                        <li>쿼리 최적화</li>
+					<li>DB 설계 및 구성 경험</li>
+					<li>100만개 이상의 데이터 운용 경험</li>
+                                        <li>쿼리 최적화 경험</li>
 				    </ul>
 				</li>
 				<li>
@@ -919,7 +916,7 @@
 					<li>Animation</li>
 					<li>Selector</li>
 					<li>반응형 레이아웃</li>
-					<li>퍼블리싱 경험</li>
+					<li>실서비스 퍼블리싱 경험</li>
 				    </ul>
 				</li>
                                 <li>
