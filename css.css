@@ -397,7 +397,7 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
     .my_works button {font-size:0.9rem}
     .grid > li {width:25%;}
 
-    .dev {margin: 40px 0;}
+    .dev {padding: 20px 0;}
     .dev:nth-child(even) {float:left;}
     .dev:nth-child(odd) {float:right;}
 
@@ -405,9 +405,9 @@ button {border-radius:3px;border:solid 1px #FFF;color:#FFF;padding:3px 10px;back
     .dev:nth-child(even) dt {float:left;}
     .dev:nth-child(odd) dt {float:right;}
 
-    .dev dd{position:absolute;top:0;bottom:0;width:50%;}
-    .dev:nth-child(even) dd{right:0}
-    .dev:nth-child(odd) dd{left:0}
+    .dev dd{width:50%;}
+    .dev:nth-child(even) dd{float:left}
+    .dev:nth-child(odd) dd{float:right}
 
     .dev:nth-child(even) dd > * {padding-left:40px;}
     .dev:nth-child(odd) dd > * {padding-right:40px;}
